@@ -210,7 +210,6 @@ export default function Expertise() {
                 key={tab.id}
                 className={`tab-panel ${activeTab === tab.id ? 'active' : ''}`}
                 id={`tab-${tab.id}`}
-                data-animate="fade-up"
               >
                 <div className="tab-panel-grid">
                   <div className="tab-panel-content">{tab.content}</div>
