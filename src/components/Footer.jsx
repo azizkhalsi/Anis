@@ -44,7 +44,7 @@ export default function Footer() {
       <div className="container">
         <div className={`footer-content ${logoVisible ? 'visible' : ''}`} ref={logoRef} data-animate="fade-up">
           <Link to="/">
-            <img src="/logo.png" alt="Appcon Technologies" className="logo-img" />
+            <img src="/logo.png" alt="Appcon Technologies" className="logo-img" width="160" height="40" loading="lazy" decoding="async" />
           </Link>
           <p className="footer-brand-desc">
             Appcon Technologies is an R&D engineering firm specializing in sensorless control of electrical motors and the conceptualization and optimization of power electronics. Innovating the future of motor control solutions since 2004.

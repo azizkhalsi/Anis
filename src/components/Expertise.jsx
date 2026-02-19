@@ -74,7 +74,7 @@ export const TABS = [
     ),
     visualCard: (
       <div className="expertise-visual-card expertise-visual-card--image">
-        <img src="https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Close-up of a multi-layer PCB circuit board with components" className="expertise-visual-img" loading="lazy" />
+        <img src="https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg?auto=compress&cs=tinysrgb&w=800" srcSet="https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg?auto=compress&cs=tinysrgb&w=400 400w, https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg?auto=compress&cs=tinysrgb&w=800 800w" sizes="(max-width: 768px) 100vw, 50vw" alt="Close-up of a multi-layer PCB circuit board with components" className="expertise-visual-img" width="800" height="450" loading="lazy" decoding="async" />
         <span>PCB &amp; Circuit Design</span>
       </div>
     ),
@@ -103,7 +103,7 @@ export const TABS = [
     ),
     visualCard: (
       <div className="expertise-visual-card expertise-visual-card--image">
-        <img src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Software development environment with embedded code on screen" className="expertise-visual-img" loading="lazy" />
+        <img src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=800" srcSet="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=400 400w, https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=800 800w" sizes="(max-width: 768px) 100vw, 50vw" alt="Software development environment with embedded code on screen" className="expertise-visual-img" width="800" height="450" loading="lazy" decoding="async" />
         <span>Embedded Software</span>
       </div>
     ),

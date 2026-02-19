@@ -35,8 +35,8 @@ Permissions-Policy: geolocation=(), microphone=(), camera=()
 
 **How to set:**
 
-- **Netlify**: Use `public/_headers` file (already created)
-- **Vercel**: Use `vercel.json` with `headers` config
+- **Netlify**: `public/_headers` is already configured (includes Content-Security-Policy). Ensure the file is deployed with your build.
+- **Vercel**: Use `vercel.json` with `headers` config; include the `Content-Security-Policy` line from the block above.
 - **Cloudflare**: Use Page Rules or Workers
 - **Nginx**: Add to `server` block in config
 - **Apache**: Use `.htaccess` or `httpd.conf`
@@ -123,6 +123,7 @@ Permissions-Policy: geolocation=(), microphone=(), camera=()
            { "key": "X-Frame-Options", "value": "DENY" },
            { "key": "X-XSS-Protection", "value": "1; mode=block" },
            { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+           { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://fonts.googleapis.com; frame-ancestors 'none'; base-uri 'self';" },
            { "key": "Strict-Transport-Security", "value": "max-age=31536000; includeSubDomains; preload" }
          ]
        }

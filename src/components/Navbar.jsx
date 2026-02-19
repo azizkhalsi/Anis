@@ -73,7 +73,7 @@ export default function Navbar() {
     <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>
       <div className="nav-container">
         <NavLink to="/" className="nav-logo">
-          <img src="/logo.png" alt="Appcon Technologies" className="logo-img" />
+          <img src="/logo.png" alt="Appcon Technologies" className="logo-img" width="160" height="40" decoding="async" fetchPriority="high" />
         </NavLink>
         <div className={`nav-menu${menuOpen ? ' open' : ''}`}>
           {NAV_LINKS.map((item) => {

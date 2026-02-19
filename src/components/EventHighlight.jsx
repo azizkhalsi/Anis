@@ -56,7 +56,11 @@ export default function EventHighlight() {
               <img
                 src="/images/ceo-hafedh-sammoud.png"
                 alt="Dr. Hafedh Sammoud at the Appcon Technologies booth, PCIM Europe 2025 Nuremberg"
+                width="480"
+                height="320"
                 loading="lazy"
+                decoding="async"
+                sizes="(max-width: 768px) 100vw, 480px"
               />
               <span className="event-photo-caption">
                 Dr. Hafedh Sammoud at PCIM Europe 2025, Nuremberg

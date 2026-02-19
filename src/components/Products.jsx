@@ -84,7 +84,11 @@ function DmkVisual() {
         src="/images/dmk-connections.png"
         alt="DMK-RT connected between inverter and motor"
         className="dmk-photo-img"
+        width="800"
+        height="450"
         loading="lazy"
+        decoding="async"
+        sizes="(max-width: 768px) 100vw, 50vw"
       />
       <div className={`dmk-specs-overlay ${showSpecs ? 'visible' : ''}`}>
         <div className="dmk-specs-grid">
@@ -109,9 +113,14 @@ function AmcVisual() {
     <div className="amc-visual-wrapper">
       <img
         src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=800"
+        srcSet="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=400 400w, https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=800 800w, https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1200 1200w"
+        sizes="(max-width: 768px) 100vw, 50vw"
         alt="AMC Motor Control — embedded software framework"
         className="amc-diagram-img"
+        width="800"
+        height="450"
         loading="lazy"
+        decoding="async"
       />
     </div>
   );
@@ -122,9 +131,14 @@ function LciVisual() {
     <div className="lci-visual">
       <img
         src="https://images.pexels.com/photos/163100/circuit-circuit-board-resistor-computer-163100.jpeg?auto=compress&cs=tinysrgb&w=800"
+        srcSet="https://images.pexels.com/photos/163100/circuit-circuit-board-resistor-computer-163100.jpeg?auto=compress&cs=tinysrgb&w=400 400w, https://images.pexels.com/photos/163100/circuit-circuit-board-resistor-computer-163100.jpeg?auto=compress&cs=tinysrgb&w=800 800w, https://images.pexels.com/photos/163100/circuit-circuit-board-resistor-computer-163100.jpeg?auto=compress&cs=tinysrgb&w=1200 1200w"
+        sizes="(max-width: 768px) 100vw, 50vw"
         alt="LCI Low-Cost Inverter — compact power electronics board"
         className="lci-pcb-img"
+        width="800"
+        height="450"
         loading="lazy"
+        decoding="async"
       />
     </div>
   );

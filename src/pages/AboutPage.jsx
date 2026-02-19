@@ -1,6 +1,5 @@
 import PageHeader from '../components/PageHeader';
 import About from '../components/About';
-import EventHighlight from '../components/EventHighlight';
 
 export default function AboutPage() {
   return (
@@ -11,7 +10,6 @@ export default function AboutPage() {
         description="Founded in 2004, Appcon Technologies is an R&D engineering firm specializing in sensorless control of electrical motors and power electronics."
       />
       <About />
-      <EventHighlight />
     </>
   );
 }

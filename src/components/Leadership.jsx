@@ -15,7 +15,11 @@ export default function Leadership() {
                 src="/images/ceo-portrait.png"
                 alt="Dr.-Ing. Hafedh Sammoud, Founder and CEO of Appcon Technologies"
                 className="ceo-photo"
+                width="400"
+                height="400"
                 loading="lazy"
+                decoding="async"
+                sizes="(max-width: 640px) 90vw, 400px"
               />
             </div>
             <div className="ceo-info">

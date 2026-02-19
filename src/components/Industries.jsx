@@ -105,9 +105,14 @@ export default function Industries({ initialIndustry = 'whitegood', singleMode =
             <div className="industry-showcase-visual">
               <img
                 src={industry.image}
+                srcSet={industry.image.replace(/w=\d+/, 'w=400') + ' 400w, ' + industry.image + ' 800w'}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 45vw"
                 alt={industry.imageAlt}
                 className="industry-showcase-img"
+                width="800"
+                height="450"
                 loading="lazy"
+                decoding="async"
               />
               <div className="industry-img-overlay" style={{ background: `linear-gradient(135deg, ${industry.color}15 0%, transparent 60%)` }} />
             </div>
