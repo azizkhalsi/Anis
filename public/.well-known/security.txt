@@ -1,0 +1,13 @@
+# security.txt for Appcon Technologies
+# https://www.appcon-technologies.com/.well-known/security.txt
+
+Contact: mailto:security@appcon-technologies.com
+Expires: 2026-12-31T23:59:59.000Z
+Preferred-Languages: en, de
+Canonical: https://www.appcon-technologies.com/.well-known/security.txt
+
+# Security Policy
+Policy: https://www.appcon-technologies.com/security-policy
+
+# Acknowledgments (optional)
+# Acknowledgments: https://www.appcon-technologies.com/security-acknowledgments

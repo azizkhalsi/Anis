@@ -1,0 +1,12 @@
+# robots.txt for Appcon Technologies
+# https://www.appcon-technologies.com/robots.txt
+
+User-agent: *
+Allow: /
+
+# Disallow admin or private areas if any
+# Disallow: /admin/
+# Disallow: /private/
+
+# Sitemap location (update with your actual sitemap URL)
+Sitemap: https://www.appcon-technologies.com/sitemap.xml
