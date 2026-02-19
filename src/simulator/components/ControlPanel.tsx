@@ -17,7 +17,7 @@ interface ControlPanelProps {
 const sliderClass = "sim-slider relative z-20 w-full h-1.5 bg-slate-200 rounded-full appearance-none cursor-pointer accent-slate-600 focus:outline-none focus:ring-1 focus:ring-slate-500/30 transition-all";
 const labelClass = "sim-label text-[11px] font-medium text-slate-600 tracking-wide mb-0.5 select-none cursor-help leading-none";
 const valueClass = "sim-value relative z-10 text-[13px] font-medium tabular-nums text-slate-800 bg-white/90 px-1.5 py-0.5 rounded border border-slate-200/80 min-w-[36px] text-center select-none leading-none";
-const sectionTitleClass = "sim-section-title text-xs font-semibold text-slate-800 uppercase tracking-widest border-l-2 border-red-600/80 bg-slate-50/90 pl-2.5 pr-2 py-1 rounded-r mb-2 select-none self-start flex items-center min-h-[22px] w-fit";
+const sectionTitleClass = "sim-section-title select-none self-start flex items-center w-full";
 const columnClass = "flex flex-col px-4 sm:px-6 first:pl-0 last:pr-0 border-r border-slate-200/60 last:border-r-0 h-full w-full min-w-0";
 
 interface TooltipState {
@@ -46,18 +46,15 @@ const UnifiedControlBlock: React.FC<{ label: string, active: boolean, onClick: (
     <button 
       type="button"
       onClick={onClick}
-      className={`sim-control-btn flex items-center justify-between w-full border rounded-md transition-colors min-h-[32px] px-2.5 py-1.5 gap-1.5 cursor-pointer bg-slate-50/80 border-slate-200 hover:border-slate-300 hover:bg-slate-100/80 ${active ? 'z-10' : ''}`}
+      className={`sim-control-btn sim-option-btn flex items-center justify-center w-full min-h-[30px] px-2 py-1.5 text-[11px] font-medium uppercase tracking-wide border transition-colors cursor-pointer ${active ? 'sim-option-btn-active' : ''}`}
     >
         <span 
           onMouseEnter={(e) => onHover(e, tooltipText, tooltipKey)}
           onMouseLeave={onLeave}
-          className={`sim-control-label flex-1 min-w-0 text-left text-[11px] font-medium uppercase tracking-wide leading-tight text-ellipsis overflow-hidden cursor-pointer text-slate-600`}
+          className="sim-control-label min-w-0 text-center leading-tight text-ellipsis overflow-hidden cursor-pointer"
         >
           {label}
         </span>
-        <div className={`w-2 h-2 rounded-full border flex items-center justify-center shrink-0 transition-colors ${active ? 'border-red-500 bg-red-100' : 'border-slate-300 bg-slate-200/60'}`}>
-           {active && <div className="w-1 h-1 bg-red-500 rounded-full"></div>}
-        </div>
     </button>
 );
 
@@ -151,7 +148,7 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
         {/* Column 1: System Control */}
         <div className={columnClass}>
           <h3 className={sectionTitleClass}>System Control</h3>
-          <div className="grid grid-cols-2 gap-1.5">
+          <div className="sim-option-grid grid grid-cols-2">
             <UnifiedControlBlock label="1-Phase" active={config.phases === 1} onClick={() => handleChange('phases', 1)} onHover={handleMouseEnter} onLeave={handleMouseLeave} tooltipText="Single phase simulation" />
             <UnifiedControlBlock label="3-Phase" active={config.phases === 3} onClick={() => handleChange('phases', 3)} onHover={handleMouseEnter} onLeave={handleMouseLeave} tooltipText="Three phase simulation" />
             <UnifiedControlBlock label="Voltages" active={config.showPhaseVoltages} onClick={() => handleChange('showPhaseVoltages', !config.showPhaseVoltages)} onHover={handleMouseEnter} onLeave={handleMouseLeave} tooltipKey="voltages" tooltipText={config.showPhaseVoltages ? "Works without limits" : "Has a limit (Clipping)"} />
@@ -164,7 +161,7 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
         {/* Column 2: Modulation Strategy & Alignment */}
         <div className={columnClass}>
           <h3 className={sectionTitleClass}>Modulation Strategy</h3>
-          <div className="grid grid-cols-2 gap-1.5">
+          <div className="sim-option-grid grid grid-cols-2">
             {[
               { label: 'Sinusoidal', val: ModulationMethod.Nullsystemfrei, tip: "Traditional sinusoidal PWM" },
               { label: 'Space Vector', val: ModulationMethod.Raumzeiger, tip: "Space Vector Modulation" },
@@ -176,14 +173,12 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
               <UnifiedControlBlock key={m.val} label={m.label} active={config.modulationMethod === m.val} onClick={() => handleChange('modulationMethod', m.val)} onHover={handleMouseEnter} onLeave={handleMouseLeave} tooltipText={m.tip} />
             ))}
           </div>
-          <div className="flex bg-slate-100/80 p-0.5 rounded-md border border-slate-200 min-h-[28px] mt-5 mb-6">
-            <button type="button" onClick={() => handleChange('pwmAlignment', PWMAlignment.Center)} className={`flex-1 rounded text-[11px] font-medium transition-colors uppercase flex items-center justify-center min-h-[26px] cursor-pointer gap-1.5 text-slate-600 hover:text-slate-800 hover:bg-slate-200/50 ${config.pwmAlignment === PWMAlignment.Center ? 'bg-transparent' : ''}`}>
-              {config.pwmAlignment === PWMAlignment.Center && <span className="w-1.5 h-1.5 rounded-full bg-red-500 shrink-0" aria-hidden />}
-              <span onMouseEnter={(e) => handleMouseEnter(e, "Center Aligned PWM Switching")} onMouseLeave={handleMouseLeave} className="cursor-help">Center</span>
+          <div className="sim-pill-row flex min-h-[30px] mt-5 mb-6">
+            <button type="button" onClick={() => handleChange('pwmAlignment', PWMAlignment.Center)} className={`sim-pill-btn flex-1 text-[11px] font-medium transition-colors uppercase flex items-center justify-center min-h-[28px] cursor-pointer ${config.pwmAlignment === PWMAlignment.Center ? 'sim-pill-btn-active' : ''}`} onMouseEnter={(e) => handleMouseEnter(e, "Center Aligned PWM Switching")} onMouseLeave={handleMouseLeave}>
+              Center
             </button>
-            <button type="button" onClick={() => handleChange('pwmAlignment', PWMAlignment.Edge)} className={`flex-1 rounded text-[11px] font-medium transition-colors uppercase flex items-center justify-center min-h-[26px] cursor-pointer gap-1.5 text-slate-600 hover:text-slate-800 hover:bg-slate-200/50 ${config.pwmAlignment === PWMAlignment.Edge ? 'bg-transparent' : ''}`}>
-              {config.pwmAlignment === PWMAlignment.Edge && <span className="w-1.5 h-1.5 rounded-full bg-red-500 shrink-0" aria-hidden />}
-              <span onMouseEnter={(e) => handleMouseEnter(e, "Edge Aligned PWM Switching")} onMouseLeave={handleMouseLeave} className="cursor-help">Edge</span>
+            <button type="button" onClick={() => handleChange('pwmAlignment', PWMAlignment.Edge)} className={`sim-pill-btn flex-1 text-[11px] font-medium transition-colors uppercase flex items-center justify-center min-h-[28px] cursor-pointer ${config.pwmAlignment === PWMAlignment.Edge ? 'sim-pill-btn-active' : ''}`} onMouseEnter={(e) => handleMouseEnter(e, "Edge Aligned PWM Switching")} onMouseLeave={handleMouseLeave}>
+              Edge
             </button>
           </div>
         </div>

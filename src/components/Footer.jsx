@@ -4,17 +4,25 @@ import useScrollAnimation from '../hooks/useScrollAnimation';
 
 const FOOTER_LINKS = {
   Company: [
-    { label: 'About Us', to: '/about' },
+    { label: 'Who We Are', to: '/about' },
+    { label: 'Our Story', to: '/company/our-story' },
+    { label: 'Industry Events', to: '/events' },
     { label: 'Contact', to: '/contact' },
   ],
   Products: [
-    { label: 'DMK', to: '/products' },
-    { label: 'LCI', to: '/products' },
-    { label: 'AMC', to: '/products' },
+    { label: 'DMK', to: '/products/dmk' },
+    { label: 'LCI', to: '/products/lci' },
+    { label: 'AMC', to: '/products/amc' },
   ],
   Expertise: [
-    { label: 'Our Expertise', to: '/expertise' },
-    { label: 'Industries', to: '/industries' },
+    { label: 'Technology Consulting', to: '/expertise/consulting' },
+    { label: 'Hardware Engineering', to: '/expertise/hardware' },
+  ],
+  Industries: [
+    { label: 'White Goods', to: '/industries/whitegood' },
+    { label: 'Power Tools', to: '/industries/powertool' },
+    { label: 'Automotive', to: '/industries/automotive' },
+    { label: 'E-Mobility', to: '/industries/emobility' },
   ],
 };
 

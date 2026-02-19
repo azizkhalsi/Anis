@@ -355,7 +355,7 @@ const App: React.FC = () => {
   return (
     <div className="sim-root font-sans overflow-x-hidden w-full">
       <main className="sim-main flex flex-col items-center py-1.5 px-3 sm:px-4 md:px-5">
-        <div className="w-full max-w-[900px] flex flex-col gap-2.5">
+        <div className="sim-content-wrap flex flex-col gap-2.5">
           {/* Row 1: 3 signal graphs aligned horizontally */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-1.5 sm:gap-2 w-full shrink-0">
             <div className="bg-black border border-slate-800 shadow-sm relative rounded-lg aspect-square overflow-hidden">
@@ -388,7 +388,7 @@ const App: React.FC = () => {
               />
             </div>
             {showMotor ? (
-              <div className="relative bg-gradient-to-b from-slate-900 to-black border border-slate-600 shadow-[0_0_16px_rgba(100,116,139,0.12)] rounded-lg overflow-hidden aspect-square w-full max-w-[220px] shrink-0 animate-[fadeIn_0.3s_ease-out]">
+              <div className="sim-motor-wrap relative bg-gradient-to-b from-slate-900 to-black border border-slate-600 shadow-[0_0_16px_rgba(100,116,139,0.12)] rounded-lg overflow-hidden aspect-square w-full shrink-0 animate-[fadeIn_0.3s_ease-out]">
                 <div className="absolute top-1 left-1.5 z-10">
                   <span className="text-[8px] font-semibold text-slate-500 uppercase tracking-wider">PMSM · Real-time</span>
                 </div>

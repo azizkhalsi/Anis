@@ -1,17 +1,26 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 
 export default function About() {
+  const location = useLocation();
   const contentRef = useRef(null);
-  const visualRef = useRef(null);
   const contentVisible = useScrollAnimation(contentRef);
-  const visualVisible = useScrollAnimation(visualRef);
+
+  useEffect(() => {
+    const hash = location.hash?.slice(1);
+    if (hash === 'who-we-are') {
+      const el = document.getElementById(hash);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [location.hash]);
 
   return (
     <section className="about" id="about">
       <div className="container">
-        <div className="about-grid">
+        <div className="about-grid about-grid--content-only">
           <div
+            id="who-we-are"
             className={`about-content ${contentVisible ? 'visible' : ''}`}
             ref={contentRef}
             data-animate="fade-right"
@@ -61,21 +70,7 @@ export default function About() {
               </div>
             </div>
           </div>
-          <div
-            className={`about-visual ${visualVisible ? 'visible' : ''}`}
-            ref={visualRef}
-            data-animate="fade-left"
-          >
-            <div className="about-image-wrapper">
-              <div className="about-pattern" />
-              <div className="about-card">
-                <img src="/images/lab-testbench.png" alt="Appcon Technologies R&D Laboratory" className="about-card-img" loading="lazy" />
-                <div className="about-card-label">Our R&D Laboratory</div>
-              </div>
-            </div>
-          </div>
         </div>
-
       </div>
     </section>
   );

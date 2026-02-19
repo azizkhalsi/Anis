@@ -1,7 +1,8 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import useScrollAnimation from '../hooks/useScrollAnimation';
+import MbdWorkflowDiagram from './MbdWorkflowDiagram';
 
-const TABS = [
+export const TABS = [
   {
     id: 'consulting',
     label: 'Technology Consulting',
@@ -132,8 +133,8 @@ const TABS = [
       </>
     ),
     visualCard: (
-      <div className="expertise-visual-card expertise-visual-card--image expertise-visual-card--diagram">
-        <img src="/images/motor-control-diagram.png" alt="Motor control system architecture and Model-Based Design workflow" className="expertise-visual-img expertise-diagram-img" loading="lazy" />
+      <div className="expertise-visual-card expertise-visual-card--diagram">
+        <MbdWorkflowDiagram />
         <span>Simulation &amp; Validation</span>
       </div>
     ),
@@ -186,10 +187,16 @@ const TABS = [
   },
 ];
 
-export default function Expertise() {
-  const [activeTab, setActiveTab] = useState('consulting');
+export default function Expertise({ initialTab = 'consulting' }) {
+  const [activeTab, setActiveTab] = useState(initialTab);
   const tabNavRef = useRef(null);
   const tabNavVisible = useScrollAnimation(tabNavRef);
+
+  useEffect(() => {
+    if (initialTab && TABS.some((t) => t.id === initialTab)) {
+      setActiveTab(initialTab);
+    }
+  }, [initialTab]);
 
   return (
     <section className="expertise" id="expertise">

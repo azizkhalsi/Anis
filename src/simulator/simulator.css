@@ -10,6 +10,16 @@
   background: #fff;
 }
 
+/* Viewport-aware scaling: simulator content and motor scale with screen size */
+.sim-content-wrap {
+  width: 100%;
+  max-width: min(900px, calc(100vw - 48px));
+}
+
+.sim-motor-wrap {
+  max-width: min(220px, 40vw);
+}
+
 /* Control panel: clean parameter typography */
 .sim-label {
   font-weight: 500;
@@ -20,22 +30,94 @@
   font-weight: 500;
   -webkit-font-smoothing: antialiased;
 }
+/* Section titles: dashboard widget style */
 .sim-section-title {
+  font-size: 0.8125rem;
   font-weight: 600;
+  color: #1e293b;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   -webkit-font-smoothing: antialiased;
-  letter-spacing: 0.06em;
-  border-left-width: 3px;
-  border-left-color: var(--accent, #c42b2b);
+  padding: 0 0 10px 12px;
+  margin-bottom: 12px;
+  border-left: 3px solid var(--accent, #c42b2b);
+  border-bottom: 1px solid #e2e8f0;
+  min-height: 28px;
 }
 .sim-slider {
   min-height: 6px;
   touch-action: none;
 }
 
-/* Toggle buttons: compact, modern */
-.sim-control-btn {
-  -webkit-font-smoothing: antialiased;
+/* Option button groups: flat pill-style segments, no pressed/inset */
+.sim-option-grid {
+  gap: 2px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
+.sim-option-btn {
+  -webkit-font-smoothing: antialiased;
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+  box-shadow: none;
+  appearance: none;
+}
+.sim-option-btn:nth-child(odd) {
+  border-radius: 6px 0 0 6px;
+  border-right-width: 0;
+}
+.sim-option-btn:nth-child(even) {
+  border-radius: 0 6px 6px 0;
+  border-left-width: 0;
+}
+.sim-option-btn-active {
+  background: #475569 !important;
+  color: #fff !important;
+  border-color: #475569 !important;
+  z-index: 1;
+}
+.sim-option-btn-active:nth-child(odd) {
+  border-right-width: 1px;
+  border-right-color: #475569;
+}
+.sim-option-btn-active:nth-child(even) {
+  border-left-width: 1px;
+  border-left-color: #475569;
+}
+.sim-option-btn:hover:not(.sim-option-btn-active) {
+  background: #e2e8f0;
+  color: #334155;
+}
+
+/* Center / Edge: same pill segment style */
+.sim-pill-row {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  background: #f1f5f9;
+}
+.sim-pill-btn {
+  -webkit-font-smoothing: antialiased;
+  background: transparent;
+  color: #475569;
+  border: none;
+  box-shadow: none;
+  appearance: none;
+}
+.sim-pill-btn:first-child {
+  border-radius: 0;
+  border-right: 1px solid #e2e8f0;
+}
+.sim-pill-btn-active {
+  background: #475569 !important;
+  color: #fff !important;
+}
+.sim-pill-btn:hover:not(.sim-pill-btn-active) {
+  background: #e2e8f0;
+  color: #334155;
+}
+
 .sim-control-label {
   font-weight: 500;
   -webkit-font-smoothing: antialiased;
@@ -45,7 +127,7 @@
 @media (max-width: 640px) {
   .sim-label { font-size: 0.6875rem; }
   .sim-value { font-size: 0.8125rem; min-width: 40px; }
-  .sim-section-title { font-size: 0.6875rem; min-height: 20px; }
+  .sim-section-title { font-size: 0.75rem; min-height: 26px; padding-bottom: 8px; }
 }
 
 @keyframes fadeIn {

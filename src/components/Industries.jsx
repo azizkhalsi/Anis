@@ -1,7 +1,7 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 
-const INDUSTRIES_DATA = [
+export const INDUSTRIES_DATA = [
   {
     id: 'whitegood',
     title: 'White Goods',
@@ -52,33 +52,39 @@ const INDUSTRIES_DATA = [
   },
 ];
 
-export default function Industries() {
-  const [active, setActive] = useState('whitegood');
+export default function Industries({ initialIndustry = 'whitegood', singleMode = false }) {
+  const [active, setActive] = useState(initialIndustry);
   const ref = useRef(null);
   const visible = useScrollAnimation(ref);
   const industry = INDUSTRIES_DATA.find((i) => i.id === active);
 
-  return (
-    <section className="industries" id="industries">
-      <div className="container">
-        {/* Industry tabs */}
-        <div className={`industry-tabs ${visible ? 'visible' : ''}`} ref={ref} data-animate="fade-up">
-          {INDUSTRIES_DATA.map((ind) => (
-            <button
-              key={ind.id}
-              type="button"
-              className={`industry-tab ${active === ind.id ? 'active' : ''}`}
-              onClick={() => setActive(ind.id)}
-              style={{ '--tab-color': ind.color }}
-            >
-              <span className="industry-tab-title">{ind.title}</span>
-              <span className="industry-tab-sub">{ind.subtitle}</span>
-            </button>
-          ))}
-        </div>
+  useEffect(() => {
+    if (initialIndustry && INDUSTRIES_DATA.some((i) => i.id === initialIndustry)) {
+      setActive(initialIndustry);
+    }
+  }, [initialIndustry]);
 
-        {/* Active industry showcase */}
-        <div className="industry-showcase" key={industry.id}>
+  return (
+    <section className={`industries ${singleMode ? 'industries--single' : ''}`} id="industries">
+      <div className="container">
+        {!singleMode && (
+          <div className={`industry-tabs ${visible ? 'visible' : ''}`} ref={ref} data-animate="fade-up">
+            {INDUSTRIES_DATA.map((ind) => (
+              <button
+                key={ind.id}
+                type="button"
+                className={`industry-tab ${active === ind.id ? 'active' : ''}`}
+                onClick={() => setActive(ind.id)}
+                style={{ '--tab-color': ind.color }}
+              >
+                <span className="industry-tab-title">{ind.title}</span>
+                <span className="industry-tab-sub">{ind.subtitle}</span>
+              </button>
+            ))}
+          </div>
+        )}
+
+        <div className={`industry-showcase ${singleMode ? 'industry-showcase--single' : ''}`} key={industry.id}>
           <div className="industry-showcase-grid">
             <div className="industry-showcase-content">
               <div className="industry-showcase-stat" style={{ color: industry.color }}>

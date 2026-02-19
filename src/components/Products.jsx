@@ -1,7 +1,7 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 
-const PRODUCTS = [
+export const PRODUCTS = [
   {
     id: 'dmk',
     name: 'DMK',
@@ -154,29 +154,37 @@ function HighlightIcon({ type }) {
 
 const VISUALS = { dmk: DmkVisual, lci: LciVisual, amc: AmcVisual };
 
-export default function Products() {
-  const [active, setActive] = useState('dmk');
+export default function Products({ initialProduct = 'dmk', singleMode = false }) {
+  const [active, setActive] = useState(initialProduct);
   const navRef = useRef(null);
   const navVisible = useScrollAnimation(navRef);
   const product = PRODUCTS.find((p) => p.id === active);
   const Visual = VISUALS[active];
 
+  useEffect(() => {
+    if (initialProduct && PRODUCTS.some((p) => p.id === initialProduct)) {
+      setActive(initialProduct);
+    }
+  }, [initialProduct]);
+
   return (
-    <section className="products" id="products">
+    <section className={`products ${singleMode ? 'products--single' : ''}`} id="products">
       <div className="container">
-        <div className={`product-nav ${navVisible ? 'visible' : ''}`} ref={navRef} data-animate="fade-up">
-          {PRODUCTS.map((p) => (
-            <button
-              key={p.id}
-              type="button"
-              className={`product-nav-btn ${active === p.id ? 'active' : ''}`}
-              onClick={() => setActive(p.id)}
-            >
-              <span className="product-nav-name">{p.name}</span>
-              <span className="product-nav-tagline">{p.tagline}</span>
-            </button>
-          ))}
-        </div>
+        {!singleMode && (
+          <div className={`product-nav ${navVisible ? 'visible' : ''}`} ref={navRef} data-animate="fade-up">
+            {PRODUCTS.map((p) => (
+              <button
+                key={p.id}
+                type="button"
+                className={`product-nav-btn ${active === p.id ? 'active' : ''}`}
+                onClick={() => setActive(p.id)}
+              >
+                <span className="product-nav-name">{p.name}</span>
+                <span className="product-nav-tagline">{p.tagline}</span>
+              </button>
+            ))}
+          </div>
+        )}
 
         <div className="product-showcase-v2" key={product.id}>
           <div className="product-showcase-top">
