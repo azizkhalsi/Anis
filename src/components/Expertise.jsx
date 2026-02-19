@@ -25,16 +25,23 @@ const TABS = [
       </>
     ),
     visualCard: (
-      <div className="expertise-visual-card">
-        <div className="visual-icon-large">
-          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="40" cy="40" r="30" stroke="currentColor" strokeWidth="1" opacity="0.2" />
-            <path d="M25 55V35L40 25L55 35V55L40 45L25 55Z" stroke="currentColor" strokeWidth="1.5" fill="currentColor" fillOpacity="0.1" />
-            <circle cx="40" cy="25" r="3" fill="currentColor" />
-            <circle cx="25" cy="55" r="3" fill="currentColor" />
-            <circle cx="55" cy="55" r="3" fill="currentColor" />
-            <circle cx="40" cy="45" r="3" fill="currentColor" opacity="0.5" />
-          </svg>
+      <div className="expertise-visual-card expertise-visual-animated">
+        <div className="expertise-animated-bg" />
+        <div className="expertise-visual-content">
+          <div className="expertise-flow">
+            <div className="expertise-flow-node">Requirements</div>
+            <div className="expertise-flow-arrow">&#x2192;</div>
+            <div className="expertise-flow-node accent">Analysis</div>
+            <div className="expertise-flow-arrow">&#x2192;</div>
+            <div className="expertise-flow-node">Strategy</div>
+          </div>
+          <div className="expertise-flow" style={{ marginTop: '12px' }}>
+            <div className="expertise-flow-node">Strategy</div>
+            <div className="expertise-flow-arrow">&#x2192;</div>
+            <div className="expertise-flow-node accent">Optimization</div>
+            <div className="expertise-flow-arrow">&#x2192;</div>
+            <div className="expertise-flow-node">Delivery</div>
+          </div>
         </div>
         <span>Expert Guidance</span>
       </div>
@@ -66,8 +73,8 @@ const TABS = [
     ),
     visualCard: (
       <div className="expertise-visual-card expertise-visual-card--image">
-        <img src="/expertise-pcb.png" alt="PCB circuit board design" className="expertise-visual-img" />
-        <span>PCB & Circuit Design</span>
+        <img src="https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Close-up of a multi-layer PCB circuit board with components" className="expertise-visual-img" loading="lazy" />
+        <span>PCB &amp; Circuit Design</span>
       </div>
     ),
   },
@@ -94,15 +101,9 @@ const TABS = [
       </>
     ),
     visualCard: (
-      <div className="expertise-visual-card">
-        <div className="visual-icon-large">
-          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="10" y="15" width="60" height="45" rx="4" stroke="currentColor" strokeWidth="1" opacity="0.2" />
-            <path d="M25 32L35 40L25 48" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            <line x1="40" y1="48" x2="55" y2="48" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-          </svg>
-        </div>
-        <span>Embedded Systems</span>
+      <div className="expertise-visual-card expertise-visual-card--image">
+        <img src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Software development environment with embedded code on screen" className="expertise-visual-img" loading="lazy" />
+        <span>Embedded Software</span>
       </div>
     ),
   },
@@ -131,17 +132,9 @@ const TABS = [
       </>
     ),
     visualCard: (
-      <div className="expertise-visual-card">
-        <div className="visual-icon-large">
-          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M15 60L30 35L45 45L65 20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            <circle cx="30" cy="35" r="3" fill="currentColor" />
-            <circle cx="45" cy="45" r="3" fill="currentColor" />
-            <circle cx="65" cy="20" r="3" fill="currentColor" />
-            <path d="M15 20V60H65" stroke="currentColor" strokeWidth="1" opacity="0.3" />
-          </svg>
-        </div>
-        <span>Simulation & Validation</span>
+      <div className="expertise-visual-card expertise-visual-card--image expertise-visual-card--diagram">
+        <img src="/images/motor-control-diagram.png" alt="Motor control system architecture and Model-Based Design workflow" className="expertise-visual-img expertise-diagram-img" loading="lazy" />
+        <span>Simulation &amp; Validation</span>
       </div>
     ),
   },
@@ -167,14 +160,25 @@ const TABS = [
       </>
     ),
     visualCard: (
-      <div className="expertise-visual-card">
-        <div className="visual-icon-large">
-          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M40 15L55 25V45L40 55L25 45V25L40 15Z" stroke="currentColor" strokeWidth="1.5" />
-            <path d="M40 25L48 30V40L40 45L32 40V30L40 25Z" fill="currentColor" opacity="0.15" stroke="currentColor" strokeWidth="1" />
-            <circle cx="40" cy="35" r="4" fill="currentColor" opacity="0.4" />
-            <path d="M40 55V65M25 45L18 50M55 45L62 50" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-          </svg>
+      <div className="expertise-visual-card expertise-visual-animated">
+        <div className="expertise-animated-bg" />
+        <div className="expertise-visual-content">
+          <div className="expertise-pipeline">
+            <div className="pipeline-step">
+              <div className="pipeline-icon">PCB</div>
+              <span>Fabrication</span>
+            </div>
+            <div className="pipeline-connector" />
+            <div className="pipeline-step">
+              <div className="pipeline-icon">SMD</div>
+              <span>Assembly</span>
+            </div>
+            <div className="pipeline-connector" />
+            <div className="pipeline-step">
+              <div className="pipeline-icon active">&#x2713;</div>
+              <span>Testing</span>
+            </div>
+          </div>
         </div>
         <span>From Design to Reality</span>
       </div>

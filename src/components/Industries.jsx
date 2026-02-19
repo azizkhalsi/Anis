@@ -1,93 +1,111 @@
-import { useRef } from 'react';
+import { useState, useRef } from 'react';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 
 const INDUSTRIES_DATA = [
   {
-    id: 1,
+    id: 'whitegood',
     title: 'White Goods',
-    image: '/industry-whitegood.png',
-    description: 'Energy-efficient motor solutions for refrigerators, washing machines, dishwashers, and air conditioning units. Our sensorless control technology reduces energy consumption while maintaining quiet operation and reliability in household appliances.',
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="6" y="8" width="36" height="32" rx="2" stroke="currentColor" strokeWidth="1.5" opacity="0.3" />
-        <path d="M6 18h36" stroke="currentColor" strokeWidth="1.5" />
-        <rect x="12" y="24" width="8" height="8" rx="1" stroke="currentColor" strokeWidth="1.5" opacity="0.5" />
-        <rect x="28" y="24" width="8" height="8" rx="1" stroke="currentColor" strokeWidth="1.5" opacity="0.5" />
-      </svg>
-    ),
+    subtitle: 'Household Appliances',
+    description: 'Energy-efficient motor solutions for refrigerators, washing machines, dishwashers, and air conditioning units. Our sensorless control technology reduces energy consumption while maintaining quiet operation and reliability.',
+    features: ['Refrigerator compressors', 'Washing machine drums', 'Dishwasher pumps', 'AC fan motors'],
+    stat: '40%',
+    statLabel: 'energy savings',
+    color: '#2b6bc4',
+    image: 'https://images.pexels.com/photos/5591581/pexels-photo-5591581.jpeg?auto=compress&cs=tinysrgb&w=800',
+    imageAlt: 'Modern household washing machine representing white goods industry',
   },
   {
-    id: 2,
+    id: 'powertool',
     title: 'Power Tools',
-    image: '/industry-powertool.png',
+    subtitle: 'Professional & Consumer',
     description: 'High-performance, brushless motor control for cordless drills, angle grinders, and professional power tools. Optimized for torque response, efficiency, and long battery life in demanding applications.',
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M24 6L28 14h8l-6 6 2 8-8-4-8 4 2-8-6-6h8l4-8z" stroke="currentColor" strokeWidth="1.5" opacity="0.3" />
-        <path d="M24 20v20M20 24h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      </svg>
-    ),
+    features: ['Cordless drills', 'Angle grinders', 'Circular saws', 'Impact drivers'],
+    stat: '2x',
+    statLabel: 'battery life',
+    color: '#c42b2b',
+    image: 'https://images.pexels.com/photos/1249611/pexels-photo-1249611.jpeg?auto=compress&cs=tinysrgb&w=800',
+    imageAlt: 'Professional power tools and cordless drills',
   },
   {
-    id: 3,
+    id: 'automotive',
     title: 'Automotive',
-    image: '/industry-automotive.png',
+    subtitle: 'Vehicle Systems',
     description: 'Automotive-grade motor control for pumps, fans, wipers, and comfort systems. Our solutions meet stringent quality and safety requirements, with AUTOSAR-compatible software for seamless vehicle integration.',
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M8 32l4-12h24l4 12" stroke="currentColor" strokeWidth="1.5" opacity="0.3" />
-        <circle cx="14" cy="34" r="4" stroke="currentColor" strokeWidth="1.5" opacity="0.5" />
-        <circle cx="34" cy="34" r="4" stroke="currentColor" strokeWidth="1.5" opacity="0.5" />
-        <path d="M18 34h12" stroke="currentColor" strokeWidth="1.5" />
-      </svg>
-    ),
+    features: ['Fuel & water pumps', 'Radiator fans', 'Wiper systems', 'Seat adjustment'],
+    stat: '1M+',
+    statLabel: 'units deployed',
+    color: '#1a8a50',
+    image: 'https://images.pexels.com/photos/3862634/pexels-photo-3862634.jpeg?auto=compress&cs=tinysrgb&w=800',
+    imageAlt: 'Automotive production line with electronic vehicle systems',
   },
   {
-    id: 4,
+    id: 'emobility',
     title: 'E-Mobility',
-    image: '/industry-emobility.png',
+    subtitle: 'Electric Vehicles',
     description: 'E-bike, e-scooter, and electric vehicle traction motor solutions. Scalable sensorless FOC for efficient propulsion, regenerative braking, and smooth torque delivery across the full speed range.',
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="12" cy="36" r="6" stroke="currentColor" strokeWidth="1.5" opacity="0.3" />
-        <circle cx="36" cy="36" r="6" stroke="currentColor" strokeWidth="1.5" opacity="0.3" />
-        <path d="M12 30h12l8-14h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
+    features: ['E-bike hub motors', 'E-scooter drives', 'Light EV traction', 'Regen braking'],
+    stat: '98%',
+    statLabel: 'efficiency',
+    color: '#b45309',
+    image: 'https://images.pexels.com/photos/110844/pexels-photo-110844.jpeg?auto=compress&cs=tinysrgb&w=800',
+    imageAlt: 'Electric bicycle — e-mobility motor solutions',
   },
 ];
 
-const STAGGER_DELAYS = [0, 100, 200, 300];
-
 export default function Industries() {
-  const refs = [useRef(null), useRef(null), useRef(null), useRef(null)];
-  const visible0 = useScrollAnimation(refs[0], { delay: STAGGER_DELAYS[0] });
-  const visible1 = useScrollAnimation(refs[1], { delay: STAGGER_DELAYS[1] });
-  const visible2 = useScrollAnimation(refs[2], { delay: STAGGER_DELAYS[2] });
-  const visible3 = useScrollAnimation(refs[3], { delay: STAGGER_DELAYS[3] });
-  const visibles = [visible0, visible1, visible2, visible3];
+  const [active, setActive] = useState('whitegood');
+  const ref = useRef(null);
+  const visible = useScrollAnimation(ref);
+  const industry = INDUSTRIES_DATA.find((i) => i.id === active);
 
   return (
     <section className="industries" id="industries">
       <div className="container">
-        <div className="industries-grid">
-          {INDUSTRIES_DATA.map((industry, index) => (
-            <div
-              key={industry.id}
-              ref={refs[index]}
-              className={`industry-card ${visibles[index] ? 'visible' : ''}`}
-              data-animate="fade-up"
+        {/* Industry tabs */}
+        <div className={`industry-tabs ${visible ? 'visible' : ''}`} ref={ref} data-animate="fade-up">
+          {INDUSTRIES_DATA.map((ind) => (
+            <button
+              key={ind.id}
+              type="button"
+              className={`industry-tab ${active === ind.id ? 'active' : ''}`}
+              onClick={() => setActive(ind.id)}
+              style={{ '--tab-color': ind.color }}
             >
-              <div className="industry-card-image">
-                <img src={industry.image} alt={industry.title} />
+              <span className="industry-tab-title">{ind.title}</span>
+              <span className="industry-tab-sub">{ind.subtitle}</span>
+            </button>
+          ))}
+        </div>
+
+        {/* Active industry showcase */}
+        <div className="industry-showcase" key={industry.id}>
+          <div className="industry-showcase-grid">
+            <div className="industry-showcase-content">
+              <div className="industry-showcase-stat" style={{ color: industry.color }}>
+                <span className="industry-stat-number">{industry.stat}</span>
+                <span className="industry-stat-label">{industry.statLabel}</span>
               </div>
-              <div className="industry-card-body">
-                <div className="industry-icon">{industry.icon}</div>
-                <h3>{industry.title}</h3>
-                <p>{industry.description}</p>
+              <h3 className="industry-showcase-title">{industry.title}</h3>
+              <p className="industry-showcase-desc">{industry.description}</p>
+              <div className="industry-features">
+                {industry.features.map((f) => (
+                  <div className="industry-feature" key={f} style={{ '--feat-color': industry.color }}>
+                    <span className="industry-feature-dot" />
+                    {f}
+                  </div>
+                ))}
               </div>
             </div>
-          ))}
+            <div className="industry-showcase-visual">
+              <img
+                src={industry.image}
+                alt={industry.imageAlt}
+                className="industry-showcase-img"
+                loading="lazy"
+              />
+              <div className="industry-img-overlay" style={{ background: `linear-gradient(135deg, ${industry.color}15 0%, transparent 60%)` }} />
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -1,189 +1,220 @@
-import { useRef } from 'react';
+import { useState, useRef } from 'react';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 
-const DMK_USE_CASES = [
+const PRODUCTS = [
   {
-    title: 'Power Electronic Testing',
-    description: 'Validate inverter designs with precise phase current and PWM voltage measurements. DMK provides synchronized data capture for comprehensive power stage analysis and efficiency evaluation.',
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="8" y="10" width="32" height="28" rx="2" stroke="currentColor" strokeWidth="1.5" opacity="0.3" />
-        <path d="M16 22h16M16 28h12M16 34h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <circle cx="36" cy="16" r="3" fill="currentColor" opacity="0.6" />
-      </svg>
-    ),
+    id: 'dmk',
+    name: 'DMK',
+    tagline: 'Drive Measurement Kit',
+    badge: 'Flagship Product',
+    badgeClass: 'product-badge-flagship',
+    hero: 'One instrument. Replaces your entire motor test bench.',
+    description: [
+      'The DMK is a compact and powerful measurement solution designed for inverter-driven motors. It precisely measures phase currents and PWM-voltages and perfectly synchronizes them to the rotor position, providing real-time visualization and data storage.',
+      'With its integrated functionalities, DMK simplifies motor analysis, making it an essential tool for development, benchmarking and endurance tests. It replaces oscilloscope, current probes, data logger, and PWM monitoring equipment — saving cost, space, and engineering effort.',
+    ],
+    highlights: [
+      { icon: 'scope', label: 'Replaces Oscilloscope', detail: '+ 3 current probes' },
+      { icon: 'log', label: 'Data Logger', detail: 'Long-term recording' },
+      { icon: 'pwm', label: 'PWM Monitor', detail: 'Typically $50k+ equipment' },
+      { icon: 'rotor', label: 'Rotor Position', detail: 'Real-time measurement' },
+    ],
+    tags: ['Real-Time', 'Portable', 'USB-C', 'WiFi', 'Ethernet', 'Galvanic Isolation'],
   },
   {
-    title: 'Development Engineers',
-    description: 'Accelerate motor control development with real-time visualization of currents, voltages, and rotor position. Debug and optimize your algorithms with perfectly synchronized measurement data.',
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M24 8L40 18V34L24 44L8 34V18L24 8Z" stroke="currentColor" strokeWidth="1.5" opacity="0.3" />
-        <path d="M24 18v12M18 24h12" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-      </svg>
-    ),
+    id: 'lci',
+    name: 'LCI',
+    tagline: 'Low-Cost Inverter',
+    badge: 'Hardware',
+    badgeClass: 'product-badge-hardware',
+    hero: 'Production-ready inverter. Designed for millions.',
+    description: [
+      'The LCI is a cost-optimized inverter platform designed for high-volume applications. It delivers reliable sensorless FOC performance in a compact form factor, enabling energy-efficient motor control where cost is a primary concern.',
+      'Built for household appliances, power tools, e-bikes, and pumps, the LCI integrates proven motor control technology into affordable hardware. Its modular design allows easy adaptation to different motor types and power ratings.',
+    ],
+    highlights: [
+      { icon: 'cost', label: 'Cost-Optimized', detail: 'High-volume ready' },
+      { icon: 'motor', label: 'Sensorless FOC', detail: 'No encoder needed' },
+      { icon: 'modular', label: 'Modular Design', detail: 'Adaptable platform' },
+      { icon: 'compact', label: 'Compact', detail: 'Minimal footprint' },
+    ],
+    tags: ['PMSM', 'Sensorless FOC', 'Cost-Optimized', 'Household Appliances', 'Power Tools', 'E-Bikes'],
   },
   {
-    title: 'Long-Time Tests',
-    description: 'Run endurance and reliability tests with continuous data logging. The portable DMK with integrated battery supports extended test runs without external power dependency.',
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="24" cy="24" r="18" stroke="currentColor" strokeWidth="1.5" opacity="0.3" />
-        <path d="M24 12v12l8 8" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Benchmarking',
-    description: 'Compare motor performance across different configurations with consistent, repeatable measurements. DMK delivers standardized data capture for accurate benchmarking and competitive analysis.',
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M8 36V20l8 8 8-12 8 8 8-14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M8 38h32" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      </svg>
-    ),
+    id: 'amc',
+    name: 'AMC',
+    tagline: 'Appcon Motor Control',
+    badge: 'Software',
+    badgeClass: 'product-badge-software',
+    hero: 'Plug-and-play motor control. Any motor. Any platform.',
+    description: [
+      'AMC is a comprehensive motor control software framework designed for seamless integration into automotive and industrial applications. Its AUTOSAR-inspired architecture ensures interoperability, maintainability, and validation compliance.',
+      'The plug-and-play approach minimizes integration effort while the SiL-validated sensorless algorithms deliver robust performance across a wide range of motor types.',
+    ],
+    highlights: [
+      { icon: 'auto', label: 'AUTOSAR-Inspired', detail: 'Industry standard' },
+      { icon: 'plug', label: 'Plug & Play', detail: 'Minimal integration' },
+      { icon: 'sil', label: 'SiL Validated', detail: 'Production-ready' },
+      { icon: 'all', label: 'All Motors', detail: 'PMSM, BLDC, Induction' },
+    ],
+    tags: ['AUTOSAR-Inspired', 'Plug & Play', 'SiL Validated', 'FOC', 'DTC', 'HF Injection'],
   },
 ];
 
 const DMK_SPECS = [
-  { label: 'Power Supply', value: 'USB-C' },
-  { label: 'Battery', value: '4000mAh' },
-  { label: 'Max Current', value: '15A (configurable 1A – 200A)' },
-  { label: 'Max Voltage', value: '400V Peak (configurable 20V – 400V)' },
-  { label: 'PWM Frequency', value: 'Up to 20kHz (configurable 4 – 40kHz)' },
-  { label: 'Encoder Type', value: 'Incremental A,B,Z (SPI, AB2 configurable)' },
-  { label: 'Isolation', value: '600V' },
+  { label: 'Power', value: 'USB-C', icon: '⚡' },
+  { label: 'Battery', value: '4000mAh', icon: '🔋' },
+  { label: 'Current', value: '1A–200A', icon: '〰️' },
+  { label: 'Voltage', value: '400V Peak', icon: '⚡' },
+  { label: 'PWM', value: '4–40kHz', icon: '📊' },
+  { label: 'Encoder', value: 'A,B,Z / SPI', icon: '🔄' },
+  { label: 'Isolation', value: '600V', icon: '🛡️' },
 ];
 
-export default function Products() {
-  const dmkRef = useRef(null);
-  const useCasesRef = useRef(null);
-  const specsRef = useRef(null);
-  const lciRef = useRef(null);
-  const amcRef = useRef(null);
+function DmkVisual() {
+  const [showSpecs, setShowSpecs] = useState(false);
 
-  const dmkVisible = useScrollAnimation(dmkRef, { delay: 100 });
-  const useCasesVisible = useScrollAnimation(useCasesRef, { delay: 100 });
-  const specsVisible = useScrollAnimation(specsRef, { delay: 100 });
-  const lciVisible = useScrollAnimation(lciRef, { delay: 150 });
-  const amcVisible = useScrollAnimation(amcRef, { delay: 200 });
+  return (
+    <div
+      className="dmk-photo-visual"
+      onMouseEnter={() => setShowSpecs(true)}
+      onMouseLeave={() => setShowSpecs(false)}
+    >
+      <img
+        src="/images/dmk-connections.png"
+        alt="DMK-RT connected between inverter and motor"
+        className="dmk-photo-img"
+        loading="lazy"
+      />
+      <div className={`dmk-specs-overlay ${showSpecs ? 'visible' : ''}`}>
+        <div className="dmk-specs-grid">
+          {DMK_SPECS.map((spec) => (
+            <div key={spec.label} className="dmk-spec-item">
+              <span className="dmk-spec-value">{spec.value}</span>
+              <span className="dmk-spec-label">{spec.label}</span>
+            </div>
+          ))}
+        </div>
+        <span className="dmk-specs-hint">Specifications</span>
+      </div>
+      {!showSpecs && (
+        <span className="dmk-hover-hint">Hover for specs</span>
+      )}
+    </div>
+  );
+}
+
+function AmcVisual() {
+  return (
+    <div className="amc-visual-wrapper">
+      <img
+        src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=800"
+        alt="AMC Motor Control — embedded software framework"
+        className="amc-diagram-img"
+        loading="lazy"
+      />
+    </div>
+  );
+}
+
+function LciVisual() {
+  return (
+    <div className="lci-visual">
+      <img
+        src="https://images.pexels.com/photos/163100/circuit-circuit-board-resistor-computer-163100.jpeg?auto=compress&cs=tinysrgb&w=800"
+        alt="LCI Low-Cost Inverter — compact power electronics board"
+        className="lci-pcb-img"
+        loading="lazy"
+      />
+    </div>
+  );
+}
+
+function HighlightIcon({ type }) {
+  const icons = {
+    scope: <><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" /></>,
+    log: <><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /></>,
+    pwm: <><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" /></>,
+    rotor: <><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="3" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3" /></>,
+    cost: <><line x1="12" y1="1" x2="12" y2="23" /><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" /></>,
+    motor: <><circle cx="12" cy="12" r="10" /><path d="M12 6v12M6 12h12" /></>,
+    modular: <><rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" /><rect x="3" y="14" width="7" height="7" /><rect x="14" y="14" width="7" height="7" /></>,
+    compact: <><rect x="2" y="7" width="20" height="15" rx="2" /><path d="M17 2l-5 5-5-5" /></>,
+    auto: <><polygon points="12 2 2 7 12 12 22 7 12 2" /><polyline points="2 17 12 22 22 17" /><polyline points="2 12 12 17 22 12" /></>,
+    plug: <><path d="M12 22V12M8 5v4M16 5v4M5 9h14v3a7 7 0 0 1-14 0V9z" /></>,
+    sil: <><path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" /></>,
+    all: <><circle cx="12" cy="12" r="10" /><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /></>,
+  };
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      {icons[type]}
+    </svg>
+  );
+}
+
+const VISUALS = { dmk: DmkVisual, lci: LciVisual, amc: AmcVisual };
+
+export default function Products() {
+  const [active, setActive] = useState('dmk');
+  const navRef = useRef(null);
+  const navVisible = useScrollAnimation(navRef);
+  const product = PRODUCTS.find((p) => p.id === active);
+  const Visual = VISUALS[active];
 
   return (
     <section className="products" id="products">
       <div className="container">
+        <div className={`product-nav ${navVisible ? 'visible' : ''}`} ref={navRef} data-animate="fade-up">
+          {PRODUCTS.map((p) => (
+            <button
+              key={p.id}
+              type="button"
+              className={`product-nav-btn ${active === p.id ? 'active' : ''}`}
+              onClick={() => setActive(p.id)}
+            >
+              <span className="product-nav-name">{p.name}</span>
+              <span className="product-nav-tagline">{p.tagline}</span>
+            </button>
+          ))}
+        </div>
 
-        {/* DMK Showcase */}
-        <div className={`products-dmk ${dmkVisible ? 'visible' : ''}`} ref={dmkRef} data-animate="fade-up">
-          <span className="product-badge product-badge-flagship">Flagship Product</span>
-          <h3 className="products-dmk-name">DMK</h3>
-          <p className="products-dmk-tagline">Drive Measurement Kit</p>
-          <div className="products-dmk-image">
-            <img src="/product-dmk.png" alt="DMK - Drive Measurement Kit" />
-          </div>
-          <div className="products-dmk-desc">
-            <p>
-              The DMK is a compact and powerful measurement solution designed for inverter-driven motors. It precisely measures phase currents and PWM-voltages and perfectly synchronizes them to the rotor position, providing real-time visualization and data storage.
-            </p>
-            <p>
-              With its integrated functionalities, DMK simplifies motor analysis, making it an essential tool for development, benchmarking and endurance tests. Beyond its core capabilities, the DMK replaces multiple laboratory instruments — saving cost and space while delivering measurement results specifically tailored to motor control applications.
-            </p>
+        <div className="product-showcase-v2" key={product.id}>
+          <div className="product-showcase-top">
+            <div className="product-showcase-info">
+              <span className={`product-badge ${product.badgeClass}`}>{product.badge}</span>
+              <h3 className="product-showcase-name">{product.name}</h3>
+              <p className="product-showcase-tagline">{product.tagline}</p>
+              <p className="product-showcase-hero">{product.hero}</p>
+            </div>
+            <div className="product-showcase-visual">
+              <Visual />
+            </div>
           </div>
 
-          <div className="products-use-cases" ref={useCasesRef}>
-            {DMK_USE_CASES.map((useCase, index) => (
-              <div
-                key={useCase.title}
-                className={`use-case-card ${useCasesVisible ? 'visible' : ''}`}
-                data-animate="fade-up"
-                style={{ animationDelay: `${index * 80}ms` }}
-              >
-                <div className="use-case-icon">{useCase.icon}</div>
-                <h4>{useCase.title}</h4>
-                <p>{useCase.description}</p>
+          <div className="product-highlights">
+            {product.highlights.map((h) => (
+              <div className="product-highlight-card" key={h.label}>
+                <div className="product-highlight-icon">
+                  <HighlightIcon type={h.icon} />
+                </div>
+                <strong>{h.label}</strong>
+                <span>{h.detail}</span>
               </div>
             ))}
           </div>
 
-          <div className={`products-specs ${specsVisible ? 'visible' : ''}`} ref={specsRef} data-animate="fade-up">
-            <h4 className="specs-title">Specifications</h4>
-            <table className="specs-table">
-              <tbody>
-                {DMK_SPECS.map((spec) => (
-                  <tr key={spec.label}>
-                    <td className="spec-label">{spec.label}</td>
-                    <td className="spec-value">{spec.value}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        {/* LCI and AMC Cards */}
-        <div className="products-cards-grid">
-          <div className={`product-card ${lciVisible ? 'visible' : ''}`} ref={lciRef} data-animate="fade-up">
-            <span className="product-badge product-badge-hardware">Hardware</span>
-            <h3 className="product-card-name">LCI</h3>
-            <p className="product-card-subtitle">Low-Cost Inverter</p>
-            <div className="product-card-image">
-              <img src="/product-lci.png" alt="LCI - Low-Cost Inverter" />
-            </div>
-            <p className="product-card-desc">
-              The LCI is a cost-optimized inverter platform designed for high-volume applications. It delivers reliable sensorless FOC performance in a compact form factor, enabling energy-efficient motor control where cost is a primary concern.
-            </p>
-            <p className="product-card-desc">
-              Built for household appliances, power tools, e-bikes, and pumps, the LCI integrates proven motor control technology into affordable hardware. Its modular design allows easy adaptation to different motor types and power ratings.
-            </p>
-            <div className="product-tags">
-              <span>PMSM</span>
-              <span>Sensorless FOC</span>
-              <span>Cost-Optimized</span>
-              <span>Household Appliances</span>
-              <span>Power Tools</span>
-              <span>E-Bikes</span>
-              <span>Pumps</span>
+          <div className="product-showcase-body">
+            <div className="product-showcase-desc">
+              {product.description.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
             </div>
           </div>
 
-          <div className={`product-card ${amcVisible ? 'visible' : ''}`} ref={amcRef} data-animate="fade-up">
-            <span className="product-badge product-badge-software">Software</span>
-            <h3 className="product-card-name">AMC</h3>
-            <p className="product-card-subtitle">Appcon Motor Control</p>
-            <div className="product-card-image">
-              <img src="/product-amc.png" alt="AMC - Appcon Motor Control" />
-            </div>
-            <p className="product-card-desc">
-              AMC is a comprehensive motor control software framework designed for seamless integration into automotive and industrial applications. Its AUTOSAR-inspired architecture ensures interoperability, maintainability, and validation compliance.
-            </p>
-            <p className="product-card-desc">
-              The plug-and-play approach minimizes integration effort while the SiL-validated sensorless algorithms deliver robust performance across a wide range of motor types. AMC supports all common motor topologies and is ready for production deployment.
-            </p>
-            <div className="product-features-grid">
-              <div className="product-feature-col">
-                <h5>Motor Control</h5>
-                <ul>
-                  <li>Field-Oriented Control (FOC)</li>
-                  <li>Direct Torque Control (DTC)</li>
-                  <li>MTPA / Flux Weakening</li>
-                  <li>Multi-motor support</li>
-                </ul>
-              </div>
-              <div className="product-feature-col">
-                <h5>Sensorless Algorithm</h5>
-                <ul>
-                  <li>High-frequency injection</li>
-                  <li>Back-EMF observers</li>
-                  <li>Startup & low-speed</li>
-                  <li>Full speed range</li>
-                </ul>
-              </div>
-            </div>
-            <div className="product-tags">
-              <span>AUTOSAR-Inspired</span>
-              <span>Plug & Play</span>
-              <span>SiL Validated</span>
-              <span>All Motors</span>
-            </div>
+          <div className="product-tags">
+            {product.tags.map((t) => (
+              <span key={t}>{t}</span>
+            ))}
           </div>
         </div>
       </div>

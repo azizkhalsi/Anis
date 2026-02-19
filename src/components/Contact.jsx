@@ -14,7 +14,12 @@ const SUBJECT_OPTIONS = [
 const CONTACT_ITEMS = [
   {
     label: 'Address',
-    value: 'Appcon Technologies GmbH\nHannoversche Str. 19\n10115 Berlin, Germany',
+    value: 'Parc Technologique BP 130\nAriana, 2088\nTunisia',
+  },
+  {
+    label: 'Phone',
+    value: '+216 70 834 890',
+    href: 'tel:+21670834890',
   },
   {
     label: 'Languages',
@@ -23,6 +28,12 @@ const CONTACT_ITEMS = [
   {
     label: 'Website',
     value: 'www.appcon-technologies.com',
+    href: 'https://www.appcon-technologies.com',
+  },
+  {
+    label: 'LinkedIn',
+    value: 'Appcon Technologies',
+    href: 'https://www.linkedin.com/company/appcontechnologies',
   },
 ];
 
@@ -69,7 +80,11 @@ export default function Contact() {
               {CONTACT_ITEMS.map((item) => (
                 <div key={item.label} className="contact-item">
                   <strong>{item.label}</strong>
-                  <p style={{ whiteSpace: 'pre-line' }}>{item.value}</p>
+                  {item.href ? (
+                    <p><a href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}>{item.value}</a></p>
+                  ) : (
+                    <p style={{ whiteSpace: 'pre-line' }}>{item.value}</p>
+                  )}
                 </div>
               ))}
             </div>

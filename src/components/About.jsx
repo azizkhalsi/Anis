@@ -17,10 +17,10 @@ export default function About() {
             data-animate="fade-right"
           >
             <p className="about-text">
-              Founded in 2004 by Dr.-Ing. Hafiedh Sammoud, Appcon Technologies is an R&D engineering firm specializing in sensorless control of electrical motors and the conceptualization and optimization of power electronics.
+              Founded in 2004 by Dr.-Ing. Hafedh Sammoud, Appcon Technologies is an R&D engineering firm specializing in sensorless control of electrical motors and the conceptualization and optimization of power electronics.
             </p>
             <p className="about-text">
-              Our mission is to advance the state-of-the-art in sensorless motor control solutions, enabling their application in new scenarios where it is currently unfeasible. Particularly in high-volume products, where energy-efficient drives are underutilized due to cost constraints, we believe that our efforts contribute to optimizing energy consumption and reducing global CO₂ emissions.
+              Our mission is to advance the state-of-the-art in sensorless motor control solutions, enabling their application in new scenarios where it is currently unfeasible. Particularly in high-volume products, where energy-efficient drives are underutilized due to cost constraints, we believe that our efforts contribute to optimizing energy consumption and reducing global CO&#x2082; emissions.
             </p>
             <div className="about-highlights">
               <div className="highlight">
@@ -67,14 +67,15 @@ export default function About() {
             data-animate="fade-left"
           >
             <div className="about-image-wrapper">
-              <div className="about-pattern"></div>
+              <div className="about-pattern" />
               <div className="about-card">
-                <img src="/about-lab.png" alt="Appcon Technologies R&D Laboratory" className="about-card-img" />
+                <img src="/images/lab-testbench.png" alt="Appcon Technologies R&D Laboratory" className="about-card-img" loading="lazy" />
                 <div className="about-card-label">Our R&D Laboratory</div>
               </div>
             </div>
           </div>
         </div>
+
       </div>
     </section>
   );

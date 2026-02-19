@@ -101,10 +101,13 @@ export default function Hero() {
       <div className="hero-bg">
         <div className="hero-bg-base" aria-hidden="true" />
         <img
-          src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1920&q=85"
+          src="/images/lab-testbench.png"
           alt=""
           className="hero-bg-image"
           aria-hidden="true"
+          width="1920"
+          height="600"
+          fetchpriority="high"
         />
         <div className="hero-particles">
           <ParticleCanvas />
