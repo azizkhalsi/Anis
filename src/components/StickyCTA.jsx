@@ -1,17 +1,11 @@
-import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import useScrollPosition from '../hooks/useScrollPosition';
 
 const SCROLL_THRESHOLD = 400;
 
 export default function StickyCTA() {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > SCROLL_THRESHOLD);
-    onScroll();
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  const scrollY = useScrollPosition();
+  const visible = scrollY > SCROLL_THRESHOLD;
 
   if (!visible) return null;
 

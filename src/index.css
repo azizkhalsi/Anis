@@ -105,6 +105,42 @@ a {
     text-decoration: none;
 }
 
+/* Skip link: visible on focus for keyboard/screen reader users */
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 16px;
+    z-index: 10001;
+    padding: 12px 20px;
+    background: var(--accent);
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    transition: top 0.2s ease;
+}
+.skip-link:focus {
+    top: 16px;
+    outline: 2px solid white;
+    outline-offset: 2px;
+}
+
+/* Focus visible: keyboard users only (not mouse click) */
+:focus { outline: none; }
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+button:focus-visible,
+a:focus-visible,
+[href]:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
 img {
     max-width: 100%;
     display: block;

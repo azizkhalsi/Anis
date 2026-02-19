@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import useScrollPosition from '../hooks/useScrollPosition';
 
 const NAV_LINKS = [
   { to: '/', label: 'Home' },
@@ -11,14 +12,9 @@ const NAV_LINKS = [
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
+  const scrollY = useScrollPosition();
   const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  const scrolled = scrollY > 50;
 
   return (
     <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>

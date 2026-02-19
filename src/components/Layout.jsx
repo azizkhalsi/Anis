@@ -8,8 +8,9 @@ export default function Layout() {
   return (
     <>
       <ScrollToTop />
+      <a href="#main-content" className="skip-link">Skip to main content</a>
       <Navbar />
-      <main>
+      <main id="main-content">
         <Outlet />
       </main>
       <StickyCTA />
