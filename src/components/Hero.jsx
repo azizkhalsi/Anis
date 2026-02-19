@@ -99,7 +99,13 @@ export default function Hero() {
   return (
     <section className="hero" id="home">
       <div className="hero-bg">
-        <img src="/hero-bg.png" alt="" className="hero-bg-image" aria-hidden="true" />
+        <div className="hero-bg-base" aria-hidden="true" />
+        <img
+          src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1920&q=85"
+          alt=""
+          className="hero-bg-image"
+          aria-hidden="true"
+        />
         <div className="hero-particles">
           <ParticleCanvas />
         </div>
