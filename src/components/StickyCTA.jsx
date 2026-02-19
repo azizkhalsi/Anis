@@ -1,13 +1,14 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import useScrollPosition from '../hooks/useScrollPosition';
 
 const SCROLL_THRESHOLD = 400;
 
 export default function StickyCTA() {
   const scrollY = useScrollPosition();
-  const visible = scrollY > SCROLL_THRESHOLD;
+  const { pathname } = useLocation();
 
-  if (!visible) return null;
+  if (pathname === '/simulator') return null;
+  if (scrollY <= SCROLL_THRESHOLD) return null;
 
   return (
     <div className="sticky-cta" role="banner">

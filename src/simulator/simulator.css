@@ -1,0 +1,54 @@
+@import "tailwindcss/theme" layer(theme);
+@import "tailwindcss/utilities" layer(utilities);
+
+.sim-root {
+  width: 100%;
+  background: #fff;
+}
+
+.sim-main {
+  background: #fff;
+}
+
+/* Control panel: clean parameter typography */
+.sim-label {
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0.03em;
+}
+.sim-value {
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+}
+.sim-section-title {
+  font-weight: 600;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0.06em;
+  border-left-width: 3px;
+  border-left-color: var(--accent, #c42b2b);
+}
+.sim-slider {
+  min-height: 6px;
+  touch-action: none;
+}
+
+/* Toggle buttons: compact, modern */
+.sim-control-btn {
+  -webkit-font-smoothing: antialiased;
+}
+.sim-control-label {
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0.025em;
+}
+
+@media (max-width: 640px) {
+  .sim-label { font-size: 0.6875rem; }
+  .sim-value { font-size: 0.8125rem; min-width: 40px; }
+  .sim-section-title { font-size: 0.6875rem; min-height: 20px; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}

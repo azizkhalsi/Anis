@@ -8,6 +8,7 @@ const NAV_LINKS = [
   { to: '/expertise', label: 'Expertise' },
   { to: '/products', label: 'Products' },
   { to: '/industries', label: 'Industries' },
+  { to: '/simulator', label: 'Simulator' },
   { to: '/contact', label: 'Contact' },
 ];
 

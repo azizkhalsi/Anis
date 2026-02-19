@@ -100,6 +100,12 @@ main {
     line-height: 1.7;
 }
 
+/* Simulator page section: compact padding, allows window scroll for StickyCTA */
+.simulator-section {
+    padding: 20px 0 44px;
+    background: var(--bg);
+}
+
 a {
     color: inherit;
     text-decoration: none;

@@ -8,6 +8,7 @@ const ExpertisePage = lazy(() => import('./pages/ExpertisePage'));
 const ProductsPage = lazy(() => import('./pages/ProductsPage'));
 const IndustriesPage = lazy(() => import('./pages/IndustriesPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
+const SimulatorPage = lazy(() => import('./pages/SimulatorPage'));
 
 function PageFallback() {
   return (
@@ -28,6 +29,7 @@ export default function App() {
           <Route path="/products" element={<Suspense fallback={<PageFallback />}><ProductsPage /></Suspense>} />
           <Route path="/industries" element={<Suspense fallback={<PageFallback />}><IndustriesPage /></Suspense>} />
           <Route path="/contact" element={<Suspense fallback={<PageFallback />}><ContactPage /></Suspense>} />
+          <Route path="/simulator" element={<Suspense fallback={<PageFallback />}><SimulatorPage /></Suspense>} />
         </Route>
       </Routes>
     </BrowserRouter>
