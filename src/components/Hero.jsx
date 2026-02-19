@@ -124,6 +124,9 @@ export default function Hero() {
         <p ref={subtitleRef} className={`hero-subtitle${subtitleVisible ? ' visible' : ''}`} data-animate="fade-up">
           Innovating the future of sensorless motor control solutions, enabling energy-efficient drives across industries worldwide.
         </p>
+        <p className={`hero-oneliner${subtitleVisible ? ' visible' : ''}`} data-animate="fade-up">
+          Reduce cost and complexity with sensorless solutions — no encoders, fewer parts, higher reliability.
+        </p>
         <div ref={actionsRef} className={`hero-actions${actionsVisible ? ' visible' : ''}`} data-animate="fade-up">
           <Link to="/expertise" className="btn btn-primary">
             Explore Our Expertise
