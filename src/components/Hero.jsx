@@ -2,6 +2,7 @@ import { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 import useCountUp from '../hooks/useCountUp';
+import FloatingShowcase from './FloatingShowcase';
 
 function ParticleCanvas() {
   const canvasRef = useRef(null);
@@ -86,14 +87,12 @@ function StatCounter({ target, suffix, label }) {
 }
 
 export default function Hero() {
-  const badgeRef = useRef(null);
   const titleRef = useRef(null);
   const subtitleRef = useRef(null);
   const actionsRef = useRef(null);
 
-  const badgeVisible = useScrollAnimation(badgeRef, { threshold: 0.1 });
-  const titleVisible = useScrollAnimation(titleRef, { threshold: 0.1, delay: 100 });
-  const subtitleVisible = useScrollAnimation(subtitleRef, { threshold: 0.1, delay: 200 });
+  const titleVisible = useScrollAnimation(titleRef, { threshold: 0.1 });
+  const subtitleVisible = useScrollAnimation(subtitleRef, { threshold: 0.1, delay: 150 });
   const actionsVisible = useScrollAnimation(actionsRef, { threshold: 0.1, delay: 300 });
 
   return (
@@ -115,10 +114,31 @@ export default function Hero() {
         <div className="hero-particles">
           <ParticleCanvas />
         </div>
+        <FloatingShowcase />
         <div className="hero-grid" />
       </div>
+
+      {/* Hero Intro - Mission & Slogan - First thing users see */}
+      <div className="hero-intro">
+        <div className="hero-intro-content">
+          <p className="hero-intro-mission">
+            <span className="hero-intro-label">Our Mission</span>
+            Advancing the state-of-the-art in sensorless motor control solutions
+          </p>
+          <div className="hero-intro-separator">
+            <span className="hero-intro-line" />
+            <span className="hero-intro-diamond" />
+            <span className="hero-intro-line" />
+          </div>
+          <p className="hero-intro-slogan">
+            "Beyond knowing the know-how — <span>we know the know-why</span>"
+          </p>
+        </div>
+      </div>
+
+      {/* Main Hero Content */}
       <div className="hero-content">
-        <div ref={badgeRef} className={`hero-badge${badgeVisible ? ' visible' : ''}`} data-animate="fade-up">
+        <div className="hero-badge" data-animate="fade-up">
           <span className="badge-dot" />
           R&amp;D Engineering &amp; Consultancy
         </div>
@@ -128,9 +148,6 @@ export default function Hero() {
           <span className="gradient-text">Power Electronics</span>
         </h1>
         <p ref={subtitleRef} className={`hero-subtitle${subtitleVisible ? ' visible' : ''}`} data-animate="fade-up">
-          Innovating the future of sensorless motor control solutions, enabling energy-efficient drives across industries worldwide.
-        </p>
-        <p className={`hero-oneliner${subtitleVisible ? ' visible' : ''}`} data-animate="fade-up">
           Reduce cost and complexity with sensorless solutions — no encoders, fewer parts, higher reliability.
         </p>
         <div ref={actionsRef} className={`hero-actions${actionsVisible ? ' visible' : ''}`} data-animate="fade-up">
@@ -148,6 +165,7 @@ export default function Hero() {
           <StatCounter target={1000000} suffix="+" label="Units in Production" />
         </div>
       </div>
+
       <div className="hero-scroll">
         <button
           type="button"

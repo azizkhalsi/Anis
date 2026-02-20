@@ -8,6 +8,7 @@ const NAV_LINKS = [
     label: 'Company',
     submenu: [
       { to: '/about', label: 'Who We Are' },
+      { to: '/company/mission', label: 'Our Mission' },
       { to: '/company/our-story', label: 'Our Story' },
       { to: '/events', label: 'Industry Events' },
     ],

@@ -17,7 +17,15 @@
 }
 
 .sim-motor-wrap {
-  max-width: min(220px, 40vw);
+  max-width: min(240px, 42vw);
+  min-height: 200px;
+  border-width: 2px;
+}
+
+@media (min-width: 768px) {
+  .sim-motor-wrap {
+    min-height: 220px;
+  }
 }
 
 /* Control panel: clean parameter typography */

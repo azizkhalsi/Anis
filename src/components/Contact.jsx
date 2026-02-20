@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import useScrollAnimation from '../hooks/useScrollAnimation';
+import LocationMap from './LocationMap';
 
 const SUBJECT_OPTIONS = [
   'General Inquiry',
@@ -15,6 +16,12 @@ const CONTACT_ITEMS = [
   {
     label: 'Address',
     value: 'Parc Technologique BP 130\nAriana, 2088\nTunisia',
+  },
+  {
+    label: 'Location',
+    value: 'View on Google Maps',
+    href: 'https://maps.app.goo.gl/DggvrQfHPYFJC2zF6',
+    icon: 'map',
   },
   {
     label: 'Phone',
@@ -67,6 +74,9 @@ export default function Contact() {
   return (
     <section className="contact" id="contact">
       <div className="container">
+        {/* Interactive Location Map */}
+        <LocationMap />
+
         <div className="contact-grid">
           <div
             className={`contact-info ${leftVisible ? 'visible' : ''}`}
@@ -80,7 +90,20 @@ export default function Contact() {
               {CONTACT_ITEMS.map((item) => (
                 <div key={item.label} className="contact-item">
                   <strong>{item.label}</strong>
-                  {item.href ? (
+                  {item.icon === 'map' ? (
+                    <a 
+                      href={item.href} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="contact-map-link"
+                    >
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                      </svg>
+                      {item.value}
+                    </a>
+                  ) : item.href ? (
                     <p><a href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}>{item.value}</a></p>
                   ) : (
                     <p style={{ whiteSpace: 'pre-line' }}>{item.value}</p>
