@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
 import useScrollAnimation from '../hooks/useScrollAnimation';
-import MbdWorkflowDiagram from './MbdWorkflowDiagram';
 
 export const TABS = [
   {
@@ -121,21 +120,27 @@ export const TABS = [
     content: (
       <>
         <h3>Model-Based Design</h3>
-        <p>Automation of Model-Based Design processes like automatic code generation, model reusability, continuous testing, and documentation results in faster time to market and lower product cost.</p>
+        <p>Automation of Model-Based Design processes like automatic code generation, model reusability, continuous testing, and documentation results in faster time to market and lower product cost, something that companies are always looking for.</p>
         <p>Our teams use Model-Based Design to provide you with a motor control solution that is tailored to your specific requirements. They can:</p>
         <ul className="expertise-list">
           <li>Provide the expertise to help you migrate to Model-Based Design</li>
-          <li>Design from scratch and validate your motor control system in a simulation environment for rapid prototyping</li>
-          <li>Evaluate, modify, and maintain your existing motor control models</li>
-          <li>Create an interface and integrate automatically generated code from the controller model into your existing software</li>
-          <li>Provide a full-range motor control software solution using Model-Based Design</li>
+          <li>Design from scratch and validate your motor control system in a simulation environment, giving your design team the ability to perform rapid prototyping</li>
+          <li>Provide expertise to evaluate, modify, and maintain your existing motor control models</li>
+          <li>Create an interface and integrate the automatically generated code from the controller model into your existing software or provide you a full range motor control software solution using Model-Based Design</li>
         </ul>
       </>
     ),
     visualCard: (
-      <div className="expertise-visual-card expertise-visual-card--diagram">
-        <MbdWorkflowDiagram />
-        <span>Simulation &amp; Validation</span>
+      <div className="expertise-visual-card expertise-visual-card--image expertise-visual-card--mbd">
+        <img
+          src="/images/mbd-diagram.png"
+          alt="Model-Based Design: from simulation models to auto-generated code in motor control system"
+          className="expertise-visual-img expertise-visual-img--mbd"
+          width={1200}
+          height={800}
+          loading="lazy"
+          decoding="async"
+        />
       </div>
     ),
   },
@@ -150,7 +155,6 @@ export const TABS = [
     content: (
       <>
         <h3>Prototyping</h3>
-        <p>We provide an end-to-end service covering PCB, stencil and component sourcing, board assembly, and functional testing, all from a single source.</p>
         <ul className="expertise-list">
           <li>Multi-layer PCB fabrication</li>
           <li>Stencil production & component sourcing</li>
@@ -158,26 +162,42 @@ export const TABS = [
           <li>Functional testing & validation</li>
           <li>Single-source end-to-end service</li>
         </ul>
+        <p>We provide an end-to-end service covering PCB, stencil and component sourcing, board assembly, and functional testing, all from a single source.</p>
       </>
     ),
     visualCard: (
-      <div className="expertise-visual-card expertise-visual-animated">
-        <div className="expertise-animated-bg" />
-        <div className="expertise-visual-content">
-          <div className="expertise-pipeline">
+      <div className="expertise-visual-card expertise-visual-card--pipeline">
+        <div className="expertise-pipeline-wrap">
+          <div className="expertise-pipeline expertise-pipeline--compact">
             <div className="pipeline-step">
-              <div className="pipeline-icon">PCB</div>
-              <span>Fabrication</span>
+              <div className="pipeline-node">
+                <span className="pipeline-node-icon">PCB</span>
+              </div>
+              <span className="pipeline-step-label">Fabrication</span>
             </div>
-            <div className="pipeline-connector" />
-            <div className="pipeline-step">
-              <div className="pipeline-icon">SMD</div>
-              <span>Assembly</span>
+            <div className="pipeline-flow" aria-hidden="true">
+              <svg viewBox="0 0 56 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="pipeline-flow-svg">
+                <path className="pipeline-flow-track" d="M0 6h56" strokeWidth="1.2" strokeLinecap="round" strokeDasharray="4 3" />
+                <circle className="pipeline-flow-dot" r="2.5" cy="6" cx="0" />
+              </svg>
             </div>
-            <div className="pipeline-connector" />
             <div className="pipeline-step">
-              <div className="pipeline-icon active">&#x2713;</div>
-              <span>Testing</span>
+              <div className="pipeline-node">
+                <span className="pipeline-node-icon">SMD</span>
+              </div>
+              <span className="pipeline-step-label">Assembly</span>
+            </div>
+            <div className="pipeline-flow" aria-hidden="true">
+              <svg viewBox="0 0 56 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="pipeline-flow-svg">
+                <path className="pipeline-flow-track" d="M0 6h56" strokeWidth="1.2" strokeLinecap="round" strokeDasharray="4 3" />
+                <circle className="pipeline-flow-dot" r="2.5" cy="6" cx="0" />
+              </svg>
+            </div>
+            <div className="pipeline-step pipeline-step--last">
+              <div className="pipeline-node pipeline-node--active">
+                <span className="pipeline-node-icon">&#x2713;</span>
+              </div>
+              <span className="pipeline-step-label">Testing</span>
             </div>
           </div>
         </div>

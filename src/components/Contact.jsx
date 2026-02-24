@@ -1,6 +1,11 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 import LocationMap from './LocationMap';
+
+const FORMSPREE_FORM_ID = 'xykdbrwg';
+const FORMSPREE_ACTION = `https://formspree.io/f/${FORMSPREE_FORM_ID}`;
+const IFRAME_NAME = 'formspree-frame';
+const SUBMIT_TIMEOUT_MS = 12000;
 
 const SUBJECT_OPTIONS = [
   'General Inquiry',
@@ -47,28 +52,57 @@ const CONTACT_ITEMS = [
 export default function Contact() {
   const leftRef = useRef(null);
   const formRef = useRef(null);
-
-  const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    subject: '',
-    message: '',
-  });
+  const formElRef = useRef(null);
+  const iframeRef = useRef(null);
+  const timeoutRef = useRef(null);
   const [submitMessage, setSubmitMessage] = useState('');
+  const [submitting, setSubmitting] = useState(false);
 
   const leftVisible = useScrollAnimation(leftRef);
   const formVisible = useScrollAnimation(formRef, { delay: 100 });
 
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmitMessage('Message Sent!');
-    setFormData({ fullName: '', email: '', subject: '', message: '' });
-    setTimeout(() => setSubmitMessage(''), 3000);
-  };
+    const form = formElRef.current;
+    const iframe = iframeRef.current;
+    if (!form || !iframe) return;
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    const done = (success) => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+      setSubmitting(false);
+      if (success) {
+        setSubmitMessage('Thank you.');
+        form.reset();
+        setTimeout(() => setSubmitMessage(''), 6000);
+      } else {
+        setSubmitMessage('Something went wrong. Please try again.');
+        setTimeout(() => setSubmitMessage(''), 6000);
+      }
+    };
+
+    const onIframeLoad = () => {
+      iframe.removeEventListener('load', onIframeLoad);
+      done(true);
+    };
+
+    setSubmitting(true);
+    setSubmitMessage('');
+    iframe.addEventListener('load', onIframeLoad);
+    form.setAttribute('target', IFRAME_NAME);
+    form.submit();
+
+    timeoutRef.current = window.setTimeout(() => {
+      iframe.removeEventListener('load', onIframeLoad);
+      done(false);
+    }, SUBMIT_TIMEOUT_MS);
   };
 
   return (
@@ -118,62 +152,48 @@ export default function Contact() {
             ref={formRef}
             data-animate="fade-left"
           >
-            <form className="contact-form" onSubmit={handleSubmit}>
+            <iframe
+              ref={iframeRef}
+              name={IFRAME_NAME}
+              title="Submit"
+              style={{ position: 'absolute', left: -9999, width: 1, height: 1, border: 0 }}
+            />
+            <form
+              ref={formElRef}
+              className="contact-form"
+              action={FORMSPREE_ACTION}
+              method="POST"
+              target={IFRAME_NAME}
+              onSubmit={handleSubmit}
+            >
               <div className="form-group">
                 <label htmlFor="fullName">Full Name</label>
-                <input
-                  type="text"
-                  id="fullName"
-                  name="fullName"
-                  value={formData.fullName}
-                  onChange={handleChange}
-                  required
-                />
+                <input type="text" id="fullName" name="name" required />
               </div>
               <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
+                <label htmlFor="email">Email (optional)</label>
+                <input type="email" id="email" name="_replyto" placeholder="your@email.com" />
               </div>
               <div className="form-group">
                 <label htmlFor="subject">Subject</label>
-                <select
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                >
+                <select id="subject" name="subject" required>
                   <option value="">Select an option</option>
                   {SUBJECT_OPTIONS.map((opt) => (
-                    <option key={opt} value={opt}>
-                      {opt}
-                    </option>
+                    <option key={opt} value={opt}>{opt}</option>
                   ))}
                 </select>
               </div>
               <div className="form-group">
                 <label htmlFor="message">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows="5"
-                  required
-                />
+                <textarea id="message" name="message" rows="5" required />
               </div>
-              <button type="submit" className="btn btn-primary">
-                Submit
+              <button type="submit" className="btn btn-primary" disabled={submitting}>
+                {submitting ? 'Sending…' : 'Submit'}
               </button>
               {submitMessage && (
-                <p className="form-success">{submitMessage}</p>
+                <p className="form-success" style={{ fontSize: '0.95rem', marginTop: '0.5rem' }}>
+                  {submitMessage}
+                </p>
               )}
             </form>
           </div>
