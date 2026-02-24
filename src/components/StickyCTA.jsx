@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import useScrollPosition from '../hooks/useScrollPosition';
+import { useScrollPosition } from '../contexts/ScrollPositionContext';
 
 const SCROLL_THRESHOLD = 400;
 

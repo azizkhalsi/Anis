@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import useScrollPosition from '../hooks/useScrollPosition';
+import { useScrollPosition } from '../contexts/ScrollPositionContext';
 
 const NAV_LINKS = [
   { to: '/', label: 'Home' },

@@ -368,6 +368,7 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
   const featureBlocksRef = useRef(null);
   const hmiSectionRef = useRef(null);
   const connectivityRef = useRef(null);
+  const demoEmbedRef = useRef(null);
   const amcBenefitsRef = useRef(null);
   const amcGameChangerRef = useRef(null);
   const amcSensorlessRef = useRef(null);
@@ -375,11 +376,18 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
   const featureBlocksVisible = useScrollAnimation(featureBlocksRef, { threshold: 0.08 });
   const hmiVisible = useScrollAnimation(hmiSectionRef, { threshold: 0.08 });
   const connectivityVisible = useScrollAnimation(connectivityRef, { threshold: 0.08 });
+  const demoEmbedVisible = useScrollAnimation(demoEmbedRef, { threshold: 0.08 });
   const amcBenefitsVisible = useScrollAnimation(amcBenefitsRef, { threshold: 0.08 });
   const amcGameChangerVisible = useScrollAnimation(amcGameChangerRef, { threshold: 0.08 });
   const amcSensorlessVisible = useScrollAnimation(amcSensorlessRef, { threshold: 0.08 });
   const product = PRODUCTS.find((p) => p.id === active);
   const Visual = VISUALS[active];
+
+  // #region agent log
+  useEffect(() => {
+    fetch('http://127.0.0.1:7374/ingest/3b192536-1e54-4b21-8ca0-89e6554bb50d',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'455fe2'},body:JSON.stringify({sessionId:'455fe2',location:'Products.jsx:render',message:'Products render',data:{active},hypothesisId:'H4',timestamp:Date.now()})}).catch(()=>{});
+  });
+  // #endregion
 
   useEffect(() => {
     if (initialProduct && PRODUCTS.some((p) => p.id === initialProduct)) {
@@ -493,6 +501,20 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
                       <p className="dmk-connectivity-card-body">{item.body}</p>
                     </div>
                   ))}
+                </div>
+              </div>
+
+              <div
+                className={`dmk-demo-embed-section ${demoEmbedVisible ? 'visible' : ''}`}
+                ref={demoEmbedRef}
+                data-animate="fade-up"
+              >
+                <div className="dmk-demo-embed-frame">
+                  <iframe
+                    src={`${import.meta.env.BASE_URL}dmk-interactive-demo.html`}
+                    title="DMK interactive demo — See DMK in Action"
+                    className="dmk-demo-embed-iframe"
+                  />
                 </div>
               </div>
             </>

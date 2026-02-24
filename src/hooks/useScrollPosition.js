@@ -19,7 +19,11 @@ export default function useScrollPosition() {
         last = now;
         if (raf) cancelAnimationFrame(raf);
         raf = requestAnimationFrame(() => {
-          setScrollY(window.scrollY);
+          const y = window.scrollY;
+          setScrollY(y);
+          // #region agent log
+          fetch('http://127.0.0.1:7374/ingest/3b192536-1e54-4b21-8ca0-89e6554bb50d',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'455fe2'},body:JSON.stringify({sessionId:'455fe2',location:'useScrollPosition.js:scroll',message:'scroll position update',data:{scrollY:y},hypothesisId:'H1',timestamp:Date.now()})}).catch(()=>{});
+          // #endregion
           raf = null;
         });
       }

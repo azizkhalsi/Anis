@@ -50,34 +50,12 @@ export default function FloatingShowcase() {
     };
 
     setVisibleImages(getRandomImages());
-
+    fetch('http://127.0.0.1:7374/ingest/3b192536-1e54-4b21-8ca0-89e6554bb50d',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'455fe2'},body:JSON.stringify({sessionId:'455fe2',location:'FloatingShowcase.jsx:effect1',message:'FloatingShowcase effect1 mounted',data:{},hypothesisId:'H3',timestamp:Date.now()})}).catch(function(){});
     const interval = setInterval(() => {
       setVisibleImages(getRandomImages());
     }, 2500 + Math.random() * 2000);
 
     return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    const randomizeInterval = () => {
-      const timeout = setTimeout(() => {
-        const count = Math.floor(Math.random() * 2) + 2;
-        const indices = [];
-        while (indices.length < count) {
-          const randomIndex = Math.floor(Math.random() * SHOWCASE_IMAGES.length);
-          if (!indices.includes(randomIndex)) {
-            indices.push(randomIndex);
-          }
-        }
-        setVisibleImages(indices);
-        randomizeInterval();
-      }, 2000 + Math.random() * 3000);
-      
-      return timeout;
-    };
-
-    const timeout = randomizeInterval();
-    return () => clearTimeout(timeout);
   }, []);
 
   return (
