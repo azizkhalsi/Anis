@@ -1,0 +1,4 @@
+OpenMotor by bitswype on Thingiverse: https://www.thingiverse.com/thing:46428
+
+Summary:
+I've always loved motors.  I had the nutty idea to design an "open source" motor that could be printed and built using nothing more than magnet wire, some patience and a few off the shelf components like skate bearings and the like.  I developed a parametric openscad script for designing the coil forms and structure of the motor, printed a few pieces then got pulled away.  This is what I was able to complete.  The idea was this was to be a simple 3 phase induction motor.  The electronics required to drive it would be complicated, but the motor itself is dirt simple, 3 coils and a core.  The SCAD script generates all the pieces.

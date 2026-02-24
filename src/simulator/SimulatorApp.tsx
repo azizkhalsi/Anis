@@ -388,13 +388,13 @@ const App: React.FC = () => {
               />
             </div>
             {showMotor ? (
-              <div className="sim-motor-wrap relative bg-gradient-to-b from-slate-800 via-slate-900 to-black border-2 border-slate-500/60 shadow-[0_0_24px_rgba(100,116,139,0.18),inset_0_1px_0_rgba(255,255,255,0.05)] rounded-xl overflow-hidden aspect-square w-full shrink-0 animate-[fadeIn_0.3s_ease-out]">
+              <div className="sim-motor-wrap relative bg-transparent border border-slate-300/60 shadow-[0_0_16px_rgba(0,0,0,0.06)] rounded-xl overflow-hidden aspect-square w-full shrink-0 animate-[fadeIn_0.3s_ease-out]">
                 <div className="absolute top-2 left-2.5 z-10">
-                  <span className="text-[9px] font-semibold text-slate-400 uppercase tracking-wider bg-slate-900/70 px-2 py-0.5 rounded-md backdrop-blur-sm">3-Phase PMSM · Interactive</span>
+                  <span className="text-[9px] font-semibold text-slate-600 uppercase tracking-wider bg-white/80 px-2 py-0.5 rounded-md backdrop-blur-sm border border-slate-200/60">3-Phase PMSM · Interactive</span>
                 </div>
                 <button
                   onClick={() => setShowMotor(false)}
-                  className="absolute top-2 right-2.5 z-10 w-5 h-5 flex items-center justify-center rounded-full bg-slate-800/80 hover:bg-red-600/80 border border-slate-500/50 hover:border-red-500/50 text-slate-400 hover:text-white text-[10px] leading-none transition-all duration-150 backdrop-blur-sm"
+                  className="absolute top-2 right-2.5 z-10 w-5 h-5 flex items-center justify-center rounded-full bg-white/80 hover:bg-red-500/90 border border-slate-300/60 hover:border-red-400 text-slate-500 hover:text-white text-[10px] leading-none transition-all duration-150 backdrop-blur-sm"
                   title="Hide 3D motor"
                 >
                   ✕

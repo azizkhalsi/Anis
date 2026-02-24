@@ -10,7 +10,8 @@ function stripViteClient() {
     transformIndexHtml: {
       order: 'post',
       handler(html) {
-        return html.replace(/<script type="module" src="\/@vite\/client"><\/script>\s*/i, '')
+        // Remove Vite HMR client script in any format (single line or multiline)
+        return html.replace(/<script[^>]*src="[^"]*@vite\/client[^"]*"[^>]*>\s*<\/script>\s*/gi, '')
       },
     },
   }
@@ -28,7 +29,7 @@ export default defineConfig({
       'X-Frame-Options': 'DENY',
       'X-XSS-Protection': '1; mode=block',
       'Referrer-Policy': 'strict-origin-when-cross-origin',
-      'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://fonts.googleapis.com; frame-src https://maps.google.com https://www.google.com https://www.openstreetmap.org; frame-ancestors 'none'; base-uri 'self';",
+      'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' ws: wss: https://fonts.googleapis.com; frame-src https://maps.google.com https://www.google.com https://www.openstreetmap.org; frame-ancestors 'none'; base-uri 'self';",
       'Permissions-Policy': 'geolocation=(), microphone=(), camera=()',
     },
   },
@@ -36,7 +37,7 @@ export default defineConfig({
     headers: {
       'X-Content-Type-Options': 'nosniff',
       'X-Frame-Options': 'DENY',
-      'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://fonts.googleapis.com; frame-src https://maps.google.com https://www.google.com https://www.openstreetmap.org; frame-ancestors 'none'; base-uri 'self';",
+      'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' ws: wss: https://fonts.googleapis.com; frame-src https://maps.google.com https://www.google.com https://www.openstreetmap.org; frame-ancestors 'none'; base-uri 'self';",
     },
   },
   build: {

@@ -12,6 +12,7 @@ const ProductsPage = lazy(() => import('./pages/ProductsPage'));
 const IndustriesPage = lazy(() => import('./pages/IndustriesPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const SimulatorPage = lazy(() => import('./pages/SimulatorPage'));
+const MotorModelPage = lazy(() => import('./pages/MotorModelPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 function PageFallback() {
@@ -26,6 +27,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/motor-model" element={<Suspense fallback={<PageFallback />}><MotorModelPage /></Suspense>} />
         <Route element={<Layout />}>
           <Route path="/" element={<Suspense fallback={<PageFallback />}><HomePage /></Suspense>} />
           <Route path="/about" element={<Suspense fallback={<PageFallback />}><AboutPage /></Suspense>} />

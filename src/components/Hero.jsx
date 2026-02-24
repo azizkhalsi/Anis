@@ -118,25 +118,7 @@ export default function Hero() {
         <div className="hero-grid" />
       </div>
 
-      {/* Hero Intro - Mission & Slogan - First thing users see */}
-      <div className="hero-intro">
-        <div className="hero-intro-content">
-          <p className="hero-intro-mission">
-            <span className="hero-intro-label">Our Mission</span>
-            Advancing the state-of-the-art in sensorless motor control solutions
-          </p>
-          <div className="hero-intro-separator">
-            <span className="hero-intro-line" />
-            <span className="hero-intro-diamond" />
-            <span className="hero-intro-line" />
-          </div>
-          <p className="hero-intro-slogan">
-            "Beyond knowing the know-how — <span>we know the know-why</span>"
-          </p>
-        </div>
-      </div>
-
-      {/* Main Hero Content */}
+      {/* Main Hero Content - Title first so users see who we are */}
       <div className="hero-content">
         <div className="hero-badge" data-animate="fade-up">
           <span className="badge-dot" />
@@ -166,18 +148,22 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="hero-scroll">
-        <button
-          type="button"
-          className="scroll-indicator"
-          onClick={() => {
-            const services = document.getElementById('services');
-            if (services) services.scrollIntoView({ behavior: 'smooth' });
-          }}
-        >
-          <span>Scroll</span>
-          <div className="scroll-line" />
-        </button>
+      {/* Our Mission & Slogan - After title so users get context then the message */}
+      <div className="hero-intro">
+        <div className="hero-intro-content">
+          <p className="hero-intro-mission">
+            <span className="hero-intro-label">Our Mission</span>
+            Advancing the state-of-the-art in sensorless motor control solutions
+          </p>
+          <div className="hero-intro-separator">
+            <span className="hero-intro-line" />
+            <span className="hero-intro-diamond" />
+            <span className="hero-intro-line" />
+          </div>
+          <p className="hero-intro-slogan">
+            "Beyond knowing the know-how — <span>we know the know-why</span>"
+          </p>
+        </div>
       </div>
     </section>
   );
