@@ -1,20 +1,22 @@
 import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import PageHeader from '../components/PageHeader';
 import ExpertiseSingle from '../components/ExpertiseSingle';
-import { TABS } from '../components/Expertise';
+import { TABS } from '../constants/expertiseTabs';
 
 export default function ExpertisePage() {
+  const { t } = useTranslation();
   const { topicId } = useParams();
-  const tab = topicId ? TABS.find((t) => t.id === topicId) : null;
-  const title = tab ? tab.label : 'Expertise';
+  const tab = topicId ? TABS.find((tabItem) => tabItem.id === topicId) : null;
+  const title = tab ? t(`expertise.tabs.${topicId}.label`) : t('nav.expertise');
   const description = tab
-    ? `Deep domain knowledge in ${tab.label.toLowerCase()} for motor control and power electronics.`
-    : 'Deep domain knowledge across motor control and power electronics development.';
+    ? t(`expertise.topicDescriptions.${topicId}`)
+    : t('expertise.defaultDescription');
 
   return (
     <>
       <PageHeader
-        tag="Expertise"
+        tag={t('expertise.tag')}
         title={title}
         description={description}
       />

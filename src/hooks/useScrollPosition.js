@@ -9,7 +9,7 @@ export default function useScrollPosition() {
   const [scrollY, setScrollY] = useState(typeof window !== 'undefined' ? window.scrollY : 0);
 
   useEffect(() => {
-    setScrollY(window.scrollY);
+    const rafId = requestAnimationFrame(() => setScrollY(window.scrollY));
     let last = 0;
     let raf = null;
 
@@ -27,6 +27,7 @@ export default function useScrollPosition() {
 
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => {
+      cancelAnimationFrame(rafId);
       window.removeEventListener('scroll', onScroll);
       if (raf) cancelAnimationFrame(raf);
     };

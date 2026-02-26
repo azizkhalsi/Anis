@@ -33,25 +33,24 @@ const SHOWCASE_IMAGES = [
   },
 ];
 
+function getRandomImageIndices() {
+  const count = Math.floor(Math.random() * 2) + 2;
+  const indices = [];
+  while (indices.length < count) {
+    const randomIndex = Math.floor(Math.random() * SHOWCASE_IMAGES.length);
+    if (!indices.includes(randomIndex)) {
+      indices.push(randomIndex);
+    }
+  }
+  return indices;
+}
+
 export default function FloatingShowcase() {
-  const [visibleImages, setVisibleImages] = useState([]);
+  const [visibleImages, setVisibleImages] = useState(getRandomImageIndices);
 
   useEffect(() => {
-    const getRandomImages = () => {
-      const count = Math.floor(Math.random() * 2) + 2;
-      const indices = [];
-      while (indices.length < count) {
-        const randomIndex = Math.floor(Math.random() * SHOWCASE_IMAGES.length);
-        if (!indices.includes(randomIndex)) {
-          indices.push(randomIndex);
-        }
-      }
-      return indices;
-    };
-
-    setVisibleImages(getRandomImages());
     const interval = setInterval(() => {
-      setVisibleImages(getRandomImages());
+      setVisibleImages(getRandomImageIndices());
     }, 2500 + Math.random() * 2000);
 
     return () => clearInterval(interval);

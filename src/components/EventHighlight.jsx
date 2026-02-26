@@ -1,8 +1,10 @@
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 
 export default function EventHighlight() {
+  const { t } = useTranslation();
   const ref = useRef(null);
   const visible = useScrollAnimation(ref);
 
@@ -12,16 +14,12 @@ export default function EventHighlight() {
         <div className={`event-card ${visible ? 'visible' : ''}`} data-animate="fade-up">
           <div className="event-badge">
             <span className="event-badge-dot" />
-            Industry Event
+            {t('events.badge')}
           </div>
           <div className="event-content">
             <div className="event-text">
-              <h3 className="event-title">
-                Appcon Technologies at PCIM Europe 2025
-              </h3>
-              <p className="event-desc">
-                We exhibited at <strong>PCIM Europe 2025</strong> in Nuremberg (May 6–8), connecting with experts across power tools, white goods, e-bikes, scooters, and industrial inverters. We introduced two major innovations:
-              </p>
+              <h3 className="event-title">{t('events.title')}</h3>
+              <p className="event-desc">{t('events.desc')}</p>
               <div className="event-innovations">
                 <div className="event-innovation">
                   <span className="event-innovation-icon">
@@ -30,8 +28,8 @@ export default function EventHighlight() {
                     </svg>
                   </span>
                   <div>
-                    <strong>High-Frequency Injection Control</strong>
-                    <p>Sensorless control with full torque at standstill</p>
+                    <strong>{t('events.innovation1Title')}</strong>
+                    <p>{t('events.innovation1Body')}</p>
                   </div>
                 </div>
                 <div className="event-innovation">
@@ -42,29 +40,27 @@ export default function EventHighlight() {
                     </svg>
                   </span>
                   <div>
-                    <strong>DMK (Diagnostic Measurement Card)</strong>
-                    <p>Streamlining debugging, benchmarking &amp; reverse engineering</p>
+                    <strong>{t('events.innovation2Title')}</strong>
+                    <p>{t('events.innovation2Body')}</p>
                   </div>
                 </div>
               </div>
               <Link to="/products" className="btn btn-outline event-cta">
-                Discover Our Products
+                {t('events.cta')}
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
               </Link>
             </div>
             <div className="event-photo">
               <img
                 src="/images/ceo-hafedh-sammoud.png"
-                alt="Dr. Hafedh Sammoud at the Appcon Technologies booth, PCIM Europe 2025 Nuremberg"
+                alt={t('events.photoAlt')}
                 width="480"
                 height="320"
                 loading="lazy"
                 decoding="async"
                 sizes="(max-width: 768px) 100vw, 480px"
               />
-              <span className="event-photo-caption">
-                Dr. Hafedh Sammoud at PCIM Europe 2025, Nuremberg
-              </span>
+              <span className="event-photo-caption">{t('events.photoCaption')}</span>
             </div>
           </div>
         </div>

@@ -1,46 +1,10 @@
 import { useState, useRef, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import useScrollAnimation from '../hooks/useScrollAnimation';
-
-export const INDUSTRIES_DATA = [
-  {
-    id: 'whitegood',
-    title: 'White Goods',
-    subtitle: 'Household Appliances',
-    description: 'Energy-efficient motor solutions for refrigerators, washing machines, dishwashers, and air conditioning units. Our sensorless control technology reduces energy consumption while maintaining quiet operation and reliability.',
-    features: ['Refrigerator compressors', 'Washing machine drums', 'Dishwasher pumps', 'AC fan motors'],
-    stat: '40%',
-    statLabel: 'energy savings',
-    color: '#2b6bc4',
-    image: 'https://images.pexels.com/photos/5591581/pexels-photo-5591581.jpeg?auto=compress&cs=tinysrgb&w=800',
-    imageAlt: 'Modern household washing machine representing white goods industry',
-  },
-  {
-    id: 'powertool',
-    title: 'Power Tools',
-    subtitle: 'Professional & Consumer',
-    description: 'High-performance, brushless motor control for cordless drills, angle grinders, and professional power tools. Optimized for torque response, efficiency, and long battery life in demanding applications.',
-    features: ['Cordless drills', 'Angle grinders', 'Circular saws', 'Impact drivers'],
-    stat: '2x',
-    statLabel: 'battery life',
-    color: '#c42b2b',
-    image: 'https://images.pexels.com/photos/1249611/pexels-photo-1249611.jpeg?auto=compress&cs=tinysrgb&w=800',
-    imageAlt: 'Professional power tools and cordless drills',
-  },
-  {
-    id: 'automotive',
-    title: 'Automotive',
-    subtitle: 'Vehicle Systems',
-    description: 'Automotive-grade motor control for pumps, fans, wipers, and comfort systems. Our solutions meet stringent quality and safety requirements, with AUTOSAR-compatible software for seamless vehicle integration.',
-    features: ['Fuel & water pumps', 'Radiator fans', 'Wiper systems', 'Seat adjustment'],
-    stat: '1M+',
-    statLabel: 'units deployed',
-    color: '#1a8a50',
-    image: 'https://images.pexels.com/photos/3862634/pexels-photo-3862634.jpeg?auto=compress&cs=tinysrgb&w=800',
-    imageAlt: 'Automotive production line with electronic vehicle systems',
-  },
-];
+import { INDUSTRIES_DATA } from '../constants/industriesData';
 
 export default function Industries({ initialIndustry = 'whitegood', singleMode = false }) {
+  const { t } = useTranslation();
   const [active, setActive] = useState(initialIndustry);
   const ref = useRef(null);
   const visible = useScrollAnimation(ref);
@@ -48,9 +12,19 @@ export default function Industries({ initialIndustry = 'whitegood', singleMode =
 
   useEffect(() => {
     if (initialIndustry && INDUSTRIES_DATA.some((i) => i.id === initialIndustry)) {
-      setActive(initialIndustry);
+      queueMicrotask(() => setActive(initialIndustry));
     }
   }, [initialIndustry]);
+
+  if (!industry) return null;
+
+  const industryTitle = t(`industries.${industry.id}.title`);
+  const industrySubtitle = t(`industries.${industry.id}.subtitle`);
+  const industryDescription = t(`industries.${industry.id}.description`);
+  const industryFeatures = t(`industries.${industry.id}.features`, { returnObjects: true });
+  const industryStat = t(`industries.${industry.id}.stat`);
+  const industryStatLabel = t(`industries.${industry.id}.statLabel`);
+  const industryImageAlt = t(`industries.${industry.id}.imageAlt`);
 
   return (
     <section className={`industries ${singleMode ? 'industries--single' : ''}`} id="industries">
@@ -65,8 +39,8 @@ export default function Industries({ initialIndustry = 'whitegood', singleMode =
                 onClick={() => setActive(ind.id)}
                 style={{ '--tab-color': ind.color }}
               >
-                <span className="industry-tab-title">{ind.title}</span>
-                <span className="industry-tab-sub">{ind.subtitle}</span>
+                <span className="industry-tab-title">{t(`industries.${ind.id}.title`)}</span>
+                <span className="industry-tab-sub">{t(`industries.${ind.id}.subtitle`)}</span>
               </button>
             ))}
           </div>
@@ -76,13 +50,13 @@ export default function Industries({ initialIndustry = 'whitegood', singleMode =
           <div className="industry-showcase-grid">
             <div className="industry-showcase-content">
               <div className="industry-showcase-stat" style={{ color: industry.color }}>
-                <span className="industry-stat-number">{industry.stat}</span>
-                <span className="industry-stat-label">{industry.statLabel}</span>
+                <span className="industry-stat-number">{industryStat}</span>
+                <span className="industry-stat-label">{industryStatLabel}</span>
               </div>
-              <h3 className="industry-showcase-title">{industry.title}</h3>
-              <p className="industry-showcase-desc">{industry.description}</p>
+              <h3 className="industry-showcase-title">{industryTitle}</h3>
+              <p className="industry-showcase-desc">{industryDescription}</p>
               <div className="industry-features">
-                {industry.features.map((f) => (
+                {Array.isArray(industryFeatures) && industryFeatures.map((f) => (
                   <div className="industry-feature" key={f} style={{ '--feat-color': industry.color }}>
                     <span className="industry-feature-dot" />
                     {f}
@@ -95,7 +69,7 @@ export default function Industries({ initialIndustry = 'whitegood', singleMode =
                 src={industry.image}
                 srcSet={industry.image.replace(/w=\d+/, 'w=400') + ' 400w, ' + industry.image + ' 800w'}
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 45vw"
-                alt={industry.imageAlt}
+                alt={industryImageAlt}
                 className="industry-showcase-img"
                 width="800"
                 height="450"

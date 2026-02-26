@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 import useCountUp from '../hooks/useCountUp';
 import FloatingShowcase from './FloatingShowcase';
@@ -72,7 +73,8 @@ function ParticleCanvas() {
   return <canvas ref={canvasRef} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} />;
 }
 
-function StatCounter({ target, suffix, label }) {
+function StatCounter({ target, suffix, labelKey }) {
+  const { t } = useTranslation();
   const ref = useRef(null);
   const isVisible = useScrollAnimation(ref, { threshold: 0.5 });
   const value = useCountUp(target, 2000, isVisible);
@@ -81,12 +83,13 @@ function StatCounter({ target, suffix, label }) {
     <div className="stat" ref={ref}>
       <span className="stat-number">{value}</span>
       {suffix && <span className="stat-suffix">{suffix}</span>}
-      <span className="stat-label">{label}</span>
+      <span className="stat-label">{t(labelKey)}</span>
     </div>
   );
 }
 
 export default function Hero() {
+  const { t } = useTranslation();
   const titleRef = useRef(null);
   const subtitleRef = useRef(null);
   const actionsRef = useRef(null);
@@ -122,29 +125,30 @@ export default function Hero() {
       <div className="hero-content">
         <div className="hero-badge" data-animate="fade-up">
           <span className="badge-dot" />
-          R&amp;D Engineering &amp; Consultancy
+          {t('home.hero.badge')}
         </div>
         <h1 ref={titleRef} className={`hero-title${titleVisible ? ' visible' : ''}`} data-animate="fade-up">
-          Engineering &amp; Consultancy for{' '}
-          <span className="gradient-text">Motor Control</span> &amp;{' '}
-          <span className="gradient-text">Power Electronics</span>
+          {t('home.hero.titleLine1')}{' '}
+          <span className="gradient-text">{t('home.hero.titleHighlight1')}</span>
+          {t('home.hero.titleAnd')}
+          <span className="gradient-text">{t('home.hero.titleHighlight2')}</span>
         </h1>
         <p ref={subtitleRef} className={`hero-subtitle${subtitleVisible ? ' visible' : ''}`} data-animate="fade-up">
-          Reduce cost and complexity with sensorless solutions — no encoders, fewer parts, higher reliability.
+          {t('home.hero.subtitle')}
         </p>
         <div ref={actionsRef} className={`hero-actions${actionsVisible ? ' visible' : ''}`} data-animate="fade-up">
           <Link to="/expertise" className="btn btn-primary">
-            Explore Our Expertise
+            {t('home.hero.exploreExpertise')}
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
           </Link>
-          <Link to="/products" className="btn btn-outline">Our Products</Link>
+          <Link to="/products" className="btn btn-outline">{t('home.hero.ourProducts')}</Link>
         </div>
         <div className="hero-stats" data-animate="fade-up">
-          <StatCounter target={20} suffix="+" label="Years Experience" />
+          <StatCounter target={20} suffix="+" labelKey="home.hero.statYears" />
           <div className="stat-divider" />
-          <StatCounter target={3} label="Innovative Products" />
+          <StatCounter target={3} labelKey="home.hero.statProducts" />
           <div className="stat-divider" />
-          <StatCounter target={1000000} suffix="+" label="Units in Production" />
+          <StatCounter target={1000000} suffix="+" labelKey="home.hero.statUnits" />
         </div>
       </div>
 
@@ -152,8 +156,8 @@ export default function Hero() {
       <div className="hero-intro">
         <div className="hero-intro-content">
           <p className="hero-intro-mission">
-            <span className="hero-intro-label">Our Mission</span>
-            Advancing the state-of-the-art in sensorless motor control solutions
+            <span className="hero-intro-label">{t('home.hero.missionLabel')}</span>
+            {t('home.hero.missionText')}
           </p>
           <div className="hero-intro-separator">
             <span className="hero-intro-line" />
@@ -161,7 +165,7 @@ export default function Hero() {
             <span className="hero-intro-line" />
           </div>
           <p className="hero-intro-slogan">
-            "Beyond knowing the know-how — <span>we know the know-why</span>"
+            &quot;{t('home.hero.slogan')}&quot;
           </p>
         </div>
       </div>

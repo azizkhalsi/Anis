@@ -1,7 +1,10 @@
 import { useRef } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import useScrollAnimation from '../hooks/useScrollAnimation';
-import { TABS } from './Expertise';
+import { TABS } from '../constants/expertiseTabs';
+import ExpertiseTabContent from './ExpertiseTabContent';
+import ExpertiseTabVisual from './ExpertiseTabVisual';
 import PrototypingJourney from './PrototypingJourney';
 
 const VALID_TOPICS = ['consulting', 'hardware', 'software', 'mbd', 'prototyping'];
@@ -10,6 +13,7 @@ const MBD_DIAGRAM_SRC = `${BASE}images/mbd-diagram.png`;
 const MBD_DIAGRAM_SRC_2X = `${BASE}images/mbd-diagram@2x.png`;
 
 export default function ExpertiseSingle() {
+  const { t } = useTranslation();
   const { topicId } = useParams();
   const contentRef = useRef(null);
   const visualRef = useRef(null);
@@ -22,11 +26,13 @@ export default function ExpertiseSingle() {
     return <Navigate to="/expertise/consulting" replace />;
   }
 
-  const tab = TABS.find((t) => t.id === topicId);
+  const tab = TABS.find((tabItem) => tabItem.id === topicId);
   if (!tab) return <Navigate to="/expertise/consulting" replace />;
 
   const isMbd = topicId === 'mbd';
   const isPrototyping = topicId === 'prototyping';
+  const label = t(`expertise.tabs.${topicId}.label`);
+  const expertiseLabel = t('expertise.label');
 
   return (
     <>
@@ -44,7 +50,7 @@ export default function ExpertiseSingle() {
                   src={MBD_DIAGRAM_SRC}
                   srcSet={`${MBD_DIAGRAM_SRC} 1x, ${MBD_DIAGRAM_SRC_2X} 2x`}
                   sizes="(max-width: 968px) 100vw, 1100px"
-                  alt="Model-Based Design: from simulation models to auto-generated code in motor control system"
+                  alt={t('expertise.tabs.mbd.visualLabel')}
                   className="expertise-mbd-diagram-img"
                   width={1200}
                   height={800}
@@ -58,9 +64,9 @@ export default function ExpertiseSingle() {
               ref={contentRef}
               data-animate="fade-right"
             >
-              <div className="expertise-single-label">Expertise</div>
-              <h1 className="expertise-single-title">{tab.label}</h1>
-              <div className="expertise-single-body">{tab.content}</div>
+              <div className="expertise-single-label">{expertiseLabel}</div>
+              <h1 className="expertise-single-title">{label}</h1>
+              <div className="expertise-single-body"><ExpertiseTabContent topicId={topicId} /></div>
             </div>
           </>
         ) : isPrototyping ? (
@@ -70,12 +76,12 @@ export default function ExpertiseSingle() {
               ref={contentRef}
               data-animate="fade-right"
             >
-              <div className="expertise-single-label">Expertise</div>
-              <h1 className="expertise-single-title">{tab.label}</h1>
+              <div className="expertise-single-label">{expertiseLabel}</div>
+              <h1 className="expertise-single-title">{label}</h1>
             </div>
             <PrototypingJourney />
             <div className={`expertise-single-content expertise-single-content--body ${contentVisible ? 'visible' : ''}`} data-animate="fade-right">
-              <div className="expertise-single-body">{tab.content}</div>
+              <div className="expertise-single-body"><ExpertiseTabContent topicId={topicId} /></div>
             </div>
           </div>
         ) : (
@@ -85,16 +91,16 @@ export default function ExpertiseSingle() {
               ref={contentRef}
               data-animate="fade-right"
             >
-              <div className="expertise-single-label">Expertise</div>
-              <h1 className="expertise-single-title">{tab.label}</h1>
-              <div className="expertise-single-body">{tab.content}</div>
+              <div className="expertise-single-label">{expertiseLabel}</div>
+              <h1 className="expertise-single-title">{label}</h1>
+              <div className="expertise-single-body"><ExpertiseTabContent topicId={topicId} /></div>
             </div>
             <div
               className={`expertise-single-visual ${visualVisible ? 'visible' : ''}`}
               ref={visualRef}
               data-animate="fade-left"
             >
-              {tab.visualCard}
+              <ExpertiseTabVisual topicId={topicId} />
             </div>
           </div>
         )}

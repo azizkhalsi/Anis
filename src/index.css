@@ -403,6 +403,73 @@ img {
     transform: rotate(-45deg) translate(5px, -5px);
 }
 
+.nav-lang-switcher {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-left: 12px;
+}
+
+.nav-lang-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    padding: 4px 8px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-radius: 4px;
+    transition: var(--transition);
+}
+
+.nav-lang-btn--flag {
+    padding: 4px 6px;
+}
+
+.nav-lang-icon {
+    font-size: 0.7rem;
+    line-height: 1;
+    display: inline-block;
+    margin-right: 4px;
+    vertical-align: middle;
+}
+
+.nav-lang-icon--img {
+    margin-right: 5px;
+}
+
+.nav-lang-icon--img .nav-flag-svg {
+    display: block;
+    border-radius: 1px;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.08);
+}
+
+.nav-lang-btn:hover {
+    color: var(--text);
+    background: var(--bg-secondary);
+}
+
+.nav-lang-btn.active {
+    color: var(--accent);
+    font-weight: 600;
+    background: rgba(0, 0, 0, 0.06);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+.navbar.scrolled .nav-lang-btn.active {
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.nav-lang-sep {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    user-select: none;
+}
+
 /* Nav dropdowns (hover, RD-style) */
 .nav-item-with-dropdown {
     position: relative;
@@ -1535,6 +1602,63 @@ section {
 .mission-page {
     padding: 48px 0 120px;
     background: var(--bg);
+}
+
+/* Privacy Policy page */
+.privacy-policy.page-content {
+    padding: 32px 0 80px;
+    background: var(--bg);
+}
+
+.privacy-policy-content {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.privacy-policy-content h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.15rem;
+    color: var(--text);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+.privacy-policy-content h2:first-of-type {
+    margin-top: 0;
+}
+
+.privacy-policy-content p,
+.privacy-policy-content ul {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin-bottom: 1rem;
+}
+
+.privacy-policy-content ul {
+    padding-left: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.privacy-policy-content li {
+    margin-bottom: 0.35rem;
+}
+
+.privacy-policy-updated {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.footer-privacy-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.footer-privacy-link:hover {
+    color: var(--accent);
+    text-decoration: underline;
 }
 
 .mission-container {
@@ -3822,6 +3946,84 @@ section {
     }
 }
 
+/* ========== PRODUCT COMPARISON (vs. content) ========== */
+.product-comparison {
+    padding: 44px 44px 40px;
+    border-top: 1px solid var(--border);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.product-comparison.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.product-comparison-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.35rem;
+    color: var(--text);
+    margin-bottom: 24px;
+    font-weight: 600;
+}
+
+.product-comparison-table-wrap {
+    overflow-x: auto;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--bg-secondary);
+}
+
+.product-comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.product-comparison-table th,
+.product-comparison-table td {
+    padding: 14px 20px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+}
+
+.product-comparison-table th {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    color: var(--text);
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.product-comparison-table th:last-child {
+    color: var(--accent);
+}
+
+.product-comparison-table tr:last-child td {
+    border-bottom: none;
+}
+
+.product-comparison-table td {
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.product-comparison-table td:first-child {
+    color: var(--text);
+}
+
+@media (max-width: 768px) {
+    .product-comparison {
+        padding: 32px 28px 36px;
+    }
+    .product-comparison-table th,
+    .product-comparison-table td {
+        padding: 12px 16px;
+        font-size: 0.9rem;
+    }
+}
+
 /* ========== AMC SUB-SECTIONS (content from appcontech.de/amc) ========== */
 .amc-benefits-section {
     padding: 44px 44px 36px;
@@ -4943,6 +5145,22 @@ section {
 }
 
 /* ========== CONTACT ========== */
+.contact-privacy-note {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0 0 1.5rem;
+    padding: 0;
+}
+
+.contact-privacy-note a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.contact-privacy-note a:hover {
+    text-decoration: underline;
+}
+
 .contact {
     background: var(--bg-secondary);
 }
@@ -5483,6 +5701,11 @@ section {
     align-items: center;
     padding-top: 28px;
     border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.footer-bottom--always-visible {
+    opacity: 1;
+    transform: none;
 }
 
 .footer-bottom p {

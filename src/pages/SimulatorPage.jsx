@@ -1,13 +1,15 @@
+import { useTranslation } from 'react-i18next';
 import PageHeader from '../components/PageHeader';
 import SimulatorApp from '../simulator/SimulatorApp';
 
 export default function SimulatorPage() {
+  const { t } = useTranslation();
   return (
     <>
       <PageHeader
-        tag="Interactive Tool"
-        title="3-Phase PWM Simulator"
-        description="Visualize space-vector modulation, phase voltages, hexagon trajectories, and PWM switching in real time. Adjust parameters and watch the 3D PMSM motor respond."
+        tag={t('simulatorPage.tag')}
+        title={t('simulatorPage.title')}
+        description={t('simulatorPage.description')}
       />
       <section className="simulator-section">
         <div className="container">

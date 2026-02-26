@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ControlPanel } from './components/ControlPanel';
 import { ModulationMethod, PWMAlignment, SimulationConfig, SimulationState } from './types';
 import MotorScene from './components/3d/MotorScene';
@@ -43,6 +44,7 @@ const INITIAL_STATE: SimulationState = {
 const clamp = (v: number, min: number, max: number) => Math.max(min, Math.min(max, v));
 
 const App: React.FC = () => {
+  const { t } = useTranslation();
   const [config, setConfig] = useState<SimulationConfig>(INITIAL_CONFIG);
   const [phaseOffset, setPhaseOffset] = useState(0); 
   const [isRunning, setIsRunning] = useState(false);
@@ -390,18 +392,18 @@ const App: React.FC = () => {
             {showMotor ? (
               <div className="sim-motor-wrap relative bg-transparent border border-slate-300/60 shadow-[0_0_16px_rgba(0,0,0,0.06)] rounded-xl overflow-hidden aspect-square w-full shrink-0 animate-[fadeIn_0.3s_ease-out]">
                 <div className="absolute top-2 left-2.5 z-10">
-                  <span className="text-[9px] font-semibold text-slate-600 uppercase tracking-wider bg-white/80 px-2 py-0.5 rounded-md backdrop-blur-sm border border-slate-200/60">3-Phase PMSM · Interactive</span>
+                  <span className="text-[9px] font-semibold text-slate-600 uppercase tracking-wider bg-white/80 px-2 py-0.5 rounded-md backdrop-blur-sm border border-slate-200/60">{t('simulator.motorBadge')}</span>
                 </div>
                 <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-10 flex items-center gap-1.5 text-[10px] font-medium text-slate-600 bg-white/90 px-2.5 py-1.5 rounded-lg shadow-sm border border-slate-200/70 backdrop-blur-sm pointer-events-none animate-[fadeIn_0.4s_ease-out] sim-motor-scroll-hint">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                     <path d="M5 9l-3 3 3 3M9 5l3-3 3 3M15 19l-3 3-3-3M19 9l3 3-3 3" />
                   </svg>
-                  <span>Drag to rotate · Scroll to zoom</span>
+                  <span>{t('simulator.dragToRotate')}</span>
                 </div>
                 <button
                   onClick={() => setShowMotor(false)}
                   className="absolute top-2 right-2.5 z-10 w-5 h-5 flex items-center justify-center rounded-full bg-white/80 hover:bg-red-500/90 border border-slate-300/60 hover:border-red-400 text-slate-500 hover:text-white text-[10px] leading-none transition-all duration-150 backdrop-blur-sm cursor-pointer"
-                  title="Hide 3D motor"
+                  title={t('simulator.hideMotorTitle')}
                 >
                   ✕
                 </button>
@@ -416,14 +418,14 @@ const App: React.FC = () => {
                 onClick={() => setShowMotor(true)}
                 type="button"
                 className="hidden md:flex items-center gap-1.5 self-start ml-auto px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-white text-xs font-medium tracking-wide transition-all duration-200 shadow hover:shadow-md border border-slate-600/50 cursor-pointer"
-                title="Open 3D motor visualization"
+                title={t('simulator.showMotorTitle')}
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                   <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
                   <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
                   <line x1="12" y1="22.08" x2="12" y2="12"/>
                 </svg>
-                Show 3D Motor
+                {t('simulator.showMotor')}
               </button>
             )}
           </div>

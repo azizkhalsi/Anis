@@ -1,141 +1,22 @@
 import { useState, useRef, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 import OscilloscopeDisplay from './OscilloscopeDisplay';
-
-export const PRODUCTS = [
-  {
-    id: 'dmk',
-    name: 'DMK',
-    tagline: 'Drive Measurement Kit',
-    badge: 'Flagship Product',
-    badgeClass: 'product-badge-flagship',
-    hero: 'One instrument. Replaces your entire motor test bench.',
-    description: [
-      'The DMK is a compact and powerful measurement solution designed for inverter-driven motors. It precisely measures phase currents and PWM-voltages and perfectly synchronizes them to the rotor position, providing real-time visualization and data storage.',
-      'With its integrated functionalities, DMK simplifies motor analysis, making it an essential tool for development, benchmarking and endurance tests. It replaces oscilloscope, current probes, data logger, and PWM monitoring equipment — saving cost, space, and engineering effort.',
-    ],
-    highlights: [
-      { icon: 'scope', label: 'Replaces Oscilloscope', detail: '+ 3 current probes' },
-      { icon: 'log', label: 'Data Logger', detail: 'Long-term recording' },
-      { icon: 'pwm', label: 'PWM Monitor', detail: 'Typically $50k+ equipment' },
-      { icon: 'rotor', label: 'Rotor Position', detail: 'Real-time measurement' },
-    ],
-    tags: ['Real-Time', 'Portable', 'USB-C', 'WiFi', 'Ethernet', 'Galvanic Isolation'],
-  },
-  {
-    id: 'lci',
-    name: 'LCI',
-    tagline: 'Low-Cost Inverter',
-    badge: 'Hardware',
-    badgeClass: 'product-badge-hardware',
-    hero: 'Production-ready inverter. Designed for millions.',
-    description: [
-      'Appcon Technologies is a leading inverter design house, offering cost-optimized solutions for Permanent Magnet Synchronous Motors (PMSM). Our robust, sensorless Field-Oriented Control (FOC) software and flexible inverter templates deliver exceptional performance and significant cost savings.',
-      'We transform motors into intelligent units, reducing the need for additional sensors and further optimizing your system costs. Adaptable and scalable, our designs are ideal for household appliances, power tools, pumps, e-bikes, and any application needing efficient, cost-sensitive PMSM solutions. Partner with Appcon for accelerated development and reliable mass production.',
-    ],
-    highlights: [
-      { icon: 'cost', label: 'Cost-Optimized', detail: 'High-volume ready' },
-      { icon: 'motor', label: 'Sensorless FOC', detail: 'No encoder needed' },
-      { icon: 'modular', label: 'Modular Design', detail: 'Adaptable platform' },
-      { icon: 'compact', label: 'Compact', detail: 'Minimal footprint' },
-    ],
-    tags: ['PMSM', 'Sensorless FOC', 'Cost-Optimized', 'Household Appliances', 'Power Tools', 'E-Bikes'],
-  },
-  {
-    id: 'amc',
-    name: 'AMC',
-    tagline: 'Appcon Motor Control',
-    badge: 'Software',
-    badgeClass: 'product-badge-software',
-    hero: 'Plug-and-play motor control. Any motor. Any platform.',
-    description: [
-      'Appcon Motor Control (AMC) is a software-only control solution that saves the cost of a position sensor for any drive control application without compromising performance compared to sensored FOC. When AMC is integrated into drive software, it handles motor control and replaces the position sensor by calculating both motor speed and position.',
-      'AMC is a plug-and-play solution that developers can seamlessly integrate into any drive software without requiring extensive knowledge in motor control.',
-    ],
-    highlights: [
-      { icon: 'auto', label: 'AUTOSAR-Inspired', detail: 'Industry standard' },
-      { icon: 'plug', label: 'Plug & Play', detail: 'Minimal integration' },
-      { icon: 'sil', label: 'SiL Validated', detail: 'Production-ready' },
-      { icon: 'all', label: 'All Motors', detail: 'PMSM, BLDC, Induction' },
-    ],
-    tags: ['AUTOSAR-Inspired', 'Plug & Play', 'SiL Validated', 'FOC', 'DTC', 'HF Injection'],
-  },
-];
-
-const DMK_SPECS = [
-  { label: 'Power', value: 'USB-C', icon: '⚡' },
-  { label: 'Battery', value: '4000mAh', icon: '🔋' },
-  { label: 'Current', value: '1A–200A', icon: '〰️' },
-  { label: 'Voltage', value: '400V Peak', icon: '⚡' },
-  { label: 'PWM', value: '4–40kHz', icon: '📊' },
-  { label: 'Encoder', value: 'A,B,Z / SPI', icon: '🔄' },
-  { label: 'Isolation', value: '600V', icon: '🛡️' },
-];
-
-const DMK_FEATURE_BLOCKS = [
-  {
-    title: 'Power electronic testing',
-    body: 'The unique PWM decoding for high-frequency, high-resolution signals beyond typical instrument capabilities. Its advanced voltage measurement decodes PWM in real time, revealing the exact inverter voltages as the motor experiences them. Without common filtering, any inverter malfunction is easily detected rather than masked.',
-  },
-  {
-    title: 'Development engineers in motor control',
-    body: 'As a compact, multifunctional measurement instrument that replaces multiple separate devices. They connect DMK to their motor/inverter system to gather analog signals and key motor-control variables for scope and visualize in real time with the DMK PC-Software. Access internal state variables of both the motor and the inverter directly. Record and store data for extended analysis.',
-  },
-  {
-    title: 'Long-time tests',
-    body: 'Measure and log all motor and inverter state variables over an extended period. Identify anomalies or performance degradation that might occur only after hours, days, or weeks of continuous operation. Automated data analysis on the extensive datasets provided by the DMK helps uncover hidden or statistically rare problems that are difficult for humans to detect.',
-  },
-  {
-    title: 'Benchmarking reverse engineering',
-    body: 'Analyze third-party or competitor drive systems with minimal setup, tapping directly into motor and inverter signals. DMK gathers precise data for fair performance comparisons—efficiency, accuracy, control strategy—and provides actionable insights to optimize designs, inform purchases, and guide partnerships.',
-  },
-];
+import { PRODUCTS } from '../constants/productsData';
 
 const DMK_HMI_VISUALISATION_SRC = '/hmi/dmk-hmi-visualisation.png';
 const DMK_HMI_CALIBRATION_SRC = '/hmi/dmk-hmi-calibration.png';
 const DMK_REAL_MODEL_SRC = '/images/dmk-real-model.png';
 
 const LCI_PCB_SRC = '/images/lci-pcb.png';
-
-/* AMC content from appcontech.de/amc – used for AMC sub-section */
-const AMC_BENEFITS = [
-  {
-    title: 'Easy integration in existing drive software',
-    body: 'Clear interface definitions inspired by the AUTOSAR standard.',
-  },
-  {
-    title: 'Optimization and version upgrades independent of the application',
-    body: 'Validation via Software-in-the-Loop and with advanced evaluation boards.',
-  },
-  {
-    title: 'One control software for all motors and inverters',
-    body: 'Easy hardware migration and configuration for new motors.',
-  },
-  {
-    title: 'Maximum flexibility for the application software',
-    body: 'Easy and secure development of drive applications using AMC as the motor driver.',
-  },
-];
-
-const AMC_MOTOR_CONTROL_ITEMS = [
-  'Scalable across all power ranges',
-  'Maximum torque and dynamics from standstill to >100k RPM',
-  'Automatic motor identification and controller parameter configuration',
-  'Advanced features including battery current limitation',
-];
-
-const AMC_SENSORLESS_ITEMS = [
-  'No motor parameters needed for position estimation: the motor acts as the sensor',
-  'Full torque at standstill and low speeds',
-  'No additional hardware required',
-  'Superior performance compared to position sensors at high speeds, with smooth and accurate speed and position information',
-];
-
 const AMC_IMG_INTEGRATION = '/images/amc/amc-integration-hardware.png';
 const AMC_IMG_SENSORLESS_DIAGRAM = '/images/amc/amc-sensorless-diagram.png';
 
 function DmkVisual() {
+  const { t } = useTranslation();
   const [showSpecs, setShowSpecs] = useState(false);
+  const specs = t('products.dmk.specs', { returnObjects: true });
+  const specsArray = Array.isArray(specs) ? specs : [];
 
   return (
     <div
@@ -145,7 +26,7 @@ function DmkVisual() {
     >
       <img
         src="/images/dmk-connections.png"
-        alt="DMK-RT connected between inverter and motor"
+        alt={t('products.dmk.photoAlt')}
         className="dmk-photo-img"
         width="800"
         height="450"
@@ -155,29 +36,30 @@ function DmkVisual() {
       />
       <div className={`dmk-specs-overlay ${showSpecs ? 'visible' : ''}`}>
         <div className="dmk-specs-grid">
-          {DMK_SPECS.map((spec) => (
-            <div key={spec.label} className="dmk-spec-item">
-              <span className="dmk-spec-value">{spec.value}</span>
-              <span className="dmk-spec-label">{spec.label}</span>
+          {specsArray.map((spec, i) => (
+            <div key={i} className="dmk-spec-item">
+              <span className="dmk-spec-value">{spec?.value}</span>
+              <span className="dmk-spec-label">{spec?.label}</span>
             </div>
           ))}
         </div>
-        <span className="dmk-specs-hint">Specifications</span>
+        <span className="dmk-specs-hint">{t('products.dmk.specsHint')}</span>
       </div>
       {!showSpecs && (
-        <span className="dmk-hover-hint">Hover for specs</span>
+        <span className="dmk-hover-hint">{t('products.dmk.hoverHint')}</span>
       )}
     </div>
   );
 }
 
 function AmcVisual() {
+  const { t } = useTranslation();
   return (
     <div className="amc-visual-wrapper">
       <div className="amc-visual-frame">
         <img
           src={AMC_IMG_INTEGRATION}
-          alt="AMC integration: Application and AMC interface with hardware — PCBs and motors"
+          alt={t('products.amc.integrationAlt')}
           className="amc-diagram-img"
           width="800"
           height="450"
@@ -191,11 +73,12 @@ function AmcVisual() {
 }
 
 function LciVisual() {
+  const { t } = useTranslation();
   return (
     <div className="lci-visual lci-visual--no-bg">
       <img
         src={LCI_PCB_SRC}
-        alt="LCI Low-Cost Inverter — circular PCB"
+        alt={t('products.lci.pcbAlt')}
         className="lci-pcb-img"
         width="600"
         height="600"
@@ -207,6 +90,7 @@ function LciVisual() {
 }
 
 function DmkPcSoftwareScene() {
+  const { t } = useTranslation();
   const [screenOpen, setScreenOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('visualisation');
 
@@ -220,12 +104,12 @@ function DmkPcSoftwareScene() {
               <div className={`dmk-pc-scene-screen ${screenOpen ? 'open' : ''}`}>
                 {!screenOpen ? (
                   <div className="dmk-pc-scene-desktop">
-                    <span className="dmk-pc-scene-desktop-label">Desktop</span>
+                    <span className="dmk-pc-scene-desktop-label">{t('products.dmk.pcSceneDesktop')}</span>
                     <button
                       type="button"
                       className="dmk-pc-scene-dmk-icon"
                       onClick={() => setScreenOpen(true)}
-                      aria-label="Open DMK software"
+                      aria-label={t('products.dmk.pcSceneOpenDmk')}
                     >
                       <span className="dmk-pc-scene-dmk-icon-symbol">DMK</span>
                       <span className="dmk-pc-scene-dmk-icon-name">DMK</span>
@@ -238,9 +122,9 @@ function DmkPcSoftwareScene() {
                         type="button"
                         className="dmk-pc-scene-interface-back"
                         onClick={() => setScreenOpen(false)}
-                        aria-label="Back to desktop"
+                        aria-label={t('products.dmk.pcSceneBack')}
                       >
-                        ← Back
+                        {t('products.dmk.pcSceneBackLabel')}
                       </button>
                       <div className="dmk-pc-scene-interface-tabs">
                         <button
@@ -248,14 +132,14 @@ function DmkPcSoftwareScene() {
                           className={`dmk-pc-scene-tab ${activeTab === 'visualisation' ? 'active' : ''}`}
                           onClick={() => setActiveTab('visualisation')}
                         >
-                          Visualisation
+                          {t('products.dmk.pcSceneVisualisation')}
                         </button>
                         <button
                           type="button"
                           className={`dmk-pc-scene-tab ${activeTab === 'calibration' ? 'active' : ''}`}
                           onClick={() => setActiveTab('calibration')}
                         >
-                          Oscilloscope & calibration
+                          {t('products.dmk.pcSceneCalibration')}
                         </button>
                       </div>
                     </div>
@@ -264,7 +148,7 @@ function DmkPcSoftwareScene() {
                         <div className="dmk-pc-scene-interface-pane dmk-pc-scene-interface-pane--visualisation">
                           <img
                             src={DMK_HMI_VISUALISATION_SRC}
-                            alt="DMK visualisation interface"
+                            alt={t('products.dmk.hmiVisualisationAlt')}
                             loading="lazy"
                           />
                         </div>
@@ -273,7 +157,7 @@ function DmkPcSoftwareScene() {
                         <div className="dmk-pc-scene-interface-pane dmk-pc-scene-interface-pane--calibration">
                           <img
                             src={DMK_HMI_CALIBRATION_SRC}
-                            alt="DMK oscilloscope and sensor calibration"
+                            alt={t('products.dmk.hmiCalibrationAlt')}
                             loading="lazy"
                             className="dmk-pc-scene-calibration-img"
                           />
@@ -297,7 +181,7 @@ function DmkPcSoftwareScene() {
         <div className="dmk-pc-scene-hub">
           <div className="dmk-pc-scene-device dmk-pc-scene-device--model3d dmk-pc-scene-device--hub">
             <div className="dmk-pc-scene-device-inner">
-              <img src={DMK_REAL_MODEL_SRC} alt="DMK device" className="dmk-pc-scene-device-img" loading="lazy" />
+              <img src={DMK_REAL_MODEL_SRC} alt={t('products.dmk.deviceAlt')} className="dmk-pc-scene-device-img" loading="lazy" />
             </div>
           </div>
         </div>
@@ -362,6 +246,7 @@ function HighlightIcon({ type }) {
 const VISUALS = { dmk: DmkVisual, lci: LciVisual, amc: AmcVisual };
 
 export default function Products({ initialProduct = 'dmk', singleMode = false }) {
+  const { t } = useTranslation();
   const [active, setActive] = useState(initialProduct);
   const navRef = useRef(null);
   const featureBlocksRef = useRef(null);
@@ -370,6 +255,7 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
   const amcBenefitsRef = useRef(null);
   const amcGameChangerRef = useRef(null);
   const amcSensorlessRef = useRef(null);
+  const comparisonRef = useRef(null);
   const navVisible = useScrollAnimation(navRef);
   const featureBlocksVisible = useScrollAnimation(featureBlocksRef, { threshold: 0.08 });
   const hmiVisible = useScrollAnimation(hmiSectionRef, { threshold: 0.08 });
@@ -377,19 +263,27 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
   const amcBenefitsVisible = useScrollAnimation(amcBenefitsRef, { threshold: 0.08 });
   const amcGameChangerVisible = useScrollAnimation(amcGameChangerRef, { threshold: 0.08 });
   const amcSensorlessVisible = useScrollAnimation(amcSensorlessRef, { threshold: 0.08 });
+  const comparisonVisible = useScrollAnimation(comparisonRef, { threshold: 0.08 });
   const product = PRODUCTS.find((p) => p.id === active);
   const Visual = VISUALS[active];
+  const productName = product ? t(`products.${active}.name`) : '';
+  const productTagline = product ? t(`products.${active}.tagline`) : '';
+  const productBadge = product ? t(`products.${active}.badge`) : '';
+  const productHero = product ? t(`products.${active}.hero`) : '';
+  const productDescription = product ? t(`products.${active}.description`, { returnObjects: true }) : [];
+  const productHighlights = product ? t(`products.${active}.highlights`, { returnObjects: true }) : [];
+  const productTags = product ? t(`products.${active}.tags`, { returnObjects: true }) : [];
 
   useEffect(() => {
     if (initialProduct && PRODUCTS.some((p) => p.id === initialProduct)) {
-      setActive(initialProduct);
+      queueMicrotask(() => setActive(initialProduct));
     }
   }, [initialProduct]);
 
   return (
     <section className={`products ${singleMode ? 'products--single' : ''}`} id="products">
       <div className="container">
-        {!singleMode && (
+          {!singleMode && (
           <div className={`product-nav ${navVisible ? 'visible' : ''}`} ref={navRef} data-animate="fade-up">
             {PRODUCTS.map((p) => (
               <button
@@ -398,8 +292,8 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
                 className={`product-nav-btn ${active === p.id ? 'active' : ''}`}
                 onClick={() => setActive(p.id)}
               >
-                <span className="product-nav-name">{p.name}</span>
-                <span className="product-nav-tagline">{p.tagline}</span>
+                <span className="product-nav-name">{t(`products.${p.id}.name`)}</span>
+                <span className="product-nav-tagline">{t(`products.${p.id}.tagline`)}</span>
               </button>
             ))}
           </div>
@@ -408,10 +302,10 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
         <div className="product-showcase-v2" key={product.id}>
           <div className="product-showcase-top">
             <div className="product-showcase-info">
-              <span className={`product-badge ${product.badgeClass}`}>{product.badge}</span>
-              <h3 className="product-showcase-name">{product.name}</h3>
-              <p className="product-showcase-tagline">{product.tagline}</p>
-              <p className="product-showcase-hero">{product.hero}</p>
+              <span className={`product-badge ${product.badgeClass}`}>{productBadge}</span>
+              <h3 className="product-showcase-name">{productName}</h3>
+              <p className="product-showcase-tagline">{productTagline}</p>
+              <p className="product-showcase-hero">{productHero}</p>
             </div>
             <div className="product-showcase-visual">
               <Visual />
@@ -419,28 +313,28 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
           </div>
 
           <div className="product-highlights">
-            {product.highlights.map((h) => (
-              <div className="product-highlight-card" key={h.label}>
+            {Array.isArray(productHighlights) && productHighlights.map((h, idx) => (
+              <div className="product-highlight-card" key={h?.label ?? idx}>
                 <div className="product-highlight-icon">
-                  <HighlightIcon type={h.icon} />
+                  <HighlightIcon type={product.highlights[idx]?.icon ?? 'scope'} />
                 </div>
-                <strong>{h.label}</strong>
-                <span>{h.detail}</span>
+                <strong>{h?.label}</strong>
+                <span>{h?.detail}</span>
               </div>
             ))}
           </div>
 
           <div className="product-showcase-body">
             <div className="product-showcase-desc">
-              {product.description.map((p, i) => (
-                <p key={i}>{p}</p>
+              {Array.isArray(productDescription) && productDescription.map((para, i) => (
+                <p key={i}>{para}</p>
               ))}
             </div>
           </div>
 
           <div className="product-tags">
-            {product.tags.map((t) => (
-              <span key={t}>{t}</span>
+            {Array.isArray(productTags) && productTags.map((tag) => (
+              <span key={tag}>{tag}</span>
             ))}
           </div>
 
@@ -451,12 +345,12 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
                 ref={featureBlocksRef}
                 data-animate="fade-up"
               >
-                <h4 className="dmk-feature-blocks-title">Where DMK fits</h4>
+                <h4 className="dmk-feature-blocks-title">{t('products.dmk.featureBlocksTitle')}</h4>
                 <div className="dmk-feature-blocks-grid">
-                  {DMK_FEATURE_BLOCKS.map((block, i) => (
+                  {(t('products.dmk.featureBlocks', { returnObjects: true }) || []).map((block, i) => (
                     <div key={i} className="dmk-feature-block">
-                      <h5 className="dmk-feature-block-title">{block.title}</h5>
-                      <p className="dmk-feature-block-body">{block.body}</p>
+                      <h5 className="dmk-feature-block-title">{block?.title}</h5>
+                      <p className="dmk-feature-block-body">{block?.body}</p>
                     </div>
                   ))}
                 </div>
@@ -467,7 +361,7 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
                 ref={hmiSectionRef}
                 data-animate="fade-up"
               >
-                <h4 className="dmk-hmi-title">External connections</h4>
+                <h4 className="dmk-hmi-title">{t('products.dmk.hmiTitle')}</h4>
                 <DmkPcSoftwareScene />
               </div>
 
@@ -477,18 +371,41 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
                 data-animate="fade-up"
               >
                 <div className="dmk-demo-embed-head">
-                  <h4 className="dmk-demo-embed-title">One instrument at the centre of your test bench</h4>
-                  <p className="dmk-demo-embed-intro">
-                    The DMK connects directly to your PC for live visualisation, to an oscilloscope via analog outputs, and to USB storage for long-term recording. Real-time measurement and analysis from a single compact unit.
-                  </p>
+                  <h4 className="dmk-demo-embed-title">{t('products.dmk.demoEmbedTitle')}</h4>
+                  <p className="dmk-demo-embed-intro">{t('products.dmk.demoEmbedIntro')}</p>
                 </div>
                 <div className="dmk-demo-embed-content">
                   <ul className="dmk-demo-embed-list">
-                    <li><strong>PC software</strong> — Configure the device, view live waveforms, and run analysis from your laptop or desktop.</li>
-                    <li><strong>Oscilloscope</strong> — Use the analog outputs to monitor signals on any scope; no need for a separate PC during testing.</li>
-                    <li><strong>USB storage</strong> — Record hours of data to an external SSD (up to 2TB) for later offline analysis.</li>
-                    <li><strong>Ethernet / WiFi</strong> — Remote access and streaming for integration into automated test rigs.</li>
+                    {(t('products.dmk.demoEmbedList', { returnObjects: true }) || []).map((item, i) => (
+                      <li key={i}><strong>{item?.term}</strong> — {item?.desc}</li>
+                    ))}
                   </ul>
+                </div>
+              </div>
+
+              <div
+                className={`product-comparison ${comparisonVisible ? 'visible' : ''}`}
+                ref={comparisonRef}
+                data-animate="fade-up"
+              >
+                <h4 className="product-comparison-title">{t('products.comparison.dmk.title')}</h4>
+                <div className="product-comparison-table-wrap">
+                  <table className="product-comparison-table">
+                    <thead>
+                      <tr>
+                        <th>{t('products.comparison.dmk.leftLabel')}</th>
+                        <th>{t('products.comparison.dmk.rightLabel')}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {(t('products.comparison.dmk.rows', { returnObjects: true }) || []).map((row, i) => (
+                        <tr key={i}>
+                          <td>{row?.left}</td>
+                          <td>{row?.right}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </>
@@ -501,13 +418,13 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
                 ref={amcBenefitsRef}
                 data-animate="fade-up"
               >
-                <h4 className="amc-section-title">Why AMC</h4>
+                <h4 className="amc-section-title">{t('products.amc.benefitsTitle')}</h4>
                 <div className="amc-benefits-grid">
-                  {AMC_BENEFITS.map((item, i) => (
+                  {(t('products.amc.benefits', { returnObjects: true }) || []).map((item, i) => (
                     <div key={i} className="amc-benefit-card" style={{ transitionDelay: `${i * 80}ms` }}>
                       <span className="amc-benefit-number">0{i + 1}</span>
-                      <h5 className="amc-benefit-title">{item.title}</h5>
-                      <p className="amc-benefit-body">{item.body}</p>
+                      <h5 className="amc-benefit-title">{item?.title}</h5>
+                      <p className="amc-benefit-body">{item?.body}</p>
                     </div>
                   ))}
                 </div>
@@ -518,11 +435,9 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
                 ref={amcGameChangerRef}
                 data-animate="fade-up"
               >
-                <h3 className="amc-gamechanger-headline">
-                  A game-changing solution for <em>sensorless</em> control of PMSM motor control
-                </h3>
+                <h3 className="amc-gamechanger-headline">{t('products.amc.gameChangerHeadline')}</h3>
                 <ul className="amc-gamechanger-list">
-                  {AMC_MOTOR_CONTROL_ITEMS.map((text, i) => (
+                  {(t('products.amc.motorControlItems', { returnObjects: true }) || []).map((text, i) => (
                     <li key={i} className="amc-gamechanger-item" style={{ transitionDelay: `${i * 60}ms` }}>
                       <span className="amc-gamechanger-dot" />
                       {text}
@@ -536,17 +451,17 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
                 ref={amcSensorlessRef}
                 data-animate="fade-up"
               >
-                <h4 className="amc-section-title amc-section-title--sensorless">Sensorless algorithm</h4>
+                <h4 className="amc-section-title amc-section-title--sensorless">{t('products.amc.sensorlessTitle')}</h4>
                 <div className="amc-sensorless-diagram-wrap">
                   <img
                     src={AMC_IMG_SENSORLESS_DIAGRAM}
-                    alt="AMC sensorless motor control block diagram: microcontroller, inverter, PMSM"
+                    alt={t('products.amc.sensorlessDiagramAlt')}
                     className="amc-sensorless-diagram-img"
                     loading="lazy"
                   />
                 </div>
                 <div className="amc-sensorless-cards">
-                  {AMC_SENSORLESS_ITEMS.map((text, i) => (
+                  {(t('products.amc.sensorlessItems', { returnObjects: true }) || []).map((text, i) => (
                     <div key={i} className="amc-sensorless-card" style={{ transitionDelay: `${i * 70}ms` }}>
                       <span className="amc-sensorless-icon" aria-hidden>✓</span>
                       <p>{text}</p>
@@ -554,7 +469,61 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
                   ))}
                 </div>
               </div>
+
+              <div
+                className={`product-comparison ${comparisonVisible ? 'visible' : ''}`}
+                ref={comparisonRef}
+                data-animate="fade-up"
+              >
+                <h4 className="product-comparison-title">{t('products.comparison.amc.title')}</h4>
+                <div className="product-comparison-table-wrap">
+                  <table className="product-comparison-table">
+                    <thead>
+                      <tr>
+                        <th>{t('products.comparison.amc.leftLabel')}</th>
+                        <th>{t('products.comparison.amc.rightLabel')}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {(t('products.comparison.amc.rows', { returnObjects: true }) || []).map((row, i) => (
+                        <tr key={i}>
+                          <td>{row?.left}</td>
+                          <td>{row?.right}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </>
+          )}
+
+          {active === 'lci' && (
+            <div
+              className={`product-comparison ${comparisonVisible ? 'visible' : ''}`}
+              ref={comparisonRef}
+              data-animate="fade-up"
+            >
+              <h4 className="product-comparison-title">{t('products.comparison.lci.title')}</h4>
+              <div className="product-comparison-table-wrap">
+                <table className="product-comparison-table">
+                  <thead>
+                    <tr>
+                      <th>{t('products.comparison.lci.leftLabel')}</th>
+                      <th>{t('products.comparison.lci.rightLabel')}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {(t('products.comparison.lci.rows', { returnObjects: true }) || []).map((row, i) => (
+                      <tr key={i}>
+                        <td>{row?.left}</td>
+                        <td>{row?.right}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           )}
         </div>
       </div>

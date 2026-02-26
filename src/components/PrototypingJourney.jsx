@@ -1,12 +1,13 @@
 import { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 
-const STEPS = [
-  { id: 1, title: 'Schematic', image: '/images/prototyping/step1-schematic.png', alt: 'Circuit schematic' },
-  { id: 2, title: 'PCB layout', image: '/images/prototyping/step2-layout.png', alt: 'PCB layout' },
-  { id: 3, title: 'Solder Paste Stencil', image: '/images/prototyping/step3-artwork.png', alt: 'Solder paste stencil' },
-  { id: 4, title: 'Fabricated', image: '/images/prototyping/step4-fabricated.png', alt: 'Bare PCB' },
-  { id: 5, title: 'Assembled', image: '/images/prototyping/step5-assembled.png', alt: 'Complete product' },
+const STEP_IMAGES = [
+  '/images/prototyping/step1-schematic.png',
+  '/images/prototyping/step2-layout.png',
+  '/images/prototyping/step3-artwork.png',
+  '/images/prototyping/step4-fabricated.png',
+  '/images/prototyping/step5-assembled.png',
 ];
 
 function ArrowConnector({ index }) {
@@ -22,8 +23,12 @@ function ArrowConnector({ index }) {
 }
 
 export default function PrototypingJourney() {
+  const { t } = useTranslation();
   const sectionRef = useRef(null);
   const sectionVisible = useScrollAnimation(sectionRef, { threshold: 0.08 });
+
+  const steps = t('expertise.prototypingJourney.steps', { returnObjects: true });
+  const stepsArray = Array.isArray(steps) ? steps : [];
 
   return (
     <section
@@ -33,24 +38,24 @@ export default function PrototypingJourney() {
     >
       <div className="container container--wide">
         <header className="prototyping-journey-header">
-          <span className="prototyping-journey-label">Our process</span>
+          <span className="prototyping-journey-label">{t('expertise.prototypingJourney.label')}</span>
           <h2 id="journey-heading" className="prototyping-journey-title">
-            From schematic to real product
+            {t('expertise.prototypingJourney.title')}
           </h2>
         </header>
 
         <div className="prototyping-journey-steps">
-          {STEPS.map((step, index) => (
-            <div key={step.id} className="prototyping-journey-step-wrap">
+          {stepsArray.map((step, index) => (
+            <div key={index} className="prototyping-journey-step-wrap">
               <article
                 className="prototyping-journey-step"
                 style={{ '--step-index': index }}
               >
-                <div className="prototyping-journey-step-number">{String(step.id).padStart(2, '0')}</div>
+                <div className="prototyping-journey-step-number">{String(index + 1).padStart(2, '0')}</div>
                 <div className="prototyping-journey-step-image-wrap">
                   <img
-                    src={step.image}
-                    alt={step.alt}
+                    src={STEP_IMAGES[index]}
+                    alt={step?.alt ?? step?.title ?? ''}
                     className="prototyping-journey-step-image"
                     width={320}
                     height={180}
@@ -58,9 +63,9 @@ export default function PrototypingJourney() {
                     decoding="async"
                   />
                 </div>
-                <span className="prototyping-journey-step-title">{step.title}</span>
+                <span className="prototyping-journey-step-title">{step?.title ?? ''}</span>
               </article>
-              {index < STEPS.length - 1 && <ArrowConnector index={index} />}
+              {index < stepsArray.length - 1 && <ArrowConnector index={index} />}
             </div>
           ))}
         </div>

@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 
 const BASE = typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.BASE_URL ? import.meta.env.BASE_URL : '';
@@ -11,14 +12,15 @@ const LOGOS = [
 ];
 
 export default function ClientLogos() {
+  const { t } = useTranslation();
   const ref = useRef(null);
   const visible = useScrollAnimation(ref);
 
   return (
-    <section className="client-logos" ref={ref} aria-label="Trusted by industry partners">
+    <section className="client-logos" ref={ref} aria-label={t('home.clientLogos.heading')}>
       <div className="container">
         <p className={`client-logos-heading${visible ? ' visible' : ''}`} data-animate="fade-up">
-          Trusted by industry leaders
+          {t('home.clientLogos.heading')}
         </p>
         <div className={`client-logos-track${visible ? ' visible' : ''}`} data-animate="fade-up">
           <div className="client-logos-inner">
@@ -40,9 +42,9 @@ export default function ClientLogos() {
           </div>
         </div>
         <div className={`client-logos-story${visible ? ' visible' : ''}`} data-animate="fade-up">
-          <h2 className="client-logos-story-title">Partnership &amp; success story</h2>
+          <h2 className="client-logos-story-title">{t('home.clientLogos.storyTitle')}</h2>
           <p className="client-logos-story-text">
-            We collaborate with industry leaders like Miele&amp;Cie KG to deliver sensorless motor control in mass production. With over 20 patents, Appcon drives innovation and ensures project success from concept to deployment.
+            {t('home.clientLogos.storyText')}
           </p>
         </div>
       </div>

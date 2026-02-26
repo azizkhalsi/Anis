@@ -213,7 +213,8 @@ export function drawCircuit(
   electricalAngleDeg: number,
   amplitude: number,
   tick: number,
-  isRunning: boolean = true
+  isRunning: boolean = true,
+  stoppedLabel: string = 'STOPPED'
 ) {
   const cw = ctx.canvas.width;
   const ch = ctx.canvas.height;
@@ -307,7 +308,7 @@ export function drawCircuit(
     ctx.fillStyle = '#94a3b8';
     ctx.font = 'bold 16px sans-serif';
     ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-    ctx.fillText('STOPPED', W / 2, H / 2);
+    ctx.fillText(stoppedLabel, W / 2, H / 2);
   }
 
   ctx.restore();

@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 import LocationMap from './LocationMap';
 
@@ -7,49 +8,17 @@ const FORMSPREE_ACTION = `https://formspree.io/f/${FORMSPREE_FORM_ID}`;
 const IFRAME_NAME = 'formspree-frame';
 const SUBMIT_TIMEOUT_MS = 12000;
 
-const SUBJECT_OPTIONS = [
-  'General Inquiry',
-  'Product Information',
-  'Technical Support',
-  'Partnership',
-  'Careers',
-  'DMK / LCI / AMC',
-  'Other',
-];
-
-const CONTACT_ITEMS = [
-  {
-    label: 'Address',
-    value: 'Parc Technologique BP 130\nAriana, 2088\nTunisia',
-  },
-  {
-    label: 'Location',
-    value: 'View on Google Maps',
-    href: 'https://maps.app.goo.gl/DggvrQfHPYFJC2zF6',
-    icon: 'map',
-  },
-  {
-    label: 'Phone',
-    value: '+216 70 834 890',
-    href: 'tel:+21670834890',
-  },
-  {
-    label: 'Languages',
-    value: 'German, English, French',
-  },
-  {
-    label: 'Website',
-    value: 'www.appcon-technologies.com',
-    href: 'https://www.appcon-technologies.com',
-  },
-  {
-    label: 'LinkedIn',
-    value: 'Appcon Technologies',
-    href: 'https://www.linkedin.com/company/appcontechnologies',
-  },
+const CONTACT_ITEM_KEYS = [
+  { labelKey: 'contact.addressLabel', valueKey: 'contact.addressValue' },
+  { labelKey: 'contact.locationLabel', valueKey: 'contact.locationValue', href: 'https://maps.app.goo.gl/DggvrQfHPYFJC2zF6', icon: 'map' },
+  { labelKey: 'contact.phoneLabel', valueKey: 'contact.phoneValue', href: 'tel:+21670834890' },
+  { labelKey: 'contact.languagesLabel', valueKey: 'contact.languagesValue' },
+  { labelKey: 'contact.websiteLabel', valueKey: 'contact.websiteValue', href: 'https://www.appcon-technologies.com' },
+  { labelKey: 'contact.linkedInLabel', valueKey: 'contact.linkedInValue', href: 'https://www.linkedin.com/company/appcontechnologies' },
 ];
 
 export default function Contact() {
+  const { t } = useTranslation();
   const leftRef = useRef(null);
   const formRef = useRef(null);
   const formElRef = useRef(null);
@@ -60,6 +29,8 @@ export default function Contact() {
 
   const leftVisible = useScrollAnimation(leftRef);
   const formVisible = useScrollAnimation(formRef, { delay: 100 });
+  const subjectOptions = t('contact.subjectOptions', { returnObjects: true });
+  const subjectOptionsArray = Array.isArray(subjectOptions) ? subjectOptions : [];
 
   useEffect(() => {
     return () => {
@@ -79,11 +50,11 @@ export default function Contact() {
       timeoutRef.current = null;
       setSubmitting(false);
       if (success) {
-        setSubmitMessage('Thank you.');
+        setSubmitMessage(t('contact.submitSuccess'));
         form.reset();
         setTimeout(() => setSubmitMessage(''), 6000);
       } else {
-        setSubmitMessage('Something went wrong. Please try again.');
+        setSubmitMessage(t('contact.submitError'));
         setTimeout(() => setSubmitMessage(''), 6000);
       }
     };
@@ -114,13 +85,11 @@ export default function Contact() {
             ref={leftRef}
             data-animate="fade-right"
           >
-            <p className="contact-intro">
-              Reach out to us and our team will get back to you as soon as possible.
-            </p>
+            <p className="contact-intro">{t('contact.intro')}</p>
             <div className="contact-items">
-              {CONTACT_ITEMS.map((item) => (
-                <div key={item.label} className="contact-item">
-                  <strong>{item.label}</strong>
+              {CONTACT_ITEM_KEYS.map((item) => (
+                <div key={item.labelKey} className="contact-item">
+                  <strong>{t(item.labelKey)}</strong>
                   {item.icon === 'map' ? (
                     <a 
                       href={item.href} 
@@ -132,12 +101,12 @@ export default function Contact() {
                         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
                         <circle cx="12" cy="10" r="3"/>
                       </svg>
-                      {item.value}
+                      {t(item.valueKey)}
                     </a>
                   ) : item.href ? (
-                    <p><a href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}>{item.value}</a></p>
+                    <p><a href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}>{t(item.valueKey)}</a></p>
                   ) : (
-                    <p style={{ whiteSpace: 'pre-line' }}>{item.value}</p>
+                    <p style={{ whiteSpace: 'pre-line' }}>{t(item.valueKey)}</p>
                   )}
                 </div>
               ))}
@@ -164,28 +133,28 @@ export default function Contact() {
               onSubmit={handleSubmit}
             >
               <div className="form-group">
-                <label htmlFor="fullName">Full Name</label>
+                <label htmlFor="fullName">{t('contact.formName')}</label>
                 <input type="text" id="fullName" name="name" required />
               </div>
               <div className="form-group">
-                <label htmlFor="email">Email (optional)</label>
-                <input type="email" id="email" name="_replyto" placeholder="your@email.com" />
+                <label htmlFor="email">{t('contact.formEmail')}</label>
+                <input type="email" id="email" name="_replyto" placeholder={t('contact.formEmailPlaceholder')} />
               </div>
               <div className="form-group">
-                <label htmlFor="subject">Subject</label>
+                <label htmlFor="subject">{t('contact.formSubject')}</label>
                 <select id="subject" name="subject" required>
-                  <option value="">Select an option</option>
-                  {SUBJECT_OPTIONS.map((opt) => (
+                  <option value="">{t('contact.formSubjectPlaceholder')}</option>
+                  {subjectOptionsArray.map((opt) => (
                     <option key={opt} value={opt}>{opt}</option>
                   ))}
                 </select>
               </div>
               <div className="form-group">
-                <label htmlFor="message">Message</label>
+                <label htmlFor="message">{t('contact.formMessage')}</label>
                 <textarea id="message" name="message" rows="5" required />
               </div>
               <button type="submit" className="btn btn-primary" disabled={submitting}>
-                {submitting ? 'Sending…' : 'Submit'}
+                {submitting ? t('contact.formSending') : t('contact.formSubmit')}
               </button>
               {submitMessage && (
                 <p className="form-success" style={{ fontSize: '0.95rem', marginTop: '0.5rem' }}>

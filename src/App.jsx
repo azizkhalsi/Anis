@@ -1,6 +1,16 @@
 import { lazy, Suspense } from 'react';
+import { useTranslation } from 'react-i18next';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/Layout';
+
+function PageFallback() {
+  const { t } = useTranslation();
+  return (
+    <div className="container" style={{ padding: '4rem 24px', textAlign: 'center', color: 'var(--text-muted)' }}>
+      {t('common.loading')}
+    </div>
+  );
+}
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
@@ -14,14 +24,7 @@ const ContactPage = lazy(() => import('./pages/ContactPage'));
 const SimulatorPage = lazy(() => import('./pages/SimulatorPage'));
 const MotorModelPage = lazy(() => import('./pages/MotorModelPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
-
-function PageFallback() {
-  return (
-    <div className="container" style={{ padding: '4rem 24px', textAlign: 'center', color: 'var(--text-muted)' }}>
-      Loading…
-    </div>
-  );
-}
+const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage'));
 
 export default function App() {
   return (
@@ -41,6 +44,7 @@ export default function App() {
           <Route path="/industries" element={<Navigate to="/industries/whitegood" replace />} />
           <Route path="/industries/:industryId" element={<Suspense fallback={<PageFallback />}><IndustriesPage /></Suspense>} />
           <Route path="/contact" element={<Suspense fallback={<PageFallback />}><ContactPage /></Suspense>} />
+          <Route path="/privacy" element={<Suspense fallback={<PageFallback />}><PrivacyPolicyPage /></Suspense>} />
           <Route path="/simulator" element={<Suspense fallback={<PageFallback />}><SimulatorPage /></Suspense>} />
           <Route path="*" element={<Suspense fallback={<PageFallback />}><NotFoundPage /></Suspense>} />
         </Route>

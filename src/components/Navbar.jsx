@@ -1,54 +1,56 @@
 import { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { useScrollPosition } from '../contexts/ScrollPositionContext';
+import { useTranslation } from 'react-i18next';
+import { useScrollPosition } from '../hooks/useScrollPositionContext';
 
 const NAV_LINKS = [
-  { to: '/', label: 'Home' },
+  { to: '/', labelKey: 'nav.home' },
   {
-    label: 'Company',
+    labelKey: 'nav.company',
     submenu: [
-      { to: '/about', label: 'Who We Are' },
-      { to: '/company/mission', label: 'Our Mission' },
-      { to: '/company/our-story', label: 'Our Story' },
-      { to: '/events', label: 'Industry Events' },
+      { to: '/about', labelKey: 'nav.whoWeAre' },
+      { to: '/company/mission', labelKey: 'nav.ourMission' },
+      { to: '/company/our-story', labelKey: 'nav.ourStory' },
+      { to: '/events', labelKey: 'nav.industryEvents' },
     ],
   },
   {
-    label: 'Expertise',
+    labelKey: 'nav.expertise',
     submenu: [
-      { to: '/expertise/consulting', label: 'Technology Consulting' },
-      { to: '/expertise/hardware', label: 'Hardware Engineering' },
-      { to: '/expertise/software', label: 'Software Development' },
-      { to: '/expertise/mbd', label: 'Model-Based Design' },
-      { to: '/expertise/prototyping', label: 'Prototyping' },
+      { to: '/expertise/consulting', labelKey: 'nav.technologyConsulting' },
+      { to: '/expertise/hardware', labelKey: 'nav.hardwareEngineering' },
+      { to: '/expertise/software', labelKey: 'nav.softwareDevelopment' },
+      { to: '/expertise/mbd', labelKey: 'nav.modelBasedDesign' },
+      { to: '/expertise/prototyping', labelKey: 'nav.prototyping' },
     ],
   },
   {
-    label: 'Products',
+    labelKey: 'nav.products',
     submenu: [
-      { to: '/products/dmk', label: 'DMK' },
-      { to: '/products/lci', label: 'LCI' },
-      { to: '/products/amc', label: 'AMC' },
+      { to: '/products/dmk', labelKey: 'nav.dmk' },
+      { to: '/products/lci', labelKey: 'nav.lci' },
+      { to: '/products/amc', labelKey: 'nav.amc' },
     ],
   },
   {
-    label: 'Industries',
+    labelKey: 'nav.industries',
     submenu: [
-      { to: '/industries/whitegood', label: 'White Goods' },
-      { to: '/industries/powertool', label: 'Power Tools' },
-      { to: '/industries/automotive', label: 'Automotive' },
+      { to: '/industries/whitegood', labelKey: 'nav.whiteGoods' },
+      { to: '/industries/powertool', labelKey: 'nav.powerTools' },
+      { to: '/industries/automotive', labelKey: 'nav.automotive' },
     ],
   },
   {
-    label: 'Simulator',
+    labelKey: 'nav.simulator',
     submenu: [
-      { to: '/simulator', label: 'Pulse Width Modulation' },
+      { to: '/simulator', labelKey: 'nav.pulseWidthModulation' },
     ],
   },
-  { to: '/contact', label: 'Contact' },
+  { to: '/contact', labelKey: 'nav.contact' },
 ];
 
 export default function Navbar() {
+  const { t, i18n } = useTranslation();
   const location = useLocation();
   const scrollY = useScrollPosition();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -78,23 +80,24 @@ export default function Navbar() {
         <div className={`nav-menu${menuOpen ? ' open' : ''}`}>
           {NAV_LINKS.map((item) => {
             if (item.submenu) {
-              const isOpen = openDropdown === item.label;
+              const label = t(item.labelKey);
+              const isOpen = openDropdown === item.labelKey;
               const active = isSubmenuActive(item.submenu);
               return (
                 <div
-                  key={item.label}
+                  key={item.labelKey}
                   className="nav-item-with-dropdown"
-                  onMouseEnter={() => setOpenDropdown(item.label)}
+                  onMouseEnter={() => setOpenDropdown(item.labelKey)}
                   onMouseLeave={() => setOpenDropdown(null)}
                 >
                   <button
                     type="button"
                     className={`nav-link nav-link-trigger${isOpen ? ' open' : ''}${active ? ' active' : ''}`}
-                    onClick={() => setOpenDropdown(isOpen ? null : item.label)}
+                    onClick={() => setOpenDropdown(isOpen ? null : item.labelKey)}
                     aria-expanded={isOpen}
                     aria-haspopup="true"
                   >
-                    {item.label}
+                    {label}
                     <svg className="nav-chevron" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M2 3.5L5 6.5L8 3.5" />
                     </svg>
@@ -108,7 +111,7 @@ export default function Navbar() {
                         className={({ isActive }) => `nav-dropdown-item${isActive ? ' active' : ''}`}
                         onClick={closeDropdown}
                       >
-                        {sub.label}
+                        {t(sub.labelKey)}
                       </NavLink>
                     ))}
                   </div>
@@ -123,15 +126,54 @@ export default function Navbar() {
                 className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}
                 onClick={handleNavClick}
               >
-                {item.label}
+                {t(item.labelKey)}
               </NavLink>
             );
           })}
         </div>
+        <div className="nav-lang-switcher" role="group" aria-label="Language">
+          <button
+            type="button"
+            className={`nav-lang-btn ${(i18n.language || '').startsWith('en') ? 'active' : ''}`}
+            onClick={() => i18n.changeLanguage('en')}
+            aria-pressed={(i18n.language || '').startsWith('en')}
+            aria-label="English"
+            title="English"
+          >
+            <span className="nav-lang-icon nav-lang-icon--img" aria-hidden>
+              <svg viewBox="0 0 60 30" width="20" height="10" className="nav-flag-svg" preserveAspectRatio="xMidYMid slice">
+                <rect width="60" height="30" fill="#012169"/>
+                <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" strokeWidth="6"/>
+                <path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" strokeWidth="4"/>
+                <path d="M30,0 v30 M0,15 h60" stroke="#fff" strokeWidth="10"/>
+                <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" strokeWidth="6"/>
+              </svg>
+            </span>
+            <span>{t('common.langEn')}</span>
+          </button>
+          <span className="nav-lang-sep" aria-hidden>|</span>
+          <button
+            type="button"
+            className={`nav-lang-btn ${(i18n.language || '').startsWith('de') ? 'active' : ''}`}
+            onClick={() => i18n.changeLanguage('de')}
+            aria-pressed={(i18n.language || '').startsWith('de')}
+            aria-label="Deutsch"
+            title="Deutsch"
+          >
+            <span className="nav-lang-icon nav-lang-icon--img" aria-hidden>
+              <svg viewBox="0 0 5 3" width="20" height="12" className="nav-flag-svg" preserveAspectRatio="xMidYMid slice">
+                <rect width="5" height="1" y="0" fill="#000"/>
+                <rect width="5" height="1" y="1" fill="#D00"/>
+                <rect width="5" height="1" y="2" fill="#FFCE00"/>
+              </svg>
+            </span>
+            <span>{t('common.langDe')}</span>
+          </button>
+        </div>
         <button
           className={`nav-toggle${menuOpen ? ' active' : ''}`}
           onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
+          aria-label={t('nav.toggleMenu')}
         >
           <span /><span /><span />
         </button>

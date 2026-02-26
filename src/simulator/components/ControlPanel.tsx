@@ -1,5 +1,6 @@
 import React, { useCallback, useState, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import { useTranslation } from 'react-i18next';
 import { ModulationMethod, PWMAlignment, SimulationConfig } from '../types';
 
 interface ControlPanelProps {
@@ -29,12 +30,12 @@ interface TooltipState {
   sourceKey?: string; 
 }
 
-const ActionButton: React.FC<{ active: boolean, label: string, onClick: () => void, colorClass: string, icon: React.ReactNode, onHover: (e: React.MouseEvent, text: string) => void, onLeave: () => void }> = ({ active, label, onClick, colorClass, icon, onHover, onLeave }) => (
+const ActionButton: React.FC<{ active: boolean, label: string, tooltipText: string, onClick: () => void, colorClass: string, icon: React.ReactNode, onHover: (e: React.MouseEvent, text: string) => void, onLeave: () => void }> = ({ active, label, tooltipText, onClick, colorClass, icon, onHover, onLeave }) => (
     <button 
         type="button"
         onClick={onClick} 
         disabled={active} 
-        onMouseEnter={(e) => onHover(e, label === 'START' ? 'Start' : 'Stop')}
+        onMouseEnter={(e) => onHover(e, tooltipText)}
         onMouseLeave={onLeave}
         className={`flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-md text-xs font-semibold tracking-wide min-h-[32px] transition-colors ${active ? 'bg-slate-100 text-slate-400 border border-slate-200 cursor-default' : `cursor-pointer border border-transparent ${colorClass} text-white hover:opacity-92 active:opacity-95`}`}
     >
@@ -62,6 +63,7 @@ const UnifiedControlBlock: React.FC<{ label: string, active: boolean, onClick: (
 export const ControlPanel: React.FC<ControlPanelProps> = ({ 
     config, phaseOffset, setConfig, setPhaseOffset, phaseSliderRef, onPhaseStart, isRunning, onStart, onStop, currentUStar 
 }) => {
+  const { t } = useTranslation();
   const [tooltip, setTooltip] = useState<TooltipState>({ text: '', x: 0, y: 0, visible: false });
   const timerRef = useRef<number | null>(null);
 
@@ -69,10 +71,10 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
     if (tooltip.visible && tooltip.sourceKey === 'voltages') {
       setTooltip(prev => ({
         ...prev,
-        text: config.showPhaseVoltages ? "No limit" : "Clipping"
+        text: config.showPhaseVoltages ? t('simulator.voltagesNoLimit') : t('simulator.voltagesClipping')
       }));
     }
-  }, [config.showPhaseVoltages, tooltip.visible, tooltip.sourceKey]);
+  }, [config.showPhaseVoltages, tooltip.visible, tooltip.sourceKey, t]);
 
   const handleMouseEnter = (e: React.MouseEvent, text: string, sourceKey?: string) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -107,10 +109,10 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
   const starPointValue = isManual ? config.manualStarPoint : Math.round(currentUStar);
 
   const parameters = [
-    { label: 'Neutral Pt', val: starPointValue, key: 'manualStarPoint', min: 0, max: 100, readOnly: !isManual, tip: "Neutral point (0–100%)" },
-    { label: 'Amplitude', val: config.amplitude, key: 'amplitude', min: 0, max: 100, suffix: '%', tip: "Amplitude (0–100%)" },
-    { label: 'Frequency', val: config.frequency, key: 'frequency', min: -100, max: 100, suffix: 'Hz', readOnly: config.stepMode, tip: "Frequency (Hz)" },
-    { label: 'Angle', val: Math.round(phaseOffset), key: 'phase', min: 0, max: 360, step: config.stepMode ? 60 : 1, suffix: '°', customRef: phaseSliderRef, tip: "Phase angle (0–360°)" }
+    { label: t('simulator.neutralPt'), val: starPointValue, key: 'manualStarPoint', min: 0, max: 100, readOnly: !isManual, tip: t('simulator.neutralPtTip') },
+    { label: t('simulator.amplitude'), val: config.amplitude, key: 'amplitude', min: 0, max: 100, suffix: '%', tip: t('simulator.amplitudeTip') },
+    { label: t('simulator.frequency'), val: config.frequency, key: 'frequency', min: -100, max: 100, suffix: 'Hz', readOnly: config.stepMode, tip: t('simulator.frequencyTip') },
+    { label: t('simulator.angle'), val: Math.round(phaseOffset), key: 'phase', min: 0, max: 360, step: config.stepMode ? 60 : 1, suffix: '°', customRef: phaseSliderRef, tip: t('simulator.angleTip') }
   ];
 
   const renderParameter = (p: typeof parameters[0], heightClass = "min-h-[30px]") => (
@@ -148,8 +150,8 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
       {/* Top Header Row */}
       <div className="flex flex-wrap justify-between items-center w-full gap-2 px-0 sm:px-1">
         <div className="flex gap-1.5 w-full max-w-[160px] sm:max-w-[140px] min-h-[32px]">
-          <ActionButton active={isRunning} label="START" onClick={onStart} onHover={handleMouseEnter} onLeave={handleMouseLeave} colorClass="bg-emerald-600 border-emerald-700 hover:bg-emerald-500" icon={<svg width="6" height="8" viewBox="0 0 8 10" fill="currentColor"><path d="M0 0L8 5L0 10V0Z" /></svg>} />
-          <ActionButton active={!isRunning} label="STOP" onClick={onStop} onHover={handleMouseEnter} onLeave={handleMouseLeave} colorClass="bg-rose-600 border-rose-700 hover:bg-rose-500" icon={<svg width="6" height="6" viewBox="0 0 8 8" fill="currentColor"><rect width="8" height="8" /></svg>} />
+          <ActionButton active={isRunning} label={t('simulator.start')} tooltipText={t('simulator.startTip')} onClick={onStart} onHover={handleMouseEnter} onLeave={handleMouseLeave} colorClass="bg-emerald-600 border-emerald-700 hover:bg-emerald-500" icon={<svg width="6" height="8" viewBox="0 0 8 10" fill="currentColor"><path d="M0 0L8 5L0 10V0Z" /></svg>} />
+          <ActionButton active={!isRunning} label={t('simulator.stop')} tooltipText={t('simulator.stopTip')} onClick={onStop} onHover={handleMouseEnter} onLeave={handleMouseLeave} colorClass="bg-rose-600 border-rose-700 hover:bg-rose-500" icon={<svg width="6" height="6" viewBox="0 0 8 8" fill="currentColor"><rect width="8" height="8" /></svg>} />
         </div>
         <div className="flex-1 flex justify-end items-center min-h-[32px] pl-4">
           <img src="/logo.png" alt="APPCON" className="h-7 w-auto max-w-[280px] object-contain mix-blend-multiply opacity-90" width="160" height="40" decoding="async" />
@@ -159,45 +161,45 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-x-8 items-start overflow-visible w-full border-t border-slate-200/50 pt-3">
         {/* Column 1: System Control */}
         <div className={columnClass}>
-          <h3 className={sectionTitleClass}>System Control</h3>
+          <h3 className={sectionTitleClass}>{t('simulator.systemControl')}</h3>
           <div className="sim-option-grid grid grid-cols-2">
-            <UnifiedControlBlock label="1-Phase" active={config.phases === 1} onClick={() => handleChange('phases', 1)} onHover={handleMouseEnter} onLeave={handleMouseLeave} tooltipText="1 phase" />
-            <UnifiedControlBlock label="3-Phase" active={config.phases === 3} onClick={() => handleChange('phases', 3)} onHover={handleMouseEnter} onLeave={handleMouseLeave} tooltipText="3 phases" />
-            <UnifiedControlBlock label="Voltages" active={config.showPhaseVoltages} onClick={() => handleChange('showPhaseVoltages', !config.showPhaseVoltages)} onHover={handleMouseEnter} onLeave={handleMouseLeave} tooltipKey="voltages" tooltipText={config.showPhaseVoltages ? "No limit" : "Clipping"} />
-            <UnifiedControlBlock label="Neutral" active={config.showStarPoint} onClick={() => handleChange('showStarPoint', !config.showStarPoint)} onHover={handleMouseEnter} onLeave={handleMouseLeave} tooltipText="Star point" />
-            <UnifiedControlBlock label="SVM Vectors" active={config.showSwitchingVectors} onClick={() => handleChange('showSwitchingVectors', !config.showSwitchingVectors)} onHover={handleMouseEnter} onLeave={handleMouseLeave} tooltipText="SVM vectors" />
-            <UnifiedControlBlock label="X-Deflection" active={config.showTimeGraph} onClick={() => handleChange('showTimeGraph', !config.showTimeGraph)} onHover={handleMouseEnter} onLeave={handleMouseLeave} tooltipText="Time graph" />
+            <UnifiedControlBlock label={t('simulator.phase1')} active={config.phases === 1} onClick={() => handleChange('phases', 1)} onHover={handleMouseEnter} onLeave={handleMouseLeave} tooltipText={t('simulator.phase1Tip')} />
+            <UnifiedControlBlock label={t('simulator.phase3')} active={config.phases === 3} onClick={() => handleChange('phases', 3)} onHover={handleMouseEnter} onLeave={handleMouseLeave} tooltipText={t('simulator.phase3Tip')} />
+            <UnifiedControlBlock label={t('simulator.voltages')} active={config.showPhaseVoltages} onClick={() => handleChange('showPhaseVoltages', !config.showPhaseVoltages)} onHover={handleMouseEnter} onLeave={handleMouseLeave} tooltipKey="voltages" tooltipText={config.showPhaseVoltages ? t('simulator.voltagesNoLimit') : t('simulator.voltagesClipping')} />
+            <UnifiedControlBlock label={t('simulator.neutral')} active={config.showStarPoint} onClick={() => handleChange('showStarPoint', !config.showStarPoint)} onHover={handleMouseEnter} onLeave={handleMouseLeave} tooltipText={t('simulator.neutralTip')} />
+            <UnifiedControlBlock label={t('simulator.svmVectors')} active={config.showSwitchingVectors} onClick={() => handleChange('showSwitchingVectors', !config.showSwitchingVectors)} onHover={handleMouseEnter} onLeave={handleMouseLeave} tooltipText={t('simulator.svmVectorsTip')} />
+            <UnifiedControlBlock label={t('simulator.xDeflection')} active={config.showTimeGraph} onClick={() => handleChange('showTimeGraph', !config.showTimeGraph)} onHover={handleMouseEnter} onLeave={handleMouseLeave} tooltipText={t('simulator.xDeflectionTip')} />
           </div>
         </div>
 
         {/* Column 2: Modulation Strategy & Alignment */}
         <div className={columnClass}>
-          <h3 className={sectionTitleClass}>Modulation Strategy</h3>
+          <h3 className={sectionTitleClass}>{t('simulator.modulationStrategy')}</h3>
           <div className="sim-option-grid grid grid-cols-2">
             {[
-              { label: 'Sinusoidal', val: ModulationMethod.Nullsystemfrei, tip: "Sinusoidal PWM" },
-              { label: 'Space Vector', val: ModulationMethod.Raumzeiger, tip: "Space vector" },
-              { label: '120° Flat', val: ModulationMethod.Flattop120, tip: "120° flat top" },
-              { label: '60° Flat', val: ModulationMethod.Flattop60, tip: "60° flat top" },
-              { label: "Schoerner", val: ModulationMethod.Schoerner, tip: "Schoerner overmodulation" },
-              { label: 'Manual', val: ModulationMethod.Manual, tip: "Manual ground shift" },
+              { label: t('simulator.sinusoidal'), val: ModulationMethod.Nullsystemfrei, tip: t('simulator.sinusoidalTip') },
+              { label: t('simulator.spaceVector'), val: ModulationMethod.Raumzeiger, tip: t('simulator.spaceVectorTip') },
+              { label: t('simulator.flat120'), val: ModulationMethod.Flattop120, tip: t('simulator.flat120Tip') },
+              { label: t('simulator.flat60'), val: ModulationMethod.Flattop60, tip: t('simulator.flat60Tip') },
+              { label: t('simulator.schoerner'), val: ModulationMethod.Schoerner, tip: t('simulator.schoernerTip') },
+              { label: t('simulator.manual'), val: ModulationMethod.Manual, tip: t('simulator.manualTip') },
             ].map((m) => (
               <UnifiedControlBlock key={m.val} label={m.label} active={config.modulationMethod === m.val} onClick={() => handleChange('modulationMethod', m.val)} onHover={handleMouseEnter} onLeave={handleMouseLeave} tooltipText={m.tip} />
             ))}
           </div>
           <div className="sim-pill-row flex min-h-[30px] mt-5 mb-6">
-            <button type="button" onClick={() => handleChange('pwmAlignment', PWMAlignment.Center)} className={`sim-pill-btn flex-1 text-[11px] font-medium transition-colors uppercase flex items-center justify-center min-h-[28px] cursor-pointer ${config.pwmAlignment === PWMAlignment.Center ? 'sim-pill-btn-active' : ''}`} onMouseEnter={(e) => handleMouseEnter(e, "Center PWM")} onMouseLeave={handleMouseLeave}>
-              Center
+            <button type="button" onClick={() => handleChange('pwmAlignment', PWMAlignment.Center)} className={`sim-pill-btn flex-1 text-[11px] font-medium transition-colors uppercase flex items-center justify-center min-h-[28px] cursor-pointer ${config.pwmAlignment === PWMAlignment.Center ? 'sim-pill-btn-active' : ''}`} onMouseEnter={(e) => handleMouseEnter(e, t('simulator.centerTip'))} onMouseLeave={handleMouseLeave}>
+              {t('simulator.center')}
             </button>
-            <button type="button" onClick={() => handleChange('pwmAlignment', PWMAlignment.Edge)} className={`sim-pill-btn flex-1 text-[11px] font-medium transition-colors uppercase flex items-center justify-center min-h-[28px] cursor-pointer ${config.pwmAlignment === PWMAlignment.Edge ? 'sim-pill-btn-active' : ''}`} onMouseEnter={(e) => handleMouseEnter(e, "Edge PWM")} onMouseLeave={handleMouseLeave}>
-              Edge
+            <button type="button" onClick={() => handleChange('pwmAlignment', PWMAlignment.Edge)} className={`sim-pill-btn flex-1 text-[11px] font-medium transition-colors uppercase flex items-center justify-center min-h-[28px] cursor-pointer ${config.pwmAlignment === PWMAlignment.Edge ? 'sim-pill-btn-active' : ''}`} onMouseEnter={(e) => handleMouseEnter(e, t('simulator.edgeTip'))} onMouseLeave={handleMouseLeave}>
+              {t('simulator.edge')}
             </button>
           </div>
         </div>
 
         {/* Column 3: Machine Parameters */}
         <div className={columnClass}>
-          <h3 className={sectionTitleClass}>Machine Parameters</h3>
+          <h3 className={sectionTitleClass}>{t('simulator.machineParameters')}</h3>
           <div className="flex flex-col gap-0">
                {parameters.slice(0, 3).map(p => renderParameter(p, "min-h-[30px]"))}
                <div
@@ -211,10 +213,10 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
                       <button 
                         type="button"
                         onClick={toggleStepMode}
-                        onMouseEnter={(e) => handleMouseEnter(e, "60° sector step")}
+                        onMouseEnter={(e) => handleMouseEnter(e, t('simulator.sectorStepTip'))}
                         onMouseLeave={handleMouseLeave}
                         className={`cursor-pointer w-3 h-3 rounded-full border transition-all flex items-center justify-center ${config.stepMode ? 'bg-slate-600 border-slate-700' : 'bg-transparent border-slate-300 hover:border-slate-500'}`}
-                        aria-label="Select Sector"
+                        aria-label={t('simulator.selectSector')}
                       >
                         <div className={`w-0.5 h-0.5 rounded-full ${config.stepMode ? 'bg-white' : 'bg-transparent'}`}></div>
                       </button>
