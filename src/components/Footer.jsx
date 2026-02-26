@@ -22,7 +22,6 @@ const FOOTER_LINKS = {
     { label: 'White Goods', to: '/industries/whitegood' },
     { label: 'Power Tools', to: '/industries/powertool' },
     { label: 'Automotive', to: '/industries/automotive' },
-    { label: 'E-Mobility', to: '/industries/emobility' },
   ],
 };
 

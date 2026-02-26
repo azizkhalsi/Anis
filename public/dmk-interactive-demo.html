@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DMK Interactive Demo — Appcon Technologies</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    #dmk-demo-embed {
+      --bg: #0f1117;
+      --accent: #00d4ff;
+      --device: #1e2433;
+      --text: #ffffff;
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 2rem 1rem 3rem;
+      min-height: 400px;
+    }
+    #dmk-demo-embed .demo-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    #dmk-demo-embed .demo-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    #dmk-demo-embed .demo-subtitle {
+      font-size: 0.95rem;
+      opacity: 0.85;
+    }
+
+    /* Desk — isometric on desktop */
+    #dmk-demo-embed .desk-scene {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      min-height: 380px;
+      perspective: 1200px;
+    }
+    #dmk-demo-embed .desk-surface {
+      position: relative;
+      width: 100%;
+      height: 280px;
+      background: linear-gradient(180deg, #252b36 0%, #1a1f28 100%);
+      border-radius: 12px;
+      transform: rotateX(55deg) rotateZ(-2deg);
+      transform-style: preserve-3d;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    #dmk-demo-embed .desk-surface::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 12px;
+      border: 1px solid rgba(0,212,255,0.15);
+      pointer-events: none;
+    }
+
+    /* Devices */
+    #dmk-demo-embed .device {
+      position: absolute;
+      border-radius: 8px;
+      background: var(--device);
+      border: 1px solid rgba(0,212,255,0.25);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    #dmk-demo-embed .device:hover {
+      box-shadow: 0 0 24px rgba(0,212,255,0.3);
+      transform: translateY(-2px);
+    }
+    #dmk-demo-embed .device-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 4px;
+    }
+    /* Tooltip */
+    #dmk-demo-embed .device-tooltip {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-8px);
+      background: #1a1f28;
+      border: 1px solid var(--accent);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      line-height: 1.4;
+      white-space: normal;
+      max-width: 220px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      z-index: 20;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    #dmk-demo-embed .device:hover .device-tooltip {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-12px);
+    }
+
+    /* Inverter — left */
+    #dmk-demo-embed .device-inverter {
+      width: 90px;
+      height: 60px;
+      left: 12%;
+      bottom: 80px;
+    }
+    /* DMK box — center */
+    #dmk-demo-embed .device-dmk {
+      width: 70px;
+      height: 48px;
+      left: 38%;
+      bottom: 75px;
+    }
+    /* Laptop — center */
+    #dmk-demo-embed .device-laptop {
+      width: 140px;
+      height: 95px;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 70px;
+      padding: 0;
+      overflow: visible;
+    }
+    #dmk-demo-embed .laptop-base {
+      width: 100%;
+      height: 28px;
+      background: #252b36;
+      border-radius: 4px 4px 0 0;
+      border: 1px solid rgba(0,212,255,0.2);
+    }
+    #dmk-demo-embed .laptop-screen-wrap {
+      width: 100%;
+      height: 64px;
+      background: #151a22;
+      border: 3px solid #252b36;
+      border-radius: 6px 6px 0 0;
+      overflow: hidden;
+      transform-origin: bottom center;
+      transition: transform 0.5s ease-in-out;
+      transform: rotateX(78deg);
+    }
+    #dmk-demo-embed .desk-scene.laptop-open .laptop-screen-wrap {
+      transform: rotateX(0deg);
+    }
+    #dmk-demo-embed .laptop-screen {
+      width: 100%;
+      height: 100%;
+      background: #1a2230;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    #dmk-demo-embed .laptop-desktop {
+      display: none;
+      width: 100%;
+      height: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: linear-gradient(160deg, #1e2634 0%, #151b24 100%);
+    }
+    #dmk-demo-embed .desk-scene.laptop-open .laptop-desktop {
+      display: flex;
+    }
+    #dmk-demo-embed .desk-scene:not(.laptop-open) .laptop-screen::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: #0d1014;
+    }
+    #dmk-demo-embed .laptop-desktop .desktop-label {
+      font-size: 0.65rem;
+      opacity: 0.6;
+    }
+    #dmk-demo-embed .dmk-icon-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 10px 18px;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 0.75rem;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    #dmk-demo-embed .dmk-icon-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0,212,255,0.5);
+    }
+    #dmk-demo-embed .dmk-icon-btn svg {
+      width: 28px;
+      height: 28px;
+    }
+    #dmk-demo-embed .laptop-tooltip-2 {
+      font-size: 0.75rem;
+      max-width: 200px;
+    }
+    /* Motor — right */
+    #dmk-demo-embed .device-motor {
+      width: 85px;
+      height: 65px;
+      right: 14%;
+      bottom: 78px;
+    }
+    #dmk-demo-embed .motor-shaft {
+      width: 50px;
+      height: 8px;
+      background: #3a4556;
+      border-radius: 4px;
+      margin-top: 4px;
+      transform-origin: center center;
+      animation: motor-spin 2s linear infinite;
+    }
+    @keyframes motor-spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Floating hint */
+    #dmk-demo-embed .floating-hint {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,212,255,0.15);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      white-space: nowrap;
+      animation: hint-float 2.5s ease-in-out infinite;
+      z-index: 10;
+    }
+    #dmk-demo-embed .desk-scene.laptop-open .floating-hint {
+      content: 'Click the DMK icon to launch the software';
+    }
+    #dmk-demo-embed .floating-hint-text-1 { display: block; }
+    #dmk-demo-embed .floating-hint-text-2 { display: none; }
+    #dmk-demo-embed .desk-scene.laptop-open .floating-hint-text-1 { display: none; }
+    #dmk-demo-embed .desk-scene.laptop-open .floating-hint-text-2 { display: block; }
+    @keyframes hint-float {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-4px); }
+    }
+
+    /* SVG Cables */
+    #dmk-demo-embed .cables-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+    #dmk-demo-embed .cable-path {
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 2;
+      stroke-linecap: round;
+      opacity: 0.7;
+      filter: url(#cable-glow);
+      animation: cable-pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes cable-pulse {
+      0%, 100% { opacity: 0.5; stroke-width: 2; }
+      50% { opacity: 1; stroke-width: 2.5; }
+    }
+    /* Signal flow dots when modal open */
+    #dmk-demo-embed .signal-dot {
+      fill: var(--accent);
+      animation: signal-flow 2s linear infinite;
+      opacity: 0;
+    }
+    #dmk-demo-embed .desk-scene.modal-open .signal-dot {
+      opacity: 1;
+    }
+    #dmk-demo-embed .signal-dot:nth-child(2) { animation-delay: 0.4s; }
+    #dmk-demo-embed .signal-dot:nth-child(3) { animation-delay: 0.8s; }
+
+    /* Loading overlay */
+    #dmk-demo-embed .loading-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15,17,23,0.95);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
+      z-index: 100;
+    }
+    #dmk-demo-embed .loading-overlay.visible {
+      display: flex;
+    }
+    #dmk-demo-embed .loading-bar-wrap {
+      width: 240px;
+      height: 8px;
+      background: #1e2433;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    #dmk-demo-embed .loading-bar {
+      height: 100%;
+      width: 0%;
+      background: var(--accent);
+      border-radius: 4px;
+      transition: width 0.1s linear;
+    }
+    #dmk-demo-embed .loading-text {
+      font-size: 0.9rem;
+      color: var(--accent);
+    }
+
+    /* Software modal */
+    #dmk-demo-embed .software-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(15,17,23,0.92);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 90;
+      padding: 1rem;
+    }
+    #dmk-demo-embed .software-modal.visible {
+      display: flex;
+    }
+    #dmk-demo-embed .software-window {
+      width: 100%;
+      max-width: 900px;
+      max-height: 90vh;
+      background: #1e2433;
+      border: 1px solid rgba(0,212,255,0.3);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.5), 0 0 40px rgba(0,212,255,0.1);
+      display: flex;
+      flex-direction: column;
+      animation: modal-in 0.4s ease-out;
+    }
+    @keyframes modal-in {
+      from { opacity: 0; transform: scale(0.96); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    #dmk-demo-embed .software-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background: #252b36;
+      border-bottom: 1px solid rgba(0,212,255,0.2);
+    }
+    #dmk-demo-embed .software-tabs {
+      display: flex;
+      gap: 4px;
+    }
+    #dmk-demo-embed .software-tab {
+      padding: 8px 16px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 8px;
+      color: rgba(255,255,255,0.7);
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.2s ease;
+    }
+    #dmk-demo-embed .software-tab:hover {
+      color: #fff;
+      border-color: rgba(255,255,255,0.4);
+    }
+    #dmk-demo-embed .software-tab.active {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+    }
+    #dmk-demo-embed .modal-close {
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(255,255,255,0.3);
+      background: transparent;
+      color: #fff;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      line-height: 1;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    #dmk-demo-embed .modal-close:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: var(--accent);
+    }
+    #dmk-demo-embed .software-body {
+      flex: 1;
+      overflow: auto;
+      padding: 1rem;
+    }
+    #dmk-demo-embed .tab-pane {
+      display: none;
+    }
+    #dmk-demo-embed .tab-pane.active {
+      display: block;
+    }
+    #dmk-demo-embed .viz-image-wrap {
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(0,212,255,0.2);
+    }
+    #dmk-demo-embed .viz-image-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    #dmk-demo-embed .viz-canvas-wrap {
+      background: #0f1117;
+      border-radius: 8px;
+      padding: 12px;
+      border: 1px solid rgba(0,212,255,0.2);
+      margin-bottom: 8px;
+    }
+    #dmk-demo-embed .viz-canvas-wrap canvas {
+      width: 100%;
+      height: 120px;
+      display: block;
+      border-radius: 4px;
+    }
+    #dmk-demo-embed .viz-label {
+      font-size: 0.8rem;
+      color: var(--accent);
+      margin-top: 6px;
+    }
+    #dmk-demo-embed .config-fields {
+      display: grid;
+      gap: 12px;
+      margin-top: 1rem;
+    }
+    #dmk-demo-embed .config-field {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      background: #252b36;
+      border: 1px solid rgba(0,212,255,0.2);
+      border-radius: 8px;
+      font-size: 0.9rem;
+    }
+    #dmk-demo-embed .config-field span:first-child { color: rgba(255,255,255,0.7); }
+    #dmk-demo-embed .config-field span:last-child { color: var(--accent); font-weight: 600; }
+
+    /* Responsive: flat 2D on mobile */
+    @media (max-width: 767px) {
+      #dmk-demo-embed .desk-surface {
+        transform: none;
+        height: auto;
+        min-height: 320px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 16px;
+        padding: 24px 16px;
+      }
+      #dmk-demo-embed .device {
+        position: static;
+        transform: none;
+      }
+      #dmk-demo-embed .device-laptop {
+        transform: none;
+        order: 1;
+        width: 120px;
+        height: 82px;
+      }
+      #dmk-demo-embed .device-inverter { order: 0; }
+      #dmk-demo-embed .device-dmk { order: 2; }
+      #dmk-demo-embed .device-motor { order: 3; }
+      #dmk-demo-embed .cables-svg { display: none; }
+      #dmk-demo-embed .floating-hint { white-space: normal; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <div id="dmk-demo-embed">
+    <div class="demo-header">
+      <h2 class="demo-title">See DMK in Action</h2>
+      <p class="demo-subtitle">An interactive simulation of the DMK measurement workflow</p>
+    </div>
+
+    <div class="desk-scene" id="deskScene">
+      <div class="floating-hint">
+        <span class="floating-hint-text-1">Click the laptop to explore DMK</span>
+        <span class="floating-hint-text-2">Click the DMK icon to launch the software</span>
+      </div>
+
+      <svg class="cables-svg" viewBox="0 0 900 280" preserveAspectRatio="none">
+        <defs>
+          <filter id="cable-glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="2" result="blur"/>
+            <feMerge>
+              <feMergeNode in="blur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+        <path class="cable-path" d="M 120 200 Q 280 200 320 180 T 450 160" />
+        <path class="cable-path" d="M 450 160 Q 580 160 620 180 T 780 200" />
+        <path class="cable-path" d="M 320 180 Q 350 170 380 175" />
+        <circle class="signal-dot" r="4" id="dot1"><animateMotion dur="2s" repeatCount="indefinite" path="M 780 200 Q 620 180 450 160 Q 320 180 120 200"/></circle>
+        <circle class="signal-dot" r="4" id="dot2"><animateMotion dur="2s" repeatCount="indefinite" path="M 780 200 Q 620 180 450 160" begin="0.4s"/></circle>
+        <circle class="signal-dot" r="4" id="dot3"><animateMotion dur="2s" repeatCount="indefinite" path="M 780 200 Q 620 180 450 160" begin="0.8s"/></circle>
+      </svg>
+
+      <div class="desk-surface">
+        <div class="device device-inverter" title="Inverter">
+          <div class="device-tooltip">Inverter — drives the motor. DMK taps into its 3-phase output signals.</div>
+          <span class="device-label">Inverter</span>
+        </div>
+
+        <div class="device device-dmk" title="DMK">
+          <div class="device-tooltip">DMK Device — measures phase currents &amp; PWM voltages, synchronized to rotor position. Powered via USB-C.</div>
+          <span class="device-label">DMK</span>
+        </div>
+
+        <div class="device device-laptop" id="laptopDevice" title="Laptop">
+          <div class="device-tooltip">Your PC — runs the DMK PC Software for real-time visualization &amp; data logging.</div>
+          <div class="laptop-screen-wrap">
+            <div class="laptop-screen">
+              <div class="laptop-desktop" id="laptopDesktop">
+                <span class="desktop-label">Desktop</span>
+                <button type="button" class="dmk-icon-btn" id="dmkIconBtn" aria-label="Launch DMK software">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                  DMK
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="laptop-base"></div>
+          <span class="device-label">PC</span>
+        </div>
+
+        <div class="device device-motor" title="Motor">
+          <div class="device-tooltip">Motor — DMK captures rotor position via encoder and correlates it with electrical signals.</div>
+          <span class="device-label">Motor</span>
+          <div class="motor-shaft"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="loading-bar-wrap"><div class="loading-bar" id="loadingBar"></div></div>
+      <span class="loading-text">Launching DMK Software…</span>
+    </div>
+
+    <div class="software-modal" id="softwareModal">
+      <div class="software-window">
+        <div class="software-header">
+          <div class="software-tabs">
+            <button type="button" class="software-tab active" data-tab="viz">Visualization Interface</button>
+            <button type="button" class="software-tab" data-tab="config">Configuration Interface</button>
+          </div>
+          <button type="button" class="modal-close" id="modalClose" aria-label="Close">×</button>
+        </div>
+        <div class="software-body">
+          <div class="tab-pane active" id="paneViz">
+            <div class="viz-image-wrap">
+              <img src="https://appcontech.de/wp-content/uploads/2025/03/Pictudfre5.png" alt="DMK Visualization Interface" />
+            </div>
+            <div class="viz-canvas-wrap">
+              <canvas id="waveformCanvas" width="800" height="120"></canvas>
+              <p class="viz-label">Live Phase Current &amp; PWM Voltage Visualization</p>
+            </div>
+          </div>
+          <div class="tab-pane" id="paneConfig">
+            <div class="viz-image-wrap">
+              <img src="https://appcontech.de/wp-content/uploads/2025/03/Pictudsre6.png" alt="DMK Configuration Interface" />
+            </div>
+            <div class="config-fields">
+              <div class="config-field"><span>PWM Frequency</span><span>20 kHz</span></div>
+              <div class="config-field"><span>Max Current</span><span>15 A</span></div>
+              <div class="config-field"><span>Encoder</span><span>Incremental ABZ</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+(function() {
+  var root = document.getElementById('dmk-demo-embed');
+  var desk = document.getElementById('deskScene');
+  var laptopDevice = document.getElementById('laptopDevice');
+  var laptopDesktop = document.getElementById('laptopDesktop');
+  var dmkIconBtn = document.getElementById('dmkIconBtn');
+  var loadingOverlay = document.getElementById('loadingOverlay');
+  var loadingBar = document.getElementById('loadingBar');
+  var softwareModal = document.getElementById('softwareModal');
+  var modalClose = document.getElementById('modalClose');
+  var waveformCanvas = document.getElementById('waveformCanvas');
+  var tabs = root.querySelectorAll('.software-tab');
+  var panes = root.querySelectorAll('.tab-pane');
+
+  // Click laptop: open screen
+  laptopDevice.addEventListener('click', function(e) {
+    if (e.target.closest('.dmk-icon-btn')) return;
+    desk.classList.add('laptop-open');
+  });
+
+  // Click DMK icon: loading then modal
+  dmkIconBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    loadingOverlay.classList.add('visible');
+    loadingBar.style.width = '0%';
+    var start = Date.now();
+    var duration = 1500;
+    function tick() {
+      var elapsed = Date.now() - start;
+      var pct = Math.min(100, (elapsed / duration) * 100);
+      loadingBar.style.width = pct + '%';
+      if (pct < 100) requestAnimationFrame(tick);
+      else {
+        loadingOverlay.classList.remove('visible');
+        softwareModal.classList.add('visible');
+        desk.classList.add('modal-open');
+        startWaveform();
+      }
+    }
+    requestAnimationFrame(tick);
+  });
+
+  // Tabs
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      var t = this.getAttribute('data-tab');
+      tabs.forEach(function(x) { x.classList.remove('active'); });
+      panes.forEach(function(p) {
+        p.classList.remove('active');
+        if (p.id === 'paneViz' && t === 'viz') p.classList.add('active');
+        if (p.id === 'paneConfig' && t === 'config') p.classList.add('active');
+      });
+      this.classList.add('active');
+    });
+  });
+
+  // Close modal
+  modalClose.addEventListener('click', function() {
+    softwareModal.classList.remove('visible');
+    desk.classList.remove('modal-open');
+    stopWaveform();
+  });
+
+  // Oscilloscope-style canvas animation
+  var waveformAnim;
+  var phase = 0;
+  function startWaveform() {
+    var ctx = waveformCanvas.getContext('2d');
+    var w = waveformCanvas.width;
+    var h = waveformCanvas.height;
+    function draw() {
+      ctx.fillStyle = '#0f1117';
+      ctx.fillRect(0, 0, w, h);
+      phase += 0.03;
+      ctx.strokeStyle = '#00d4ff';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      for (var x = 0; x < w; x += 2) {
+        var y = h/2 + Math.sin(x * 0.02 + phase) * 35 + Math.sin(x * 0.05 + phase * 1.3) * 15;
+        if (x === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+      ctx.strokeStyle = 'rgba(0,212,255,0.4)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      for (var x = 0; x < w; x += 2) {
+        var y2 = h/2 + Math.sin(x * 0.03 + phase * 0.7) * 25;
+        if (x === 0) ctx.moveTo(x, y2);
+        else ctx.lineTo(x, y2);
+      }
+      ctx.stroke();
+      waveformAnim = requestAnimationFrame(draw);
+    }
+    draw();
+  }
+  function stopWaveform() {
+    if (waveformAnim) cancelAnimationFrame(waveformAnim);
+  }
+})();
+  </script>
+</body>
+</html>

@@ -37,7 +37,6 @@ const NAV_LINKS = [
       { to: '/industries/whitegood', label: 'White Goods' },
       { to: '/industries/powertool', label: 'Power Tools' },
       { to: '/industries/automotive', label: 'Automotive' },
-      { to: '/industries/emobility', label: 'E-Mobility' },
     ],
   },
   {

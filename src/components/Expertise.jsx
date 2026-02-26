@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 
+const BASE = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
+
 export const TABS = [
   {
     id: 'consulting',
@@ -133,7 +135,7 @@ export const TABS = [
     visualCard: (
       <div className="expertise-visual-card expertise-visual-card--image expertise-visual-card--mbd">
         <img
-          src="/images/mbd-diagram.png"
+          src={`${BASE}images/mbd-diagram.png`}
           alt="Model-Based Design: from simulation models to auto-generated code in motor control system"
           className="expertise-visual-img expertise-visual-img--mbd"
           width={1200}

@@ -1,5 +1,5 @@
 {
-  "name": "appcon-website",
+  "name": "stator-3d",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,19 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@gsap/react": "^2.1.2",
-    "@react-three/drei": "^10.7.7",
-    "@react-three/fiber": "^9.5.0",
-    "@tailwindcss/vite": "^4.2.0",
-    "framer-motion": "^12.34.3",
-    "gsap": "^3.14.2",
-    "leaflet": "^1.9.4",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "react-leaflet": "^5.0.0",
-    "react-router-dom": "^7.13.0",
-    "tailwindcss": "^4.2.0",
-    "three": "^0.183.0"
+    "react-dom": "^19.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

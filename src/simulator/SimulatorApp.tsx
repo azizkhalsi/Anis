@@ -392,9 +392,15 @@ const App: React.FC = () => {
                 <div className="absolute top-2 left-2.5 z-10">
                   <span className="text-[9px] font-semibold text-slate-600 uppercase tracking-wider bg-white/80 px-2 py-0.5 rounded-md backdrop-blur-sm border border-slate-200/60">3-Phase PMSM · Interactive</span>
                 </div>
+                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-10 flex items-center gap-1.5 text-[10px] font-medium text-slate-600 bg-white/90 px-2.5 py-1.5 rounded-lg shadow-sm border border-slate-200/70 backdrop-blur-sm pointer-events-none animate-[fadeIn_0.4s_ease-out] sim-motor-scroll-hint">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                    <path d="M5 9l-3 3 3 3M9 5l3-3 3 3M15 19l-3 3-3-3M19 9l3 3-3 3" />
+                  </svg>
+                  <span>Drag to rotate · Scroll to zoom</span>
+                </div>
                 <button
                   onClick={() => setShowMotor(false)}
-                  className="absolute top-2 right-2.5 z-10 w-5 h-5 flex items-center justify-center rounded-full bg-white/80 hover:bg-red-500/90 border border-slate-300/60 hover:border-red-400 text-slate-500 hover:text-white text-[10px] leading-none transition-all duration-150 backdrop-blur-sm"
+                  className="absolute top-2 right-2.5 z-10 w-5 h-5 flex items-center justify-center rounded-full bg-white/80 hover:bg-red-500/90 border border-slate-300/60 hover:border-red-400 text-slate-500 hover:text-white text-[10px] leading-none transition-all duration-150 backdrop-blur-sm cursor-pointer"
                   title="Hide 3D motor"
                 >
                   ✕
@@ -409,7 +415,7 @@ const App: React.FC = () => {
               <button
                 onClick={() => setShowMotor(true)}
                 type="button"
-                className="hidden md:flex items-center gap-1.5 self-start ml-auto px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-white text-xs font-medium tracking-wide transition-all duration-200 shadow hover:shadow-md border border-slate-600/50"
+                className="hidden md:flex items-center gap-1.5 self-start ml-auto px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-white text-xs font-medium tracking-wide transition-all duration-200 shadow hover:shadow-md border border-slate-600/50 cursor-pointer"
                 title="Open 3D motor visualization"
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>

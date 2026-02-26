@@ -25,7 +25,6 @@ const COIL_COPPER = "#b87333";
 const COIL_COPPER_DARK = "#8b5a2b";
 const STATOR_BLACK = "#1a1a1a";
 const ROTOR_WHITE = "#f2f2f2";
-const MAGNET_GREY = "#5c6370";
 const SHAFT_SILVER = "#c8c8c8";
 const BEARING_OUTER = "#9ca3af";
 const BEARING_INNER = "#374151";
@@ -79,11 +78,7 @@ export default function MotorModel({ motorDataRef, amplitude, isRunning }: Props
 
   return (
     <group scale={1.35}>
-      {/* STATOR: Black Y-frame – central hub + 3 arms with clear rectangular bobbins (ref: flat-topped blocks) */}
-      <mesh position={[0, 0, 0]}>
-        <cylinderGeometry args={[0.068, 0.072, 0.05, 6]} />
-        <meshStandardMaterial color={STATOR_BLACK} metalness={0.06} roughness={0.94} />
-      </mesh>
+      {/* STATOR: 3 arms with bobbins – central hub cylinder (magnet/rod) removed per user request */}
 
       {armPositions.map((pos, i) => (
         <group key={`arm-${i}`} rotation={[0, -pos.angleRad, 0]}>
@@ -183,7 +178,7 @@ export default function MotorModel({ motorDataRef, amplitude, isRunning }: Props
         <meshStandardMaterial color={BEARING_INNER} metalness={0.65} roughness={0.4} side={THREE.DoubleSide} />
       </mesh>
 
-      {/* ROTOR: shaft + white core + rectangular magnets – only this group rotates */}
+      {/* ROTOR: shaft + white core – only this group rotates */}
       <group ref={rotorRef}>
         <mesh position={[0, 0, 0]}>
           <cylinderGeometry args={[0.01, 0.01, 0.2, 24]} />
@@ -193,18 +188,6 @@ export default function MotorModel({ motorDataRef, amplitude, isRunning }: Props
           <cylinderGeometry args={[0.03, 0.03, 0.048, 28]} />
           <meshStandardMaterial color={ROTOR_WHITE} metalness={0.02} roughness={0.9} />
         </mesh>
-        {/* Rectangular magnets on white core – larger and darker so clearly visible (ref: “small rectangular metallic pieces”) */}
-        {[0, 60, 120, 180, 240, 300].map((deg, i) => {
-          const a = deg * DEG_TO_RAD;
-          const rx = 0.034 * Math.cos(a);
-          const rz = 0.034 * Math.sin(a);
-          return (
-            <mesh key={i} position={[rx, 0, rz]} rotation={[0, -a, 0]}>
-              <boxGeometry args={[0.01, 0.04, 0.022]} />
-              <meshStandardMaterial color={MAGNET_GREY} metalness={0.7} roughness={0.4} />
-            </mesh>
-          );
-        })}
       </group>
 
       {/* Direction arrow – orbits at coil height */}

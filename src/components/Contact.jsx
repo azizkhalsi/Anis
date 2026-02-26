@@ -108,9 +108,6 @@ export default function Contact() {
   return (
     <section className="contact" id="contact">
       <div className="container">
-        {/* Interactive Location Map */}
-        <LocationMap />
-
         <div className="contact-grid">
           <div
             className={`contact-info ${leftVisible ? 'visible' : ''}`}
@@ -198,6 +195,9 @@ export default function Contact() {
             </form>
           </div>
         </div>
+
+        {/* Interactive Location Map */}
+        <LocationMap />
       </div>
     </section>
   );

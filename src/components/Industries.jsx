@@ -38,18 +38,6 @@ export const INDUSTRIES_DATA = [
     image: 'https://images.pexels.com/photos/3862634/pexels-photo-3862634.jpeg?auto=compress&cs=tinysrgb&w=800',
     imageAlt: 'Automotive production line with electronic vehicle systems',
   },
-  {
-    id: 'emobility',
-    title: 'E-Mobility',
-    subtitle: 'Electric Vehicles',
-    description: 'E-bike, e-scooter, and electric vehicle traction motor solutions. Scalable sensorless FOC for efficient propulsion, regenerative braking, and smooth torque delivery across the full speed range.',
-    features: ['E-bike hub motors', 'E-scooter drives', 'Light EV traction', 'Regen braking'],
-    stat: '98%',
-    statLabel: 'efficiency',
-    color: '#b45309',
-    image: 'https://images.pexels.com/photos/110844/pexels-photo-110844.jpeg?auto=compress&cs=tinysrgb&w=800',
-    imageAlt: 'Electric bicycle — e-mobility motor solutions',
-  },
 ];
 
 export default function Industries({ initialIndustry = 'whitegood', singleMode = false }) {

@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import useScrollAnimation from '../hooks/useScrollAnimation';
+import OscilloscopeDisplay from './OscilloscopeDisplay';
 
 export const PRODUCTS = [
   {
@@ -93,25 +94,6 @@ const DMK_FEATURE_BLOCKS = [
 const DMK_HMI_VISUALISATION_SRC = '/hmi/dmk-hmi-visualisation.png';
 const DMK_HMI_CALIBRATION_SRC = '/hmi/dmk-hmi-calibration.png';
 const DMK_REAL_MODEL_SRC = '/images/dmk-real-model.png';
-/* Real oscilloscope image – use /images/oscilloscope.png for your own, or this Pexels fallback */
-const OSCILLOSCOPE_IMG_SRC = '/images/oscilloscope.png';
-const OSCILLOSCOPE_IMG_FALLBACK = 'https://images.pexels.com/photos/2599244/pexels-photo-2599244.jpeg?auto=compress&cs=tinysrgb&w=400';
-
-const DMK_CONNECTIVITY_IMG_SRC = '/images/dmk-connectivity.png';
-const DMK_CONNECTIVITY_ITEMS = [
-  {
-    title: 'USB connection to SSD',
-    body: 'Up to 2TB of data storage capacity.',
-  },
-  {
-    title: 'Ethernet / WiFi connection',
-    body: 'Configuration, real-time data visualisation, and digital signal processing.',
-  },
-  {
-    title: 'Analog outputs',
-    body: 'For real-time data visualisation on oscilloscope.',
-  },
-];
 
 const LCI_PCB_SRC = '/images/lci-pcb.png';
 
@@ -230,109 +212,126 @@ function DmkPcSoftwareScene() {
 
   return (
     <div className="dmk-pc-scene">
-      <div className="dmk-pc-scene-desk">
-        <div className="dmk-pc-scene-pc">
-          <div className="dmk-pc-scene-pc-bezel">
-            <div className={`dmk-pc-scene-screen ${screenOpen ? 'open' : ''}`}>
-              {!screenOpen ? (
-                <div className="dmk-pc-scene-desktop">
-                  <span className="dmk-pc-scene-desktop-label">Desktop</span>
-                  <button
-                    type="button"
-                    className="dmk-pc-scene-dmk-icon"
-                    onClick={() => setScreenOpen(true)}
-                    aria-label="Open DMK software"
-                  >
-                    <span className="dmk-pc-scene-dmk-icon-symbol">DMK</span>
-                    <span className="dmk-pc-scene-dmk-icon-name">DMK</span>
-                  </button>
-                </div>
-              ) : (
-                <div className="dmk-pc-scene-interface">
-                  <div className="dmk-pc-scene-interface-header">
+      <div className="dmk-pc-scene-desk dmk-pc-scene-desk--hub">
+        <div className="dmk-pc-scene-desk-row dmk-pc-scene-desk-row--1">
+        <div className="dmk-pc-scene-peripheral dmk-pc-scene-peripheral--pc">
+          <div className="dmk-pc-scene-pc">
+            <div className="dmk-pc-scene-pc-bezel">
+              <div className={`dmk-pc-scene-screen ${screenOpen ? 'open' : ''}`}>
+                {!screenOpen ? (
+                  <div className="dmk-pc-scene-desktop">
+                    <span className="dmk-pc-scene-desktop-label">Desktop</span>
                     <button
                       type="button"
-                      className="dmk-pc-scene-interface-back"
-                      onClick={() => setScreenOpen(false)}
-                      aria-label="Back to desktop"
+                      className="dmk-pc-scene-dmk-icon"
+                      onClick={() => setScreenOpen(true)}
+                      aria-label="Open DMK software"
                     >
-                      ← Back
+                      <span className="dmk-pc-scene-dmk-icon-symbol">DMK</span>
+                      <span className="dmk-pc-scene-dmk-icon-name">DMK</span>
                     </button>
-                    <div className="dmk-pc-scene-interface-tabs">
+                  </div>
+                ) : (
+                  <div className="dmk-pc-scene-interface">
+                    <div className="dmk-pc-scene-interface-header">
                       <button
                         type="button"
-                        className={`dmk-pc-scene-tab ${activeTab === 'visualisation' ? 'active' : ''}`}
-                        onClick={() => setActiveTab('visualisation')}
+                        className="dmk-pc-scene-interface-back"
+                        onClick={() => setScreenOpen(false)}
+                        aria-label="Back to desktop"
                       >
-                        Visualisation
+                        ← Back
                       </button>
-                      <button
-                        type="button"
-                        className={`dmk-pc-scene-tab ${activeTab === 'calibration' ? 'active' : ''}`}
-                        onClick={() => setActiveTab('calibration')}
-                      >
-                        Oscilloscope & calibration
-                      </button>
+                      <div className="dmk-pc-scene-interface-tabs">
+                        <button
+                          type="button"
+                          className={`dmk-pc-scene-tab ${activeTab === 'visualisation' ? 'active' : ''}`}
+                          onClick={() => setActiveTab('visualisation')}
+                        >
+                          Visualisation
+                        </button>
+                        <button
+                          type="button"
+                          className={`dmk-pc-scene-tab ${activeTab === 'calibration' ? 'active' : ''}`}
+                          onClick={() => setActiveTab('calibration')}
+                        >
+                          Oscilloscope & calibration
+                        </button>
+                      </div>
+                    </div>
+                    <div className="dmk-pc-scene-interface-content">
+                      {activeTab === 'visualisation' && (
+                        <div className="dmk-pc-scene-interface-pane dmk-pc-scene-interface-pane--visualisation">
+                          <img
+                            src={DMK_HMI_VISUALISATION_SRC}
+                            alt="DMK visualisation interface"
+                            loading="lazy"
+                          />
+                        </div>
+                      )}
+                      {activeTab === 'calibration' && (
+                        <div className="dmk-pc-scene-interface-pane dmk-pc-scene-interface-pane--calibration">
+                          <img
+                            src={DMK_HMI_CALIBRATION_SRC}
+                            alt="DMK oscilloscope and sensor calibration"
+                            loading="lazy"
+                            className="dmk-pc-scene-calibration-img"
+                          />
+                        </div>
+                      )}
                     </div>
                   </div>
-                  <div className="dmk-pc-scene-interface-content">
-                    {activeTab === 'visualisation' && (
-                      <div className="dmk-pc-scene-interface-pane dmk-pc-scene-interface-pane--visualisation">
-                        <img
-                          src={DMK_HMI_VISUALISATION_SRC}
-                          alt="DMK visualisation interface"
-                          loading="lazy"
-                        />
-                      </div>
-                    )}
-                    {activeTab === 'calibration' && (
-                      <div className="dmk-pc-scene-interface-pane dmk-pc-scene-interface-pane--calibration">
-                        <img
-                          src={DMK_HMI_CALIBRATION_SRC}
-                          alt="DMK oscilloscope and sensor calibration"
-                          loading="lazy"
-                          className="dmk-pc-scene-calibration-img"
-                        />
-                      </div>
-                    )}
-                  </div>
-                </div>
-              )}
+                )}
+              </div>
+            </div>
+            <div className="dmk-pc-scene-pc-stand" />
+            <div className="dmk-pc-scene-pc-base" />
+          </div>
+          <div className="dmk-pc-scene-cable-wrap dmk-pc-scene-cable-wrap--to-hub">
+            <svg className="dmk-pc-scene-cable" viewBox="0 0 80 32" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+              <path className="dmk-pc-scene-cable-line" d="M 2 16 C 38 16 42 8 40 16 C 38 24 42 24 78 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+          </div>
+        </div>
+
+        <div className="dmk-pc-scene-hub">
+          <div className="dmk-pc-scene-device dmk-pc-scene-device--model3d dmk-pc-scene-device--hub">
+            <div className="dmk-pc-scene-device-inner">
+              <img src={DMK_REAL_MODEL_SRC} alt="DMK device" className="dmk-pc-scene-device-img" loading="lazy" />
             </div>
           </div>
-          <div className="dmk-pc-scene-pc-stand" />
-          <div className="dmk-pc-scene-pc-base" />
         </div>
-        <div className="dmk-pc-scene-cable-wrap dmk-pc-scene-cable-wrap--pc-dmk">
-          <svg className="dmk-pc-scene-cable" viewBox="0 0 100 50" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M 2 25 C 42 25 42 10 50 10 C 58 10 58 40 98 25" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-            <circle cx="2" cy="25" r="3" fill="currentColor" className="dmk-pc-scene-cable-connector" />
-            <circle cx="98" cy="25" r="3" fill="currentColor" className="dmk-pc-scene-cable-connector" />
-          </svg>
-        </div>
-        <div className="dmk-pc-scene-device dmk-pc-scene-device--model3d">
-          <div className="dmk-pc-scene-device-inner">
-            <img src={DMK_REAL_MODEL_SRC} alt="DMK device" className="dmk-pc-scene-device-img" loading="lazy" />
+
+        <div className="dmk-pc-scene-peripheral dmk-pc-scene-peripheral--scope">
+          <div className="dmk-pc-scene-cable-wrap dmk-pc-scene-cable-wrap--to-hub">
+            <svg className="dmk-pc-scene-cable" viewBox="0 0 80 32" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+              <path className="dmk-pc-scene-cable-line" d="M 2 16 C 38 16 42 8 40 16 C 38 24 42 24 78 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+          </div>
+          <div className="dmk-pc-scene-oscilloscope">
+            <div className="dmk-pc-scene-oscilloscope-frame">
+              <OscilloscopeDisplay />
+            </div>
           </div>
         </div>
-        <div className="dmk-pc-scene-cable-wrap dmk-pc-scene-cable-wrap--dmk-scope">
-          <svg className="dmk-pc-scene-cable" viewBox="0 0 100 50" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M 2 25 C 38 25 38 12 50 12 C 62 12 62 38 98 25" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-            <circle cx="2" cy="25" r="3" fill="currentColor" className="dmk-pc-scene-cable-connector" />
-            <circle cx="98" cy="25" r="3" fill="currentColor" className="dmk-pc-scene-cable-connector" />
-          </svg>
         </div>
-        <div className="dmk-pc-scene-oscilloscope">
-          <div className="dmk-pc-scene-oscilloscope-frame">
-            <img
-              src={OSCILLOSCOPE_IMG_SRC}
-              alt="Oscilloscope"
-              className="dmk-pc-scene-oscilloscope-img"
-              loading="lazy"
-              onError={(e) => { e.target.src = OSCILLOSCOPE_IMG_FALLBACK; }}
-            />
+
+      <div className="dmk-pc-scene-cable-wrap dmk-pc-scene-cable-wrap--to-hub dmk-pc-scene-cable-wrap--vertical dmk-pc-scene-cable-wrap--hub-usb">
+        <svg className="dmk-pc-scene-cable" viewBox="0 0 32 60" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <path className="dmk-pc-scene-cable-line" d="M 16 2 C 16 28 10 32 16 58" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      </div>
+
+      <div className="dmk-pc-scene-desk-row dmk-pc-scene-desk-row--usb">
+        <div className="dmk-pc-scene-peripheral dmk-pc-scene-peripheral--usb">
+          <div className="dmk-pc-scene-usb">
+            <div className="dmk-pc-scene-usb-inner">
+              <div className="dmk-pc-scene-usb-slot" aria-hidden="true" />
+              <span className="dmk-pc-scene-usb-label">USB</span>
+            </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
@@ -367,7 +366,6 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
   const navRef = useRef(null);
   const featureBlocksRef = useRef(null);
   const hmiSectionRef = useRef(null);
-  const connectivityRef = useRef(null);
   const demoEmbedRef = useRef(null);
   const amcBenefitsRef = useRef(null);
   const amcGameChangerRef = useRef(null);
@@ -375,19 +373,12 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
   const navVisible = useScrollAnimation(navRef);
   const featureBlocksVisible = useScrollAnimation(featureBlocksRef, { threshold: 0.08 });
   const hmiVisible = useScrollAnimation(hmiSectionRef, { threshold: 0.08 });
-  const connectivityVisible = useScrollAnimation(connectivityRef, { threshold: 0.08 });
   const demoEmbedVisible = useScrollAnimation(demoEmbedRef, { threshold: 0.08 });
   const amcBenefitsVisible = useScrollAnimation(amcBenefitsRef, { threshold: 0.08 });
   const amcGameChangerVisible = useScrollAnimation(amcGameChangerRef, { threshold: 0.08 });
   const amcSensorlessVisible = useScrollAnimation(amcSensorlessRef, { threshold: 0.08 });
   const product = PRODUCTS.find((p) => p.id === active);
   const Visual = VISUALS[active];
-
-  // #region agent log
-  useEffect(() => {
-    fetch('http://127.0.0.1:7374/ingest/3b192536-1e54-4b21-8ca0-89e6554bb50d',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'455fe2'},body:JSON.stringify({sessionId:'455fe2',location:'Products.jsx:render',message:'Products render',data:{active},hypothesisId:'H4',timestamp:Date.now()})}).catch(()=>{});
-  });
-  // #endregion
 
   useEffect(() => {
     if (initialProduct && PRODUCTS.some((p) => p.id === initialProduct)) {
@@ -476,32 +467,8 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
                 ref={hmiSectionRef}
                 data-animate="fade-up"
               >
-                <h4 className="dmk-hmi-title">PC software</h4>
+                <h4 className="dmk-hmi-title">External connections</h4>
                 <DmkPcSoftwareScene />
-              </div>
-
-              <div
-                className={`dmk-connectivity-section ${connectivityVisible ? 'visible' : ''}`}
-                ref={connectivityRef}
-                data-animate="fade-up"
-              >
-                <h4 className="dmk-connectivity-title">External connections</h4>
-                <div className="dmk-connectivity-visual">
-                  <img
-                    src={DMK_CONNECTIVITY_IMG_SRC}
-                    alt="DMK connectivity: USB to SSD, Ethernet/WiFi to laptop, analog outputs to oscilloscope"
-                    className="dmk-connectivity-img"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="dmk-connectivity-grid">
-                  {DMK_CONNECTIVITY_ITEMS.map((item, i) => (
-                    <div key={i} className="dmk-connectivity-card">
-                      <h5 className="dmk-connectivity-card-title">{item.title}</h5>
-                      <p className="dmk-connectivity-card-body">{item.body}</p>
-                    </div>
-                  ))}
-                </div>
               </div>
 
               <div
@@ -509,12 +476,19 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
                 ref={demoEmbedRef}
                 data-animate="fade-up"
               >
-                <div className="dmk-demo-embed-frame">
-                  <iframe
-                    src={`${import.meta.env.BASE_URL}dmk-interactive-demo.html`}
-                    title="DMK interactive demo — See DMK in Action"
-                    className="dmk-demo-embed-iframe"
-                  />
+                <div className="dmk-demo-embed-head">
+                  <h4 className="dmk-demo-embed-title">One instrument at the centre of your test bench</h4>
+                  <p className="dmk-demo-embed-intro">
+                    The DMK connects directly to your PC for live visualisation, to an oscilloscope via analog outputs, and to USB storage for long-term recording. Real-time measurement and analysis from a single compact unit.
+                  </p>
+                </div>
+                <div className="dmk-demo-embed-content">
+                  <ul className="dmk-demo-embed-list">
+                    <li><strong>PC software</strong> — Configure the device, view live waveforms, and run analysis from your laptop or desktop.</li>
+                    <li><strong>Oscilloscope</strong> — Use the analog outputs to monitor signals on any scope; no need for a separate PC during testing.</li>
+                    <li><strong>USB storage</strong> — Record hours of data to an external SSD (up to 2TB) for later offline analysis.</li>
+                    <li><strong>Ethernet / WiFi</strong> — Remote access and streaming for integration into automated test rigs.</li>
+                  </ul>
                 </div>
               </div>
             </>

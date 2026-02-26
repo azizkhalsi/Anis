@@ -1,13 +1,13 @@
 import { useRef } from 'react';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 
+const BASE = typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.BASE_URL ? import.meta.env.BASE_URL : '';
+
 const LOGOS = [
-  { id: 1, name: 'Partner One', initial: 'P1' },
-  { id: 2, name: 'Partner Two', initial: 'P2' },
-  { id: 3, name: 'Partner Three', initial: 'P3' },
-  { id: 4, name: 'Partner Four', initial: 'P4' },
-  { id: 5, name: 'Partner Five', initial: 'P5' },
-  { id: 6, name: 'Partner Six', initial: 'P6' },
+  { id: 1, name: 'HILTI', src: `${BASE}images/logos/hilti.png`, alt: 'HILTI' },
+  { id: 2, name: 'SPEMOT', src: `${BASE}images/logos/spemot.png`, alt: 'SPEMOT' },
+  { id: 3, name: 'Microchip', src: `${BASE}images/logos/microchip.png`, alt: 'Microchip' },
+  { id: 4, name: 'Miele', src: `${BASE}images/logos/miele.png`, alt: 'Miele' },
 ];
 
 export default function ClientLogos() {
@@ -24,12 +24,26 @@ export default function ClientLogos() {
           <div className="client-logos-inner">
             {LOGOS.map((logo) => (
               <div key={logo.id} className="client-logo-item">
-                <span className="client-logo-placeholder" title={logo.name}>
-                  {logo.initial}
+                <span className="client-logo-img-wrap" title={logo.name}>
+                  <img
+                    src={logo.src}
+                    alt={logo.alt}
+                    className="client-logo-img"
+                    width={180}
+                    height={72}
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </span>
               </div>
             ))}
           </div>
+        </div>
+        <div className={`client-logos-story${visible ? ' visible' : ''}`} data-animate="fade-up">
+          <h2 className="client-logos-story-title">Partnership &amp; success story</h2>
+          <p className="client-logos-story-text">
+            We collaborate with industry leaders like Miele&amp;Cie KG to deliver sensorless motor control in mass production. With over 20 patents, Appcon drives innovation and ensures project success from concept to deployment.
+          </p>
         </div>
       </div>
     </section>

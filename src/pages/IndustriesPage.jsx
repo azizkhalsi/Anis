@@ -3,7 +3,7 @@ import PageHeader from '../components/PageHeader';
 import Industries from '../components/Industries';
 import { INDUSTRIES_DATA } from '../components/Industries';
 
-const VALID_INDUSTRIES = ['whitegood', 'powertool', 'automotive', 'emobility'];
+const VALID_INDUSTRIES = ['whitegood', 'powertool', 'automotive'];
 
 export default function IndustriesPage() {
   const { industryId } = useParams();

@@ -142,3 +142,14 @@
   from { opacity: 0; transform: translateY(4px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* 3D motor: scroll/drag hint – visible at first, then fades out */
+.sim-motor-scroll-hint {
+  animation: simScrollHintFade 6s ease-in-out 1 forwards;
+}
+
+@keyframes simScrollHintFade {
+  0%, 35% { opacity: 1; }
+  70% { opacity: 0.6; }
+  100% { opacity: 0; }
+}

@@ -5,8 +5,9 @@ import { TABS } from './Expertise';
 import PrototypingJourney from './PrototypingJourney';
 
 const VALID_TOPICS = ['consulting', 'hardware', 'software', 'mbd', 'prototyping'];
-const MBD_DIAGRAM_SRC = '/images/mbd-diagram.png';
-const MBD_DIAGRAM_SRC_2X = '/images/mbd-diagram@2x.png';
+const BASE = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
+const MBD_DIAGRAM_SRC = `${BASE}images/mbd-diagram.png`;
+const MBD_DIAGRAM_SRC_2X = `${BASE}images/mbd-diagram@2x.png`;
 
 export default function ExpertiseSingle() {
   const { topicId } = useParams();
