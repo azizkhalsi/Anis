@@ -17,7 +17,7 @@ export default function ClientLogos() {
   const visible = useScrollAnimation(ref);
 
   return (
-    <section className="client-logos" ref={ref} aria-label={t('home.clientLogos.heading')}>
+    <section id="client-logos" className="client-logos" ref={ref} aria-label={t('home.clientLogos.heading')}>
       <div className="container">
         <p className={`client-logos-heading${visible ? ' visible' : ''}`} data-animate="fade-up">
           {t('home.clientLogos.heading')}

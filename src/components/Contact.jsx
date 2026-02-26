@@ -25,6 +25,7 @@ export default function Contact() {
   const iframeRef = useRef(null);
   const timeoutRef = useRef(null);
   const [submitMessage, setSubmitMessage] = useState('');
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
   const [submitting, setSubmitting] = useState(false);
 
   const leftVisible = useScrollAnimation(leftRef);
@@ -51,11 +52,12 @@ export default function Contact() {
       setSubmitting(false);
       if (success) {
         setSubmitMessage(t('contact.submitSuccess'));
+        setSubmitStatus('success');
         form.reset();
-        setTimeout(() => setSubmitMessage(''), 6000);
       } else {
         setSubmitMessage(t('contact.submitError'));
-        setTimeout(() => setSubmitMessage(''), 6000);
+        setSubmitStatus('error');
+        setTimeout(() => { setSubmitMessage(''); setSubmitStatus(null); }, 6000);
       }
     };
 
@@ -132,34 +134,45 @@ export default function Contact() {
               target={IFRAME_NAME}
               onSubmit={handleSubmit}
             >
-              <div className="form-group">
-                <label htmlFor="fullName">{t('contact.formName')}</label>
-                <input type="text" id="fullName" name="name" required />
-              </div>
-              <div className="form-group">
-                <label htmlFor="email">{t('contact.formEmail')}</label>
-                <input type="email" id="email" name="_replyto" placeholder={t('contact.formEmailPlaceholder')} />
-              </div>
-              <div className="form-group">
-                <label htmlFor="subject">{t('contact.formSubject')}</label>
-                <select id="subject" name="subject" required>
-                  <option value="">{t('contact.formSubjectPlaceholder')}</option>
-                  {subjectOptionsArray.map((opt) => (
-                    <option key={opt} value={opt}>{opt}</option>
-                  ))}
-                </select>
-              </div>
-              <div className="form-group">
-                <label htmlFor="message">{t('contact.formMessage')}</label>
-                <textarea id="message" name="message" rows="5" required />
-              </div>
-              <button type="submit" className="btn btn-primary" disabled={submitting}>
-                {submitting ? t('contact.formSending') : t('contact.formSubmit')}
-              </button>
-              {submitMessage && (
-                <p className="form-success" style={{ fontSize: '0.95rem', marginTop: '0.5rem' }}>
-                  {submitMessage}
-                </p>
+              {submitStatus === 'success' ? (
+                <div className="form-success-block">
+                  <span className="form-success-icon" aria-hidden>✓</span>
+                  <p className="form-success-title">{submitMessage}</p>
+                  <p className="form-success-detail">{t('contact.submitSuccessDetail')}</p>
+                  <button type="button" className="btn btn-outline" onClick={() => { setSubmitMessage(''); setSubmitStatus(null); }}>
+                    {t('contact.sendAnother')}
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <div className="form-group">
+                    <label htmlFor="fullName">{t('contact.formName')}</label>
+                    <input type="text" id="fullName" name="name" required />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="email">{t('contact.formEmail')}</label>
+                    <input type="email" id="email" name="_replyto" placeholder={t('contact.formEmailPlaceholder')} />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="subject">{t('contact.formSubject')}</label>
+                    <select id="subject" name="subject" required>
+                      <option value="">{t('contact.formSubjectPlaceholder')}</option>
+                      {subjectOptionsArray.map((opt) => (
+                        <option key={opt} value={opt}>{opt}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="message">{t('contact.formMessage')}</label>
+                    <textarea id="message" name="message" rows="5" required />
+                  </div>
+                  <button type="submit" className="btn btn-primary" disabled={submitting}>
+                    {submitting ? t('contact.formSending') : t('contact.formSubmit')}
+                  </button>
+                  {submitMessage && submitStatus === 'error' && (
+                    <p className="form-error" style={{ fontSize: '0.95rem', marginTop: '0.5rem' }}>{submitMessage}</p>
+                  )}
+                </>
               )}
             </form>
           </div>

@@ -9,6 +9,8 @@ const FOOTER_LINKS = [
     { labelKey: 'footer.ourStory', to: '/company/our-story' },
     { labelKey: 'footer.industryEvents', to: '/events' },
     { labelKey: 'footer.contact', to: '/contact' },
+  ]},
+  { categoryKey: 'footer.legal', links: [
     { labelKey: 'footer.privacyPolicy', to: '/privacy' },
   ]},
   { categoryKey: 'footer.products', links: [
@@ -44,6 +46,9 @@ export default function Footer() {
           </Link>
           <p className="footer-brand-desc">
             {t('footer.brandDesc')}
+          </p>
+          <p className="footer-get-updates">
+            {t('footer.getUpdates')} <Link to="/contact" className="footer-get-updates-link">{t('footer.contact')}</Link>
           </p>
           <div className="footer-social">
             <a

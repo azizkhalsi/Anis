@@ -23,7 +23,9 @@ export function ScrollPositionProvider({ children }) {
       rafRef.current = requestAnimationFrame(() => {
         const y = window.scrollY;
         const prev = lastSent.current;
-        const pastThreshold = Math.abs(y - prev) >= SCROLL_UPDATE_THRESHOLD;
+        const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+        const threshold = isMobile ? 56 : SCROLL_UPDATE_THRESHOLD;
+        const pastThreshold = Math.abs(y - prev) >= threshold;
         const cross50 = (prev <= 50 && y > 50) || (prev > 50 && y <= 50);
         const cross400 = (prev <= 400 && y > 400) || (prev > 400 && y <= 400);
         if (y !== prev && (pastThreshold || cross50 || cross400)) {

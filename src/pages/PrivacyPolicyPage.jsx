@@ -1,66 +1,84 @@
+import { useTranslation } from 'react-i18next';
 import PageHeader from '../components/PageHeader';
 
+const localeForDate = (lng) => (lng && lng.startsWith('de') ? 'de-DE' : 'en-GB');
+
 export default function PrivacyPolicyPage() {
+  const { t, i18n } = useTranslation();
+  const dateLocale = localeForDate(i18n.language);
   return (
     <>
       <PageHeader
-        tag="Legal"
-        title="Privacy Policy"
-        description="How we collect, use, and protect your information when you use our website and contact form."
+        tag={t('privacyPage.pageTag')}
+        title={t('privacyPage.pageTitle')}
+        description={t('privacyPage.pageDescription')}
       />
       <section className="privacy-policy page-content">
-        <div className="container">
+        <div className="container container--privacy-with-toc">
+          <nav className="privacy-toc" aria-label={t('privacyPage.onThisPage')}>
+            <p className="privacy-toc-title">{t('privacyPage.onThisPage')}</p>
+            <ol className="privacy-toc-list">
+              {[1,2,3,4,5,6,7,8,9].map((n) => (
+                <li key={n}>
+                  <a href={`#privacy-section-${n}`} className="privacy-toc-link">{t(`privacyPage.section${n}Title`)}</a>
+                </li>
+              ))}
+            </ol>
+          </nav>
           <div className="privacy-policy-content">
             <p className="privacy-policy-updated">
-              <strong>Last updated:</strong> {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+              <strong>{t('privacyPage.lastUpdated')}</strong>{' '}
+              {new Date().toLocaleDateString(dateLocale, { day: 'numeric', month: 'long', year: 'numeric' })}
             </p>
 
-            <h2>1. Who we are</h2>
+            <h2 id="privacy-section-1">{t('privacyPage.section1Title')}</h2>
+            <p>{t('privacyPage.section1Body')}</p>
+
+            <h2 id="privacy-section-2">{t('privacyPage.section2Title')}</h2>
             <p>
-              Appcon Technologies (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;) operates this website. We are an R&D engineering firm specializing in sensorless motor control and power electronics. This Privacy Policy explains how we handle your personal data when you use our site or contact us.
+              {t('privacyPage.section2IntroPrefix')}
+              <strong>{t('privacyPage.section2IntroBold')}</strong>
+              {t('privacyPage.section2IntroSuffix')}
             </p>
-
-            <h2>2. What data we collect</h2>
-            <p>When you use our <strong>contact form</strong>, we collect only what you choose to send:</p>
             <ul>
-              <li>Name</li>
-              <li>Email address</li>
-              <li>Subject and message content</li>
+              <li>{t('privacyPage.section2ListItem1')}</li>
+              <li>{t('privacyPage.section2ListItem2')}</li>
+              <li>{t('privacyPage.section2ListItem3')}</li>
             </ul>
-            <p>We do not use a database to store form submissions. Your message is sent to us via a third‑party form service (e.g. Formspree) and/or by email. We do not collect personal data for any purpose other than responding to your inquiry.</p>
+            <p>{t('privacyPage.section2Note')}</p>
 
-            <h2>3. How we use your data</h2>
-            <p>We use the data you provide only to:</p>
+            <h2 id="privacy-section-3">{t('privacyPage.section3Title')}</h2>
+            <p>{t('privacyPage.section3Intro')}</p>
             <ul>
-              <li>Respond to your contact request</li>
-              <li>Manage our business relationship with you if you are or become a client or partner</li>
+              <li>{t('privacyPage.section3ListItem1')}</li>
+              <li>{t('privacyPage.section3ListItem2')}</li>
             </ul>
-            <p>We do not sell, rent, or share your personal data with third parties for marketing. We do not use your email or message content for any purpose other than as described above.</p>
+            <p>{t('privacyPage.section3Note')}</p>
 
-            <h2>4. Where your data goes</h2>
-            <p>Contact form submissions are processed by a form provider (e.g. Formspree) and delivered to our team by email. We may retain correspondence in our email systems for as long as needed to fulfil your request and for legitimate business and legal purposes. We do not store your data in a separate database on this website.</p>
+            <h2 id="privacy-section-4">{t('privacyPage.section4Title')}</h2>
+            <p>{t('privacyPage.section4Body')}</p>
 
-            <h2>5. Security and confidentiality</h2>
-            <p>We treat your data as confidential. Our website uses HTTPS so data in transit is encrypted. We take reasonable steps to keep the data we receive (e.g. via email) secure and to limit access to those who need it to respond to you. No system is 100% secure; we do not guarantee absolute security but we work to protect your information.</p>
+            <h2 id="privacy-section-5">{t('privacyPage.section5Title')}</h2>
+            <p>{t('privacyPage.section5Body')}</p>
 
-            <h2>6. Your rights</h2>
-            <p>Depending on where you live, you may have the right to:</p>
+            <h2 id="privacy-section-6">{t('privacyPage.section6Title')}</h2>
+            <p>{t('privacyPage.section6Intro')}</p>
             <ul>
-              <li>Ask what personal data we hold about you</li>
-              <li>Request correction or deletion of your data</li>
-              <li>Object to or restrict certain processing</li>
-              <li>Lodge a complaint with a supervisory authority</li>
+              <li>{t('privacyPage.section6ListItem1')}</li>
+              <li>{t('privacyPage.section6ListItem2')}</li>
+              <li>{t('privacyPage.section6ListItem3')}</li>
+              <li>{t('privacyPage.section6ListItem4')}</li>
             </ul>
-            <p>To exercise these rights or ask questions about this policy, contact us using the contact form or the details on our Contact page.</p>
+            <p>{t('privacyPage.section6Note')}</p>
 
-            <h2>7. Cookies and similar technologies</h2>
-            <p>We may use essential cookies (e.g. for language preference) and, if applicable, analytics cookies to understand how visitors use our site. We will not use non‑essential cookies without your consent where required by law. You can change your cookie preferences in your browser settings.</p>
+            <h2 id="privacy-section-7">{t('privacyPage.section7Title')}</h2>
+            <p>{t('privacyPage.section7Body')}</p>
 
-            <h2>8. Changes to this policy</h2>
-            <p>We may update this Privacy Policy from time to time. The &quot;Last updated&quot; date at the top will be revised when we do. We encourage you to check this page occasionally for changes.</p>
+            <h2 id="privacy-section-8">{t('privacyPage.section8Title')}</h2>
+            <p>{t('privacyPage.section8Body')}</p>
 
-            <h2>9. Contact</h2>
-            <p>For any questions about this Privacy Policy or our use of your data, please contact us via the contact form or the details provided on our Contact page.</p>
+            <h2 id="privacy-section-9">{t('privacyPage.section9Title')}</h2>
+            <p>{t('privacyPage.section9Body')}</p>
           </div>
         </div>
       </section>

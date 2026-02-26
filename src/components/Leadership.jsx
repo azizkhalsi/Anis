@@ -2,13 +2,13 @@ import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 
-export default function Leadership() {
+export default function Leadership({ embedded }) {
   const { t } = useTranslation();
   const ref = useRef(null);
   const visible = useScrollAnimation(ref);
 
   return (
-    <section className="leadership-section">
+    <section className={`leadership-section${embedded ? ' leadership-section--embedded' : ''}`}>
       <div className="container">
         <div className={`ceo-section ${visible ? 'visible' : ''}`} ref={ref} data-animate="fade-up">
           <div className="ceo-card">

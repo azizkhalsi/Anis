@@ -6,8 +6,10 @@ import Layout from './components/Layout';
 function PageFallback() {
   const { t } = useTranslation();
   return (
-    <div className="container" style={{ padding: '4rem 24px', textAlign: 'center', color: 'var(--text-muted)' }}>
-      {t('common.loading')}
+    <div className="page-fallback">
+      <img src="/logo.png" alt="" className="page-fallback-logo" width="140" height="35" />
+      <div className="page-fallback-spinner" aria-hidden />
+      <p className="page-fallback-text">{t('common.loading')}</p>
     </div>
   );
 }

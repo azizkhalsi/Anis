@@ -1,10 +1,16 @@
 {
   "common": {
     "loading": "Loading…",
+    "skipToContent": "Skip to main content",
     "langEn": "ENG",
     "langDe": "DE",
+    "languageSetTo": "Language set to",
+    "langNameEn": "English",
+    "langNameDe": "German",
     "stickyCtaText": "Ready to discuss your project?",
-    "getInTouch": "Get in touch"
+    "getInTouch": "Get in touch",
+    "breadcrumbHome": "Home",
+    "language": "Language"
   },
   "nav": {
     "home": "Home",
@@ -34,7 +40,9 @@
   },
   "footer": {
     "brandDesc": "Appcon Technologies is an R&D engineering firm specializing in sensorless control of electrical motors and the conceptualization and optimization of power electronics. Innovating the future of motor control solutions since 2004.",
+    "getUpdates": "Get updates on our solutions and news.",
     "company": "Company",
+    "legal": "Legal",
     "products": "Products",
     "expertise": "Expertise",
     "industries": "Industries",
@@ -65,6 +73,8 @@
       "subtitle": "Reduce cost and complexity with sensorless solutions — no encoders, fewer parts, higher reliability.",
       "exploreExpertise": "Explore Our Expertise",
       "ourProducts": "Our Products",
+      "trySimulator": "Try Simulator",
+      "scrollToExplore": "Scroll to explore",
       "statYears": "Years Experience",
       "statProducts": "Innovative Products",
       "statUnits": "Units in Production",
@@ -116,6 +126,7 @@
   "products": {
     "pageTag": "Products",
     "defaultDescription": "Innovative solutions for motor control.",
+    "compareWithDmk": "Compare with DMK",
     "dmk": {
       "name": "DMK",
       "tagline": "Drive Measurement Kit",
@@ -514,6 +525,8 @@
     "formSubmit": "Submit",
     "formSending": "Sending…",
     "submitSuccess": "Thank you.",
+    "submitSuccessDetail": "We'll reply within a few business days.",
+    "sendAnother": "Send another message",
     "submitError": "Something went wrong. Please try again.",
     "addressLabel": "Address",
     "addressValue": "Parc Technologique BP 130\nAriana, 2088\nTunisia",
@@ -527,5 +540,44 @@
     "websiteValue": "www.appcon-technologies.com",
     "linkedInLabel": "LinkedIn",
     "linkedInValue": "Appcon Technologies"
+  },
+  "privacyPage": {
+    "pageTag": "Legal",
+    "pageTitle": "Privacy Policy",
+    "pageDescription": "How we collect, use, and protect your information when you use our website and contact form.",
+    "lastUpdated": "Last updated:",
+    "section1Title": "1. Who we are",
+    "section1Body": "Appcon Technologies (\"we\", \"us\", \"our\") operates this website. We are an R&D engineering firm specializing in sensorless motor control and power electronics. This Privacy Policy explains how we handle your personal data when you use our site or contact us.",
+    "section2Title": "2. What data we collect",
+    "section2IntroPrefix": "When you use our ",
+    "section2IntroBold": "contact form",
+    "section2IntroSuffix": ", we collect only what you choose to send:",
+    "section2ListItem1": "Name",
+    "section2ListItem2": "Email address",
+    "section2ListItem3": "Subject and message content",
+    "section2Note": "We do not use a database to store form submissions. Your message is sent to us via a third‑party form service (e.g. Formspree) and/or by email. We do not collect personal data for any purpose other than responding to your inquiry.",
+    "section3Title": "3. How we use your data",
+    "section3Intro": "We use the data you provide only to:",
+    "section3ListItem1": "Respond to your contact request",
+    "section3ListItem2": "Manage our business relationship with you if you are or become a client or partner",
+    "section3Note": "We do not sell, rent, or share your personal data with third parties for marketing. We do not use your email or message content for any purpose other than as described above.",
+    "section4Title": "4. Where your data goes",
+    "section4Body": "Contact form submissions are processed by a form provider (e.g. Formspree) and delivered to our team by email. We may retain correspondence in our email systems for as long as needed to fulfil your request and for legitimate business and legal purposes. We do not store your data in a separate database on this website.",
+    "section5Title": "5. Security and confidentiality",
+    "section5Body": "We treat your data as confidential. Our website uses HTTPS so data in transit is encrypted. We take reasonable steps to keep the data we receive (e.g. via email) secure and to limit access to those who need it to respond to you. No system is 100% secure; we do not guarantee absolute security but we work to protect your information.",
+    "section6Title": "6. Your rights",
+    "section6Intro": "Depending on where you live, you may have the right to:",
+    "section6ListItem1": "Ask what personal data we hold about you",
+    "section6ListItem2": "Request correction or deletion of your data",
+    "section6ListItem3": "Object to or restrict certain processing",
+    "section6ListItem4": "Lodge a complaint with a supervisory authority",
+    "section6Note": "To exercise these rights or ask questions about this policy, contact us using the contact form or the details on our Contact page.",
+    "section7Title": "7. Cookies and similar technologies",
+    "section7Body": "We may use essential cookies (e.g. for language preference) and, if applicable, analytics cookies to understand how visitors use our site. We will not use non‑essential cookies without your consent where required by law. You can change your cookie preferences in your browser settings.",
+    "section8Title": "8. Changes to this policy",
+    "section8Body": "We may update this Privacy Policy from time to time. The \"Last updated\" date at the top will be revised when we do. We encourage you to check this page occasionally for changes.",
+    "section9Title": "9. Contact",
+    "section9Body": "For any questions about this Privacy Policy or our use of your data, please contact us via the contact form or the details provided on our Contact page.",
+    "onThisPage": "On this page"
   }
 }

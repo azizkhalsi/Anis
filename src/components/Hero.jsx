@@ -142,7 +142,12 @@ export default function Hero() {
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
           </Link>
           <Link to="/products" className="btn btn-outline">{t('home.hero.ourProducts')}</Link>
+          <Link to="/simulator" className="btn btn-outline">{t('home.hero.trySimulator')}</Link>
         </div>
+        <a href="#client-logos" className="hero-scroll-hint" aria-label={t('home.hero.scrollToExplore')}>
+          <span className="hero-scroll-hint-text">{t('home.hero.scrollToExplore')}</span>
+          <span className="hero-scroll-hint-chevron" aria-hidden>↓</span>
+        </a>
         <div className="hero-stats" data-animate="fade-up">
           <StatCounter target={20} suffix="+" labelKey="home.hero.statYears" />
           <div className="stat-divider" />

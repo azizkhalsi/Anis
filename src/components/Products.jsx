@@ -338,6 +338,14 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
             ))}
           </div>
 
+          {(active === 'lci' || active === 'amc') && (
+            <p className="product-compare-wrap">
+              <button type="button" className="product-compare-btn" onClick={() => setActive('dmk')}>
+                {t('products.compareWithDmk')} →
+              </button>
+            </p>
+          )}
+
           {active === 'dmk' && (
             <>
               <div
