@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import PageHeader from '../components/PageHeader';
 import About from '../components/About';
 import Leadership from '../components/Leadership';
+import PublicationsList from '../components/PublicationsList';
 
 export default function AboutPage() {
   const { t } = useTranslation();
@@ -14,6 +15,7 @@ export default function AboutPage() {
       />
       <About />
       <Leadership embedded />
+      <PublicationsList />
     </>
   );
 }

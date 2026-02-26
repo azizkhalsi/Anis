@@ -33,26 +33,23 @@ const SHOWCASE_IMAGES = [
   },
 ];
 
-function getRandomImageIndices() {
-  const count = Math.floor(Math.random() * 2) + 2;
-  const indices = [];
-  while (indices.length < count) {
-    const randomIndex = Math.floor(Math.random() * SHOWCASE_IMAGES.length);
-    if (!indices.includes(randomIndex)) {
-      indices.push(randomIndex);
-    }
-  }
-  return indices;
-}
+/** Diagonal pairs (never same row): 2 on 2, cycling every 2s — feels varied, not aligned. */
+const IMAGE_PAIRS = [
+  [0, 3], // top-left + bottom-right
+  [1, 2], // top-right + bottom-left
+  [4, 1], // center-left + top-right
+  [5, 2], // center-right + bottom-left
+];
+const PAIR_INTERVAL_MS = 2000;
 
 export default function FloatingShowcase() {
-  const [visibleImages, setVisibleImages] = useState(getRandomImageIndices);
+  const [pairIndex, setPairIndex] = useState(0);
+  const visibleImages = IMAGE_PAIRS[pairIndex] ?? IMAGE_PAIRS[0];
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setVisibleImages(getRandomImageIndices());
-    }, 2500 + Math.random() * 2000);
-
+      setPairIndex((prev) => (prev + 1) % IMAGE_PAIRS.length);
+    }, PAIR_INTERVAL_MS);
     return () => clearInterval(interval);
   }, []);
 

@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 
@@ -9,6 +9,8 @@ const STEP_IMAGES = [
   '/images/prototyping/step4-fabricated.png',
   '/images/prototyping/step5-assembled.png',
 ];
+
+const MOBILE_BREAKPOINT = 968;
 
 function ArrowConnector({ index }) {
   return (
@@ -25,7 +27,21 @@ function ArrowConnector({ index }) {
 export default function PrototypingJourney() {
   const { t } = useTranslation();
   const sectionRef = useRef(null);
-  const sectionVisible = useScrollAnimation(sectionRef, { threshold: 0.08 });
+  const [observerOptions, setObserverOptions] = useState({
+    threshold: 0.08,
+    rootMargin: '0px 0px -80px 0px',
+  });
+
+  useEffect(() => {
+    const isMobile = typeof window !== 'undefined' && window.innerWidth <= MOBILE_BREAKPOINT;
+    setObserverOptions(
+      isMobile
+        ? { threshold: 0.01, rootMargin: '0px 0px -20px 0px' }
+        : { threshold: 0.08, rootMargin: '0px 0px -80px 0px' }
+    );
+  }, []);
+
+  const sectionVisible = useScrollAnimation(sectionRef, observerOptions);
 
   const steps = t('expertise.prototypingJourney.steps', { returnObjects: true });
   const stepsArray = Array.isArray(steps) ? steps : [];

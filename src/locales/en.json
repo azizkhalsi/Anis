@@ -579,5 +579,45 @@
     "section9Title": "9. Contact",
     "section9Body": "For any questions about this Privacy Policy or our use of your data, please contact us via the contact form or the details provided on our Contact page.",
     "onThisPage": "On this page"
+  },
+  "publications": {
+    "sectionTitle": "Publications & research",
+    "sectionSubtitle": "Selected contributions by Dr. Hafedh Sammoud",
+    "viewOnResearchGate": "View on ResearchGate",
+    "viewAllOnResearchGate": "View all contributions on ResearchGate",
+    "profileUrl": "https://www.researchgate.net/scientific-contributions/Hafedh-Sammoud-2024639483",
+    "viewPublications": "Publications & research",
+    "types": {
+      "article": "Article",
+      "conference": "Conference Paper",
+      "chapter": "Chapter",
+      "data": "Data"
+    },
+    "item0Title": "Literature review on monitoring systems for photovoltaic plants",
+    "item0Venue": "",
+    "item1Title": "A real time, wireless and low cost data acquisition system for residential PV modules",
+    "item1Venue": "",
+    "item2Title": "Reconfigurable DC/DC Converter for Efficiency and Reliability Optimization",
+    "item2Venue": "IEEE Journal of Emerging and Selected Topics in Power Electronics",
+    "item3Title": "An Improved Sensorless IPMSM Control at Low speeds and Standstill for Washing Machine Drives Using dsPIC Technology",
+    "item3Venue": "Control Engineering and Applied Informatics",
+    "item4Title": "Comparative study of topologies of single phase static converters for grid connected PV systems",
+    "item4Venue": "",
+    "item5Title": "A modified AVI technique demodulation scheme based IPMSM sensorless control at low speeds and standstill",
+    "item5Venue": "",
+    "item6Title": "Continuous HFSI techniques applied to rotor position estimation of IPMSM at standstill and low speed — A survey",
+    "item6Venue": "",
+    "item7Title": "DC/DC converter and power electronics data (JESTPE 2017)",
+    "item7Venue": "IEEE JESTPE",
+    "items": [
+      { "titleKey": "publications.item0Title", "venueKey": "publications.item0Venue", "type": "chapter", "year": "2021", "url": "https://www.researchgate.net/publication/352530534_Literature_review_on_monitoring_systems_for_photovoltaic_plants" },
+      { "titleKey": "publications.item1Title", "venueKey": "publications.item1Venue", "type": "conference", "year": "2020", "url": "https://www.researchgate.net/publication/345161980_A_real_time_wireless_and_low_cost_data_acquisition_system_for_residential_PV_modules" },
+      { "titleKey": "publications.item2Title", "venueKey": "publications.item2Venue", "type": "article", "year": "2017", "url": "https://www.researchgate.net/publication/314202299_Reconfigurable_DCDC_Converter_for_Efficiency_and_Reliability_Optimization" },
+      { "titleKey": "publications.item3Title", "venueKey": "publications.item3Venue", "type": "article", "year": "2015", "url": "https://www.researchgate.net/publication/279318826_An_Improved_Sensorless_IPMSM_Control_at_Low_speeds_and_Standstill_for_Washing_Machine_Drives_Using_dsPIC_Technology" },
+      { "titleKey": "publications.item4Title", "venueKey": "publications.item4Venue", "type": "conference", "year": "2014", "url": "https://www.researchgate.net/publication/301403525_Comparative_study_of_topologies_of_single_phase_static_converters_for_grid_connected_PV_systems" },
+      { "titleKey": "publications.item5Title", "venueKey": "publications.item5Venue", "type": "conference", "year": "2013", "url": "https://www.researchgate.net/publication/261379642_A_modified_AVI_technique_demodulation_scheme_based_IPMSM_sensorless_control_at_low_speeds_and_standstill" },
+      { "titleKey": "publications.item6Title", "venueKey": "publications.item6Venue", "type": "conference", "year": "2011", "url": "https://www.researchgate.net/publication/261502834_Continuous_HFSI_techniques_applied_to_rotor_position_estimation_of_IPMSM_at_standstill_and_low_speed_-_A_survey" },
+      { "titleKey": "publications.item7Title", "venueKey": "publications.item7Venue", "type": "data", "year": "2017", "url": "https://www.researchgate.net/publication/314278277_101109JESTPE20172676027" }
+    ]
   }
 }
