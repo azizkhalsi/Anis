@@ -304,10 +304,10 @@
     }
   },
   "simulator": {
-    "start": "START",
-    "stop": "STOP",
-    "startTip": "Start",
-    "stopTip": "Stop",
+  "start": "START",
+  "stop": "STOPP",
+  "startTip": "Start",
+  "stopTip": "Stopp",
     "systemControl": "Systemsteuerung",
     "modulationStrategy": "Modulationsstrategie",
     "machineParameters": "Maschinenparameter",
