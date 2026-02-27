@@ -2,12 +2,13 @@ import { useRef, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 
+const BASE = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
 const STEP_IMAGES = [
-  '/images/prototyping/step1-schematic.png',
-  '/images/prototyping/step2-layout.png',
-  '/images/prototyping/step3-artwork.png',
-  '/images/prototyping/step4-fabricated.png',
-  '/images/prototyping/step5-assembled.png',
+  `${BASE}images/prototyping/step1-schematic.png`,
+  `${BASE}images/prototyping/step2-layout.png`,
+  `${BASE}images/prototyping/step3-artwork.png`,
+  `${BASE}images/prototyping/step4-fabricated.png`,
+  `${BASE}images/prototyping/step5-assembled.png`,
 ];
 
 const MOBILE_BREAKPOINT = 968;

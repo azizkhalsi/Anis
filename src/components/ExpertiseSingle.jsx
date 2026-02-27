@@ -48,7 +48,6 @@ export default function ExpertiseSingle() {
               <div className="expertise-mbd-diagram-frame">
                 <img
                   src={MBD_DIAGRAM_SRC}
-                  srcSet={`${MBD_DIAGRAM_SRC} 1x, ${MBD_DIAGRAM_SRC_2X} 2x`}
                   sizes="(max-width: 968px) 100vw, 1100px"
                   alt={t('expertise.tabs.mbd.visualLabel')}
                   className="expertise-mbd-diagram-img"
