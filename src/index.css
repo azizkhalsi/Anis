@@ -138,6 +138,37 @@ main {
     line-height: 1.7;
 }
 
+/* Page headers: subtle staggered entrance (tag → title → description) */
+.page-header-content .section-tag {
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+}
+.page-header-content.visible .section-tag {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.page-header-content .page-header-title {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.5s ease 0.05s, transform 0.5s ease 0.05s;
+}
+.page-header-content.visible .page-header-title {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.page-header-content .page-header-desc {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease 0.12s, transform 0.5s ease 0.12s;
+}
+.page-header-content.visible .page-header-desc {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 /* Simulator page section: compact padding, allows window scroll for StickyCTA */
 .simulator-section {
     padding: 20px 0 44px;
