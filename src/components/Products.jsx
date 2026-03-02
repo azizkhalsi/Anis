@@ -89,6 +89,50 @@ function LciVisual() {
   );
 }
 
+/** Single ad-style unit: illustration + copy fused in one graphic (no separate text block) */
+function LciHeroAd() {
+  const { t } = useTranslation();
+  return (
+    <svg
+      className="lci-hero-ad"
+      viewBox="0 0 640 300"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      role="img"
+      aria-label={t('products.lci.lciHeroImageAlt')}
+    >
+      <title>{t('products.lci.lciHeroImageAlt')}</title>
+      {/* Ad copy as part of the graphic – “Tired of reinventing the wheel?” style */}
+      <text className="lci-hero-ad-line1" x="320" y="52" textAnchor="middle">{t('products.lci.lciHeroAdLine1')}</text>
+      <text className="lci-hero-ad-line2" x="320" y="258" textAnchor="middle">{t('products.lci.lciHeroAdLine2')}</text>
+
+      {/* The “wheel” that already exists – slow rotation for a bit of fun */}
+      <g className="lci-hero-ad-gear" transform="translate(160, 150)">
+        <circle r="52" stroke="currentColor" strokeWidth="2" strokeDasharray="5 4" opacity="0.55" />
+        <circle r="34" stroke="currentColor" strokeWidth="1.5" opacity="0.4" />
+        <path d="M0-34v10l-8 16 16 0-8-16V-34zm0 68v10l8-16-16 0 8 16v10zm-34-24h10l16 8 0-16-16 8h-10zm68 0h10l-16-8 0 16 16-8h10zm-54-46l8 8-10 12-8-8 10-12zm60 0l-8 8 10 12 8-8-10-12zm-60 60l8-8 10 12-8 8-10-12zm60 0l-8-8-10 12 8 8 10-12z" stroke="currentColor" strokeWidth="1.5" fill="none" opacity="0.7" />
+      </g>
+
+      {/* Electrical side – the “other” domain */}
+      <g className="lci-hero-ad-circuit" transform="translate(380, 90)">
+        <rect width="112" height="112" x="0" y="0" rx="10" stroke="currentColor" strokeWidth="2" opacity="0.5" />
+        <path d="M24 24h26M24 56h50M24 88h26M62 24v68M34 56h28" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity="0.6" />
+        <circle cx="34" cy="24" r="4" fill="currentColor" opacity="0.75" />
+        <circle cx="74" cy="56" r="4" fill="currentColor" opacity="0.75" />
+        <circle cx="34" cy="88" r="4" fill="currentColor" opacity="0.75" />
+      </g>
+
+      {/* LCI = the link (no reinventing – just customize) */}
+      <g className="lci-hero-ad-bridge" transform="translate(268, 128)">
+        <rect width="104" height="44" x="0" y="0" rx="8" stroke="currentColor" strokeWidth="2" fill="currentColor" fillOpacity="0.06" />
+        <text x="52" y="28" textAnchor="middle" className="lci-hero-ad-lci-label">LCI</text>
+      </g>
+      <line x1="212" y1="150" x2="268" y2="150" stroke="currentColor" strokeWidth="1.5" opacity="0.4" strokeDasharray="5 4" />
+      <line x1="372" y1="150" x2="380" y2="150" stroke="currentColor" strokeWidth="1.5" opacity="0.4" strokeDasharray="5 4" />
+    </svg>
+  );
+}
+
 function DmkPcSoftwareScene() {
   const { t } = useTranslation();
   const [screenOpen, setScreenOpen] = useState(false);
@@ -256,6 +300,7 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
   const amcGameChangerRef = useRef(null);
   const amcSensorlessRef = useRef(null);
   const comparisonRef = useRef(null);
+  const lciHeroRef = useRef(null);
   const navVisible = useScrollAnimation(navRef);
   const featureBlocksVisible = useScrollAnimation(featureBlocksRef, { threshold: 0.08 });
   const hmiVisible = useScrollAnimation(hmiSectionRef, { threshold: 0.08 });
@@ -264,6 +309,7 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
   const amcGameChangerVisible = useScrollAnimation(amcGameChangerRef, { threshold: 0.08 });
   const amcSensorlessVisible = useScrollAnimation(amcSensorlessRef, { threshold: 0.08 });
   const comparisonVisible = useScrollAnimation(comparisonRef, { threshold: 0.08 });
+  const lciHeroVisible = useScrollAnimation(lciHeroRef, { threshold: 0.08 });
   const product = PRODUCTS.find((p) => p.id === active);
   const Visual = VISUALS[active];
   const productName = product ? t(`products.${active}.name`) : '';
@@ -311,6 +357,16 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
               <Visual />
             </div>
           </div>
+
+          {active === 'lci' && (
+            <div
+              className={`lci-hero ${lciHeroVisible ? 'visible' : ''}`}
+              ref={lciHeroRef}
+              data-animate="fade-up"
+            >
+              <LciHeroAd />
+            </div>
+          )}
 
           <div className="product-highlights">
             {Array.isArray(productHighlights) && productHighlights.map((h, idx) => (

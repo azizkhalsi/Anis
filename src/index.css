@@ -4567,6 +4567,96 @@ section {
     }
 }
 
+/* ========== LCI HERO (one ad-style graphic – copy + art in one unit) ========== */
+.lci-hero {
+    position: relative;
+    padding: 32px 40px 36px;
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.5s ease;
+}
+
+.lci-hero.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.lci-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(140deg, var(--accent-surface) 0%, rgba(196, 43, 43, 0.08) 40%, var(--gradient-subtle) 100%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Single ad graphic – no separate text block */
+.lci-hero-ad {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    margin: 0 auto;
+    color: var(--text);
+}
+
+/* Ad copy drawn inside the graphic */
+.lci-hero-ad-line1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    fill: var(--text);
+}
+
+.lci-hero-ad-line2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    fill: var(--accent);
+    letter-spacing: 0.03em;
+}
+
+/* “Wheel” that already exists – slow spin for a bit of fun */
+.lci-hero-ad-gear {
+    transform-origin: 0 0;
+    animation: lci-hero-gear-spin 18s linear infinite;
+}
+
+.lci-hero:hover .lci-hero-ad-gear {
+    animation-duration: 8s;
+}
+
+@keyframes lci-hero-gear-spin {
+    from { transform: translate(160px, 150px) rotate(0deg); }
+    to { transform: translate(160px, 150px) rotate(360deg); }
+}
+
+.lci-hero-ad-lci-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    fill: var(--accent);
+}
+
+@media (max-width: 768px) {
+    .lci-hero {
+        padding: 24px 20px 28px;
+    }
+    .lci-hero-ad {
+        max-width: 100%;
+    }
+    .lci-hero-ad-line1 {
+        font-size: 17px;
+    }
+    .lci-hero-ad-line2 {
+        font-size: 15px;
+    }
+}
+
 /* ========== LCI VISUAL ========== */
 .lci-visual {
     display: flex;

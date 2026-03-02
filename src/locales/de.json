@@ -197,7 +197,13 @@
         { "label": "Kompakt", "detail": "Minimaler Bauraum" }
       ],
       "tags": ["PMSM", "Sensorlose FOC", "Kostenoptimiert", "Haushaltsgeräte", "Elektrowerkzeuge", "E-Bikes"],
-      "pcbAlt": "LCI Low-Cost Inverter — runde Leiterplatte"
+      "pcbAlt": "LCI Low-Cost Inverter — runde Leiterplatte",
+      "lciHeroAdLine1": "Keine Lust, das Rad neu zu erfinden?",
+      "lciHeroAdLine2": "Gestalten Sie Ihre Lösung.",
+      "lciHeroHeadline": "Kein Grund, das Rad neu zu erfinden",
+      "lciHeroProblem": "Ihr Team beherrscht die Mechanik — das Produkt hat aber elektrische Komponenten. Führungskräfte geraten an Grenzen, Ingenieure arbeiten außerhalb ihrer Expertise, und etwas geht schief. Sie müssen nicht besitzen, was Sie nicht gebaut haben.",
+      "lciHeroSolution": "Gestalten Sie Ihre eigene Lösung. LCI liefert eine serienreife Inverter-Plattform, die beide Welten trennt: konzentrieren Sie sich auf Ihr Gebiet, integrieren Sie unseres.",
+      "lciHeroImageAlt": "LCI trennt mechanische und elektrische Domänen, sodass Teams sich auf ihre Expertise konzentrieren können — passen Sie Ihre Lösung an, ohne das Rad neu zu erfinden."
     },
     "amc": {
       "name": "AMC",

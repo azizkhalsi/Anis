@@ -197,7 +197,13 @@
         { "label": "Compact", "detail": "Minimal footprint" }
       ],
       "tags": ["PMSM", "Sensorless FOC", "Cost-Optimized", "Household Appliances", "Power Tools", "E-Bikes"],
-      "pcbAlt": "LCI Low-Cost Inverter — circular PCB"
+      "pcbAlt": "LCI Low-Cost Inverter — circular PCB",
+      "lciHeroAdLine1": "Tired of reinventing the wheel?",
+      "lciHeroAdLine2": "Customize your solution.",
+      "lciHeroHeadline": "No need to reinvent the wheel",
+      "lciHeroProblem": "Your team excels in mechanical design — but the product has electrical components. Managers get stuck, engineers step outside their expertise, and things break. You don't have to own what you didn't build.",
+      "lciHeroSolution": "Customize your own solution. LCI gives you a production-ready inverter platform that separates both worlds: focus on your domain, integrate ours.",
+      "lciHeroImageAlt": "LCI: tired of reinventing the wheel? Customize your solution — mechanical and electrical domains separated."
     },
     "amc": {
       "name": "AMC",
