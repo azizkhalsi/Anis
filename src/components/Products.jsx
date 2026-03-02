@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 import OscilloscopeDisplay from './OscilloscopeDisplay';
@@ -86,50 +87,6 @@ function LciVisual() {
         decoding="async"
       />
     </div>
-  );
-}
-
-/** Single ad-style unit: illustration + copy fused in one graphic (no separate text block) */
-function LciHeroAd() {
-  const { t } = useTranslation();
-  return (
-    <svg
-      className="lci-hero-ad"
-      viewBox="0 0 640 300"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      role="img"
-      aria-label={t('products.lci.lciHeroImageAlt')}
-    >
-      <title>{t('products.lci.lciHeroImageAlt')}</title>
-      {/* Ad copy as part of the graphic – “Tired of reinventing the wheel?” style */}
-      <text className="lci-hero-ad-line1" x="320" y="52" textAnchor="middle">{t('products.lci.lciHeroAdLine1')}</text>
-      <text className="lci-hero-ad-line2" x="320" y="258" textAnchor="middle">{t('products.lci.lciHeroAdLine2')}</text>
-
-      {/* The “wheel” that already exists – slow rotation for a bit of fun */}
-      <g className="lci-hero-ad-gear" transform="translate(160, 150)">
-        <circle r="52" stroke="currentColor" strokeWidth="2" strokeDasharray="5 4" opacity="0.55" />
-        <circle r="34" stroke="currentColor" strokeWidth="1.5" opacity="0.4" />
-        <path d="M0-34v10l-8 16 16 0-8-16V-34zm0 68v10l8-16-16 0 8 16v10zm-34-24h10l16 8 0-16-16 8h-10zm68 0h10l-16-8 0 16 16-8h10zm-54-46l8 8-10 12-8-8 10-12zm60 0l-8 8 10 12 8-8-10-12zm-60 60l8-8 10 12-8 8-10-12zm60 0l-8-8-10 12 8 8 10-12z" stroke="currentColor" strokeWidth="1.5" fill="none" opacity="0.7" />
-      </g>
-
-      {/* Electrical side – the “other” domain */}
-      <g className="lci-hero-ad-circuit" transform="translate(380, 90)">
-        <rect width="112" height="112" x="0" y="0" rx="10" stroke="currentColor" strokeWidth="2" opacity="0.5" />
-        <path d="M24 24h26M24 56h50M24 88h26M62 24v68M34 56h28" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity="0.6" />
-        <circle cx="34" cy="24" r="4" fill="currentColor" opacity="0.75" />
-        <circle cx="74" cy="56" r="4" fill="currentColor" opacity="0.75" />
-        <circle cx="34" cy="88" r="4" fill="currentColor" opacity="0.75" />
-      </g>
-
-      {/* LCI = the link (no reinventing – just customize) */}
-      <g className="lci-hero-ad-bridge" transform="translate(268, 128)">
-        <rect width="104" height="44" x="0" y="0" rx="8" stroke="currentColor" strokeWidth="2" fill="currentColor" fillOpacity="0.06" />
-        <text x="52" y="28" textAnchor="middle" className="lci-hero-ad-lci-label">LCI</text>
-      </g>
-      <line x1="212" y1="150" x2="268" y2="150" stroke="currentColor" strokeWidth="1.5" opacity="0.4" strokeDasharray="5 4" />
-      <line x1="372" y1="150" x2="380" y2="150" stroke="currentColor" strokeWidth="1.5" opacity="0.4" strokeDasharray="5 4" />
-    </svg>
   );
 }
 
@@ -300,7 +257,10 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
   const amcGameChangerRef = useRef(null);
   const amcSensorlessRef = useRef(null);
   const comparisonRef = useRef(null);
-  const lciHeroRef = useRef(null);
+  const lciProblemRef = useRef(null);
+  const lciShiftRef = useRef(null);
+  const lciWhyRef = useRef(null);
+  const lciCtaRef = useRef(null);
   const navVisible = useScrollAnimation(navRef);
   const featureBlocksVisible = useScrollAnimation(featureBlocksRef, { threshold: 0.08 });
   const hmiVisible = useScrollAnimation(hmiSectionRef, { threshold: 0.08 });
@@ -309,7 +269,10 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
   const amcGameChangerVisible = useScrollAnimation(amcGameChangerRef, { threshold: 0.08 });
   const amcSensorlessVisible = useScrollAnimation(amcSensorlessRef, { threshold: 0.08 });
   const comparisonVisible = useScrollAnimation(comparisonRef, { threshold: 0.08 });
-  const lciHeroVisible = useScrollAnimation(lciHeroRef, { threshold: 0.08 });
+  const lciProblemVisible = useScrollAnimation(lciProblemRef, { threshold: 0.1 });
+  const lciShiftVisible = useScrollAnimation(lciShiftRef, { threshold: 0.1 });
+  const lciWhyVisible = useScrollAnimation(lciWhyRef, { threshold: 0.08 });
+  const lciCtaVisible = useScrollAnimation(lciCtaRef, { threshold: 0.1 });
   const product = PRODUCTS.find((p) => p.id === active);
   const Visual = VISUALS[active];
   const productName = product ? t(`products.${active}.name`) : '';
@@ -325,6 +288,8 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
       queueMicrotask(() => setActive(initialProduct));
     }
   }, [initialProduct]);
+
+  const isLci = active === 'lci';
 
   return (
     <section className={`products ${singleMode ? 'products--single' : ''}`} id="products">
@@ -345,7 +310,92 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
           </div>
         )}
 
-        <div className="product-showcase-v2" key={product.id}>
+        <div className={`product-showcase-v2 ${isLci ? 'product-showcase-v2--lci' : ''}`} key={product.id}>
+          {/* ═══ LCI: Problem + Solution first (above title/PCB) ═══ */}
+          {isLci && (
+            <>
+              {/* Section 1: The Problem — relatable hook + visual */}
+              <div
+                className={`lci-problem ${lciProblemVisible ? 'visible' : ''}`}
+                ref={lciProblemRef}
+                data-animate="fade-up"
+              >
+                <div className="lci-problem-content">
+                  <div className="lci-problem-text">
+                    <span className="lci-problem-eyebrow">
+                      <span className="lci-problem-exclamation" aria-hidden>!</span>
+                      {t('products.lci.problemEyebrow')}
+                    </span>
+                    <h4 className="lci-problem-headline">{t('products.lci.problemHeadline')}</h4>
+                    <ul className="lci-problem-bullets">
+                      {(t('products.lci.problemBullets', { returnObjects: true }) || []).map((b, i) => (
+                        <li key={i} style={{ transitionDelay: `${i * 100}ms` }}>{b}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="lci-problem-visual">
+                    <img
+                      src="/images/lci-problem-visual.png"
+                      alt={t('products.lci.problemImageAlt')}
+                      className="lci-problem-img"
+                      width={400}
+                      height={400}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Section 2: The Shift — solution intro + visual */}
+              <div
+                className={`lci-shift ${lciShiftVisible ? 'visible' : ''}`}
+                ref={lciShiftRef}
+                data-animate="fade-up"
+              >
+                <div className="lci-shift-content">
+                  <div className="lci-shift-text">
+                    <span className="lci-shift-eyebrow">{t('products.lci.shiftEyebrow')}</span>
+                    <h4 className="lci-shift-headline">{t('products.lci.shiftHeadline')}</h4>
+                    <p className="lci-shift-body">{t('products.lci.shiftBody')}</p>
+                    <div className="lci-shift-flow">
+                      <span className="lci-shift-flow-node">{t('products.lci.shiftFlowYourProduct')}</span>
+                      <span className="lci-shift-flow-arrow" aria-hidden />
+                      <span className="lci-shift-flow-node lci-shift-flow-node--lci">{t('products.lci.shiftFlowLci')}</span>
+                      <span className="lci-shift-flow-arrow" aria-hidden />
+                      <span className="lci-shift-flow-node">{t('products.lci.shiftFlowResult')}</span>
+                    </div>
+                  </div>
+                  <div className="lci-shift-visual">
+                    <img
+                      src="/images/lci-solution-visual.png"
+                      alt={t('products.lci.shiftImageAlt')}
+                      className="lci-shift-img"
+                      width={400}
+                      height={400}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* "Here's the solution" transition: shift → product */}
+              <div className="lci-shift-to-product-bridge" role="presentation">
+                <p className="lci-bridge-copy">
+                  <span className="lci-bridge-label">{t('products.lci.bridgeLabel')}</span>
+                  <span className="lci-bridge-sub">{t('products.lci.bridgeSub')}</span>
+                </p>
+                <div className="lci-bridge-flow">
+                  <span className="lci-bridge-line" aria-hidden />
+                  <span className="lci-bridge-arrow" aria-hidden>↓</span>
+                  <span className="lci-bridge-line" aria-hidden />
+                </div>
+              </div>
+            </>
+          )}
+
+          {/* Product title + visual (LCI: name, tagline, hero, PCB below problem/shift) */}
           <div className="product-showcase-top">
             <div className="product-showcase-info">
               <span className={`product-badge ${product.badgeClass}`}>{productBadge}</span>
@@ -358,46 +408,115 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
             </div>
           </div>
 
-          {active === 'lci' && (
-            <div
-              className={`lci-hero ${lciHeroVisible ? 'visible' : ''}`}
-              ref={lciHeroRef}
-              data-animate="fade-up"
-            >
-              <LciHeroAd />
-            </div>
+          {/* ═══ LCI NARRATIVE (rest) ═══ */}
+          {isLci && (
+            <>
+              {/* Section 3: Why LCI */}
+              <div
+                className={`lci-why ${lciWhyVisible ? 'visible' : ''}`}
+                ref={lciWhyRef}
+                data-animate="fade-up"
+              >
+                <h4 className="lci-why-headline">{t('products.lci.whyHeadline')}</h4>
+                <div className="lci-why-grid">
+                  {Array.isArray(productHighlights) && productHighlights.map((h, idx) => (
+                    <div className="lci-why-card" key={h?.label ?? idx} style={{ transitionDelay: `${idx * 80}ms` }}>
+                      <div className="lci-why-card-icon">
+                        <HighlightIcon type={product.highlights[idx]?.icon ?? 'scope'} />
+                      </div>
+                      <strong>{h?.label}</strong>
+                      <span>{h?.detail}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="lci-why-industries">
+                  {(t('products.lci.whyIndustries', { returnObjects: true }) || []).map((ind) => (
+                    <span key={ind} className="lci-why-industry-pill">{ind}</span>
+                  ))}
+                </div>
+                <div className="lci-why-desc">
+                  {Array.isArray(productDescription) && productDescription.map((para, i) => (
+                    <p key={i}>{para}</p>
+                  ))}
+                </div>
+              </div>
+
+              {/* Section 4: CTA + Comparison */}
+              <div
+                className={`lci-cta-block ${lciCtaVisible ? 'visible' : ''}`}
+                ref={lciCtaRef}
+                data-animate="fade-up"
+              >
+                <h4 className="lci-cta-headline">{t('products.lci.ctaHeadline')}</h4>
+                <p className="lci-cta-body">{t('products.lci.ctaBody')}</p>
+                <Link to="/contact" className="lci-cta-button">
+                  {t('products.lci.ctaButton')} &rarr;
+                </Link>
+              </div>
+
+              <div
+                className={`product-comparison ${comparisonVisible ? 'visible' : ''}`}
+                ref={comparisonRef}
+                data-animate="fade-up"
+              >
+                <h4 className="product-comparison-title">{t('products.comparison.lci.title')}</h4>
+                <div className="product-comparison-table-wrap">
+                  <table className="product-comparison-table">
+                    <thead>
+                      <tr>
+                        <th>{t('products.comparison.lci.leftLabel')}</th>
+                        <th>{t('products.comparison.lci.rightLabel')}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {(t('products.comparison.lci.rows', { returnObjects: true }) || []).map((row, i) => (
+                        <tr key={i}>
+                          <td>{row?.left}</td>
+                          <td>{row?.right}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </>
           )}
 
-          <div className="product-highlights">
-            {Array.isArray(productHighlights) && productHighlights.map((h, idx) => (
-              <div className="product-highlight-card" key={h?.label ?? idx}>
-                <div className="product-highlight-icon">
-                  <HighlightIcon type={product.highlights[idx]?.icon ?? 'scope'} />
-                </div>
-                <strong>{h?.label}</strong>
-                <span>{h?.detail}</span>
+          {/* ═══ NON-LCI: shared highlights / body / tags ═══ */}
+          {!isLci && (
+            <>
+              <div className="product-highlights">
+                {Array.isArray(productHighlights) && productHighlights.map((h, idx) => (
+                  <div className="product-highlight-card" key={h?.label ?? idx}>
+                    <div className="product-highlight-icon">
+                      <HighlightIcon type={product.highlights[idx]?.icon ?? 'scope'} />
+                    </div>
+                    <strong>{h?.label}</strong>
+                    <span>{h?.detail}</span>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
 
-          <div className="product-showcase-body">
-            <div className="product-showcase-desc">
-              {Array.isArray(productDescription) && productDescription.map((para, i) => (
-                <p key={i}>{para}</p>
-              ))}
-            </div>
-          </div>
+              <div className="product-showcase-body">
+                <div className="product-showcase-desc">
+                  {Array.isArray(productDescription) && productDescription.map((para, i) => (
+                    <p key={i}>{para}</p>
+                  ))}
+                </div>
+              </div>
 
-          <div className="product-tags">
-            {Array.isArray(productTags) && productTags.map((tag) => (
-              <span key={tag}>{tag}</span>
-            ))}
-          </div>
+              <div className="product-tags">
+                {Array.isArray(productTags) && productTags.map((tag) => (
+                  <span key={tag}>{tag}</span>
+                ))}
+              </div>
+            </>
+          )}
 
-          {(active === 'lci' || active === 'amc') && (
+          {active === 'amc' && (
             <p className="product-compare-wrap">
               <button type="button" className="product-compare-btn" onClick={() => setActive('dmk')}>
-                {t('products.compareWithDmk')} →
+                {t('products.compareWithDmk')} &rarr;
               </button>
             </p>
           )}
@@ -527,7 +646,7 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
                 <div className="amc-sensorless-cards">
                   {(t('products.amc.sensorlessItems', { returnObjects: true }) || []).map((text, i) => (
                     <div key={i} className="amc-sensorless-card" style={{ transitionDelay: `${i * 70}ms` }}>
-                      <span className="amc-sensorless-icon" aria-hidden>✓</span>
+                      <span className="amc-sensorless-icon" aria-hidden>&#x2713;</span>
                       <p>{text}</p>
                     </div>
                   ))}
@@ -560,34 +679,6 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
                 </div>
               </div>
             </>
-          )}
-
-          {active === 'lci' && (
-            <div
-              className={`product-comparison ${comparisonVisible ? 'visible' : ''}`}
-              ref={comparisonRef}
-              data-animate="fade-up"
-            >
-              <h4 className="product-comparison-title">{t('products.comparison.lci.title')}</h4>
-              <div className="product-comparison-table-wrap">
-                <table className="product-comparison-table">
-                  <thead>
-                    <tr>
-                      <th>{t('products.comparison.lci.leftLabel')}</th>
-                      <th>{t('products.comparison.lci.rightLabel')}</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {(t('products.comparison.lci.rows', { returnObjects: true }) || []).map((row, i) => (
-                      <tr key={i}>
-                        <td>{row?.left}</td>
-                        <td>{row?.right}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
           )}
         </div>
       </div>

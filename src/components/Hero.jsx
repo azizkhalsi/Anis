@@ -91,12 +91,14 @@ function StatCounter({ target, suffix, labelKey }) {
 export default function Hero() {
   const { t } = useTranslation();
   const titleRef = useRef(null);
+  const sloganRef = useRef(null);
   const subtitleRef = useRef(null);
   const actionsRef = useRef(null);
 
   const titleVisible = useScrollAnimation(titleRef, { threshold: 0.1 });
-  const subtitleVisible = useScrollAnimation(subtitleRef, { threshold: 0.1, delay: 150 });
-  const actionsVisible = useScrollAnimation(actionsRef, { threshold: 0.1, delay: 300 });
+  const sloganVisible = useScrollAnimation(sloganRef, { threshold: 0.1, delay: 200 });
+  const subtitleVisible = useScrollAnimation(subtitleRef, { threshold: 0.1, delay: 350 });
+  const actionsVisible = useScrollAnimation(actionsRef, { threshold: 0.1, delay: 650 });
 
   return (
     <section className="hero" id="home">
@@ -127,12 +129,16 @@ export default function Hero() {
           <span className="badge-dot" />
           {t('home.hero.badge')}
         </div>
-        <h1 ref={titleRef} className={`hero-title${titleVisible ? ' visible' : ''}`} data-animate="fade-up">
-          {t('home.hero.titleLine1')}{' '}
-          <span className="gradient-text">{t('home.hero.titleHighlight1')}</span>
-          {t('home.hero.titleAnd')}
-          <span className="gradient-text">{t('home.hero.titleHighlight2')}</span>
-        </h1>
+        <div className="hero-title-row">
+          <h1 ref={titleRef} className={`hero-title${titleVisible ? ' visible' : ''}`} data-animate="fade-up">
+            <span className="hero-title-line1">{t('home.hero.titleLine1')}</span>
+            <span className="hero-title-line2">{t('home.hero.titleLine2')}</span>
+          </h1>
+          <p ref={sloganRef} className={`hero-print${sloganVisible ? ' visible' : ''}`} data-animate="fade-up">
+            <span className="hero-print-line1">{t('home.hero.sloganLine1')}</span>
+            <span className="hero-print-line2">{t('home.hero.sloganLine2')}</span>
+          </p>
+        </div>
         <p ref={subtitleRef} className={`hero-subtitle${subtitleVisible ? ' visible' : ''}`} data-animate="fade-up">
           {t('home.hero.subtitle')}
         </p>
@@ -154,24 +160,6 @@ export default function Hero() {
           <StatCounter target={3} labelKey="home.hero.statProducts" />
           <div className="stat-divider" />
           <StatCounter target={1000000} suffix="+" labelKey="home.hero.statUnits" />
-        </div>
-      </div>
-
-      {/* Our Mission & Slogan - After title so users get context then the message */}
-      <div className="hero-intro">
-        <div className="hero-intro-content">
-          <p className="hero-intro-mission">
-            <span className="hero-intro-label">{t('home.hero.missionLabel')}</span>
-            {t('home.hero.missionText')}
-          </p>
-          <div className="hero-intro-separator">
-            <span className="hero-intro-line" />
-            <span className="hero-intro-diamond" />
-            <span className="hero-intro-line" />
-          </div>
-          <p className="hero-intro-slogan">
-            &quot;{t('home.hero.slogan')}&quot;
-          </p>
         </div>
       </div>
     </section>

@@ -14,7 +14,7 @@ const INITIAL_CONFIG: SimulationConfig = {
   phases: 3,
   showPhaseVoltages: true,
   showStarPoint: true,
-  showSwitchingVectors: false,
+  showSwitchingVectors: true,
   showTimeGraph: true,
   stepMode: false,
   modulationMethod: ModulationMethod.Nullsystemfrei,
@@ -287,13 +287,17 @@ const App: React.FC = () => {
               const d1 = m_current * Math.sin(PI / 3 - thetaSector) / Math.sin(PI / 3);
               const d2 = m_current * Math.sin(thetaSector) / Math.sin(PI / 3);
               const fA = state.flickerPhaseA < d1 ? 1.0 : 0.08; const fB = state.flickerPhaseB < d2 ? 1.0 : 0.08;
+              const pulse = 0.82 + 0.18 * Math.sin(state.flickerPhaseA * 2 * PI);
               const VERTEX_SCALE = (HEX_RADIUS / GRAPH_LIMIT) * 100;
               const p1x = cx + r1 * Math.cos(angleV1_rad); const p1y = cy - r1 * Math.sin(angleV1_rad);
               const p2x = cx + r2 * Math.cos(angleV2_rad); const p2y = cy - r2 * Math.sin(angleV2_rad);
               const endX = cx + actualRadius * Math.cos(angleRad); const endY = cy - actualRadius * Math.sin(angleRad);
-              drawVector(ctxHex, VERTEX_SCALE, sector * 60, cx, cy, '#a78bfa', 4, 12, fA);
-              drawVector(ctxHex, VERTEX_SCALE, (sector + 1) * 60, cx, cy, '#a78bfa', 4, 12, fB);
-              ctxHex.setLineDash([4, 6]); ctxHex.strokeStyle = 'rgba(167, 139, 250, 0.6)'; ctxHex.lineWidth = 2;
+              const svmColor = '#06b6d4';
+              const svmR = 6, svmG = 182, svmB = 212;
+              drawVector(ctxHex, VERTEX_SCALE, sector * 60, cx, cy, svmColor, 3 + pulse, 12, fA * pulse);
+              drawVector(ctxHex, VERTEX_SCALE, (sector + 1) * 60, cx, cy, svmColor, 3 + pulse, 12, fB * pulse);
+              const dashAlpha = 0.5 + 0.25 * Math.sin(state.flickerPhaseB * 2 * PI);
+              ctxHex.setLineDash([4, 6]); ctxHex.strokeStyle = `rgba(${svmR}, ${svmG}, ${svmB}, ${dashAlpha})`; ctxHex.lineWidth = 1.5 + 0.5 * pulse;
               ctxHex.beginPath(); ctxHex.moveTo(p1x, p1y); ctxHex.lineTo(endX, endY); ctxHex.moveTo(p2x, p2y); ctxHex.lineTo(endX, endY); ctxHex.stroke(); ctxHex.setLineDash([]);
           }
 

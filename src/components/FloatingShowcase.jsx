@@ -40,7 +40,7 @@ const IMAGE_PAIRS = [
   [4, 1], // center-left + top-right
   [5, 2], // center-right + bottom-left
 ];
-const PAIR_INTERVAL_MS = 2000;
+const PAIR_INTERVAL_MS = 5500;
 
 export default function FloatingShowcase() {
   const [pairIndex, setPairIndex] = useState(0);

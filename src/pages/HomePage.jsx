@@ -1,7 +1,7 @@
 import Hero from '../components/Hero';
 import ClientLogos from '../components/ClientLogos';
+import WhatWeOffer from '../components/WhatWeOffer';
 import Services from '../components/Services';
-import Testimonials from '../components/Testimonials';
 import TrustBadges from '../components/TrustBadges';
 
 export default function HomePage() {
@@ -9,8 +9,8 @@ export default function HomePage() {
     <>
       <Hero />
       <ClientLogos />
+      <WhatWeOffer />
       <Services />
-      <Testimonials />
       <TrustBadges />
     </>
   );

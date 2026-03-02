@@ -66,11 +66,11 @@
   "home": {
     "hero": {
       "badge": "R&D Engineering & Consultancy",
-      "titleLine1": "Engineering & Consultancy for",
-      "titleHighlight1": "Motor Control",
-      "titleAnd": " & ",
-      "titleHighlight2": "Power Electronics",
+      "titleLine1": "Engineering Design House",
+      "titleLine2": "Sensorless Motor Control",
       "subtitle": "Reduce cost and complexity with sensorless solutions — no encoders, fewer parts, higher reliability.",
+      "sloganLine1": "More than just 'know how'",
+      "sloganLine2": "we have the 'know why'",
       "exploreExpertise": "Explore Our Expertise",
       "ourProducts": "Our Products",
       "trySimulator": "Try Simulator",
@@ -79,13 +79,20 @@
       "statProducts": "Innovative Products",
       "statUnits": "Units in Production",
       "missionLabel": "Our Mission",
-      "missionText": "Advancing the state-of-the-art in sensorless motor control solutions",
-      "slogan": "Beyond knowing the know-how — we know the know-why"
+      "missionText": "Advancing the state-of-the-art in sensorless motor control solutions"
     },
     "clientLogos": {
       "heading": "Trusted by industry leaders",
       "storyTitle": "Partnership & success story",
       "storyText": "We collaborate with industry leaders like Miele&Cie KG to deliver sensorless motor control in mass production. With over 20 patents, Appcon drives innovation and ensures project success from concept to deployment."
+    },
+    "whatWeOffer": {
+      "banner": "What we offer through our development partnerships",
+      "pillars": [
+        { "title": "Cutting-edge technology and assured success through expert project planning and management", "sphereText": "Founded Theory and Simulation Knowledge" },
+        { "title": "Optimized solutions designed for series production", "sphereText": "Software for sensorless Motor Control" },
+        { "title": "Design and prototyping of high-quality power electronics", "sphereText": "Expertise in Hardware Design and In-House Electronic Assembly" }
+      ]
     },
     "services": {
       "tag": "What We Do",
@@ -198,12 +205,28 @@
       ],
       "tags": ["PMSM", "Sensorless FOC", "Cost-Optimized", "Household Appliances", "Power Tools", "E-Bikes"],
       "pcbAlt": "LCI Low-Cost Inverter — circular PCB",
-      "lciHeroAdLine1": "Tired of reinventing the wheel?",
-      "lciHeroAdLine2": "Customize your solution.",
-      "lciHeroHeadline": "No need to reinvent the wheel",
-      "lciHeroProblem": "Your team excels in mechanical design — but the product has electrical components. Managers get stuck, engineers step outside their expertise, and things break. You don't have to own what you didn't build.",
-      "lciHeroSolution": "Customize your own solution. LCI gives you a production-ready inverter platform that separates both worlds: focus on your domain, integrate ours.",
-      "lciHeroImageAlt": "LCI: tired of reinventing the wheel? Customize your solution — mechanical and electrical domains separated."
+      "problemEyebrow": "Sound familiar?",
+      "shiftEyebrow": "The solution",
+      "problemImageAlt": "Mechanical and electrical domains — the challenge of integrating both.",
+      "shiftImageAlt": "LCI as a modular bridge connecting your product to a working motor.",
+      "problemHeadline": "Your team builds great products. But the electronics keep slowing you down.",
+      "problemBullets": [
+        "Your engineers are mechanical experts — not power electronics specialists.",
+        "Every new motor integration means months of custom inverter design.",
+        "You're solving a problem someone already solved."
+      ],
+      "shiftHeadline": "What if the inverter was already invented before?",
+      "shiftBody": "LCI is a production-ready inverter platform — a modular building block that snaps into your product. You focus on what you do best, LCI handles the power electronics.",
+      "shiftFlowYourProduct": "Your Product",
+      "shiftFlowLci": "LCI Module",
+      "shiftFlowResult": "Working Motor",
+      "bridgeLabel": "Here's the solution",
+      "bridgeSub": "Introducing LCI",
+      "whyHeadline": "Built for scale. Proven in production.",
+      "whyIndustries": ["Household Appliances", "Power Tools", "E-Bikes", "Pumps"],
+      "ctaHeadline": "Ready to stop reinventing?",
+      "ctaBody": "Talk to our team about integrating LCI into your next product.",
+      "ctaButton": "Get in Touch"
     },
     "amc": {
       "name": "AMC",
@@ -400,6 +423,10 @@
           "With a wealth of expertise in handling complex power electronic designs, our team navigates the intricate details of layout and design with precision. We are well-versed in optimizing boards for both performance and cost-effectiveness, ensuring the delivery of efficient solutions."
         ],
         "list": ["Power electronic designs", "Component selection & microcontroller optimization", "PCB layout & multi-layer board design", "Prototyping & testing", "Product redesign for cost reduction & efficiency"],
+        "conceptionTitle": "Hardware conception and design",
+        "conceptionLead": "From circuit schematics to production-ready PCB layout — we use industry-standard EDA tools to deliver robust, optimized designs.",
+        "edaTools": ["EAGLE (Autodesk)", "KiCad", "Altium"],
+        "conceptionSteps": ["Schematic capture & block design", "Simulation & validation", "Multi-layer PCB layout", "3D review & manufacturing output"],
         "visualLabel": "PCB & Circuit Design"
       },
       "software": {
@@ -412,12 +439,19 @@
       "mbd": {
         "label": "Model-Based Design",
         "contentTitle": "Model-Based Design",
+        "matlabSimulink": "MATLAB & SIMULINK",
         "paragraphs": [
           "Automation of Model-Based Design processes like automatic code generation, model reusability, continuous testing, and documentation results in faster time to market and lower product cost, something that companies are always looking for.",
           "Our teams use Model-Based Design to provide you with a motor control solution that is tailored to your specific requirements. They can:"
         ],
         "list": ["Provide the expertise to help you migrate to Model-Based Design", "Design from scratch and validate your motor control system in a simulation environment, giving your design team the ability to perform rapid prototyping", "Provide expertise to evaluate, modify, and maintain your existing motor control models", "Create an interface and integrate the automatically generated code from the controller model into your existing software or provide you a full range motor control software solution using Model-Based Design"],
-        "visualLabel": "Model-Based Design"
+        "visualLabel": "Model-Based Design",
+        "benefits": [
+          { "title": "Cost-Effective", "desc": "Reduces development time and effort, leading to lower costs and faster time-to-market." },
+          { "title": "Improved Accuracy", "desc": "Early simulation and testing reduce design errors and enhance overall reliability." },
+          { "title": "Self-Documenting", "desc": "Easy to share and maintain across teams." },
+          { "title": "Appcon-Library", "desc": "Enables rapid development and automatic generation of efficient code." }
+        ]
       },
       "prototyping": {
         "label": "Prototyping",
@@ -590,6 +624,7 @@
     "sectionTitle": "Publications & research",
     "sectionSubtitle": "Selected contributions by Dr. Hafedh Sammoud",
     "viewOnResearchGate": "View on ResearchGate",
+    "viewPdf": "View PDF",
     "viewAllOnResearchGate": "View all contributions on ResearchGate",
     "profileUrl": "https://www.researchgate.net/scientific-contributions/Hafedh-Sammoud-2024639483",
     "viewPublications": "Publications & research",
@@ -615,7 +650,13 @@
     "item6Venue": "",
     "item7Title": "DC/DC converter and power electronics data (JESTPE 2017)",
     "item7Venue": "IEEE JESTPE",
+    "microAn1162Title": "Sensorless Field Oriented Control (FOC) of an AC Induction Motor (ACIM)",
+    "microAn1162Venue": "Microchip Application Note AN1162",
+    "microAn1206Title": "Sensorless Field Oriented Control (FOC) of an AC Induction Motor (ACIM) Using Field Weakening",
+    "microAn1206Venue": "Microchip Application Note AN1206",
     "items": [
+      { "titleKey": "publications.microAn1162Title", "venueKey": "publications.microAn1162Venue", "type": "article", "year": "2008", "url": "https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ApplicationNotes/ApplicationNotes/01162A.pdf" },
+      { "titleKey": "publications.microAn1206Title", "venueKey": "publications.microAn1206Venue", "type": "article", "year": "2008", "url": "https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ApplicationNotes/ApplicationNotes/01206A.pdf" },
       { "titleKey": "publications.item0Title", "venueKey": "publications.item0Venue", "type": "chapter", "year": "2021", "url": "https://www.researchgate.net/publication/352530534_Literature_review_on_monitoring_systems_for_photovoltaic_plants" },
       { "titleKey": "publications.item1Title", "venueKey": "publications.item1Venue", "type": "conference", "year": "2020", "url": "https://www.researchgate.net/publication/345161980_A_real_time_wireless_and_low_cost_data_acquisition_system_for_residential_PV_modules" },
       { "titleKey": "publications.item2Title", "venueKey": "publications.item2Venue", "type": "article", "year": "2017", "url": "https://www.researchgate.net/publication/314202299_Reconfigurable_DCDC_Converter_for_Efficiency_and_Reliability_Optimization" },

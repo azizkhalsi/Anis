@@ -57,7 +57,7 @@ export default function PublicationsList() {
                   rel="noopener noreferrer"
                   className="publications-cta"
                 >
-                  {t('publications.viewOnResearchGate')}
+                  {item.url && item.url.toLowerCase().endsWith('.pdf') ? t('publications.viewPdf') : t('publications.viewOnResearchGate')}
                 </a>
               </article>
             </li>

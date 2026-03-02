@@ -4,11 +4,19 @@ import useScrollAnimation from '../hooks/useScrollAnimation';
 
 const BASE = typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.BASE_URL ? import.meta.env.BASE_URL : '';
 
-const LOGOS = [
-  { id: 1, name: 'HILTI', src: `${BASE}images/logos/hilti.png`, alt: 'HILTI' },
-  { id: 2, name: 'SPEMOT', src: `${BASE}images/logos/spemot.png`, alt: 'SPEMOT' },
-  { id: 3, name: 'Microchip', src: `${BASE}images/logos/microchip.png`, alt: 'Microchip' },
-  { id: 4, name: 'Miele', src: `${BASE}images/logos/miele.png`, alt: 'Miele' },
+/* Top row: priority order — Miele, STMicroelectronics, SAGEM (3) */
+const LOGOS_TOP = [
+  { id: 'miele', name: 'Miele', src: `${BASE}images/logos/miele.png`, alt: 'Miele' },
+  { id: 'st', name: 'STMicroelectronics', src: `${BASE}images/logos/stmicroelectronics.png`, alt: 'STMicroelectronics', larger: true, largest: true },
+  { id: 'sagem', name: 'SAGEM', src: `${BASE}images/logos/sagem.png`, alt: 'SAGEM', larger: true },
+];
+
+/* Bottom row: HILTI, SPEMOT, Microchip, Partner (replaces Halla & Mando) */
+const LOGOS_BOTTOM = [
+  { id: 'hilti', name: 'HILTI', src: `${BASE}images/logos/hilti.png`, alt: 'HILTI' },
+  { id: 'spemot', name: 'SPEMOT', src: `${BASE}images/logos/spemot.png`, alt: 'SPEMOT' },
+  { id: 'microchip', name: 'Microchip', src: `${BASE}images/logos/microchip.png`, alt: 'Microchip', larger: true },
+  { id: 'partner', name: 'HL Mando', src: `${BASE}images/logos/partner.png`, alt: 'HL Mando', larger: true, largest: true, noBg: true },
 ];
 
 export default function ClientLogos() {
@@ -24,21 +32,40 @@ export default function ClientLogos() {
         </p>
         <div className={`client-logos-track${visible ? ' visible' : ''}`} data-animate="fade-up">
           <div className="client-logos-inner">
-            {LOGOS.map((logo) => (
-              <div key={logo.id} className="client-logo-item">
-                <span className="client-logo-img-wrap" title={logo.name}>
-                  <img
-                    src={logo.src}
-                    alt={logo.alt}
-                    className="client-logo-img"
-                    width={180}
-                    height={72}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </span>
-              </div>
-            ))}
+            <div className="client-logos-row client-logos-row--top">
+              {LOGOS_TOP.map((logo) => (
+                <div key={logo.id} className={`client-logo-item${logo.larger ? ' client-logo-item--larger' : ''}${logo.largest ? ' client-logo-item--largest' : ''}`}>
+                  <span className="client-logo-img-wrap" title={logo.name}>
+                    <img
+                      src={logo.src}
+                      alt={logo.alt}
+                      className="client-logo-img"
+                      width={logo.largest ? 260 : logo.larger ? 220 : 200}
+                      height={logo.largest ? 104 : logo.larger ? 88 : 80}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </span>
+                </div>
+              ))}
+            </div>
+            <div className="client-logos-row client-logos-row--bottom">
+              {LOGOS_BOTTOM.map((logo) => (
+                <div key={logo.id} className={`client-logo-item${logo.larger ? ' client-logo-item--larger' : ''}${logo.largest ? ' client-logo-item--largest' : ''}${logo.noBg ? ' client-logo-item--no-bg' : ''}`}>
+                  <span className="client-logo-img-wrap" title={logo.name}>
+                    <img
+                      src={logo.src}
+                      alt={logo.alt}
+                      className="client-logo-img"
+                      width={logo.largest ? 260 : logo.larger ? 220 : 200}
+                      height={logo.largest ? 104 : logo.larger ? 88 : 80}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
         <div className={`client-logos-story${visible ? ' visible' : ''}`} data-animate="fade-up">
