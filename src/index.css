@@ -36,10 +36,12 @@
     box-sizing: border-box;
 }
 
+/* Mobile: layout overrides live only inside @media (max-width: …) so desktop is unaffected. */
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
     -webkit-text-size-adjust: 100%;
+    max-width: 100%;
 }
 
 body {
@@ -48,7 +50,13 @@ body {
     color: var(--text);
     line-height: 1.7;
     overflow-x: hidden;
+    max-width: 100%;
     -webkit-font-smoothing: antialiased;
+}
+
+#root {
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 ::selection {
@@ -85,6 +93,8 @@ main {
 /* Page transition when navigating (e.g. submenu click) */
 .page-transition-wrap {
     animation: pageIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    min-width: 0;
+    overflow-x: hidden;
 }
 
 @keyframes pageIn {
@@ -276,6 +286,7 @@ img {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 24px;
+    min-width: 0;
 }
 
 .container--wide {
@@ -1308,37 +1319,42 @@ img {
     position: absolute;
     width: 160px;
     height: auto;
-    border-radius: var(--radius-lg);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.12), 0 8px 20px rgba(0,0,0,0.08);
     opacity: 0;
     transform: translateY(15px) scale(0.92) rotate(-2deg);
     transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 1s cubic-bezier(0.4, 0, 0.2, 1);
-    background: white;
-    padding: 8px;
-    border: 1px solid rgba(0,0,0,0.06);
-}
-
-.floating-image::before {
-    content: '';
-    position: absolute;
-    inset: -1px;
-    background: linear-gradient(135deg, rgba(196,43,43,0.1), transparent 50%);
-    border-radius: var(--radius-lg);
-    z-index: -1;
+    background: transparent;
 }
 
 .floating-image img {
     width: 100%;
     height: auto;
-    border-radius: calc(var(--radius-lg) - 6px);
     display: block;
-    object-fit: cover;
+    object-fit: contain;
     aspect-ratio: 4/3;
 }
 
 .floating-image--visible {
-    opacity: 0.9;
+    opacity: 0.88;
     transform: translateY(0) scale(1) rotate(0deg);
+}
+
+/* Lab (right) + product (left) carousel: sizing and no drift so crossfade is clean */
+.floating-image--lab {
+    width: 280px;
+    animation: none;
+}
+
+.floating-image--product {
+    width: 260px;
+    animation: none;
+    transform: translateX(-12px) translateY(15px) scale(0.92) rotate(-2deg);
+    transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: 0.4s;
+}
+
+.floating-image--product.floating-image--visible {
+    transform: translateX(0) translateY(0) scale(1) rotate(0deg);
+    transition-delay: 0s;
 }
 
 .floating-image--top-left {
@@ -1366,14 +1382,16 @@ img {
 }
 
 .floating-image--center-left {
-    top: 45%;
+    bottom: 6%;
     left: 2%;
+    top: auto;
     animation: floatDrift2 9s ease-in-out infinite 1.5s;
 }
 
 .floating-image--center-right {
-    top: 40%;
+    bottom: 6%;
     right: 2%;
+    top: auto;
     animation: floatDrift3 7s ease-in-out infinite 2.5s;
 }
 
@@ -1765,8 +1783,8 @@ section {
 .what-we-offer-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 32px 28px;
-    margin-bottom: 44px;
+    gap: 40px 32px;
+    margin-bottom: 48px;
 }
 
 .what-we-offer-pillar {
@@ -1781,9 +1799,10 @@ section {
 }
 
 .what-we-offer-pillar-title {
-    margin: 0 0 24px;
+    margin: 0 0 28px;
+    min-height: 4.2em;
     font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+    font-size: clamp(1rem, 1.6vw, 1.15rem);
     font-weight: 700;
     color: var(--text);
     line-height: 1.4;
@@ -1792,28 +1811,31 @@ section {
 .what-we-offer-spheres {
     position: relative;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    min-height: 168px;
+    min-height: 200px;
+    perspective: 800px;
 }
 
 .what-we-offer-sphere {
-    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+    will-change: transform;
 }
 
 .what-we-offer-pillar:hover .what-we-offer-sphere--small {
-    transform: translate(30%, -10%) scale(1.02);
+    transform: translate(30%, -10%) scale(1.08);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
 }
 
 .what-we-offer-pillar:hover .what-we-offer-sphere--large {
-    transform: scale(1.02);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    transform: scale(1.03) translateY(-2px);
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.08), inset 0 2px 0 rgba(255, 255, 255, 0.12);
 }
 
+/* Accent: small circle */
 .what-we-offer-sphere--small {
     position: absolute;
     width: 56px;
@@ -1822,28 +1844,46 @@ section {
     right: 50%;
     transform: translate(30%, -10%);
     background: linear-gradient(145deg, #e8eef5 0%, #c5d4e8 100%);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.9);
     border-radius: 50%;
+    animation: offerBadgeFloat 4s ease-in-out infinite;
 }
 
+/* Main block: soft rounded rectangle (card style) — fixed height so all three align on one line */
 .what-we-offer-sphere--large {
-    width: 140px;
-    height: 140px;
-    max-width: 100%;
+    width: 100%;
+    max-width: 260px;
+    height: 180px;
+    min-height: 180px;
+    padding: 24px 20px;
     background: linear-gradient(145deg, #1e3a5f 0%, #152a45 100%);
     color: #fff;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.06), inset 0 2px 0 rgba(255, 255, 255, 0.08);
     position: relative;
     z-index: 1;
-    border-radius: 50%;
+    border-radius: 24px;
+    animation: offerBadgePulse 5s ease-in-out infinite;
+}
+
+@keyframes offerBadgeFloat {
+    0%, 100% { transform: translate(30%, -10%) translateY(0); }
+    50% { transform: translate(30%, -10%) translateY(-5px); }
+}
+
+@keyframes offerBadgePulse {
+    0%, 100% { box-shadow: 0 14px 36px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.06), inset 0 2px 0 rgba(255, 255, 255, 0.08); }
+    50% { box-shadow: 0 18px 42px rgba(0, 0, 0, 0.26), 0 0 0 1px rgba(255, 255, 255, 0.06), inset 0 2px 0 rgba(255, 255, 255, 0.1); }
 }
 
 .what-we-offer-sphere-text {
-    font-size: 0.8rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
     font-weight: 600;
-    line-height: 1.35;
+    line-height: 1.4;
+    letter-spacing: 0.03em;
     text-align: center;
-    padding: 14px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    padding: 0;
 }
 
 .what-we-offer-logo {
@@ -1887,6 +1927,25 @@ section {
         grid-template-columns: 1fr;
         gap: 36px;
         margin-bottom: 36px;
+    }
+    .what-we-offer-spheres {
+        min-height: 200px;
+    }
+    .what-we-offer-sphere--large {
+        width: 100%;
+        max-width: 220px;
+        height: 160px;
+        min-height: 160px;
+        padding: 20px 16px;
+        border-radius: 20px;
+    }
+    .what-we-offer-sphere--small {
+        width: 48px;
+        height: 48px;
+    }
+    .what-we-offer-sphere-text {
+        font-size: 0.9rem;
+        letter-spacing: 0.02em;
     }
     .what-we-offer-banner {
         padding: 18px 20px;
@@ -5294,6 +5353,7 @@ section {
 
 .product-comparison-table-wrap {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     border-radius: var(--radius);
     border: 1px solid var(--border);
     background: var(--bg-secondary);
@@ -7860,6 +7920,19 @@ section {
         padding: 72px 0;
     }
 
+    main {
+        overflow-x: hidden;
+    }
+
+    .container {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .breadcrumbs {
+        padding: 12px 16px 0;
+    }
+
     .nav-menu {
         position: fixed;
         top: 0;
@@ -7924,7 +7997,7 @@ section {
     }
     .nav-item-with-dropdown:hover .nav-dropdown,
     .nav-dropdown.open {
-        max-height: 200px;
+        max-height: min(70vh, 320px);
         padding: 4px 0 8px 16px;
     }
     .nav-dropdown-item {
@@ -8049,6 +8122,24 @@ section {
 }
 
 @media (max-width: 480px) {
+    .page-header {
+        padding: 100px 0 32px;
+    }
+
+    .page-header-title {
+        font-size: 1.75rem;
+    }
+
+    .product-comparison {
+        padding: 24px 16px 28px;
+    }
+
+    .product-comparison-table th,
+    .product-comparison-table td {
+        padding: 10px 12px;
+        font-size: 0.85rem;
+    }
+
     .hero--layered {
         padding-top: 70px;
     }

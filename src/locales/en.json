@@ -92,8 +92,8 @@
       "banner": "What we offer through our development partnerships",
       "pillars": [
         { "title": "Cutting-edge technology and assured success through expert project planning and management", "sphereText": "Founded Theory and Simulation Knowledge" },
-        { "title": "Optimized solutions designed for series production", "sphereText": "Software for sensorless Motor Control" },
-        { "title": "Design and prototyping of high-quality power electronics", "sphereText": "Expertise in Hardware Design and In-House Electronic Assembly" }
+        { "title": "Optimized embedded software solutions designed for series production", "sphereText": "Software for sensorless Motor Control" },
+        { "title": "Hardware Design and prototyping", "sphereText": "Expertise in Hardware Design and In-House Electronic Assembly" }
       ]
     },
     "services": {
@@ -101,7 +101,7 @@
       "title": "End-to-End Engineering Solutions",
       "desc": "From concept to production-ready products, we deliver comprehensive motor control and power electronics solutions.",
       "items": [
-        { "title": "Consulting & Expertise", "desc": "Certitude by project planning and management — working with customers to find the best solution to their requirements." },
+        { "title": "Consulting & Expertise", "desc": "Certainty through project planning and management — working with customers to find the best solution to their requirements." },
         { "title": "Design", "desc": "Power electronic designs — analog and digital circuits, dimensioning power stage, PCB layout for optimal performance." },
         { "title": "Prototyping", "desc": "High-quality product prototyping — multi-layer PCBs, SMD and THT mounting, from concept to physical reality." },
         { "title": "Testing & Validation", "desc": "Software and system-level testing — delivering products ready to use in your application with full validation." }
@@ -157,11 +157,11 @@
         { "title": "Power electronic testing", "body": "The unique PWM decoding for high-frequency, high-resolution signals beyond typical instrument capabilities. Its advanced voltage measurement decodes PWM in real time, revealing the exact inverter voltages as the motor experiences them. Without common filtering, any inverter malfunction is easily detected rather than masked." },
         { "title": "Development engineers in motor control", "body": "As a compact, multifunctional measurement instrument that replaces multiple separate devices. They connect DMK to their motor/inverter system to gather analog signals and key motor-control variables for scope and visualize in real time with the DMK PC-Software. Access internal state variables of both the motor and the inverter directly. Record and store data for extended analysis." },
         { "title": "Long-time tests", "body": "Measure and log all motor and inverter state variables over an extended period. Identify anomalies or performance degradation that might occur only after hours, days, or weeks of continuous operation. Automated data analysis on the extensive datasets provided by the DMK helps uncover hidden or statistically rare problems that are difficult for humans to detect." },
-        { "title": "Benchmarking reverse engineering", "body": "Analyze third-party or competitor drive systems with minimal setup, tapping directly into motor and inverter signals. DMK gathers precise data for fair performance comparisons—efficiency, accuracy, control strategy—and provides actionable insights to optimize designs, inform purchases, and guide partnerships." }
+        { "title": "Benchmarking and reverse engineering", "body": "Analyze third-party or competitor drive systems with minimal setup, tapping directly into motor and inverter signals. DMK gathers precise data for fair performance comparisons—efficiency, accuracy, control strategy—and provides actionable insights to optimize designs, inform purchases, and guide partnerships." }
       ],
       "hmiTitle": "External connections",
       "demoEmbedTitle": "One instrument at the centre of your test bench",
-      "demoEmbedIntro": "The DMK connects directly to your PC for live visualisation, to an oscilloscope via analog outputs, and to USB storage for long-term recording. Real-time measurement and analysis from a single compact unit.",
+      "demoEmbedIntro": "The DMK connects directly to your PC for live visualization, to an oscilloscope via analog outputs, and to USB storage for long-term recording. Real-time measurement and analysis from a single compact unit.",
       "demoEmbedList": [
         { "term": "PC software", "desc": "Configure the device, view live waveforms, and run analysis from your laptop or desktop." },
         { "term": "Oscilloscope", "desc": "Use the analog outputs to monitor signals on any scope; no need for a separate PC during testing." },
@@ -253,7 +253,7 @@
         { "title": "One control software for all motors and inverters", "body": "Easy hardware migration and configuration for new motors." },
         { "title": "Maximum flexibility for the application software", "body": "Easy and secure development of drive applications using AMC as the motor driver." }
       ],
-      "gameChangerHeadline": "A game-changing solution for sensorless control of PMSM motor control",
+      "gameChangerHeadline": "A game-changing solution for sensorless control of PMSM",
       "motorControlItems": [
         "Scalable across all power ranges",
         "Maximum torque and dynamics from standstill to >100k RPM",
@@ -459,7 +459,7 @@
         "visualLabel": "Model-Based Design",
         "typhoonKicker": "Hardware-in-the-loop testing",
         "typhoonTitle": "Typhoon HIL as our real-time emulation",
-        "typhoonText": "For hardware-in-the-loop validation of our control models, we rely on Typhoon HIL platforms. This allows us to run real-time emulation of power stages and controllers, close the loop with physical hardware, and deliver Model-Based Design projects that are already proven on HIL before they reach your lab." ,
+        "typhoonText": "For hardware-in-the-loop validation of our control models, we rely on Typhoon HIL platforms. This allows us to run real-time emulation of power stages and controllers, close the loop with physical hardware, and deliver Model-Based Design projects that are already proven on HIL before they reach your lab.",
         "benefits": [
           { "title": "Cost-Effective", "desc": "Reduces development time and effort, leading to lower costs and faster time-to-market." },
           { "title": "Improved Accuracy", "desc": "Early simulation and testing reduce design errors and enhance overall reliability." },
@@ -471,7 +471,7 @@
         "label": "Prototyping",
         "contentTitle": "Prototyping",
         "heroLead": "High-quality product prototyping — multi-layer PCBs, SMD and THT assembly, from concept to physical reality.",
-        "exemplesTitle": "Exemples of APPCON's Sensorless Control Solutions in Mass Productions",
+        "exemplesTitle": "Examples of APPCON's Sensorless Control Solutions in Mass Production",
         "paragraphs": ["We provide an end-to-end service covering PCB, stencil and component sourcing, board assembly, and functional testing, all from a single source."],
         "list": ["Multi-layer PCB fabrication", "Stencil production & component sourcing", "SMD and THT board assembly", "Functional testing & validation", "Single-source end-to-end service"],
         "visualLabel": "From Design to Reality",
@@ -618,7 +618,7 @@
     "section3ListItem2": "Manage our business relationship with you if you are or become a client or partner",
     "section3Note": "We do not sell, rent, or share your personal data with third parties for marketing. We do not use your email or message content for any purpose other than as described above.",
     "section4Title": "4. Where your data goes",
-    "section4Body": "Contact form submissions are processed by a form provider (e.g. Formspree) and delivered to our team by email. We may retain correspondence in our email systems for as long as needed to fulfil your request and for legitimate business and legal purposes. We do not store your data in a separate database on this website.",
+    "section4Body": "Contact form submissions are processed by a form provider (e.g. Formspree) and delivered to our team by email. We may retain correspondence in our email systems for as long as needed to fulfill your request and for legitimate business and legal purposes. We do not store your data in a separate database on this website.",
     "section5Title": "5. Security and confidentiality",
     "section5Body": "We treat your data as confidential. Our website uses HTTPS so data in transit is encrypted. We take reasonable steps to keep the data we receive (e.g. via email) secure and to limit access to those who need it to respond to you. No system is 100% secure; we do not guarantee absolute security but we work to protect your information.",
     "section6Title": "6. Your rights",

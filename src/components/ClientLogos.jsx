@@ -4,19 +4,17 @@ import useScrollAnimation from '../hooks/useScrollAnimation';
 
 const BASE = typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.BASE_URL ? import.meta.env.BASE_URL : '';
 
-/* Top row: priority order — Miele, STMicroelectronics, SAGEM (3) */
+/* Top row: Miele, STMicroelectronics */
 const LOGOS_TOP = [
-  { id: 'miele', name: 'Miele', src: `${BASE}images/logos/miele.png`, alt: 'Miele' },
+  { id: 'miele', name: 'Miele', src: `${BASE}images/logos/miele.png`, alt: 'Miele', larger: true },
   { id: 'st', name: 'STMicroelectronics', src: `${BASE}images/logos/stmicroelectronics.png`, alt: 'STMicroelectronics', larger: true, largest: true },
-  { id: 'sagem', name: 'SAGEM', src: `${BASE}images/logos/sagem.png`, alt: 'SAGEM', larger: true },
 ];
 
-/* Bottom row: HILTI, SPEMOT, Microchip, Partner (replaces Halla & Mando) */
+/* Bottom row: Microchip, HL Mando, SPEMOT */
 const LOGOS_BOTTOM = [
-  { id: 'hilti', name: 'HILTI', src: `${BASE}images/logos/hilti.png`, alt: 'HILTI' },
-  { id: 'spemot', name: 'SPEMOT', src: `${BASE}images/logos/spemot.png`, alt: 'SPEMOT' },
   { id: 'microchip', name: 'Microchip', src: `${BASE}images/logos/microchip.png`, alt: 'Microchip', larger: true },
   { id: 'partner', name: 'HL Mando', src: `${BASE}images/logos/partner.png`, alt: 'HL Mando', larger: true, largest: true, noBg: true },
+  { id: 'spemot', name: 'SPEMOT', src: `${BASE}images/logos/spemot.png`, alt: 'SPEMOT' },
 ];
 
 export default function ClientLogos() {

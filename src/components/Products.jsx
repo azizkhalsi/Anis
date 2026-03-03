@@ -206,22 +206,6 @@ function DmkPcSoftwareScene() {
         </div>
         </div>
 
-      <div className="dmk-pc-scene-cable-wrap dmk-pc-scene-cable-wrap--to-hub dmk-pc-scene-cable-wrap--vertical dmk-pc-scene-cable-wrap--hub-usb">
-        <svg className="dmk-pc-scene-cable" viewBox="0 0 32 60" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-          <path className="dmk-pc-scene-cable-line" d="M 16 2 C 16 28 10 32 16 58" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        </svg>
-      </div>
-
-      <div className="dmk-pc-scene-desk-row dmk-pc-scene-desk-row--usb">
-        <div className="dmk-pc-scene-peripheral dmk-pc-scene-peripheral--usb">
-          <div className="dmk-pc-scene-usb">
-            <div className="dmk-pc-scene-usb-inner">
-              <div className="dmk-pc-scene-usb-slot" aria-hidden="true" />
-              <span className="dmk-pc-scene-usb-label">USB</span>
-            </div>
-          </div>
-        </div>
-      </div>
       </div>
     </div>
   );

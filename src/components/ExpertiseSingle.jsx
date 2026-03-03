@@ -8,8 +8,6 @@ import ExpertiseTabVisual from './ExpertiseTabVisual';
 
 const VALID_TOPICS = ['consulting', 'hardware', 'software', 'mbd', 'prototyping'];
 const BASE = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
-const MBD_DIAGRAM_SRC = `${BASE}images/mbd-diagram.png`;
-const MBD_DIAGRAM_SRC_2X = `${BASE}images/mbd-diagram@2x.png`;
 const PROTOTYPING_BG_IMG = `${BASE}images/prototyping-pick-and-place.png`;
 const PROTOTYPING_ENV_IMGS = [
   `${BASE}images/prototyping-bg-workshop.png`,
@@ -29,11 +27,9 @@ export default function ExpertiseSingle() {
   const { topicId } = useParams();
   const contentRef = useRef(null);
   const visualRef = useRef(null);
-  const mbdDiagramRef = useRef(null);
   const typhoonRef = useRef(null);
   const contentVisible = useScrollAnimation(contentRef, { threshold: 0.1 });
   const visualVisible = useScrollAnimation(visualRef, { threshold: 0.1 });
-  const mbdDiagramVisible = useScrollAnimation(mbdDiagramRef, { threshold: 0.08 });
   const typhoonVisible = useScrollAnimation(typhoonRef, { threshold: 0.1 });
   const exemplesRef = useRef(null);
   const exemplesVisible = useScrollAnimation(exemplesRef, { threshold: 0.06 });
@@ -63,24 +59,6 @@ export default function ExpertiseSingle() {
             >
               <div className="expertise-single-label">{expertiseLabel}</div>
               <h1 className="expertise-single-title">{label}</h1>
-              <div
-                className={`expertise-single-mbd-diagram ${mbdDiagramVisible ? 'visible' : ''}`}
-                ref={mbdDiagramRef}
-                data-animate="fade-up"
-              >
-                <div className="expertise-mbd-diagram-frame">
-                  <img
-                    src={MBD_DIAGRAM_SRC}
-                    sizes="(max-width: 968px) 100vw, 1100px"
-                    alt={t('expertise.tabs.mbd.visualLabel')}
-                    className="expertise-mbd-diagram-img"
-                    width={1200}
-                    height={800}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-              </div>
               <div className="expertise-single-body"><ExpertiseTabContent topicId={topicId} /></div>
             </div>
             <div
