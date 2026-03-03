@@ -22,7 +22,6 @@ export default function ExpertiseTabContent({ topicId }) {
   const benefitsEl = Array.isArray(mbdBenefits) && mbdBenefits.length > 0 ? (
     <div className="mbd-benefits">
       <div className="mbd-benefits-header">
-        <h3 className="mbd-benefits-title">{t('expertise.tabs.mbd.contentTitle')}</h3>
         <span className="mbd-benefits-badge" aria-hidden="true">{t('expertise.tabs.mbd.matlabSimulink')}</span>
       </div>
       <ul className="mbd-benefits-list">
@@ -60,6 +59,24 @@ export default function ExpertiseTabContent({ topicId }) {
       ) : null}
     </div>
   ) : null;
+
+  if (topicId === 'mbd') {
+    return (
+      <div className="expertise-tab-content expertise-tab-content--mbd">
+        <div className="expertise-tab-content__main">
+          <h3>{title}</h3>
+          {paragraphsEl}
+          {listEl}
+        </div>
+        {benefitsEl && (
+          <div className="expertise-tab-content__sidebar">
+            {benefitsEl}
+          </div>
+        )}
+        {hardwareConceptionEl}
+      </div>
+    );
+  }
 
   return (
     <>

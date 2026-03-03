@@ -105,15 +105,20 @@ function DmkPcSoftwareScene() {
               <div className={`dmk-pc-scene-screen ${screenOpen ? 'open' : ''}`}>
                 {!screenOpen ? (
                   <div className="dmk-pc-scene-desktop">
-                    <span className="dmk-pc-scene-desktop-label">{t('products.dmk.pcSceneDesktop')}</span>
                     <button
                       type="button"
-                      className="dmk-pc-scene-dmk-icon"
+                      className="dmk-pc-scene-dmk-icon dmk-pc-scene-desktop-icon dmk-pc-scene-desktop-icon--dmk"
                       onClick={() => setScreenOpen(true)}
                       aria-label={t('products.dmk.pcSceneOpenDmk')}
                     >
-                      <span className="dmk-pc-scene-dmk-icon-symbol">DMK</span>
-                      <span className="dmk-pc-scene-dmk-icon-name">DMK</span>
+                      <img
+                        src="/hmi/dmk-logo.png"
+                        alt=""
+                        className="dmk-pc-scene-dmk-icon-img"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span className="dmk-pc-scene-desktop-icon-label">DMK</span>
                     </button>
                   </div>
                 ) : (

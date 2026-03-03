@@ -2772,6 +2772,10 @@ section {
     max-width: 720px;
 }
 
+.expertise-single-content--lead.expertise-single-content--mbd {
+    max-width: 1100px;
+}
+
 .expertise-single-content--solo {
     max-width: 720px;
 }
@@ -2780,27 +2784,263 @@ section {
     margin-top: 32px;
 }
 
-/* Prototyping page: wider so process row fits on one line, centered */
-.expertise-single-content--with-journey {
+/* ========== Prototyping hero – soft background image (home-page style) ========== */
+.expertise-single--prototyping {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: -72px; /* cancel main's padding-bottom so no white strip before footer */
+}
+
+.expertise-single--prototyping .container.container--wide {
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.prototyping-hero {
+    position: relative;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    min-height: 115vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+    padding-bottom: 80px;
+}
+
+.prototyping-hero-bg {
+    position: absolute;
+    inset: -40px 0 -120px 0;
+    z-index: 0;
+}
+
+.prototyping-hero-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: blur(2px);
+    opacity: 0.72;
+    transform: scale(1.02);
+}
+
+.prototyping-hero-bg-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(250, 251, 252, 0.35) 0%,
+        rgba(250, 251, 252, 0.16) 35%,
+        rgba(250, 251, 252, 0.0) 100%
+    );
+    z-index: 1;
+}
+
+.prototyping-hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 640px;
+    padding: 64px 24px 48px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease 0.15s, transform 0.7s ease 0.15s;
+}
+
+.prototyping-hero-content.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.prototyping-hero-label {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 12px;
+}
+
+.prototyping-hero-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2rem, 4.5vw, 2.85rem);
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.25;
+    margin: 0 0 16px;
+    letter-spacing: -0.02em;
+}
+
+.prototyping-hero-lead {
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin: 0;
+}
+
+/* Two env images next to title (workshop + lab), away from exemples */
+.prototyping-hero-env {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 28px;
+}
+
+.prototyping-hero-env-img {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    max-height: 160px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .prototyping-hero-env-img {
+        max-width: 220px;
+        max-height: 130px;
+    }
+}
+
+/* Exemples section – over background, creative grid, white removed from images */
+.prototyping-exemples {
+    position: relative;
+    z-index: 2;
+    width: 100%;
     max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 24px 0;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s;
+}
+
+.prototyping-exemples.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.prototyping-exemples-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+    font-weight: 700;
+    color: var(--text);
+    text-align: center;
+    margin: 0 0 36px;
+    line-height: 1.4;
+    max-width: 720px;
     margin-left: auto;
     margin-right: auto;
 }
 
-.expertise-single-content--with-journey .prototyping-journey {
-    margin-left: 24px;
-    margin-right: 0;
+.prototyping-exemples-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px 24px;
+    align-items: center;
+    justify-items: center;
 }
 
-.expertise-single-content--with-journey .prototyping-journey .container {
-    padding-left: 32px;
-    padding-right: 32px;
+.prototyping-exemples-item {
+    background: transparent;
+    border-radius: 0;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 140px;
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+    transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: calc(var(--i, 0) * 0.08s);
+}
+
+.prototyping-exemples.visible .prototyping-exemples-item {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.prototyping-exemples-item:hover .prototyping-exemples-img {
+    transform: scale(1.06);
+}
+
+.prototyping-exemples-item:nth-child(1) { grid-column: 1; }
+.prototyping-exemples-item:nth-child(2) { grid-column: 2; }
+.prototyping-exemples-item:nth-child(3) { grid-column: 3; }
+.prototyping-exemples-item:nth-child(4) { grid-column: 1; }
+.prototyping-exemples-item:nth-child(5) { grid-column: 2; }
+.prototyping-exemples-item:nth-child(6) { grid-column: 3; }
+
+.prototyping-exemples-img {
     max-width: 100%;
+    max-height: 190px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.12));
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes exemples-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+.prototyping-exemples.visible .prototyping-exemples-item:nth-child(odd) {
+    animation: exemples-float 4s ease-in-out infinite;
+}
+
+.prototyping-exemples.visible .prototyping-exemples-item:nth-child(even) {
+    animation: exemples-float 4s ease-in-out 2s infinite;
+}
+
+@media (max-width: 768px) {
+    .prototyping-hero {
+        min-height: auto;
+        padding-bottom: 56px;
+    }
+    .prototyping-hero-content {
+        padding: 48px 20px 36px;
+    }
+    .prototyping-hero-bg-img {
+        filter: blur(1px);
+        opacity: 0.68;
+    }
+    .prototyping-exemples {
+        padding: 24px 16px 0;
+    }
+    .prototyping-exemples-title {
+        margin-bottom: 28px;
+        font-size: 1.05rem;
+    }
+    .prototyping-exemples-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px 16px;
+    }
+    .prototyping-exemples-item:nth-child(1),
+    .prototyping-exemples-item:nth-child(3),
+    .prototyping-exemples-item:nth-child(5) { grid-column: 1; }
+    .prototyping-exemples-item:nth-child(2),
+    .prototyping-exemples-item:nth-child(4),
+    .prototyping-exemples-item:nth-child(6) { grid-column: 2; }
+    .prototyping-exemples-img {
+        max-height: 140px;
+    }
 }
 
 .expertise-single-mbd-diagram {
     width: 100%;
-    margin-bottom: 64px;
+    margin-top: 40px;
+    margin-bottom: 40px;
     opacity: 0;
     transform: translateY(24px);
     transition: opacity 0.7s ease 0.15s, transform 0.7s ease 0.15s;
@@ -2825,10 +3065,11 @@ section {
 .expertise-mbd-diagram-img {
     width: 100%;
     height: auto;
-    max-height: min(75vh, 720px);
+    max-height: min(75vh, 680px);
     object-fit: contain;
     object-position: center;
     display: block;
+    margin: 0 auto;
     border-radius: var(--radius-lg);
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
@@ -2842,10 +3083,120 @@ section {
     .expertise-single-visual { position: static; }
     .expertise-single-mbd-diagram { margin-bottom: 48px; }
     .expertise-mbd-diagram-frame {
+        max-width: 100%;
         padding: 32px 20px 40px;
     }
     .expertise-mbd-diagram-img {
-        max-height: min(70vh, 520px);
+        max-height: min(65vh, 480px);
+    }
+}
+
+/* Model-Based Design – Typhoon HIL partner section (title + paragraph + large image, no border) */
+.mbd-typhoon {
+    margin-top: 56px;
+}
+
+.mbd-typhoon-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.mbd-typhoon-copy {
+    text-align: left;
+}
+
+.mbd-typhoon-kicker {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    margin-bottom: 10px;
+}
+
+.mbd-typhoon-title-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 14px;
+}
+
+.mbd-typhoon-title-row .mbd-typhoon-title {
+    margin: 0;
+    flex: 1;
+    min-width: 0;
+}
+
+.mbd-typhoon-title-img {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    max-height: 140px;
+    object-fit: contain;
+    object-position: right bottom;
+}
+
+.mbd-typhoon-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 14px;
+    line-height: 1.3;
+}
+
+.mbd-typhoon-text {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    max-width: 720px;
+}
+
+.mbd-typhoon-visual {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.mbd-typhoon-img {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    max-height: min(70vh, 520px);
+    object-fit: contain;
+    object-position: center;
+}
+
+@media (max-width: 968px) {
+    .mbd-typhoon-inner {
+        gap: 20px;
+    }
+    .mbd-typhoon-title-row {
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+    .mbd-typhoon-title-row .mbd-typhoon-title {
+        flex: 1 1 100%;
+    }
+    .mbd-typhoon-title-img {
+        max-width: 200px;
+        max-height: 100px;
+    }
+    .mbd-typhoon-title {
+        font-size: 1.35rem;
+    }
+    .mbd-typhoon-img {
+        max-width: 100%;
+        max-height: min(60vh, 380px);
     }
 }
 
@@ -2879,6 +3230,51 @@ section {
 .expertise-visual-card--image:hover .expertise-visual-img {
     opacity: 1;
     transform: scale(1.02);
+}
+
+.expertise-visual-img--hardware {
+    object-fit: contain;
+    max-height: 460px;
+    min-height: 280px;
+}
+
+.expertise-visual-card--hardware-two {
+    border: none;
+    background: transparent;
+    padding: 0;
+}
+
+.expertise-visual-card--hardware-two .expertise-hardware-two {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 24px 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.expertise-visual-card--hardware-two .expertise-hardware-two img {
+    width: 100%;
+    max-width: 520px;
+    height: auto;
+    max-height: 340px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.expertise-visual-card--hardware-two .expertise-hardware-two img:last-child {
+    margin-top: 16px;
+}
+
+@media (max-width: 768px) {
+    .expertise-visual-card--hardware-two .expertise-hardware-two {
+        gap: 24px;
+        padding: 20px 16px;
+    }
+    .expertise-visual-card--hardware-two .expertise-hardware-two img {
+        max-width: 100%;
+        max-height: 260px;
+    }
 }
 
 .expertise-diagram-img {
@@ -2934,7 +3330,42 @@ section {
     transform: scale(1.01);
 }
 
-/* Model-Based Design benefits block (title + MATLAB & SIMULINK + four benefits) */
+/* Model-Based Design: two-column layout – paragraphs left, benefits right */
+.expertise-tab-content--mbd {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 380px;
+    gap: 48px;
+    align-items: start;
+}
+
+.expertise-tab-content--mbd .expertise-tab-content__main {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.expertise-tab-content--mbd .expertise-tab-content__sidebar {
+    position: sticky;
+    top: 100px;
+}
+
+.expertise-tab-content--mbd .expertise-tab-content__sidebar .mbd-benefits {
+    margin-top: 0;
+}
+
+@media (max-width: 968px) {
+    .expertise-tab-content--mbd {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    .expertise-tab-content--mbd .expertise-tab-content__sidebar {
+        position: static;
+    }
+    .expertise-tab-content--mbd .expertise-tab-content__sidebar .mbd-benefits {
+        margin-top: 1.5rem;
+    }
+}
+
+/* Model-Based Design benefits block (MATLAB & SIMULINK badge + four benefits) */
 .mbd-benefits {
     margin-top: 2rem;
     padding: 1.5rem 1.25rem;
@@ -4201,65 +4632,172 @@ section {
 }
 
 .dmk-pc-scene-screen.open {
-    width: min(700px, 92vw);
-    max-height: min(75vh, 480px);
+    width: min(820px, 94vw);
+    max-height: min(82vh, 520px);
     box-shadow: inset 0 0 0 2px rgba(0,0,0,0.4), 0 0 40px rgba(196, 43, 43, 0.15);
 }
 
 .dmk-pc-scene-desktop {
     width: 100%;
     height: 100%;
+    background: url('/hmi/dmk-desktop-wallpaper.png') center center / cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.dmk-pc-scene-desktop-icons {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    align-items: flex-start;
+    gap: 14px 20px;
+    padding: 14px 18px 12px;
+    min-height: 0;
+}
+
+.dmk-pc-scene-desktop-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 4px;
+    min-width: 52px;
+    border: none;
+    background: transparent;
+    border-radius: 2px;
+    cursor: default;
+    pointer-events: none;
+    font-family: 'Segoe UI', 'Inter', sans-serif;
+    font-size: 0.65rem;
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+}
+
+/* App shortcut icon: colored square with letter */
+.dmk-pc-scene-desktop-icon--app .dmk-pc-scene-desktop-icon-app-box {
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+    background: var(--app-color, #4a90d9);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.2);
+    text-shadow: 0 1px 1px rgba(0,0,0,0.3);
+}
+
+.dmk-pc-scene-desktop-icon-label {
+    text-align: center;
+    max-width: 72px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* DMK icon: only clickable one, bigger than other icons */
+.dmk-pc-scene-desktop-icon--dmk.dmk-pc-scene-dmk-icon {
+    pointer-events: auto;
+    cursor: pointer;
+    padding: 12px 16px;
+    min-width: 72px;
+    background: rgba(0, 0, 0, 0.28);
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.35);
+    transition: transform 0.25s ease, background 0.2s, box-shadow 0.25s ease;
+}
+
+.dmk-pc-scene-desktop-icon--dmk.dmk-pc-scene-dmk-icon:hover {
+    transform: scale(1.08);
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 18px rgba(0,0,0,0.4);
+}
+
+.dmk-pc-scene-desktop-icon--dmk.dmk-pc-scene-dmk-icon:active {
+    transform: scale(1.02);
+}
+
+.dmk-pc-scene-desktop-icon--dmk .dmk-pc-scene-dmk-icon-img {
+    max-width: 56px;
+}
+
+/* Taskbar (Windows 7 style) */
+.dmk-pc-scene-taskbar {
+    flex-shrink: 0;
+    height: 32px;
+    min-height: 32px;
+    background: linear-gradient(180deg, rgba(30,50,80,0.92) 0%, rgba(15,28,48,0.96) 100%);
+    border-top: 1px solid rgba(255,255,255,0.12);
+    display: flex;
+    align-items: center;
+    padding: 0 6px 0 0;
+    box-shadow: 0 -1px 4px rgba(0,0,0,0.2);
+}
+
+.dmk-pc-scene-taskbar-start {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 10px 0 6px;
+    height: 100%;
+}
+
+.dmk-pc-scene-taskbar-orb {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #6eb8ff 0%, #2d7dd2 50%, #1a5a9e 100%);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.4);
+    flex-shrink: 0;
+}
+
+.dmk-pc-scene-taskbar-start-label {
+    font-family: 'Segoe UI', 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.4);
+}
+
+.dmk-pc-scene-taskbar-tray {
+    flex: 1;
+    min-width: 8px;
+}
+
+.dmk-pc-scene-taskbar-clock {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 20px;
-    background: linear-gradient(160deg, #3d3d5c 0%, #2a2a3e 100%);
-}
-
-.dmk-pc-scene-desktop-label {
-    font-size: 0.75rem;
-    color: rgba(255,255,255,0.4);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+    padding: 2px 10px 2px 12px;
+    font-family: 'Segoe UI', 'Inter', sans-serif;
+    font-size: 0.6rem;
+    color: rgba(255,255,255,0.95);
+    text-shadow: 0 1px 1px rgba(0,0,0,0.3);
+    line-height: 1.2;
 }
 
 .dmk-pc-scene-dmk-icon {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
-    padding: 24px 36px;
-    background: var(--accent);
-    color: white;
+    gap: 6px;
     border: none;
-    border-radius: 16px;
-    cursor: pointer;
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
-    font-size: 1.25rem;
-    box-shadow: 0 8px 24px rgba(196, 43, 43, 0.4);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.dmk-pc-scene-dmk-icon:hover {
-    transform: scale(1.08);
-    box-shadow: 0 12px 32px rgba(196, 43, 43, 0.5);
-}
-
-.dmk-pc-scene-dmk-icon:active {
-    transform: scale(1.02);
-}
-
-.dmk-pc-scene-dmk-icon-symbol {
+.dmk-pc-scene-dmk-icon-img {
     display: block;
-    width: 48px;
-    height: 48px;
-    line-height: 48px;
-    text-align: center;
-    background: rgba(255,255,255,0.2);
-    border-radius: 12px;
-    font-size: 1rem;
+    width: 100%;
+    height: auto;
+    max-width: 140px;
+    object-fit: contain;
 }
 
 .dmk-pc-scene-interface {
@@ -4267,7 +4805,7 @@ section {
     height: 100%;
     display: flex;
     flex-direction: column;
-    background: #1e1e2e;
+    background: #e6e8ec;
     animation: dmkInterfaceIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
@@ -4288,24 +4826,24 @@ section {
     align-items: center;
     gap: 16px;
     padding: 12px 16px;
-    background: #252536;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    background: #d8dae0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
 }
 
 .dmk-pc-scene-interface-back {
     padding: 6px 12px;
     background: transparent;
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(0,0,0,0.18);
     border-radius: 8px;
-    color: rgba(255,255,255,0.9);
+    color: var(--text);
     font-size: 0.8rem;
     cursor: pointer;
     transition: background 0.2s, border-color 0.2s;
 }
 
 .dmk-pc-scene-interface-back:hover {
-    background: rgba(255,255,255,0.08);
-    border-color: rgba(255,255,255,0.35);
+    background: rgba(0,0,0,0.05);
+    border-color: rgba(0,0,0,0.3);
 }
 
 .dmk-pc-scene-interface-tabs {
@@ -4318,7 +4856,7 @@ section {
     border: none;
     border-radius: 8px;
     background: transparent;
-    color: rgba(255,255,255,0.5);
+    color: var(--text-muted);
     font-size: 0.85rem;
     font-weight: 500;
     cursor: pointer;
@@ -4326,7 +4864,7 @@ section {
 }
 
 .dmk-pc-scene-tab:hover {
-    color: rgba(255,255,255,0.85);
+    color: var(--text);
 }
 
 .dmk-pc-scene-tab.active {
@@ -4347,7 +4885,7 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #1a1a28;
+    background: #ebecef;
 }
 
 .dmk-pc-scene-interface-pane img {
@@ -4614,8 +5152,8 @@ section {
         max-width: 480px;
     }
     .dmk-pc-scene-screen.open {
-        width: 92vw;
-        max-width: 620px;
+        width: 94vw;
+        max-width: 720px;
     }
     .dmk-pc-scene-device--hub .dmk-pc-scene-device-inner {
         width: 190px;
@@ -6587,6 +7125,15 @@ section {
     transform: scale(1.04);
 }
 
+/* Automotive: same box as other industries, full image visible (no crop) */
+.industry-showcase-visual--contain {
+    border: none;
+}
+
+.industry-showcase-visual--contain .industry-showcase-img {
+    object-fit: contain;
+}
+
 .industry-img-overlay {
     position: absolute;
     inset: 0;
@@ -6608,6 +7155,9 @@ section {
         border-left: none;
         border-top: 1px solid var(--border);
         min-height: 260px;
+    }
+    .industry-showcase-visual--contain {
+        border-top: none;
     }
     .industry-features {
         grid-template-columns: 1fr;

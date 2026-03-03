@@ -12,14 +12,17 @@ export default function ExpertisePage() {
   const description = tab
     ? t(`expertise.topicDescriptions.${topicId}`)
     : t('expertise.defaultDescription');
+  const hideHeader = topicId === 'prototyping';
 
   return (
     <>
-      <PageHeader
-        tag={t('expertise.tag')}
-        title={title}
-        description={description}
-      />
+      {!hideHeader && (
+        <PageHeader
+          tag={t('expertise.tag')}
+          title={title}
+          description={description}
+        />
+      )}
       <ExpertiseSingle />
     </>
   );

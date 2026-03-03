@@ -34,7 +34,8 @@ export default function MissionPage() {
           <div className={`mission-block ${philosophyVisible ? 'visible' : ''}`} ref={philosophyRef} data-animate="fade-up">
             <span className="mission-label">{t('mission.philosophyLabel')}</span>
             <h2 className="mission-heading">{t('mission.philosophyHeading')}</h2>
-            <p className="mission-slogan">&quot;{t('mission.philosophySlogan')}&quot;</p>
+            <p className="mission-slogan">{t('mission.philosophySlogan')}
+</p>
             <p className="mission-text">{t('mission.philosophyText1')}</p>
             <p className="mission-text">{t('mission.philosophyText2')}</p>
           </div>

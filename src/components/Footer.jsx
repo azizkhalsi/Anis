@@ -26,6 +26,7 @@ const FOOTER_LINKS = [
     { labelKey: 'footer.whiteGoods', to: '/industries/whitegood' },
     { labelKey: 'footer.powerTools', to: '/industries/powertool' },
     { labelKey: 'footer.automotive', to: '/industries/automotive' },
+    { labelKey: 'footer.ebike', to: '/industries/ebike' },
   ]},
 ];
 

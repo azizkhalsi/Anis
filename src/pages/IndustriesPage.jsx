@@ -4,7 +4,7 @@ import PageHeader from '../components/PageHeader';
 import Industries from '../components/Industries';
 import { INDUSTRIES_DATA } from '../constants/industriesData';
 
-const VALID_INDUSTRIES = ['whitegood', 'powertool', 'automotive'];
+const VALID_INDUSTRIES = ['whitegood', 'powertool', 'automotive', 'ebike'];
 
 export default function IndustriesPage() {
   const { t } = useTranslation();

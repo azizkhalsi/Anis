@@ -64,7 +64,7 @@ export default function Industries({ initialIndustry = 'whitegood', singleMode =
                 ))}
               </div>
             </div>
-            <div className="industry-showcase-visual">
+            <div className={`industry-showcase-visual${industry.id === 'automotive' ? ' industry-showcase-visual--contain' : ''}`}>
               <img
                 src={industry.image}
                 srcSet={industry.image.replace(/w=\d+/, 'w=400') + ' 400w, ' + industry.image + ' 800w'}

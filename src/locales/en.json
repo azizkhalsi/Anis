@@ -30,6 +30,7 @@
     "whiteGoods": "White Goods",
     "powerTools": "Power Tools",
     "automotive": "Automotive",
+    "ebike": "E-bike",
     "simulator": "Simulator",
     "pulseWidthModulation": "Pulse Width Modulation",
     "contact": "Contact",
@@ -59,6 +60,7 @@
     "whiteGoods": "White Goods",
     "powerTools": "Power Tools",
     "automotive": "Automotive",
+    "ebike": "E-bike",
     "copyright": "Appcon Technologies. All Rights Reserved.",
     "backToTop": "Back to top",
     "linkedInAria": "Appcon Technologies on LinkedIn"
@@ -329,7 +331,16 @@
       "features": ["Fuel & water pumps", "Radiator fans", "Wiper systems", "Seat adjustment"],
       "stat": "1M+",
       "statLabel": "units deployed",
-      "imageAlt": "Automotive production line with electronic vehicle systems"
+      "imageAlt": "Modern SUV representing automotive and vehicle systems"
+    },
+    "ebike": {
+      "title": "E-bike",
+      "subtitle": "Electric Bicycles",
+      "description": "Sensorless motor control for pedal-assist and throttle e-bikes. Our solutions deliver smooth torque response, high efficiency, and long battery life for mid-drive and hub motors, meeting the demands of premium electric bicycles.",
+      "features": ["Mid-drive & hub motors", "Pedal assist & torque sensing", "Regenerative braking", "Battery efficiency"],
+      "stat": "EV-ready",
+      "statLabel": "solutions",
+      "imageAlt": "Modern e-bike representing electric bicycle solutions"
     }
   },
   "simulator": {
@@ -446,6 +457,9 @@
         ],
         "list": ["Provide the expertise to help you migrate to Model-Based Design", "Design from scratch and validate your motor control system in a simulation environment, giving your design team the ability to perform rapid prototyping", "Provide expertise to evaluate, modify, and maintain your existing motor control models", "Create an interface and integrate the automatically generated code from the controller model into your existing software or provide you a full range motor control software solution using Model-Based Design"],
         "visualLabel": "Model-Based Design",
+        "typhoonKicker": "Hardware-in-the-loop testing",
+        "typhoonTitle": "Typhoon HIL as our real-time emulation",
+        "typhoonText": "For hardware-in-the-loop validation of our control models, we rely on Typhoon HIL platforms. This allows us to run real-time emulation of power stages and controllers, close the loop with physical hardware, and deliver Model-Based Design projects that are already proven on HIL before they reach your lab." ,
         "benefits": [
           { "title": "Cost-Effective", "desc": "Reduces development time and effort, leading to lower costs and faster time-to-market." },
           { "title": "Improved Accuracy", "desc": "Early simulation and testing reduce design errors and enhance overall reliability." },
@@ -456,6 +470,8 @@
       "prototyping": {
         "label": "Prototyping",
         "contentTitle": "Prototyping",
+        "heroLead": "High-quality product prototyping — multi-layer PCBs, SMD and THT assembly, from concept to physical reality.",
+        "exemplesTitle": "Exemples of APPCON's Sensorless Control Solutions in Mass Productions",
         "paragraphs": ["We provide an end-to-end service covering PCB, stencil and component sourcing, board assembly, and functional testing, all from a single source."],
         "list": ["Multi-layer PCB fabrication", "Stencil production & component sourcing", "SMD and THT board assembly", "Functional testing & validation", "Single-source end-to-end service"],
         "visualLabel": "From Design to Reality",
@@ -497,7 +513,7 @@
     "missionText": "We dedicate ourselves to pushing the boundaries of what's possible in motor control and power electronics, developing solutions that reduce cost, eliminate complexity, and deliver higher reliability through sensorless technology.",
     "philosophyLabel": "The Philosophy",
     "philosophyHeading": "Beyond the Know-How",
-    "philosophySlogan": "Beyond knowing the know-how — we know the know-why.",
+    "philosophySlogan": "More than just 'know how'\nwe have the 'know why'",
     "philosophyText1": "At Appcon, we don't just implement solutions — we understand the fundamental principles that make them work. This deep understanding allows us to innovate, optimize, and solve problems that others cannot. When you work with us, you gain access to decades of research-backed expertise in motor control theory and practice.",
     "philosophyText2": "Our engineers bring academic rigor combined with practical industry experience, enabling us to translate complex theoretical concepts into robust, production-ready systems.",
     "valuesLabel": "Core Values",
