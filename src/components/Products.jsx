@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 import OscilloscopeDisplay from './OscilloscopeDisplay';
 import { PRODUCTS } from '../constants/productsData';
+import DmkScopeDashboard from './DmkScopeDashboard';
 
 const DMK_HMI_VISUALISATION_SRC = '/hmi/dmk-hmi-visualisation.png';
 const DMK_HMI_CALIBRATION_SRC = '/hmi/dmk-hmi-calibration.png';
@@ -120,6 +121,9 @@ function DmkPcSoftwareScene() {
                       />
                       <span className="dmk-pc-scene-desktop-icon-label">DMK</span>
                     </button>
+                    <p className="dmk-pc-scene-desktop-hint">
+                      Click DMK to open live visualisation
+                    </p>
                   </div>
                 ) : (
                   <div className="dmk-pc-scene-interface">
@@ -152,11 +156,7 @@ function DmkPcSoftwareScene() {
                     <div className="dmk-pc-scene-interface-content">
                       {activeTab === 'visualisation' && (
                         <div className="dmk-pc-scene-interface-pane dmk-pc-scene-interface-pane--visualisation">
-                          <img
-                            src={DMK_HMI_VISUALISATION_SRC}
-                            alt={t('products.dmk.hmiVisualisationAlt')}
-                            loading="lazy"
-                          />
+                          <DmkScopeDashboard />
                         </div>
                       )}
                       {activeTab === 'calibration' && (

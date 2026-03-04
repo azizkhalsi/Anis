@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oscilloscope Dashboard</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+  }
+
+  body {
+    background: #f5f0e8;
+    font-family: 'Courier New', monospace;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .dashboard {
+    background: #f0ebe0;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+  }
+  .panels {
+    display: flex;
+    gap: 12px;
+  }
+  .panel {
+    background: #fff;
+    border: 1px solid #aaa;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .panel-title {
+    text-align: center;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    padding: 5px 0 3px;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+    background: #f8f5ef;
+  }
+  canvas {
+    display: block;
+  }
+  .legend {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding: 4px 0;
+    font-size: 10px;
+    color: #333;
+    border-top: 1px solid #ddd;
+    background: #f8f5ef;
+    flex-wrap: wrap;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border: 1px solid #555;
+  }
+  .knobs-row {
+    display: flex;
+    gap: 10px;
+    padding: 4px 0;
+  }
+  .knob-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+  }
+  .knob {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #e8e8e8, #999 60%, #666);
+    border: 2px solid #888;
+    box-shadow: 1px 2px 4px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255,255,255,0.3);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .knob::after {
+    content: '';
+    width: 3px;
+    height: 12px;
+    background: #444;
+    border-radius: 2px;
+    position: absolute;
+    top: 4px;
+  }
+  .knob-label {
+    font-size: 9px;
+    font-weight: bold;
+    color: #fff;
+    padding: 2px 6px;
+    border-radius: 2px;
+    letter-spacing: 0.5px;
+  }
+  .bottom-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 2px 4px;
+  }
+  .knobs-left { display: flex; gap: 8px; }
+  .knobs-right { display: flex; gap: 8px; }
+  .status-bar {
+    font-size: 10px;
+    color: #333;
+    text-align: right;
+    padding: 2px 4px;
+    border-top: 1px solid #ccc;
+  }
+  .status-online {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .online-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #2a2;
+    border: 1px solid #181;
+  }
+</style>
+</head>
+<body>
+<div class="dashboard">
+  <div class="panels">
+    <!-- TIME DOMAIN VIEW -->
+    <div class="panel">
+      <div class="panel-title">TIME DOMAIN VIEW</div>
+      <canvas id="timeDomain" width="390" height="470"></canvas>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#4a4;"></div> Trig</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#5b5;"></div> U_V</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#e8a020;"></div> V_W</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#5060c8;"></div> W_U</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#c44;"></div> Is2</div>
+      </div>
+    </div>
+    <!-- DQ CHART VIEW -->
+    <div class="panel">
+      <div class="panel-title">DQ CHART VIEW</div>
+      <canvas id="dqChart" width="390" height="470"></canvas>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#5b5;"></div> VQ</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#e8a020;"></div> VD</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#5060c8;"></div> IQ</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#c44;"></div> ID</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Knobs bottom -->
+  <div class="bottom-section">
+    <div class="knobs-left">
+      <div class="knob-group">
+        <div class="knob"></div>
+        <div class="knob-label" style="background:#555;">CH1 x 1</div>
+      </div>
+      <div class="knob-group">
+        <div class="knob"></div>
+        <div class="knob-label" style="background:#e8a020;">CH2 x 1</div>
+      </div>
+      <div class="knob-group">
+        <div class="knob"></div>
+        <div class="knob-label" style="background:#5b5;">CH3 x 1</div>
+      </div>
+      <div class="knob-group">
+        <div class="knob"></div>
+        <div class="knob-label" style="background:#c44;">CH4 x 1</div>
+      </div>
+    </div>
+    <div class="knobs-right">
+      <div class="knob-group">
+        <div class="knob"></div>
+        <div class="knob-label" style="background:#5b5;">CH1 x 1</div>
+      </div>
+      <div class="knob-group">
+        <div class="knob"></div>
+        <div class="knob-label" style="background:#e8a020;">CH2 x 1</div>
+      </div>
+      <div class="knob-group">
+        <div class="knob"></div>
+        <div class="knob-label" style="background:#5060c8;">CH3 x 1</div>
+      </div>
+      <div class="knob-group">
+        <div class="knob"></div>
+        <div class="knob-label" style="background:#c44;">CH4 x 1</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="status-bar">
+    10 ms / DIV &nbsp;
+    <span class="status-online">
+      Online <div class="online-dot"></div>
+    </span>
+  </div>
+</div>
+
+<script>
+// ─── TIME DOMAIN CANVAS ─────────────────────────────────────────────────────
+const tdCanvas = document.getElementById('timeDomain');
+const tdCtx = tdCanvas.getContext('2d');
+const W1 = tdCanvas.width, H1 = tdCanvas.height;
+
+// Y-axis range: -79 to 79
+const TD_YMIN = -79, TD_YMAX = 79;
+const TD_YRANGE = TD_YMAX - TD_YMIN;
+
+// margins
+const mL = 48, mR = 8, mT = 6, mB = 6;
+const plotW1 = W1 - mL - mR;
+const plotH1 = H1 - mT - mB;
+
+const TD_YTICKS = [79, 59.25, 39.50, 19.75, 0, -19.75, -39.50, -59.25, -79];
+
+function yToPixel1(v) {
+  return mT + ((TD_YMAX - v) / TD_YRANGE) * plotH1;
+}
+
+// Time scrolling state
+let tdPhase = 0;
+// Wave parameters: amplitude, phase offset, color
+const waves = [
+  { amp: 55, phaseOff: 0,              color: '#4db84d', lw: 1.8 }, // U_V green
+  { amp: 55, phaseOff: (2*Math.PI/3),  color: '#e8a020', lw: 1.8 }, // V_W orange
+  { amp: 55, phaseOff: (4*Math.PI/3),  color: '#5060c8', lw: 1.8 }, // W_U blue
+];
+// cycles visible across plot width
+const CYCLES_VISIBLE = 4.5;
+
+function drawTimeDomain(phase) {
+  const ctx = tdCtx;
+  // Background
+  ctx.fillStyle = '#fff';
+  ctx.fillRect(0, 0, W1, H1);
+
+  // ── Grid ──
+  ctx.strokeStyle = '#ddd';
+  ctx.lineWidth = 0.8;
+  // Horizontal grid lines
+  TD_YTICKS.forEach(v => {
+    const y = yToPixel1(v);
+    ctx.beginPath();
+    ctx.moveTo(mL, y);
+    ctx.lineTo(mL + plotW1, y);
+    ctx.stroke();
+  });
+  // Vertical grid: 10 columns
+  const vCols = 10;
+  for (let i = 0; i <= vCols; i++) {
+    const x = mL + (i / vCols) * plotW1;
+    ctx.beginPath();
+    ctx.moveTo(x, mT);
+    ctx.lineTo(x, mT + plotH1);
+    ctx.stroke();
+  }
+
+  // ── Y-axis labels ──
+  ctx.fillStyle = '#333';
+  ctx.font = '10px Courier New';
+  ctx.textAlign = 'right';
+  TD_YTICKS.forEach(v => {
+    const y = yToPixel1(v);
+    ctx.fillText(v.toFixed(2), mL - 4, y + 3.5);
+  });
+
+  // ── Trig (red flat at 0) ──
+  ctx.strokeStyle = '#c44';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(mL, yToPixel1(0));
+  ctx.lineTo(mL + plotW1, yToPixel1(0));
+  ctx.stroke();
+
+  // ── Sine waves ──
+  const omega = 2 * Math.PI * CYCLES_VISIBLE;
+  waves.forEach(w => {
+    ctx.strokeStyle = w.color;
+    ctx.lineWidth = w.lw;
+    ctx.beginPath();
+    for (let px = 0; px <= plotW1; px++) {
+      const t = px / plotW1; // 0..1 across width
+      const val = w.amp * Math.sin(omega * t - phase + w.phaseOff);
+      const x = mL + px;
+      const y = yToPixel1(val);
+      if (px === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+  });
+
+  // Border
+  ctx.strokeStyle = '#999';
+  ctx.lineWidth = 1;
+  ctx.strokeRect(mL, mT, plotW1, plotH1);
+}
+
+// ─── DQ CHART CANVAS ────────────────────────────────────────────────────────
+const dqCanvas = document.getElementById('dqChart');
+const dqCtx = dqCanvas.getContext('2d');
+const W2 = dqCanvas.width, H2 = dqCanvas.height;
+
+const DQ_YMIN = -36, DQ_YMAX = 36;
+const DQ_YRANGE = DQ_YMAX - DQ_YMIN;
+const DQ_YTICKS = [36, 27, 18, 9, 0, -9, -18, -27, -36];
+
+const mL2 = 48, mR2 = 8, mT2 = 6, mB2 = 6;
+const plotW2 = W2 - mL2 - mR2;
+const plotH2 = H2 - mT2 - mB2;
+
+function yToPixel2(v) {
+  return mT2 + ((DQ_YMAX - v) / DQ_YRANGE) * plotH2;
+}
+
+// DQ signals — scrolling history buffers
+const DQ_POINTS = plotW2; // one sample per pixel
+const dqBuf = {
+  vq: new Float32Array(DQ_POINTS),
+  vd: new Float32Array(DQ_POINTS),
+  iq: new Float32Array(DQ_POINTS),
+  id: new Float32Array(DQ_POINTS),
+};
+
+// Initialize buffers
+let dqTime = 0;
+function initDQBuf() {
+  for (let i = 0; i < DQ_POINTS; i++) {
+    const t = i / DQ_POINTS;
+    dqBuf.vq[i] = 30 + (Math.random() - 0.5) * 1.2;
+    // VD: starts ~0, rises to ~6 then settles ~5 with jitter
+    const rise = Math.min(1, t * 4);
+    dqBuf.vd[i] = 5.5 * rise + (Math.random() - 0.5) * 1.5 + Math.sin(t * 40) * 0.4;
+    dqBuf.iq[i] = (Math.random() - 0.5) * 0.3;
+    dqBuf.id[i] = (Math.random() - 0.5) * 0.2;
+  }
+}
+initDQBuf();
+
+function pushDQSample() {
+  // Shift all left
+  dqBuf.vq.copyWithin(0, 1);
+  dqBuf.vd.copyWithin(0, 1);
+  dqBuf.iq.copyWithin(0, 1);
+  dqBuf.id.copyWithin(0, 1);
+  const last = DQ_POINTS - 1;
+  dqBuf.vq[last] = 30.5 + (Math.random() - 0.5) * 1.4;
+  dqBuf.vd[last] = 5.5 + (Math.random() - 0.5) * 1.8 + Math.sin(dqTime * 0.15) * 0.5;
+  dqBuf.iq[last] = (Math.random() - 0.5) * 0.25;
+  dqBuf.id[last] = (Math.random() - 0.5) * 0.18;
+  dqTime++;
+}
+
+function drawDQLine(ctx, buf, color, lw) {
+  ctx.strokeStyle = color;
+  ctx.lineWidth = lw;
+  ctx.beginPath();
+  for (let i = 0; i < DQ_POINTS; i++) {
+    const x = mL2 + i;
+    const y = yToPixel2(buf[i]);
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+  ctx.stroke();
+}
+
+function drawDQChart() {
+  const ctx = dqCtx;
+  ctx.fillStyle = '#fff';
+  ctx.fillRect(0, 0, W2, H2);
+
+  // Grid
+  ctx.strokeStyle = '#ddd';
+  ctx.lineWidth = 0.8;
+  DQ_YTICKS.forEach(v => {
+    const y = yToPixel2(v);
+    ctx.beginPath();
+    ctx.moveTo(mL2, y);
+    ctx.lineTo(mL2 + plotW2, y);
+    ctx.stroke();
+  });
+  const vCols2 = 10;
+  for (let i = 0; i <= vCols2; i++) {
+    const x = mL2 + (i / vCols2) * plotW2;
+    ctx.beginPath();
+    ctx.moveTo(x, mT2);
+    ctx.lineTo(x, mT2 + plotH2);
+    ctx.stroke();
+  }
+
+  // Labels
+  ctx.fillStyle = '#333';
+  ctx.font = '10px Courier New';
+  ctx.textAlign = 'right';
+  DQ_YTICKS.forEach(v => {
+    const y = yToPixel2(v);
+    ctx.fillText(v.toFixed(2), mL2 - 4, y + 3.5);
+  });
+
+  // Signals
+  drawDQLine(ctx, dqBuf.id, '#c44', 1.5);
+  drawDQLine(ctx, dqBuf.iq, '#5060c8', 1.5);
+  drawDQLine(ctx, dqBuf.vd, '#e8a020', 1.6);
+  drawDQLine(ctx, dqBuf.vq, '#4db84d', 1.6);
+
+  // Border
+  ctx.strokeStyle = '#999';
+  ctx.lineWidth = 1;
+  ctx.strokeRect(mL2, mT2, plotW2, plotH2);
+}
+
+// ─── ANIMATION LOOP ──────────────────────────────────────────────────────────
+const WAVE_SPEED = 2.0; // radians per second for TD scroll
+let lastTime = null;
+let dqAccum = 0;
+const DQ_SAMPLE_INTERVAL = 1000 / 60; // push sample every ~16ms
+
+function loop(ts) {
+  if (!lastTime) lastTime = ts;
+  const dt = (ts - lastTime) / 1000;
+  lastTime = ts;
+
+  // TIME DOMAIN: advance phase
+  tdPhase += WAVE_SPEED * dt;
+
+  // DQ CHART: push new samples
+  dqAccum += ts - (ts - dt * 1000);
+  // push sample every frame
+  const pushCount = Math.max(1, Math.round(dt * 60));
+  for (let i = 0; i < pushCount; i++) pushDQSample();
+
+  drawTimeDomain(tdPhase);
+  drawDQChart();
+
+  requestAnimationFrame(loop);
+}
+
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>

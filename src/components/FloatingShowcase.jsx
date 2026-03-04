@@ -21,12 +21,26 @@ const SLIDE_INTERVAL_MS = 5500;
 export default function FloatingShowcase() {
   const [slideIndex, setSlideIndex] = useState(0);
 
+  // Advance slide at start of frame to avoid jank
   useEffect(() => {
     const interval = setInterval(() => {
-      setSlideIndex((prev) => (prev + 1) % LAB_IMAGES.length);
+      requestAnimationFrame(() => {
+        setSlideIndex((prev) => (prev + 1) % LAB_IMAGES.length);
+      });
     }, SLIDE_INTERVAL_MS);
     return () => clearInterval(interval);
   }, []);
+
+  // Preload next slide images so decode finishes before transition
+  useEffect(() => {
+    const next = (slideIndex + 1) % LAB_IMAGES.length;
+    const labSrc = LAB_IMAGES[next].src;
+    const productSrc = PRODUCT_IMAGES[next].src;
+    const labImg = new Image();
+    const productImg = new Image();
+    labImg.src = labSrc;
+    productImg.src = productSrc;
+  }, [slideIndex]);
 
   return (
     <div className="floating-showcase" aria-hidden="true">
