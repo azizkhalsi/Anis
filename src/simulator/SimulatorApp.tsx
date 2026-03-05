@@ -341,6 +341,9 @@ const App: React.FC = () => {
   };
 
   const loop = useCallback(() => {
+      if (typeof document !== 'undefined' && document.visibilityState === 'hidden') {
+        return;
+      }
       const cfg = configRef.current; const state = simState.current;
       if (isRunning) {
         const tP = cfg.frequency * 0.15; const tX = (0.8 + Math.abs(cfg.frequency) * 0.045);
@@ -362,8 +365,17 @@ const App: React.FC = () => {
 
   useEffect(() => {
       const handleUP = () => { isDraggingPhase.current = false; };
-      window.addEventListener('pointerup', handleUP); requestRef.current = requestAnimationFrame(loop);
-      return () => { window.removeEventListener('pointerup', handleUP); if (requestRef.current) cancelAnimationFrame(requestRef.current); };
+      const handleVisibility = () => {
+        if (document.visibilityState === 'visible') requestRef.current = requestAnimationFrame(loop);
+      };
+      window.addEventListener('pointerup', handleUP);
+      document.addEventListener('visibilitychange', handleVisibility);
+      requestRef.current = requestAnimationFrame(loop);
+      return () => {
+        window.removeEventListener('pointerup', handleUP);
+        document.removeEventListener('visibilitychange', handleVisibility);
+        if (requestRef.current) cancelAnimationFrame(requestRef.current);
+      };
   }, [loop]);
 
   return (

@@ -21,14 +21,32 @@ const SLIDE_INTERVAL_MS = 5500;
 export default function FloatingShowcase() {
   const [slideIndex, setSlideIndex] = useState(0);
 
-  // Advance slide at start of frame to avoid jank
+  // Advance slide only when page is visible; pause when tab is hidden
   useEffect(() => {
-    const interval = setInterval(() => {
-      requestAnimationFrame(() => {
-        setSlideIndex((prev) => (prev + 1) % LAB_IMAGES.length);
-      });
-    }, SLIDE_INTERVAL_MS);
-    return () => clearInterval(interval);
+    const intervalRef = { current: null };
+    const schedule = () => {
+      if (document.visibilityState === 'hidden') return;
+      intervalRef.current = setInterval(() => {
+        if (document.visibilityState === 'hidden') return;
+        requestAnimationFrame(() => {
+          setSlideIndex((prev) => (prev + 1) % LAB_IMAGES.length);
+        });
+      }, SLIDE_INTERVAL_MS);
+    };
+    const handleVisibility = () => {
+      if (document.visibilityState === 'hidden') {
+        if (intervalRef.current) clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      } else {
+        if (!intervalRef.current) schedule();
+      }
+    };
+    schedule();
+    document.addEventListener('visibilitychange', handleVisibility);
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibility);
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
   }, []);
 
   // Preload next slide images so decode finishes before transition

@@ -1,7 +1,9 @@
-import { Outlet, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ScrollPositionProvider } from '../contexts/ScrollPositionContext';
 import { ToastProvider } from '../contexts/ToastContext';
+import usePageVisible from '../hooks/usePageVisible';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import ScrollToTop from './ScrollToTop';
@@ -10,8 +12,14 @@ import Toast from './Toast';
 import Breadcrumbs from './Breadcrumbs';
 
 export default function Layout() {
-  const location = useLocation();
   const { t } = useTranslation();
+  const pageVisible = usePageVisible();
+
+  useEffect(() => {
+    const el = document.documentElement;
+    if (pageVisible) el.removeAttribute('data-page-hidden');
+    else el.setAttribute('data-page-hidden', '');
+  }, [pageVisible]);
 
   return (
     <ScrollPositionProvider>
@@ -19,12 +27,12 @@ export default function Layout() {
         <ScrollToTop />
         <a href="#main-content" className="skip-link">{t('common.skipToContent')}</a>
         <Navbar />
-<main id="main-content">
-        <div key={location.pathname} className="page-transition-wrap">
-          <Breadcrumbs />
-          <Outlet />
-        </div>
-      </main>
+        <main id="main-content">
+          <div className="page-transition-wrap">
+            <Breadcrumbs />
+            <Outlet />
+          </div>
+        </main>
         <StickyCTA />
         <Toast />
         <Footer />

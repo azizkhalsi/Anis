@@ -30,6 +30,7 @@ function ParticleCanvas() {
     }));
 
     function draw() {
+      if (document.visibilityState === 'hidden') return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach((p, i) => {
         p.x += p.vx;
@@ -62,10 +63,15 @@ function ParticleCanvas() {
       });
       animId = requestAnimationFrame(draw);
     }
+    const handleVisibility = () => {
+      if (document.visibilityState === 'visible') draw();
+    };
+    document.addEventListener('visibilitychange', handleVisibility);
     draw();
 
     return () => {
       cancelAnimationFrame(animId);
+      document.removeEventListener('visibilitychange', handleVisibility);
       window.removeEventListener('resize', resize);
     };
   }, []);

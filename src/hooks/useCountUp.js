@@ -13,6 +13,9 @@ export default function useCountUp(target, duration = 2000, trigger = false) {
     lastDisplayedRef.current = 0;
 
     function update(now) {
+      if (typeof document !== 'undefined' && document.visibilityState === 'hidden') {
+        return;
+      }
       const elapsed = now - start;
       const progress = Math.min(elapsed / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
@@ -27,8 +30,15 @@ export default function useCountUp(target, duration = 2000, trigger = false) {
       }
     }
 
+    const handleVisibility = () => {
+      if (document.visibilityState === 'visible') rafRef.current = requestAnimationFrame(update);
+    };
+    document.addEventListener('visibilitychange', handleVisibility);
     rafRef.current = requestAnimationFrame(update);
-    return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibility);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
   }, [target, duration, trigger]);
 
   if (target >= 1000000) {
