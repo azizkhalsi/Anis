@@ -91,9 +91,24 @@
     "whatWeOffer": {
       "banner": "What we offer through our development partnerships",
       "pillars": [
-        { "title": "Cutting-edge technology and assured success through expert project planning and management", "sphereText": "Founded Theory and Simulation Knowledge" },
-        { "title": "Optimized embedded software solutions designed for series production", "sphereText": "Software for sensorless Motor Control" },
-        { "title": "Hardware Design and prototyping", "sphereText": "Expertise in Hardware Design and In-House Electronic Assembly" }
+        {
+          "title": "Cutting-edge technology and assured success through expert project planning and management",
+          "sphereText": "Founded Theory and Simulation Knowledge",
+          "narrative": "We simulate every scenario so your product works flawlessly from day one.",
+          "image": "/images/offer-simulation.png"
+        },
+        {
+          "title": "Optimized embedded software solutions designed for series production",
+          "sphereText": "Software for sensorless Motor Control",
+          "narrative": "Embedded software that runs reliably in production — so you can scale with confidence.",
+          "image": "/images/offer-software.png"
+        },
+        {
+          "title": "Hardware Design and prototyping",
+          "sphereText": "Expertise in Hardware Design and In-House Electronic Assembly",
+          "narrative": "From schematic to assembled board under one roof — we build it right, here.",
+          "image": "/images/offer-hardware.png"
+        }
       ]
     },
     "services": {
@@ -182,6 +197,7 @@
       "photoAlt": "DMK-RT connected between inverter and motor",
       "pcSceneDesktop": "Desktop",
       "pcSceneOpenDmk": "Open DMK software",
+      "pcSceneClickHint": "Click to open",
       "pcSceneBack": "Back to desktop",
       "pcSceneBackLabel": "← Back",
       "pcSceneVisualisation": "Visualisation",

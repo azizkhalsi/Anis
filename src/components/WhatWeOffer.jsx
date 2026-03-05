@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 
@@ -6,6 +6,7 @@ const STAGGER_DELAYS = [0, 120, 240];
 
 export default function WhatWeOffer() {
   const { t } = useTranslation();
+  const [brokenImages, setBrokenImages] = useState({});
   const ref0 = useRef(null);
   const ref1 = useRef(null);
   const ref2 = useRef(null);
@@ -35,15 +36,25 @@ export default function WhatWeOffer() {
             <article
               key={index}
               ref={[ref0, ref1, ref2][index]}
-              className={`what-we-offer-pillar ${visibles[index] ? 'visible' : ''}`}
+              className={`what-we-offer-card ${visibles[index] ? 'visible' : ''}`}
               data-animate="fade-up"
             >
-              <h3 className="what-we-offer-pillar-title">{pillar.title}</h3>
-              <div className="what-we-offer-spheres">
-                <div className="what-we-offer-sphere what-we-offer-sphere--small" aria-hidden="true" />
-                <div className="what-we-offer-sphere what-we-offer-sphere--large">
-                  <span className="what-we-offer-sphere-text">{pillar.sphereText}</span>
-                </div>
+              <div className="what-we-offer-card-inner">
+                {pillar.image && !brokenImages[index] && (
+                  <div className="what-we-offer-card-image">
+                    <img
+                      src={pillar.image}
+                      alt={pillar.title}
+                      className="what-we-offer-card-illus"
+                      loading="lazy"
+                      onError={() => setBrokenImages((prev) => ({ ...prev, [index]: true }))}
+                    />
+                  </div>
+                )}
+                <h3 className="what-we-offer-card-heading">{pillar.title}</h3>
+                <p className="what-we-offer-card-narrative">
+                  {pillar.narrative || pillar.sphereText}
+                </p>
               </div>
             </article>
           ))}

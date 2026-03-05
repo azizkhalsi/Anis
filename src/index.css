@@ -1585,6 +1585,7 @@ img {
     line-height: 1.6;
     color: var(--text, #1a1a1a);
     margin: 0;
+    text-align: left;
 }
 
 @media (max-width: 768px) {
@@ -1741,7 +1742,7 @@ section {
     line-height: 1.7;
 }
 
-/* ========== WHAT WE OFFER ========== */
+/* ========== WHAT WE OFFER (Story cards) ========== */
 .what-we-offer {
     background: linear-gradient(180deg, var(--bg) 0%, var(--bg-secondary) 100%);
     padding: 40px 0 56px;
@@ -1783,108 +1784,75 @@ section {
 
 .what-we-offer-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px 32px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 28px 24px;
     margin-bottom: 48px;
 }
 
-.what-we-offer-pillar {
+/* Story card: clay-style background + subtle noise */
+.what-we-offer-card {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.what-we-offer-pillar.visible {
+.what-we-offer-card.visible {
     opacity: 1;
     transform: translateY(0);
 }
 
-.what-we-offer-pillar-title {
-    margin: 0 0 28px;
-    min-height: 4.2em;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(1rem, 1.6vw, 1.15rem);
-    font-weight: 700;
-    color: var(--text);
-    line-height: 1.4;
-}
-
-.what-we-offer-spheres {
+.what-we-offer-card-inner {
     position: relative;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    min-height: 200px;
-    perspective: 800px;
+    height: 100%;
+    padding: 24px 20px 28px;
+    background: linear-gradient(165deg, #fff9f7 0%, #ffeceb 40%, #ffe1df 100%);
+    border-radius: 20px;
+    box-shadow: 0 0 0 1px rgba(196, 43, 43, 0.06), 0 10px 26px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    overflow: hidden;
 }
 
-.what-we-offer-sphere {
+/* Subtle noise overlay for texture */
+.what-we-offer-card-inner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    border-radius: inherit;
+}
+
+.what-we-offer-card-image {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
-    will-change: transform;
+    margin-bottom: 14px;
+    background-color: transparent;
 }
 
-.what-we-offer-pillar:hover .what-we-offer-sphere--small {
-    transform: translate(30%, -10%) scale(1.08);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+.what-we-offer-card-illus {
+    display: block;
+    max-height: 96px;
+    max-width: 90%;
+    height: auto;
+    width: auto;
 }
 
-.what-we-offer-pillar:hover .what-we-offer-sphere--large {
-    transform: scale(1.03) translateY(-2px);
-    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.08), inset 0 2px 0 rgba(255, 255, 255, 0.12);
-}
-
-/* Accent: small circle */
-.what-we-offer-sphere--small {
-    position: absolute;
-    width: 56px;
-    height: 56px;
-    top: 0;
-    right: 50%;
-    transform: translate(30%, -10%);
-    background: linear-gradient(145deg, #e8eef5 0%, #c5d4e8 100%);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.9);
-    border-radius: 50%;
-    animation: offerBadgeFloat 4s ease-in-out infinite;
-}
-
-/* Main block: soft rounded rectangle (card style) — fixed height so all three align on one line */
-.what-we-offer-sphere--large {
-    width: 100%;
-    max-width: 260px;
-    height: 180px;
-    min-height: 180px;
-    padding: 24px 20px;
-    background: linear-gradient(145deg, #1e3a5f 0%, #152a45 100%);
-    color: #fff;
-    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.06), inset 0 2px 0 rgba(255, 255, 255, 0.08);
-    position: relative;
-    z-index: 1;
-    border-radius: 24px;
-    animation: offerBadgePulse 5s ease-in-out infinite;
-}
-
-@keyframes offerBadgeFloat {
-    0%, 100% { transform: translate(30%, -10%) translateY(0); }
-    50% { transform: translate(30%, -10%) translateY(-5px); }
-}
-
-@keyframes offerBadgePulse {
-    0%, 100% { box-shadow: 0 14px 36px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.06), inset 0 2px 0 rgba(255, 255, 255, 0.08); }
-    50% { box-shadow: 0 18px 42px rgba(0, 0, 0, 0.26), 0 0 0 1px rgba(255, 255, 255, 0.06), inset 0 2px 0 rgba(255, 255, 255, 0.1); }
-}
-
-.what-we-offer-sphere-text {
+.what-we-offer-card-heading {
+    margin: 0 0 12px;
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
-    line-height: 1.4;
-    letter-spacing: 0.03em;
-    text-align: center;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    padding: 0;
+    font-size: clamp(1.1rem, 2.1vw, 1.4rem);
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+}
+
+.what-we-offer-card-narrative {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #5a2525;
 }
 
 .what-we-offer-logo {
@@ -1926,27 +1894,17 @@ section {
     }
     .what-we-offer-grid {
         grid-template-columns: 1fr;
-        gap: 36px;
+        gap: 24px;
         margin-bottom: 36px;
     }
-    .what-we-offer-spheres {
-        min-height: 200px;
+    .what-we-offer-card-inner {
+        padding: 20px 18px 24px;
     }
-    .what-we-offer-sphere--large {
-        width: 100%;
-        max-width: 220px;
-        height: 160px;
-        min-height: 160px;
-        padding: 20px 16px;
-        border-radius: 20px;
+    .what-we-offer-card-heading {
+        font-size: 1.45rem;
     }
-    .what-we-offer-sphere--small {
-        width: 48px;
-        height: 48px;
-    }
-    .what-we-offer-sphere-text {
-        font-size: 0.9rem;
-        letter-spacing: 0.02em;
+    .what-we-offer-card-narrative {
+        font-size: 0.88rem;
     }
     .what-we-offer-banner {
         padding: 18px 20px;
@@ -4708,16 +4666,72 @@ section {
     padding: 0;
 }
 
+/* Click hint: mouse cursor from the right + "Click to open" label */
 .dmk-pc-scene-desktop-hint {
     position: absolute;
-    top: 12px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 0.7rem;
-    color: #fff;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.7);
-    opacity: 0.9;
+    right: 14%;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
     pointer-events: none;
+    z-index: 2;
+}
+
+/* Mouse cursor: classic white arrow + black outline, on top, animates toward DMK icon */
+.dmk-pc-scene-desktop-hint-pointer {
+    display: inline-flex;
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.35));
+    animation: dmkHintCursorFromRight 3.2s ease-in-out infinite;
+    z-index: 3;
+}
+
+.dmk-pc-scene-desktop-hint-pointer svg {
+    width: 28px;
+    height: 28px;
+    display: block;
+    flex-shrink: 0;
+}
+
+.dmk-pc-scene-desktop-hint-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.94);
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px 12px;
+    border-radius: 16px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+@keyframes dmkHintCursorFromRight {
+    0%, 100% {
+        transform: translateX(48px) scale(1);
+        opacity: 0.85;
+    }
+    35% {
+        transform: translateX(-72px) scale(1);
+        opacity: 1;
+    }
+    45% {
+        transform: translateX(-72px) scale(0.94);
+        opacity: 1;
+    }
+    55% {
+        transform: translateX(-72px) scale(1.02);
+        opacity: 1;
+    }
+    75% {
+        transform: translateX(48px) scale(1);
+        opacity: 0.85;
+    }
 }
 
 .dmk-pc-scene-desktop-icons {

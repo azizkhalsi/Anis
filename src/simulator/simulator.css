@@ -33,6 +33,7 @@
   font-weight: 500;
   -webkit-font-smoothing: antialiased;
   letter-spacing: 0.03em;
+  padding: 6px 5px;
 }
 .sim-value {
   font-weight: 500;

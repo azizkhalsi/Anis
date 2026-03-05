@@ -54,6 +54,7 @@ const App: React.FC = () => {
   const motorDataRef = useRef({ angle: 0, phaseVoltages: [0, 0, 0] as [number, number, number] });
 
   const [showMotor, setShowMotor] = useState(true);
+  const [showOrbitHint, setShowOrbitHint] = useState(true);
 
   const onStart = () => setIsRunning(true);
   const onStop = () => setIsRunning(false);
@@ -88,6 +89,13 @@ const App: React.FC = () => {
     }
     configRef.current = config; 
   }, [config]);
+
+  useEffect(() => {
+    if (!showMotor) {
+      return;
+    }
+    setShowOrbitHint(true);
+  }, [showMotor]);
 
   const calculateSystemVoltages = (phase: number, cfg: SimulationConfig) => {
     const rad = (deg: number) => deg * PI / 180;
@@ -394,16 +402,65 @@ const App: React.FC = () => {
               />
             </div>
             {showMotor ? (
-              <div className="sim-motor-wrap relative bg-transparent border border-slate-300/60 shadow-[0_0_16px_rgba(0,0,0,0.06)] rounded-xl overflow-hidden aspect-square w-full shrink-0 animate-[fadeIn_0.3s_ease-out]">
-                <div className="absolute top-2 left-2.5 z-10">
-                  <span className="text-[9px] font-semibold text-slate-600 uppercase tracking-wider bg-white/80 px-2 py-0.5 rounded-md backdrop-blur-sm border border-slate-200/60">{t('simulator.motorBadge')}</span>
-                </div>
-                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-10 flex items-center gap-1.5 text-[10px] font-medium text-slate-600 bg-white/90 px-2.5 py-1.5 rounded-lg shadow-sm border border-slate-200/70 backdrop-blur-sm pointer-events-none animate-[fadeIn_0.4s_ease-out] sim-motor-scroll-hint">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-                    <path d="M5 9l-3 3 3 3M9 5l3-3 3 3M15 19l-3 3-3-3M19 9l3 3-3 3" />
-                  </svg>
-                  <span>{t('simulator.dragToRotate')}</span>
-                </div>
+              <div
+                className="sim-motor-wrap relative bg-transparent border border-slate-300/60 shadow-[0_0_16px_rgba(0,0,0,0.06)] hover:shadow-[0_0_22px_rgba(15,23,42,0.35)] hover:border-slate-400/80 rounded-xl overflow-hidden aspect-square w-full shrink-0 animate-[fadeIn_0.3s_ease-out] cursor-grab active:cursor-grabbing transition-shadow duration-200"
+                onPointerMove={(e) => {
+                  if (showOrbitHint && (e.buttons !== 0 || e.pressure > 0)) {
+                    setShowOrbitHint(false);
+                  }
+                }}
+              >
+                {showOrbitHint && (
+                  <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
+                    <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/90 shadow-md border border-slate-200/80 backdrop-blur-sm animate-pulse">
+                      <svg
+                        width="22"
+                        height="22"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden
+                      >
+                        <path
+                          d="M9 11V5.5C9 4.67 9.67 4 10.5 4C11.33 4 12 4.67 12 5.5V11"
+                          stroke="#020617"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <path
+                          d="M12 11V5C12 4.17 12.67 3.5 13.5 3.5C14.33 3.5 15 4.17 15 5V11"
+                          stroke="#020617"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <path
+                          d="M15 11V6.5C15 5.67 15.67 5 16.5 5C17.33 5 18 5.67 18 6.5V13.5C18 16.54 15.54 19 12.5 19H11.5C9.57 19 7.85 17.8 7.18 15.98L6 13"
+                          stroke="#020617"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <path
+                          d="M5 11H3"
+                          stroke="#0f172a"
+                          strokeWidth="1.4"
+                          strokeLinecap="round"
+                        />
+                        <path
+                          d="M21 11H19"
+                          stroke="#0f172a"
+                          strokeWidth="1.4"
+                          strokeLinecap="round"
+                        />
+                      </svg>
+                      <span className="text-[11px] font-medium text-slate-700">
+                        {t('simulator.dragToRotate')}
+                      </span>
+                    </div>
+                  </div>
+                )}
                 <button
                   onClick={() => setShowMotor(false)}
                   className="absolute top-2 right-2.5 z-10 w-5 h-5 flex items-center justify-center rounded-full bg-white/80 hover:bg-red-500/90 border border-slate-300/60 hover:border-red-400 text-slate-500 hover:text-white text-[10px] leading-none transition-all duration-150 backdrop-blur-sm cursor-pointer"

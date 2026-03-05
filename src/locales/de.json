@@ -91,9 +91,24 @@
     "whatWeOffer": {
       "banner": "Was wir in unseren Entwicklungspartnerschaften bieten",
       "pillars": [
-        { "title": "Zukunftsf?hige Technologie und abgesicherter Erfolg durch fachkundige Projektplanung und -steuerung", "sphereText": "Fundierte Theorie- und Simulationskompetenz" },
-        { "title": "Optimierte eingebettete Softwarel?sungen f?r die Serienproduktion", "sphereText": "Software f?r sensorlose Motorsteuerung" },
-        { "title": "Hardware-Design und Prototyping", "sphereText": "Expertise in Hardware-Design und hauseigener Elektronik-Fertigung" }
+        {
+          "title": "Zukunftsf?hige Technologie und abgesicherter Erfolg durch fachkundige Projektplanung und -steuerung",
+          "sphereText": "Fundierte Theorie- und Simulationskompetenz",
+          "narrative": "Wir simulieren jedes Szenario, damit Ihr Produkt von Tag eins fehlerfrei funktioniert.",
+          "image": "/images/offer-simulation.png"
+        },
+        {
+          "title": "Optimierte eingebettete Softwarel?sungen f?r die Serienproduktion",
+          "sphereText": "Software f?r sensorlose Motorsteuerung",
+          "narrative": "Eingebettete Software, die in der Serie zuverl?ssig l?uft — damit Sie mit Vertrauen skalieren k?nnen.",
+          "image": "/images/offer-software.png"
+        },
+        {
+          "title": "Hardware-Design und Prototyping",
+          "sphereText": "Expertise in Hardware-Design und hauseigener Elektronik-Fertigung",
+          "narrative": "Vom Schaltplan bis zur best?ckten Leiterplatte aus einer Hand — wir bauen es richtig, bei uns.",
+          "image": "/images/offer-hardware.png"
+        }
       ]
     },
     "services": {
@@ -182,6 +197,7 @@
       "photoAlt": "DMK-RT zwischen Wechselrichter und Motor",
       "pcSceneDesktop": "Desktop",
       "pcSceneOpenDmk": "DMK-Software ?ffnen",
+      "pcSceneClickHint": "Klicken zum ?ffnen",
       "pcSceneBack": "Zur?ck zum Desktop",
       "pcSceneBackLabel": "? Zur?ck",
       "pcSceneVisualisation": "Visualisierung",
@@ -368,10 +384,10 @@
     "sinusoidalTip": "Sinus-PWM",
     "spaceVector": "Raumzeiger",
     "spaceVectorTip": "Raumzeiger",
-    "flat120": "120?-Flach",
-    "flat120Tip": "120? Flachdach",
-    "flat60": "60?-Flach",
-    "flat60Tip": "60? Flachdach",
+      "flat120": "120° Flach",
+      "flat120Tip": "120°-Flachdach",
+      "flat60": "60° Flach",
+      "flat60Tip": "60°-Flachdach",
     "schoerner": "Schoerner",
     "schoernerTip": "Schoerner-?bermodulation",
     "manual": "Manuell",
@@ -386,15 +402,15 @@
     "amplitudeTip": "Amplitude (0?100 %)",
     "frequency": "Frequenz",
     "frequencyTip": "Frequenz (Hz)",
-    "angle": "Winkel",
-    "angleTip": "Phasenwinkel (0?360?)",
-    "sectorStepTip": "60?-Sektorschritt",
-    "selectSector": "Sektor w?hlen",
-    "showMotor": "3D-Motor anzeigen",
-    "showMotorTitle": "3D-Motorvisualisierung ?ffnen",
+      "angle": "Winkel",
+      "angleTip": "Phasenwinkel (0–360°)",
+      "sectorStepTip": "60°-Sektorschritt",
+      "selectSector": "Sektor wählen",
+      "showMotor": "3D-Motor anzeigen",
+      "showMotorTitle": "3D-Motorvisualisierung öffnen",
     "hideMotorTitle": "3D-Motor ausblenden",
-    "dragToRotate": "Ziehen zum Drehen ? Scrollen zum Zoomen",
-    "motorBadge": "3-Phasen-PMSM ? Interaktiv",
+      "dragToRotate": "Ziehen zum Drehen · Scrollen zum Zoomen",
+      "motorBadge": "3-Phasen-PMSM · Interaktiv",
     "stopped": "GESTOPPT"
   },
   "simulatorPage": {

@@ -45,19 +45,19 @@ const ActionButton: React.FC<{ active: boolean, label: string, tooltipText: stri
 );
 
 const UnifiedControlBlock: React.FC<{ label: string, active: boolean, onClick: () => void, tooltipText: string, onHover: (e: React.MouseEvent, text: string, key?: string) => void, onLeave: () => void, tooltipKey?: string }> = ({ label, active, onClick, tooltipText, onHover, onLeave, tooltipKey }) => (
-    <button 
-      type="button"
-      onClick={onClick}
-      className={`sim-control-btn sim-option-btn flex items-center justify-center w-full min-h-[30px] px-2 py-1.5 text-[11px] font-medium uppercase tracking-wide border transition-colors cursor-pointer ${active ? 'sim-option-btn-active' : ''}`}
+  <button 
+    type="button"
+    onClick={onClick}
+    className={`sim-control-btn sim-option-btn flex items-center justify-center w-full min-h-[30px] px-2 py-1.5 text-[11px] font-medium uppercase tracking-wide border transition-colors cursor-pointer ${active ? 'sim-option-btn-active' : ''}`}
+  >
+    <span 
+      onMouseEnter={(e) => onHover(e, tooltipText, tooltipKey)}
+      onMouseLeave={onLeave}
+      className="sim-control-label min-w-0 text-center leading-tight text-ellipsis overflow-hidden cursor-pointer px-1"
     >
-        <span 
-          onMouseEnter={(e) => onHover(e, tooltipText, tooltipKey)}
-          onMouseLeave={onLeave}
-          className="sim-control-label min-w-0 text-center leading-tight text-ellipsis overflow-hidden cursor-pointer"
-        >
-          {label}
-        </span>
-    </button>
+      {label}
+    </span>
+  </button>
 );
 
 export const ControlPanel: React.FC<ControlPanelProps> = ({ 
@@ -126,7 +126,7 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
         <label className={labelClass}>{p.label}</label>
         <span className={valueClass}>{p.val}{p.suffix || ''}</span>
       </div>
-      <div className="h-1.5 flex items-center">
+      <div className={`h-1.5 flex items-center ${p.key === 'phase' ? 'mt-2' : ''}`}>
         <input
           ref={p.customRef}
           type="range"

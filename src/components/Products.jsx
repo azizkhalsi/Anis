@@ -121,9 +121,29 @@ function DmkPcSoftwareScene() {
                       />
                       <span className="dmk-pc-scene-desktop-icon-label">DMK</span>
                     </button>
-                    <p className="dmk-pc-scene-desktop-hint">
-                      Click DMK to open live visualisation
-                    </p>
+                    <div className="dmk-pc-scene-desktop-hint" aria-hidden="true">
+                      <span className="dmk-pc-scene-desktop-hint-pointer" aria-hidden="true">
+                        <svg
+                          width="28"
+                          height="28"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          role="img"
+                          aria-label=""
+                        >
+                          <path
+                            d="M3 2L3 19L8 14L10 22L12 21L10 14L17 16Z"
+                            fill="#ffffff"
+                            stroke="#000000"
+                            strokeWidth="1.4"
+                            strokeLinejoin="round"
+                            strokeLinecap="round"
+                          />
+                        </svg>
+                      </span>
+                      <span className="dmk-pc-scene-desktop-hint-label">{t('products.dmk.pcSceneClickHint')}</span>
+                    </div>
                   </div>
                 ) : (
                   <div className="dmk-pc-scene-interface">
@@ -500,14 +520,6 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
                 ))}
               </div>
             </>
-          )}
-
-          {active === 'amc' && (
-            <p className="product-compare-wrap">
-              <button type="button" className="product-compare-btn" onClick={() => setActive('dmk')}>
-                {t('products.compareWithDmk')} &rarr;
-              </button>
-            </p>
           )}
 
           {active === 'dmk' && (
