@@ -25,11 +25,11 @@ export default function ExpertiseSingle() {
   const contentRef = useRef(null);
   const visualRef = useRef(null);
   const typhoonRef = useRef(null);
-  const contentVisible = useScrollAnimation(contentRef, { threshold: 0.1 });
-  const visualVisible = useScrollAnimation(visualRef, { threshold: 0.1 });
-  const typhoonVisible = useScrollAnimation(typhoonRef, { threshold: 0.1 });
+  const contentVisible = useScrollAnimation(contentRef, { threshold: 0.1, observeKey: topicId });
+  const visualVisible = useScrollAnimation(visualRef, { threshold: 0.1, observeKey: topicId });
+  const typhoonVisible = useScrollAnimation(typhoonRef, { threshold: 0.1, observeKey: topicId });
   const exemplesRef = useRef(null);
-  const exemplesVisible = useScrollAnimation(exemplesRef, { threshold: 0.06 });
+  const exemplesVisible = useScrollAnimation(exemplesRef, { threshold: 0.06, observeKey: topicId });
 
   if (!topicId || !VALID_TOPICS.includes(topicId)) {
     return <Navigate to="/expertise/consulting" replace />;
@@ -84,7 +84,14 @@ export default function ExpertiseSingle() {
         ) : isPrototyping ? (
           <div className="prototyping-hero">
             <div className="prototyping-hero-bg" aria-hidden="true">
-              <img src={PROTOTYPING_BG_IMG} alt="" className="prototyping-hero-bg-img" />
+              <img
+                src={PROTOTYPING_BG_IMG}
+                alt=""
+                className="prototyping-hero-bg-img"
+                loading="lazy"
+                decoding="async"
+                fetchPriority="low"
+              />
               <div className="prototyping-hero-bg-overlay" />
             </div>
             <div
@@ -97,7 +104,15 @@ export default function ExpertiseSingle() {
               <p className="prototyping-hero-lead">{t('expertise.tabs.prototyping.heroLead')}</p>
               <div className="prototyping-hero-env" aria-hidden="true">
                 {PROTOTYPING_ENV_IMGS.map((src, i) => (
-                  <img key={i} src={src} alt="" className="prototyping-hero-env-img" loading="lazy" decoding="async" />
+                  <img
+                    key={i}
+                    src={src}
+                    alt=""
+                    className="prototyping-hero-env-img"
+                    loading="lazy"
+                    decoding="async"
+                    fetchPriority="low"
+                  />
                 ))}
               </div>
             </div>
@@ -112,7 +127,14 @@ export default function ExpertiseSingle() {
               <div className="prototyping-exemples-grid">
                 {EXEMPLES_IMGS.map((src, i) => (
                   <div key={i} className="prototyping-exemples-item" style={{ '--i': i }}>
-                    <img src={src} alt="" className="prototyping-exemples-img" loading="lazy" decoding="async" />
+                    <img
+                      src={src}
+                      alt=""
+                      className="prototyping-exemples-img"
+                      loading="lazy"
+                      decoding="async"
+                      fetchPriority="low"
+                    />
                   </div>
                 ))}
               </div>

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DMK — The Story</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=JetBrains+Mono:wght@300;400;600&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green:#1db954;--green-glow:rgba(29,185,84,0.35);--green-dim:rgba(29,185,84,0.1);
+  --red:#e03030;--red-glow:rgba(224,48,48,0.4);
+  --amber:#e67e00;
+  --ink:#111827;--ink2:#374151;--muted:#9ca3af;
+  --border:#e5e7eb;--surface:#f9fafb;
+}
+html{scroll-behavior:smooth;}
+body{background:#fff;color:var(--ink);font-family:'Syne',sans-serif;overflow-x:hidden;}
+
+/* ═══════════ UTILITY ═══════════ */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+.reveal-left{opacity:0;transform:translateX(-30px);transition:opacity .7s ease,transform .7s ease;}
+.reveal-left.in{opacity:1;transform:translateX(0);}
+.reveal-right{opacity:0;transform:translateX(30px);transition:opacity .7s ease,transform .7s ease;}
+.reveal-right.in{opacity:1;transform:translateX(0);}
+
+/* ═══════════ SECTION WRAPPER ═══════════ */
+.dmk-story{background:#fff;position:relative;}
+
+/* ═══════════ ① LIVE VIEW — PHASE 1 ═══════════ */
+.phase-live{
+  padding:90px 40px 80px;
+  position:relative;
+  overflow:hidden;
+}
+.phase-live::before{
+  content:'';position:absolute;top:0;left:10%;right:10%;height:2px;
+  background:linear-gradient(to right,transparent,var(--green),transparent);
+}
+
+.live-inner{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+
+.live-text{}
+.eyebrow{display:inline-flex;align-items:center;gap:7px;font-family:'JetBrains Mono',monospace;
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--green);margin-bottom:16px;}
+.eyebrow-dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:blink 1.4s ease infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+
+.live-title{font-family:'Orbitron',monospace;font-size:clamp(26px,3.5vw,44px);font-weight:900;
+  line-height:1.08;letter-spacing:-.5px;margin-bottom:20px;}
+.live-title em{font-style:normal;color:var(--green);}
+
+.live-body{font-size:15px;line-height:1.75;color:#5a7090;max-width:440px;}
+.live-body strong{color:var(--ink2);font-weight:600;}
+
+/* live badge on image */
+.osc-wrap{position:relative;}
+.osc-img{display:block;width:100%;border-radius:10px;
+  box-shadow:0 16px 50px rgba(0,0,0,0.1),0 0 0 1px var(--border);}
+.live-badge{
+  position:absolute;top:16px;left:16px;
+  display:flex;align-items:center;gap:7px;
+  background:rgba(10,14,26,0.82);backdrop-filter:blur(6px);
+  border:1px solid rgba(29,185,84,0.3);border-radius:20px;
+  padding:5px 12px;
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;
+  text-transform:uppercase;color:rgba(255,255,255,0.8);
+}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--green);
+  animation:blink .9s ease infinite;box-shadow:0 0 6px var(--green-glow);}
+
+
+/* ═══════════ ② THE PROBLEM — PHASE 2 ═══════════ */
+.phase-problem{
+  padding:80px 40px;
+  background:#fafafa;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  position:relative;overflow:hidden;
+}
+/* subtle red tint top */
+.phase-problem::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(to right,transparent,var(--red),transparent);
+}
+
+.problem-inner{max-width:960px;margin:0 auto;text-align:center;}
+
+.problem-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;
+  text-transform:uppercase;color:var(--red);margin-bottom:16px;
+  display:flex;align-items:center;justify-content:center;gap:8px;}
+.problem-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--red);animation:blink 1s ease infinite;}
+
+.problem-title{font-family:'Orbitron',monospace;font-size:clamp(22px,3vw,40px);font-weight:900;
+  line-height:1.1;letter-spacing:-.5px;margin-bottom:20px;color:var(--ink);}
+
+.problem-body{font-size:15px;line-height:1.75;color:#5a7090;max-width:620px;margin:0 auto 48px;}
+.problem-body strong{color:var(--ink2);}
+
+/* Three pain points */
+.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+  background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden;
+  max-width:820px;margin:0 auto;}
+.pain-card{background:#fff;padding:28px 24px;text-align:left;position:relative;overflow:hidden;}
+.pain-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;}
+.pain-card:nth-child(1)::after{background:var(--red);}
+.pain-card:nth-child(2)::after{background:var(--amber);}
+.pain-card:nth-child(3)::after{background:var(--red);}
+
+.pain-icon{width:38px;height:38px;border-radius:6px;display:flex;align-items:center;justify-content:center;
+  margin-bottom:14px;}
+.pain-icon.red{background:rgba(224,48,48,0.08);}
+.pain-icon.amber{background:rgba(230,126,0,0.08);}
+.pain-icon svg{width:18px;height:18px;}
+
+.pain-title{font-family:'Orbitron',monospace;font-size:12px;font-weight:700;letter-spacing:.5px;
+  text-transform:uppercase;color:var(--ink);margin-bottom:8px;}
+.pain-body{font-size:13px;line-height:1.6;color:var(--muted);}
+
+/* The arrow bridge */
+.bridge{display:flex;flex-direction:column;align-items:center;padding:40px 0 10px;gap:6px;}
+.bridge-line{width:2px;height:40px;background:linear-gradient(to bottom,var(--red),var(--green));}
+.bridge-arrow{width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;
+  border-top:10px solid var(--green);}
+.bridge-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:3px;
+  text-transform:uppercase;color:var(--green);margin-top:4px;}
+
+
+/* ═══════════ ③ THE SOLUTION — PHASE 3 ═══════════ */
+.phase-solution{
+  padding:80px 40px 100px;
+  position:relative;overflow:hidden;
+}
+.phase-solution::before{
+  content:'';position:absolute;top:0;left:10%;right:10%;height:2px;
+  background:linear-gradient(to right,transparent,var(--green),transparent);
+}
+
+.solution-header{text-align:center;max-width:680px;margin:0 auto 64px;}
+.sol-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;
+  text-transform:uppercase;color:var(--green);margin-bottom:14px;
+  display:flex;align-items:center;justify-content:center;gap:8px;}
+.sol-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 1.4s ease infinite;}
+.sol-title{font-family:'Orbitron',monospace;font-size:clamp(22px,3vw,40px);font-weight:900;
+  line-height:1.1;letter-spacing:-.5px;margin-bottom:16px;}
+.sol-title em{font-style:normal;color:var(--green);}
+.sol-body{font-size:15px;line-height:1.75;color:#5a7090;}
+.sol-body strong{color:var(--ink2);}
+
+/* Solution steps */
+.sol-steps{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:56px;}
+
+.sol-step{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+.sol-step.flip{direction:rtl;}
+.sol-step.flip > *{direction:ltr;}
+
+/* step number */
+.step-meta{margin-bottom:14px;display:flex;align-items:center;gap:12px;}
+.step-num{font-family:'Orbitron',monospace;font-size:36px;font-weight:900;
+  color:var(--green);opacity:.15;line-height:1;}
+.step-badge{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--green);background:var(--green-dim);
+  border:1px solid rgba(29,185,84,0.2);border-radius:20px;padding:3px 10px;}
+.step-badge.amber{color:var(--amber);background:rgba(230,126,0,0.08);border-color:rgba(230,126,0,0.2);}
+.step-badge.red{color:var(--red);background:rgba(224,48,48,0.08);border-color:rgba(224,48,48,0.2);}
+
+.step-title{font-family:'Orbitron',monospace;font-size:20px;font-weight:800;
+  line-height:1.2;margin-bottom:12px;color:var(--ink);}
+.step-body{font-size:14px;line-height:1.75;color:#5a7090;margin-bottom:18px;}
+.step-body strong{color:var(--ink2);}
+
+.step-detail{display:flex;flex-direction:column;gap:8px;}
+.detail-row{display:flex;align-items:flex-start;gap:9px;font-size:13px;color:var(--muted);line-height:1.5;}
+.detail-row::before{content:'—';color:var(--green);font-family:'JetBrains Mono',monospace;font-size:11px;flex-shrink:0;margin-top:1px;}
+.detail-row strong{color:var(--ink2);}
+
+/* window frame */
+.win-frame{
+  border-radius:8px;overflow:hidden;
+  border:1px solid var(--border);
+  box-shadow:0 12px 48px rgba(0,0,0,0.10);
+  position:relative;
+}
+.win-bar{height:30px;background:#1a1f2e;display:flex;align-items:center;padding:0 12px;gap:6px;}
+.w-dot{width:8px;height:8px;border-radius:50%;}
+.w-dot.r{background:#ff5f57;}.w-dot.y{background:#ffbd2e;}.w-dot.g{background:#28c840;}
+.w-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(255,255,255,.28);margin-left:8px;}
+.win-img{display:block;width:100%;}
+
+/* scan line on solution images */
+.win-frame .scan{
+  position:absolute;left:0;right:0;height:2px;pointer-events:none;z-index:4;
+  background:linear-gradient(to right,transparent,rgba(29,185,84,0.12),transparent);
+  animation:scan 5s linear infinite;
+}
+@keyframes scan{0%{top:30px;opacity:0}5%{opacity:1}92%{opacity:1}100%{top:100%;opacity:0}}
+
+/* step divider */
+.step-divider{display:flex;align-items:center;gap:16px;max-width:1100px;margin:0 auto;}
+.step-divider::before,.step-divider::after{content:'';flex:1;height:1px;background:var(--border);}
+.step-divider span{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--muted);}
+
+/* ═══════════ RESPONSIVE ═══════════ */
+@media(max-width:900px){
+  .live-inner{grid-template-columns:1fr;gap:36px;}
+  .pain-grid{grid-template-columns:1fr;}
+  .sol-step,.sol-step.flip{grid-template-columns:1fr;direction:ltr;}
+}
+@media(max-width:600px){
+  .phase-live,.phase-problem,.phase-solution{padding:60px 20px;}
+}
+</style>
+</head>
+<body>
+<div class="dmk-story">
+
+<!-- ══════════════════════════════════════
+     PHASE 1 — LIVE VISUALISATION
+══════════════════════════════════════ -->
+<div class="phase-live">
+  <div class="live-inner">
+
+    <div class="live-text reveal-left">
+      <div class="eyebrow"><span class="eyebrow-dot"></span>DMK · Motor Monitoring System</div>
+      <h2 class="live-title">Your motor,<br><em>live</em> on screen.</h2>
+      <p class="live-body">
+        The DMK gives you a real-time window into your motor's electrical behaviour —
+        <strong>3-phase voltages, currents, FFT analysis</strong> — rendered as an oscilloscope,
+        live, at up to 250 kHz sampling rate.<br><br>
+        Every sine wave, every transient, every ripple. You can <strong>see it all</strong>.
+      </p>
+    </div>
+
+    <div class="osc-wrap reveal-right" style="transition-delay:.15s">
+      <img class="osc-img" src="https://via.placeholder.com/600x400/1a1f2e/1db954?text=Live+Oscilloscope+Display" alt="Live oscilloscope display showing motor waveforms">
+      <div class="live-badge">
+        <span class="live-dot"></span>
+        <span>LIVE</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     PHASE 2 — THE PROBLEM
+══════════════════════════════════════ -->
+<div class="phase-problem">
+  <div class="problem-inner">
+
+    <div class="problem-tag">
+      <span class="problem-tag-dot"></span>
+      <span>THE CHALLENGE</span>
+    </div>
+    <h2 class="problem-title">Traditional motor monitoring is blind to reality.</h2>
+    <p class="problem-body">
+      Most motor monitoring systems give you <strong>after-the-fact data</strong> — averages, trends,
+      and alerts that arrive too late. You miss the critical electrical events that precede failure.
+    </p>
+
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-icon red">
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+        </div>
+        <div class="pain-title">Delayed Detection</div>
+        <div class="pain-body">By the time you notice a problem, damage has already begun</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon amber">
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <div class="pain-title">Incomplete Picture</div>
+        <div class="pain-body">Missing real-time electrical signatures and transient events</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon red">
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14H7v-2h5v2zm5-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+        </div>
+        <div class="pain-title">Data Overload</div>
+        <div class="pain-body">Too much noise, not enough actionable insights</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Bridge Arrow -->
+<div class="bridge">
+  <div class="bridge-line"></div>
+  <div class="bridge-arrow"></div>
+  <div class="bridge-label">SOLUTION</div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     PHASE 3 — THE SOLUTION
+══════════════════════════════════════ -->
+<div class="phase-solution">
+  <div class="solution-header">
+    <div class="sol-tag">
+      <span class="sol-tag-dot"></span>
+      <span>DMK SOLUTION</span>
+    </div>
+    <h2 class="sol-title">Real-time <em>electrical</em> visibility.</h2>
+    <p class="sol-body">
+      The DMK transforms complex motor data into <strong>instant, actionable insights</strong>.
+      See what's happening inside your motor — as it happens.
+    </p>
+  </div>
+
+  <div class="sol-steps">
+
+    <!-- Step 1 -->
+    <div class="sol-step">
+      <div class="step-text">
+        <div class="step-meta">
+          <span class="step-num">01</span>
+          <span class="step-badge">REAL-TIME CAPTURE</span>
+        </div>
+        <h3 class="step-title">High-speed data acquisition</h3>
+        <p class="step-body">
+          Capture electrical signals at <strong>250 kHz sampling rate</strong> with precision
+          measurement hardware. Every voltage fluctuation, current spike, and harmonic distortion
+          is recorded in real-time.
+        </p>
+        <div class="step-detail">
+          <div class="detail-row"><strong>3-phase voltage monitoring</strong> ±0.1% accuracy</div>
+          <div class="detail-row"><strong>Current measurement</strong> up to 1000A range</div>
+          <div class="detail-row"><strong>FFT analysis</strong> real-time spectrum processing</div>
+        </div>
+      </div>
+      <div class="step-visual">
+        <div class="win-frame">
+          <div class="win-bar">
+            <span class="w-dot r"></span>
+            <span class="w-dot y"></span>
+            <span class="w-dot g"></span>
+            <span class="w-label">data_acquisition.py</span>
+          </div>
+          <img class="win-img" src="https://via.placeholder.com/500x300/1a1f2e/1db954?text=Real-time+Data+Capture" alt="Data acquisition interface">
+          <div class="scan"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step Divider -->
+    <div class="step-divider">
+      <span>CONTINUE</span>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="sol-step flip">
+      <div class="step-text">
+        <div class="step-meta">
+          <span class="step-num">02</span>
+          <span class="step-badge amber">INTELLIGENT ANALYSIS</span>
+        </div>
+        <h3 class="step-title">AI-powered pattern recognition</h3>
+        <p class="step-body">
+          Advanced algorithms analyze electrical signatures to <strong>predict failures before they occur</strong>.
+          Machine learning models identify subtle patterns that indicate developing issues.
+        </p>
+        <div class="step-detail">
+          <div class="detail-row"><strong>Anomaly detection</strong> statistical pattern analysis</div>
+          <div class="detail-row"><strong>Predictive modeling</strong> failure probability forecasting</div>
+          <div class="detail-row"><strong>Continuous learning</strong> improves with motor data</div>
+        </div>
+      </div>
+      <div class="step-visual">
+        <div class="win-frame">
+          <div class="win-bar">
+            <span class="w-dot r"></span>
+            <span class="w-dot y"></span>
+            <span class="w-dot g"></span>
+            <span class="w-label">analysis_engine.py</span>
+          </div>
+          <img class="win-img" src="https://via.placeholder.com/500x300/1a1f2e/e67e00?text=AI+Analysis+Dashboard" alt="AI analysis dashboard">
+          <div class="scan"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step Divider -->
+    <div class="step-divider">
+      <span>CONTINUE</span>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="sol-step">
+      <div class="step-text">
+        <div class="step-meta">
+          <span class="step-num">03</span>
+          <span class="step-badge red">INSTANT VISUALIZATION</span>
+        </div>
+        <h3 class="step-title">Live oscilloscope display</h3>
+        <p class="step-body">
+          Transform complex electrical data into <strong>intuitive visual representations</strong>.
+          Real-time waveforms, spectrum analysis, and health indicators give you immediate
+          understanding of motor condition.
+        </p>
+        <div class="step-detail">
+          <div class="detail-row"><strong>Waveform visualization</strong> multi-channel oscilloscope view</div>
+          <div class="detail-row"><strong>Spectrum analysis</strong> FFT and harmonic display</div>
+          <div class="detail-row"><strong>Health indicators</strong> color-coded status monitoring</div>
+        </div>
+      </div>
+      <div class="step-visual">
+        <div class="win-frame">
+          <div class="win-bar">
+            <span class="w-dot r"></span>
+            <span class="w-dot y"></span>
+            <span class="w-dot g"></span>
+            <span class="w-label">visualizer.py</span>
+          </div>
+          <img class="win-img" src="https://via.placeholder.com/500x300/1a1f2e/e03030?text=Live+Oscilloscope+View" alt="Live oscilloscope visualization">
+          <div class="scan"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div>
+
+<script>
+// Simple reveal animation on scroll
+const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+const revealOnScroll = () => {
+  reveals.forEach(element => {
+    const elementTop = element.getBoundingClientRect().top;
+    const elementVisible = 150;
+    if (elementTop < window.innerHeight - elementVisible) {
+      element.classList.add('in');
+    }
+  });
+};
+window.addEventListener('scroll', revealOnScroll);
+revealOnScroll(); // Initial check
+</script>
+
+</body>
+</html>

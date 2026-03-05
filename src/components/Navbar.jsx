@@ -117,13 +117,21 @@ export default function Navbar() {
                 <div
                   key={item.labelKey}
                   className="nav-item-with-dropdown"
-                  onMouseEnter={() => setOpenDropdown(item.labelKey)}
+                  onMouseEnter={() => {
+                    setOpenDropdown(item.labelKey);
+                    if (item.labelKey === 'nav.expertise') {
+                      import('../pages/ExpertisePage');
+                    }
+                  }}
                   onMouseLeave={() => setOpenDropdown(null)}
                 >
                   <button
                     type="button"
                     className={`nav-link nav-link-trigger${isOpen ? ' open' : ''}${active ? ' active' : ''}`}
-                    onClick={() => setOpenDropdown(isOpen ? null : item.labelKey)}
+                    onClick={() => {
+                      setOpenDropdown(isOpen ? null : item.labelKey);
+                      if (item.labelKey === 'nav.expertise') import('../pages/ExpertisePage');
+                    }}
                     aria-expanded={isOpen}
                     aria-haspopup="true"
                   >
