@@ -8,7 +8,7 @@ export default function ExpertiseTabContent({ topicId }) {
 
   if (!title || !Array.isArray(paragraphs)) return null;
 
-  const listEl = Array.isArray(list) && list.length > 0 ? (
+  const listEl = topicId !== 'consulting' && Array.isArray(list) && list.length > 0 ? (
     <ul className="expertise-list">
       {list.map((item, i) => (
         <li key={i}>{item}</li>

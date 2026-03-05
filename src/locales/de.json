@@ -422,7 +422,7 @@
     "tag": "Expertise",
     "defaultDescription": "Fundiertes Know-how in Motorsteuerung und Leistungselektronik.",
     "topicDescriptions": {
-      "consulting": "Fundiertes Know-how in Technologieberatung f?r Motorsteuerung und Leistungselektronik.",
+      "consulting": "Fundiertes Know-how in Technologieberatung\nfür Motorsteuerung und Leistungselektronik.",
       "hardware": "Fundiertes Know-how in Hardware-Entwicklung f?r Motorsteuerung und Leistungselektronik.",
       "software": "Fundiertes Know-how in Software-Entwicklung f?r Motorsteuerung und Leistungselektronik.",
       "mbd": "Fundiertes Know-how im modellbasierten Entwurf f?r Motorsteuerung und Leistungselektronik.",
@@ -434,10 +434,14 @@
         "label": "Technologieberatung",
         "contentTitle": "Technologieberatung",
         "paragraphs": [
-          "Bei Appcon Technologies bieten wir unseren Kunden umfassende Beratung und fachkundige Consulting-Dienstleistungen in den Bereichen Motorsteuerung und Leistungselektronik. Unser Team nutzt langj?hrige Erfahrung, um strategische Empfehlungen zu Technologieeinf?hrung, Implementierung und Optimierung zu geben.",
-          "Ob Sie die Komplexit?t von Motorsteuerungssystemen meistern oder die Effizienz Ihrer Leistungselektronik steigern m?chten ? wir bieten ma?geschneiderte L?sungen. Arbeiten Sie mit uns f?r zukunftsweisende Einblicke, innovative Strategien und eine partnerschaftliche Zusammenarbeit."
+          "Bei Appcon Technologies arbeiten wir seit mehr als 20 Jahren in der sensorlosen Motorsteuerung und kooperieren mit internationalen Unternehmen an Antriebssystemen, die in Millionen von Produkten jährlich zum Einsatz kommen. Unsere Motorsteuerungs-Firmware läuft zuverlässig in Hochvolumen-Anwendungen in Branchen wie Weißer Ware, Ventilatoren, Pumpen und automotive-nahen Systemen.",
+          "Diese langjährige Einbindung in reale Industrieprojekte hat uns fundiertes Praxiswissen über komplette Antriebssysteme vermittelt – von mechanischer Dynamik und Motorverhalten bis zu Leistungselektronik und eingebetteter Echtzeit-Steuerungssoftware.",
+          "Eine der häufigsten Herausforderungen in Entwicklungsteams ist die Lücke zwischen einem funktionierenden Prototyp und einem serienreifen Produkt. Viele Motorsteuerungslösungen funktionieren im Labor gut, stoßen aber an Grenzen, wenn sie die Anforderungen an Kosten, Zuverlässigkeit, Fertigbarkeit und Skalierbarkeit in der Serienproduktion erfüllen müssen.",
+          "Unsere Erfahrung in allen Disziplinen der Antriebsregelung und Mechatronik sowie eine nachgewiesene Erfolgsbilanz bei der Überführung von Projekten in die Serienproduktion ermöglichen es uns, unsere Partner genau in dieser kritischen Phase zu unterstützen.",
+          "Bei Appcon Technologies entwickeln wir fortschrittliche Motorsteuerungslösungen für die Serienproduktion. Unsere Technologien verbinden tiefe Regelungsexpertise mit praktischem Implementierungswissen und ermöglichen es Partnern, leistungsstarke und kosteneffiziente Antriebssysteme in anspruchsvollen Industrieprodukten einzusetzen.",
+          "Durch die Verbindung von technischer Expertise und praktischer Industrieerfahrung ermöglicht Appcon seinen Partnern, in der Motorsteuerungstechnologie an der Spitze zu bleiben und messbare Vorteile gegenüber der Konkurrenz zu erzielen."
         ],
-        "list": ["Strategische Technologieberatung", "Implementierungs- und Optimierungsberatung", "Architektur von Motorsteuerungssystemen", "Effizienzanalyse Leistungselektronik"],
+        "list": [],
         "visualLabel": "Fachberatung",
         "flowRow1": ["Anforderungen", "Analyse", "Strategie"],
         "flowRow2": ["Strategie", "Optimierung", "Umsetzung"]
@@ -487,7 +491,7 @@
         "label": "Prototyping",
         "contentTitle": "Prototyping",
         "heroLead": "Hochwertiges Produkt-Prototyping ? mehrlagige Leiterplatten, SMD- und THT-Best?ckung, vom Konzept zur physischen Umsetzung.",
-        "exemplesTitle": "Beispiele von APPCONs sensorlosen Regelungsl?sungen in der Serienproduktion",
+        "exemplesTitle": "Prototyping exemples",
         "paragraphs": ["Wir bieten einen durchg?ngigen Service: PCB, Stencil, Bauteilbeschaffung, Best?ckung und Funktionstests aus einer Hand."],
         "list": ["Mehrlagen-PCB-Fertigung", "Stencil-Produktion & Bauteilbeschaffung", "SMD- und THT-Best?ckung", "Funktionstests & Validierung", "End-to-End aus einer Quelle"],
         "visualLabel": "Vom Entwurf zur Realit?t",
@@ -508,7 +512,7 @@
   },
   "about": {
     "pageTag": "?ber uns",
-    "pageTitle": "Sensorlose Motorsteuerung von Anfang an",
+    "pageTitle": "Sensorlose Motorsteuerung\nvon Anfang an",
     "pageDescription": "Appcon Technologies wurde 2004 gegr?ndet und ist ein F&E-Ingenieurb?ro mit Schwerpunkt sensorlose Regelung elektrischer Motoren und Leistungselektronik.",
     "paragraph1": "Appcon Technologies wurde 2004 von Dr.-Ing. Hafedh Sammoud gegr?ndet ? ein F&E-Ingenieurb?ro mit Fokus auf sensorlose Regelung elektrischer Motoren sowie Konzeption und Optimierung von Leistungselektronik.",
     "paragraph2": "Unsere Mission ist es, den Stand der Technik in der sensorlosen Motorsteuerung voranzutreiben und den Einsatz in neuen Anwendungsfeldern zu erm?glichen. Besonders bei Hochvolumenprodukten, in denen energieeffiziente Antriebe aus Kostengr?nden unterrepr?sentiert sind, tragen wir zur Optimierung des Energieverbrauchs und zur Reduktion von CO?-Emissionen bei.",
@@ -517,7 +521,7 @@
     "highlight2Title": "Globaler Fokus",
     "highlight2Body": "Internationale Ausrichtung ? wir kommunizieren mit Partnern auf Deutsch, Englisch und Franz?sisch.",
     "highlight3Title": "Vertrauenspartner",
-    "highlight3Body": "Zusammenarbeit mit Unternehmen in Wei?er Ware, Elektrowerkzeugen und Automotive ? L?sungen in j?hrlich millionenfach produzierten Systemen."
+    "highlight3Body": "Zusammenarbeit mit Unternehmen in\nWeißer Ware, Ventilatoren, Pumpen, Elektrowerkzeugen\nund automotive Anwendungen,\nmit Lösungen in jährlich millionenfach produzierten Systemen."
   },
   "mission": {
     "pageTag": "Unsere Mission",

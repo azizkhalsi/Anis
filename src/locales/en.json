@@ -70,7 +70,7 @@
       "badge": "R&D Engineering & Consultancy",
       "titleLine1": "Engineering Design House",
       "titleLine2": "Sensorless Motor Control",
-      "subtitle": "Reduce cost and complexity with sensorless solutions — no encoders, fewer parts, higher reliability.",
+      "subtitle": "Reduce cost and complexity with sensorless solutions\nno encoders, fewer parts, higher reliability.",
       "sloganLine1": "More than just 'know how'",
       "sloganLine2": "we have the 'know why'",
       "exploreExpertise": "Explore Our Expertise",
@@ -116,10 +116,10 @@
       "title": "End-to-End Engineering Solutions",
       "desc": "From concept to production-ready products, we deliver comprehensive motor control and power electronics solutions.",
       "items": [
-        { "title": "Consulting & Expertise", "desc": "Certainty through project planning and management — working with customers to find the best solution to their requirements." },
-        { "title": "Design", "desc": "Power electronic designs — analog and digital circuits, dimensioning power stage, PCB layout for optimal performance." },
-        { "title": "Prototyping", "desc": "High-quality product prototyping — multi-layer PCBs, SMD and THT mounting, from concept to physical reality." },
-        { "title": "Testing & Validation", "desc": "Software and system-level testing — delivering products ready to use in your application with full validation." }
+        { "title": "Consulting & Expertise", "desc": "Certainty through project planning and management. Working with customers to find the best solution to their requirements." },
+        { "title": "Design", "desc": "Power electronic designs. Analog and digital circuits, dimensioning power stage, PCB layout for optimal performance." },
+        { "title": "Prototyping", "desc": "High-quality product prototyping. Multi-layer PCBs, SMD and THT mounting, from concept to physical reality." },
+        { "title": "Testing & Validation", "desc": "Software and system-level testing. Delivering products ready to use in your application with full validation." }
       ]
     },
     "leadership": {
@@ -422,7 +422,7 @@
     "tag": "Expertise",
     "defaultDescription": "Deep domain knowledge across motor control and power electronics development.",
     "topicDescriptions": {
-      "consulting": "Deep domain knowledge in technology consulting for motor control and power electronics.",
+      "consulting": "Deep domain knowledge in technology consulting\nfor motor control and power electronics.",
       "hardware": "Deep domain knowledge in hardware engineering for motor control and power electronics.",
       "software": "Deep domain knowledge in software development for motor control and power electronics.",
       "mbd": "Deep domain knowledge in model-based design for motor control and power electronics.",
@@ -434,8 +434,12 @@
         "label": "Technology Consulting",
         "contentTitle": "Technology Consulting",
         "paragraphs": [
-          "At Appcon Technologies, we offer comprehensive guidance and expert consultancy services to our clients in the field of motor control and power electronics. Our dedicated team of professionals leverages extensive expertise to provide strategic advice on technology adoption, implementation, and optimization.",
-          "Whether you are navigating the complexities of motor control systems or seeking to enhance the efficiency of your power electronics, we offer tailored solutions to meet your specific needs. Partner with us for cutting-edge insights, innovative strategies, and a collaborative approach to elevate your technology initiatives in the dynamic realms of motor control and power electronics."
+          "At Appcon Technologies, we have been working in sensorless motor control for more than 20 years, collaborating with international companies on drive systems used in millions of products every year. Our motor control firmware runs reliably in high-volume applications across industries such as white goods, fans, pumps and automotive-related systems.",
+          "This long-term involvement in real industrial projects has given us deep practical knowledge of complete drive systems from mechanical dynamics and motor behavior to power electronics and embedded real-time control software.",
+          "One of the most common challenges we see in engineering teams is the gap between a working prototype and a robust serial product. Many motor control solutions perform well in the lab but encounter difficulties when they must meet the requirements of cost, reliability, manufacturability, and scalability in mass production.",
+          "Our experience across all disciplines of drive control and mechatronics, combined with a strong track record of bringing projects successfully into serial production, allows us to support our partners precisely at this critical stage.",
+          "At Appcon Technologies, we create advanced motor control solutions engineered for serial production environments. Our technologies combine deep control expertise with practical implementation knowledge, enabling our partners to deploy high-performance and cost-efficient drive systems in demanding industrial products.",
+          "By combining deep technical expertise with practical industrial experience, Appcon enables its partners to stay at the forefront of motor control technology and achieve measurable advantages over their competitors."
         ],
         "list": ["Strategic technology adoption guidance", "Implementation & optimization consulting", "Motor control system architecture", "Power electronics efficiency analysis"],
         "visualLabel": "Expert Guidance",
@@ -487,7 +491,7 @@
         "label": "Prototyping",
         "contentTitle": "Prototyping",
         "heroLead": "High-quality product prototyping — multi-layer PCBs, SMD and THT assembly, from concept to physical reality.",
-        "exemplesTitle": "Examples of APPCON's Sensorless Control Solutions in Mass Production",
+        "exemplesTitle": "Prototyping exemples",
         "paragraphs": ["We provide an end-to-end service covering PCB, stencil and component sourcing, board assembly, and functional testing, all from a single source."],
         "list": ["Multi-layer PCB fabrication", "Stencil production & component sourcing", "SMD and THT board assembly", "Functional testing & validation", "Single-source end-to-end service"],
         "visualLabel": "From Design to Reality",
@@ -508,7 +512,7 @@
   },
   "about": {
     "pageTag": "About Us",
-    "pageTitle": "Pioneering Sensorless Motor Control",
+    "pageTitle": "Pioneering Sensorless\nMotor Control",
     "pageDescription": "Founded in 2004, Appcon Technologies is an R&D engineering firm specializing in sensorless control of electrical motors and power electronics.",
     "paragraph1": "Founded in 2004 by Dr.-Ing. Hafedh Sammoud, Appcon Technologies is an R&D engineering firm specializing in sensorless control of electrical motors and the conceptualization and optimization of power electronics.",
     "paragraph2": "Our mission is to advance the state-of-the-art in sensorless motor control solutions, enabling their application in new scenarios where it is currently unfeasible. Particularly in high-volume products, where energy-efficient drives are underutilized due to cost constraints, we believe that our efforts contribute to optimizing energy consumption and reducing global CO₂ emissions.",
@@ -517,7 +521,7 @@
     "highlight2Title": "Global Reach",
     "highlight2Body": "International focus — we communicate with our partners in German, English, and French.",
     "highlight3Title": "Trusted Partners",
-    "highlight3Body": "Collaborating with companies in white goods, power tools, and automotive — solutions used in systems produced in millions annually."
+    "highlight3Body": "Collaborating with companies in\nwhite goods, fans, pumps, power tools,\nand automotive applications,\nwith solutions used in systems produced\nin millions of units annually."
   },
   "mission": {
     "pageTag": "Our Mission",

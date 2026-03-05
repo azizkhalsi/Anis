@@ -11,15 +11,12 @@ const BASE = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
 const PROTOTYPING_BG_IMG = `${BASE}images/prototyping-pick-and-place.png`;
 const PROTOTYPING_ENV_IMGS = [
   `${BASE}images/prototyping-bg-workshop.png`,
-  `${BASE}images/prototyping-bg-lab.png`,
+  `${BASE}images/prototyping-hero-env-lab.png`,
 ];
 const EXEMPLES_IMGS = [
   `${BASE}images/exemples/exemples-1.png`,
   `${BASE}images/exemples/exemples-2.png`,
   `${BASE}images/exemples/exemples-3.png`,
-  `${BASE}images/exemples/exemples-4.png`,
-  `${BASE}images/exemples/exemples-5.png`,
-  `${BASE}images/exemples/exemples-6.png`,
 ];
 
 export default function ExpertiseSingle() {
@@ -122,7 +119,7 @@ export default function ExpertiseSingle() {
             </section>
           </div>
         ) : (
-          <div className="expertise-single-grid">
+          <div className={`expertise-single-grid ${topicId === 'consulting' ? 'expertise-single-grid--content-only' : ''}`}>
             <div
               className={`expertise-single-content ${contentVisible ? 'visible' : ''}`}
               ref={contentRef}
@@ -132,13 +129,15 @@ export default function ExpertiseSingle() {
               <h1 className="expertise-single-title">{label}</h1>
               <div className="expertise-single-body"><ExpertiseTabContent topicId={topicId} /></div>
             </div>
-            <div
-              className={`expertise-single-visual ${visualVisible ? 'visible' : ''}`}
-              ref={visualRef}
-              data-animate="fade-left"
-            >
-              <ExpertiseTabVisual topicId={topicId} />
-            </div>
+            {topicId !== 'consulting' && (
+              <div
+                className={`expertise-single-visual ${visualVisible ? 'visible' : ''}`}
+                ref={visualRef}
+                data-animate="fade-left"
+              >
+                <ExpertiseTabVisual topicId={topicId} />
+              </div>
+            )}
           </div>
         )}
       </div>

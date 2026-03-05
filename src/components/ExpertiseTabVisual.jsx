@@ -17,7 +17,6 @@ export default function ExpertiseTabVisual({ topicId }) {
     const r2 = Array.isArray(flowRow2) ? flowRow2 : ['Strategy', 'Optimization', 'Delivery'];
     return (
       <div className="expertise-visual-card expertise-visual-animated">
-        <div className="expertise-animated-bg" />
         <div className="expertise-visual-content">
           <div className="expertise-flow">
             {r1.map((node, i) => (

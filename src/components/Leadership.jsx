@@ -41,11 +41,6 @@ export default function Leadership({ embedded }) {
                 </svg>
                 {t('home.leadership.linkedIn')}
               </a>
-              {embedded && (
-                <a href="#publications" className="ceo-publications-link">
-                  {t('publications.viewPublications')}
-                </a>
-              )}
             </div>
           </div>
         </div>
