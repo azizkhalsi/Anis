@@ -22,12 +22,6 @@ const FOOTER_LINKS = [
     { labelKey: 'footer.technologyConsulting', to: '/expertise/consulting' },
     { labelKey: 'footer.hardwareEngineering', to: '/expertise/hardware' },
   ]},
-  { categoryKey: 'footer.industries', links: [
-    { labelKey: 'footer.whiteGoods', to: '/industries/whitegood' },
-    { labelKey: 'footer.powerTools', to: '/industries/powertool' },
-    { labelKey: 'footer.automotive', to: '/industries/automotive' },
-    { labelKey: 'footer.ebike', to: '/industries/ebike' },
-  ]},
 ];
 
 export default function Footer() {

@@ -25,21 +25,22 @@ function ArrowConnector({ index }) {
   );
 }
 
+function getObserverOptions() {
+  if (typeof window === 'undefined') return { threshold: 0.08, rootMargin: '0px 0px -80px 0px' };
+  return window.innerWidth <= MOBILE_BREAKPOINT
+    ? { threshold: 0.01, rootMargin: '0px 0px -20px 0px' }
+    : { threshold: 0.08, rootMargin: '0px 0px -80px 0px' };
+}
+
 export default function PrototypingJourney() {
   const { t } = useTranslation();
   const sectionRef = useRef(null);
-  const [observerOptions, setObserverOptions] = useState({
-    threshold: 0.08,
-    rootMargin: '0px 0px -80px 0px',
-  });
+  const [observerOptions, setObserverOptions] = useState(getObserverOptions);
 
   useEffect(() => {
-    const isMobile = typeof window !== 'undefined' && window.innerWidth <= MOBILE_BREAKPOINT;
-    setObserverOptions(
-      isMobile
-        ? { threshold: 0.01, rootMargin: '0px 0px -20px 0px' }
-        : { threshold: 0.08, rootMargin: '0px 0px -80px 0px' }
-    );
+    const onResize = () => setObserverOptions(getObserverOptions());
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
   }, []);
 
   const sectionVisible = useScrollAnimation(sectionRef, observerOptions);

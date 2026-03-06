@@ -154,6 +154,10 @@ main {
     white-space: pre-line;
 }
 
+.page-header--title-accent .page-header-title {
+    color: var(--accent);
+}
+
 .page-header-desc {
     font-size: 1.1rem;
     color: var(--text-secondary);
@@ -6393,6 +6397,15 @@ section {
     display: block;
     object-fit: contain;
 }
+.amc-sensorless-diagram-title {
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    margin: 12px 0 0;
+    padding: 0 16px 16px;
+}
 
 @media (max-width: 768px) {
     .amc-benefits-section,
@@ -6738,6 +6751,12 @@ section {
     line-height: 1.65;
     margin: 0 0 28px;
     max-width: 600px;
+}
+.lci-shift-body p {
+    margin: 0 0 1em;
+}
+.lci-shift-body p:last-child {
+    margin-bottom: 0;
 }
 
 .lci-shift-flow {

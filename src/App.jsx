@@ -21,7 +21,6 @@ const OurStoryPage = lazy(() => import('./pages/OurStoryPage'));
 const EventsPage = lazy(() => import('./pages/EventsPage'));
 const ExpertisePage = lazy(() => import('./pages/ExpertisePage'));
 const ProductsPage = lazy(() => import('./pages/ProductsPage'));
-const IndustriesPage = lazy(() => import('./pages/IndustriesPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const SimulatorPage = lazy(() => import('./pages/SimulatorPage'));
 const MotorModelPage = lazy(() => import('./pages/MotorModelPage'));
@@ -43,8 +42,6 @@ export default function App() {
           <Route path="/expertise/:topicId" element={<Suspense fallback={<PageFallback />}><ExpertisePage /></Suspense>} />
           <Route path="/products" element={<Navigate to="/products/dmk" replace />} />
           <Route path="/products/:productId" element={<Suspense fallback={<PageFallback />}><ProductsPage /></Suspense>} />
-          <Route path="/industries" element={<Navigate to="/industries/whitegood" replace />} />
-          <Route path="/industries/:industryId" element={<Suspense fallback={<PageFallback />}><IndustriesPage /></Suspense>} />
           <Route path="/contact" element={<Suspense fallback={<PageFallback />}><ContactPage /></Suspense>} />
           <Route path="/privacy" element={<Suspense fallback={<PageFallback />}><PrivacyPolicyPage /></Suspense>} />
           <Route path="/simulator" element={<Suspense fallback={<PageFallback />}><SimulatorPage /></Suspense>} />

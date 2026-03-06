@@ -35,9 +35,9 @@
     "pulseWidthModulation": "Pulse Width Modulation",
     "contact": "Contact",
     "toggleMenu": "Toggle menu",
-    "dmk": "DMK",
-    "lci": "LCI",
-    "amc": "AMC"
+    "dmk": "DMK :Measurement equipment",
+    "lci": "LCI: Low Cost Inverter",
+    "amc": "AMC: Appcon Motor Control Lib"
   },
   "footer": {
     "brandDesc": "Appcon Technologies is an R&D engineering firm specializing in sensorless control of electrical motors and the conceptualization and optimization of power electronics. Innovating the future of motor control solutions since 2004.",
@@ -52,9 +52,9 @@
     "industryEvents": "Industry Events",
     "contact": "Contact",
     "privacyPolicy": "Privacy Policy",
-    "dmk": "DMK",
-    "lci": "LCI",
-    "amc": "AMC",
+    "dmk": "DMK Measurement equipment",
+    "lci": "LCI: Low Cost Inverter",
+    "amc": "AMC: Appcon Motor Control Lib",
     "technologyConsulting": "Technology Consulting",
     "hardwareEngineering": "Hardware Engineering",
     "whiteGoods": "White Goods",
@@ -157,13 +157,16 @@
       "badge": "Flagship Product",
       "hero": "One instrument. Replaces your entire motor test bench.",
       "description": [
-        "The DMK is a compact and powerful measurement solution designed for inverter-driven motors. It precisely measures phase currents and PWM-voltages and perfectly synchronizes them to the rotor position, providing real-time visualization and data storage.",
-        "With its integrated functionalities, DMK simplifies motor analysis, making it an essential tool for development, benchmarking and endurance tests. It replaces oscilloscope, current probes, data logger, and PWM monitoring equipment — saving cost, space, and engineering effort."
+        "The DMK is a compact and powerful measurement solution designed for inverter-driven motors. It precisely measures phase currents and PWM voltages and synchronizes them with the rotor position, enabling real-time visualization and high-resolution data storage.",
+        "The motor voltages are measured using a unique demodulation technique that reconstructs the effective PWM voltages directly from the inverter signals without the need for analog filtering. This approach preserves the true time relationship between currents, voltages, and rotor position, allowing highly accurate analysis of the drive system.",
+        "Beyond electrical measurements, the DMK also computes the inverter output and motor state variables in the dq coordinate system. This makes it possible to directly observe the key FOC control variables during operation, providing deep insight into the dynamic behavior of the motor drive.",
+        "Thanks to its high time resolution and synchronized measurements, the DMK allows engineers to detect inverter and control issues even within sub-PWM time intervals, making it an exceptionally powerful tool for development, benchmarking, and endurance testing.",
+        "By combining current measurement, PWM voltage reconstruction, rotor position synchronization, and advanced drive analysis in a single device, the DMK effectively replaces oscilloscopes, current probes, data loggers, and PWM monitoring equipment — reducing cost, complexity, and engineering effort."
       ],
       "highlights": [
         { "label": "Replaces Oscilloscope", "detail": "+ 3 current probes" },
         { "label": "Data Logger", "detail": "Long-term recording" },
-        { "label": "PWM Monitor", "detail": "Typically $50k+ equipment" },
+        { "label": "Real Time PWM Decoder", "detail": "Reconstructs effective PWM voltages in real time without analog filtering" },
         { "label": "Rotor Position", "detail": "Real-time measurement" }
       ],
       "tags": ["Real-Time", "Portable", "USB-C", "WiFi", "Ethernet", "Galvanic Isolation"],
@@ -190,7 +193,8 @@
         { "label": "Voltage", "value": "400V Peak" },
         { "label": "PWM", "value": "4–40kHz" },
         { "label": "Encoder", "value": "A,B,Z / SPI" },
-        { "label": "Isolation", "value": "600V" }
+        { "label": "Isolation", "value": "600V" },
+        { "label": "Memory", "value": "2TB" }
       ],
       "specsHint": "Specifications",
       "hoverHint": "Hover for specs",
@@ -210,11 +214,8 @@
       "name": "LCI",
       "tagline": "Low-Cost Inverter",
       "badge": "Hardware",
-      "hero": "Production-ready inverter. Designed for millions.",
-      "description": [
-        "Appcon Technologies is a leading inverter design house, offering cost-optimized solutions for Permanent Magnet Synchronous Motors (PMSM). Our robust, sensorless Field-Oriented Control (FOC) software and flexible inverter templates deliver exceptional performance and significant cost savings.",
-        "We transform motors into intelligent units, reducing the need for additional sensors and further optimizing your system costs. Adaptable and scalable, our designs are ideal for household appliances, power tools, pumps, e-bikes, and any application needing efficient, cost-sensitive PMSM solutions. Partner with Appcon for accelerated development and reliable mass production."
-      ],
+      "hero": "Low-Cost Inverter Platform for\nRapid Motor Drive Development",
+      "description": [],
       "highlights": [
         { "label": "Cost-Optimized", "detail": "High-volume ready" },
         { "label": "Sensorless FOC", "detail": "No encoder needed" },
@@ -233,8 +234,12 @@
         "Every new motor integration means months of custom inverter design.",
         "You're solving a problem someone already solved."
       ],
-      "shiftHeadline": "What if the inverter was already invented before?",
-      "shiftBody": "LCI is a production-ready inverter platform — a modular building block that snaps into your product. You focus on what you do best, LCI handles the power electronics.",
+      "shiftHeadline": "With LCI you save months of inverter hardware development",
+      "shiftBodyParagraphs": [
+        "When developing a new inverter platform, engineering teams often invest significant effort in solving fundamental hardware challenges before they can focus on the actual product innovation. Selecting power components, designing reliable gate driving, integrating current sensing, and ensuring stable and efficient operation can consume a large portion of the development time.",
+        "With the LCI platform, there is no need to reinvent the wheel. The inverter hardware has already been carefully designed, tested, and optimized to achieve a minimal component count and low hardware cost. Instead of starting from scratch, development teams can use LCI as a proven motor control hardware platform and concentrate their engineering effort on the unique features and added value of their product.",
+        "While many semiconductor vendors provide open-source or reference inverter designs to promote their hardware components, the LCI approach goes one step further. Appcon supports partners in integrating the platform into their own hardware architecture, accompanying them throughout the development process. Our focus is not to promote a particular hardware brand, but to ensure that the final system architecture serves the technical and economic goals of the product and the customer."
+      ],
       "shiftFlowYourProduct": "Your Product",
       "shiftFlowLci": "LCI Module",
       "shiftFlowResult": "Working Motor",
@@ -250,16 +255,19 @@
       "name": "AMC",
       "tagline": "Appcon Motor Control",
       "badge": "Software",
-      "hero": "Plug-and-play motor control. Any motor. Any platform.",
+      "hero": "Universal Sensorless PM-Motor Control Driver.\nAny Motor. Any Inverter.",
       "description": [
-        "Appcon Motor Control (AMC) is a software-only control solution that saves the cost of a position sensor for any drive control application without compromising performance compared to sensored FOC. When AMC is integrated into drive software, it handles motor control and replaces the position sensor by calculating both motor speed and position.",
-        "AMC is a plug-and-play solution that developers can seamlessly integrate into any drive software without requiring extensive knowledge in motor control."
+        "Appcon Motor Control (AMC) is a motor control driver software library designed for controlling permanent magnet motors in a wide range of drive applications. The library can be integrated directly into a customer's firmware, enabling reliable motor control with or without a position sensor.",
+        "AMC is a software-only solution that eliminates the need for a mechanical position sensor by accurately estimating motor speed and rotor position while maintaining performance comparable to sensored Field-Oriented Control (FOC).",
+        "The technology behind AMC is the result of more than 20 years of industrial experience in sensorless control of PMSM drives, with implementations running in products manufactured in millions of units every year.",
+        "Designed for practical use in real products, AMC combines high performance, robustness, and ease of integration. Features such as automatic motor identification allow developers to configure the control quickly, even without deep expertise in motor control.",
+        "As a plug-and-play control module, AMC can be seamlessly integrated into existing drive software architectures, enabling rapid deployment of advanced motor control capabilities."
       ],
       "highlights": [
         { "label": "AUTOSAR-Inspired", "detail": "Industry standard" },
         { "label": "Plug & Play", "detail": "Minimal integration" },
         { "label": "SiL Validated", "detail": "Production-ready" },
-        { "label": "All Motors", "detail": "PMSM, BLDC, Induction" }
+        { "label": "All PM-Motors", "detail": "Any Power Any Voltage" }
       ],
       "tags": ["AUTOSAR-Inspired", "Plug & Play", "SiL Validated", "FOC", "DTC", "HF Injection"],
       "benefitsTitle": "Why AMC",
@@ -284,7 +292,8 @@
         "Superior performance compared to position sensors at high speeds, with smooth and accurate speed and position information"
       ],
       "integrationAlt": "AMC integration: Application and AMC interface with hardware — PCBs and motors",
-      "sensorlessDiagramAlt": "AMC sensorless motor control block diagram: microcontroller, inverter, PMSM"
+      "sensorlessDiagramAlt": "AMC sensorless motor control block diagram: microcontroller, inverter, PMSM",
+      "sensorlessDiagramTitle": "Sensorless FOC"
     },
     "comparison": {
       "dmk": {

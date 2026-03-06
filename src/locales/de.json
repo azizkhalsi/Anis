@@ -1,6 +1,6 @@
 {
   "common": {
-    "loading": "Laden?",
+    "loading": "Laden",
     "skipToContent": "Zum Hauptinhalt",
     "langEn": "ENG",
     "langDe": "DE",
@@ -15,7 +15,7 @@
   "nav": {
     "home": "Startseite",
     "company": "Unternehmen",
-    "whoWeAre": "?ber uns",
+    "whoWeAre": "Über uns",
     "ourMission": "Unsere Mission",
     "ourStory": "Unsere Geschichte",
     "industryEvents": "Branchenevents",
@@ -27,37 +27,37 @@
     "prototyping": "Prototyping",
     "products": "Produkte",
     "industries": "Branchen",
-    "whiteGoods": "Wei?e Ware",
+    "whiteGoods": "Weiße Ware",
     "powerTools": "Elektrowerkzeuge",
     "automotive": "Automotive",
     "ebike": "E-Bike",
     "simulator": "Simulator",
     "pulseWidthModulation": "Pulsweitenmodulation",
     "contact": "Kontakt",
-    "toggleMenu": "Men? ?ffnen/schlie?en",
-    "dmk": "DMK",
-    "lci": "LCI",
-    "amc": "AMC"
+    "toggleMenu": "Menü Öffnen/schließen",
+    "dmk": "DMK :Messequipment",
+    "lci": "LCI: Low Cost Inverter",
+    "amc": "AMC: Appcon Motor Control Lib"
   },
   "footer": {
-    "brandDesc": "Appcon Technologies ist ein F&E-Ingenieurb?ro mit Schwerpunkt auf sensorloser Regelung elektrischer Motoren sowie Konzeption und Optimierung von Leistungselektronik. Seit 2004 gestalten wir die Zukunft der Motorsteuerung.",
-    "getUpdates": "Aktuelles zu unseren L?sungen und Neuigkeiten.",
+    "brandDesc": "Appcon Technologies ist ein F&E-Ingenieurbüro mit Schwerpunkt auf sensorloser Regelung elektrischer Motoren sowie Konzeption und Optimierung von Leistungselektronik. Seit 2004 gestalten wir die Zukunft der Motorsteuerung.",
+    "getUpdates": "Aktuelles zu unseren Lösungen und Neuigkeiten.",
     "company": "Unternehmen",
     "legal": "Rechtliches",
     "products": "Produkte",
     "expertise": "Expertise",
     "industries": "Branchen",
-    "whoWeAre": "?ber uns",
+    "whoWeAre": "Über uns",
     "ourStory": "Unsere Geschichte",
     "industryEvents": "Branchenevents",
     "contact": "Kontakt",
     "privacyPolicy": "Datenschutz",
-    "dmk": "DMK",
-    "lci": "LCI",
-    "amc": "AMC",
+    "dmk": "DMK Messequipment",
+    "lci": "LCI: Low Cost Inverter",
+    "amc": "AMC: Appcon Motor Control Lib",
     "technologyConsulting": "Technologieberatung",
     "hardwareEngineering": "Hardware-Entwicklung",
-    "whiteGoods": "Wei?e Ware",
+    "whiteGoods": "Weiße Ware",
     "powerTools": "Elektrowerkzeuge",
     "automotive": "Automotive",
     "ebike": "E-Bike",
@@ -70,7 +70,7 @@
       "badge": "F&E-Ingenieurwesen & Beratung",
       "titleLine1": "Engineering Design House",
       "titleLine2": "Sensorlose Motorsteuerung",
-      "subtitle": "Kosten und Komplexit?t mit sensorlosen L?sungen reduzieren ? keine Encoder, weniger Teile, h?here Zuverl?ssigkeit.",
+      "subtitle": "Kosten und Komplexität mit sensorlosen Lösungen reduzieren ? keine Encoder, weniger Teile, höhere Zuverlässigkeit.",
       "sloganLine1": "Mehr als nur ?Know-how?",
       "sloganLine2": "wir haben das ?Know-why?",
       "exploreExpertise": "Unsere Expertise entdecken",
@@ -81,232 +81,241 @@
       "statProducts": "Innovative Produkte",
       "statUnits": "Einheiten in Produktion",
       "missionLabel": "Unsere Mission",
-      "missionText": "Den Stand der Technik bei sensorlosen Motorsteuerungsl?sungen voranbringen"
+      "missionText": "Den Stand der Technik bei sensorlosen Motorsteuerungslösungen voranbringen"
     },
     "clientLogos": {
-      "heading": "Vertraut von Branchenf?hrern",
+      "heading": "Vertraut von Branchenführern",
       "storyTitle": "Partnerschaft & Erfolgsgeschichte",
-      "storyText": "Wir arbeiten mit Branchenf?hrern wie Miele&Cie KG zusammen, um sensorlose Motorsteuerung in Serie zu liefern. Mit ?ber 20 Patenten treibt Appcon Innovation voran und sichert Projekterfolg von der Konzeption bis zum Einsatz."
+      "storyText": "Wir arbeiten mit Branchenführern wie Miele&Cie KG zusammen, um sensorlose Motorsteuerung in Serie zu liefern. Mit Über 20 Patenten treibt Appcon Innovation voran und sichert Projekterfolg von der Konzeption bis zum Einsatz."
     },
     "whatWeOffer": {
       "banner": "Was wir in unseren Entwicklungspartnerschaften bieten",
       "pillars": [
         {
-          "title": "Zukunftsf?hige Technologie und abgesicherter Erfolg durch fachkundige Projektplanung und -steuerung",
+          "title": "Zukunftsfähige Technologie und abgesicherter Erfolg durch fachkundige Projektplanung und -steuerung",
           "sphereText": "Fundierte Theorie- und Simulationskompetenz",
           "narrative": "Wir simulieren jedes Szenario, damit Ihr Produkt von Tag eins fehlerfrei funktioniert.",
           "image": "/images/offer-simulation.png"
         },
         {
-          "title": "Optimierte eingebettete Softwarel?sungen f?r die Serienproduktion",
-          "sphereText": "Software f?r sensorlose Motorsteuerung",
-          "narrative": "Eingebettete Software, die in der Serie zuverl?ssig l?uft — damit Sie mit Vertrauen skalieren k?nnen.",
+          "title": "Optimierte eingebettete Softwarelösungen für die Serienproduktion",
+          "sphereText": "Software für sensorlose Motorsteuerung",
+          "narrative": "Eingebettete Software, die in der Serie zuverlässig läuft — damit Sie mit Vertrauen skalieren können.",
           "image": "/images/offer-software.png"
         },
         {
           "title": "Hardware-Design und Prototyping",
           "sphereText": "Expertise in Hardware-Design und hauseigener Elektronik-Fertigung",
-          "narrative": "Vom Schaltplan bis zur best?ckten Leiterplatte aus einer Hand — wir bauen es richtig, bei uns.",
+          "narrative": "Vom Schaltplan bis zur bestückten Leiterplatte aus einer Hand — wir bauen es richtig, bei uns.",
           "image": "/images/offer-hardware.png"
         }
       ]
     },
     "services": {
       "tag": "Was wir tun",
-      "title": "Komplette Engineering-L?sungen",
-      "desc": "Von der Konzeption bis zu produktionsreifen Produkten liefern wir umfassende L?sungen f?r Motorsteuerung und Leistungselektronik.",
+      "title": "Komplette Engineering-Lösungen",
+      "desc": "Von der Konzeption bis zu produktionsreifen Produkten liefern wir umfassende Lösungen für Motorsteuerung und Leistungselektronik.",
       "items": [
-        { "title": "Beratung & Expertise", "desc": "Sicherheit durch Projektplanung und -management ? gemeinsam mit dem Kunden die beste L?sung f?r seine Anforderungen finden." },
-        { "title": "Design", "desc": "Leistungselektronische Entwicklungen ? analoge und digitale Schaltungen, Auslegung der Leistungsstufe, PCB-Layout f?r optimale Performance." },
-        { "title": "Prototyping", "desc": "Hochwertiges Produkt-Prototyping ? mehrlagige Leiterplatten, SMD- und THT-Best?ckung, vom Konzept zur physischen Umsetzung." },
+        { "title": "Beratung & Expertise", "desc": "Sicherheit durch Projektplanung und -management ? gemeinsam mit dem Kunden die beste Lösung für seine Anforderungen finden." },
+        { "title": "Design", "desc": "Leistungselektronische Entwicklungen ? analoge und digitale Schaltungen, Auslegung der Leistungsstufe, PCB-Layout für optimale Performance." },
+        { "title": "Prototyping", "desc": "Hochwertiges Produkt-Prototyping ? mehrlagige Leiterplatten, SMD- und THT-Bestückung, vom Konzept zur physischen Umsetzung." },
         { "title": "Testing & Validierung", "desc": "Software- und Systemtests ? Produkte, die in Ihrer Anwendung einsatzbereit und voll validiert sind." }
       ]
     },
     "leadership": {
-      "tag": "Gr?nder & CEO",
+      "tag": "Gründer & CEO",
       "name": "Dr.-Ing. Hafedh Sammoud",
-      "bio": "Mit ?ber 20 Jahren Erfahrung in Motorsteuerung und Leistungselektronik gr?ndete Dr. Sammoud 2004 Appcon Technologies mit der klaren Mission, sensorlose Motorsteuerung f?r Serienanwendungen praxistauglich zu machen. Seine Laufbahn begann als wissenschaftlicher Mitarbeiter, f?hrte ?ber leitende Ingenieurpositionen in einem f?hrenden deutschen Konzern und m?ndete im Aufbau von Appcon als vertrauensvoller F&E-Partner f?r Unternehmen weltweit.",
+      "bio": "Mit Über 20 Jahren Erfahrung in Motorsteuerung und Leistungselektronik gründete Dr. Sammoud 2004 Appcon Technologies mit der klaren Mission, sensorlose Motorsteuerung für Serienanwendungen praxistauglich zu machen. Seine Laufbahn begann als wissenschaftlicher Mitarbeiter, führte Über leitende Ingenieurpositionen in einem führenden deutschen Konzern und mündete im Aufbau von Appcon als vertrauensvoller F&E-Partner für Unternehmen weltweit.",
       "linkedIn": "Dr. Sammoud auf LinkedIn",
-      "ceoAlt": "Dr.-Ing. Hafedh Sammoud, Gr?nder und CEO von Appcon Technologies"
+      "ceoAlt": "Dr.-Ing. Hafedh Sammoud, Gründer und CEO von Appcon Technologies"
     },
     "testimonials": {
       "tag": "Was Kunden sagen",
       "title": "Vertraut von Branchenprofis",
       "desc": "Erfahrungsberichte von Partnern, die mit uns an Motorsteuerungs- und Leistungselektronik-Projekten gearbeitet haben.",
       "items": [
-        { "quote": "Appcon hat eine robuste sensorlose Antriebsl?sung geliefert, die unsere Anforderungen ?bertroffen hat. Ihre Expertise in Motorsteuerung und Leistungselektronik hat die Integration nahtlos gemacht.", "name": "Leiter Engineering", "role": "Industrieautomation", "company": "Produktionspartner" },
-        { "quote": "Die Zusammenarbeit mit Appcon Technologies hat uns von der Konzeption bis zur Produktion Sicherheit gegeben. Ihr Prototyping- und Validierungsprozess hat von Tag eins ein zuverl?ssiges Produkt gew?hrleistet.", "name": "Leiter F&E", "role": "Leistungselektronik", "company": "Technologiekunde" }
+        { "quote": "Appcon hat eine robuste sensorlose Antriebslösung geliefert, die unsere Anforderungen übertroffen hat. Ihre Expertise in Motorsteuerung und Leistungselektronik hat die Integration nahtlos gemacht.", "name": "Leiter Engineering", "role": "Industrieautomation", "company": "Produktionspartner" },
+        { "quote": "Die Zusammenarbeit mit Appcon Technologies hat uns von der Konzeption bis zur Produktion Sicherheit gegeben. Ihr Prototyping- und Validierungsprozess hat von Tag eins ein zuverlässiges Produkt gewährleistet.", "name": "Leiter F&E", "role": "Leistungselektronik", "company": "Technologiekunde" }
       ]
     },
     "trustBadges": {
       "heading": "Warum mit uns arbeiten",
       "items": [
-        { "label": "Expertise", "desc": "?ber 20 Jahre Motorsteuerung" },
-        { "label": "Qualit?t", "desc": "Produktionsreife L?sungen" },
+        { "label": "Expertise", "desc": "Über 20 Jahre Motorsteuerung" },
+        { "label": "Qualität", "desc": "Produktionsreife Lösungen" },
         { "label": "Support", "desc": "Engagierte F&E-Partnerschaft" }
       ]
     }
   },
   "products": {
     "pageTag": "Produkte",
-    "defaultDescription": "Innovative L?sungen f?r Motorsteuerung.",
+    "defaultDescription": "Innovative Lösungen für Motorsteuerung.",
     "compareWithDmk": "Mit DMK vergleichen",
     "dmk": {
       "name": "DMK",
       "tagline": "Drive Measurement Kit",
       "badge": "Flaggschiff-Produkt",
-      "hero": "Ein Ger?t. Ersetzt Ihren gesamten Motorenpr?fstand.",
+      "hero": "Ein Gerät. Ersetzt Ihren gesamten Motorenprüfstand.",
       "description": [
-        "Das DMK ist eine kompakte und leistungsstarke Messl?sung f?r umrichtergespeiste Motoren. Es misst Phasenstr?me und PWM-Spannungen pr?zise und synchronisiert sie mit der Rotorposition ? mit Echtzeit-Visualisierung und Datenspeicherung.",
-        "Mit seinen integrierten Funktionen vereinfacht das DMK die Motoranalyse und ist ein unverzichtbares Werkzeug f?r Entwicklung, Benchmarking und Dauerl?ufe. Es ersetzt Oszilloskop, Stromsensoren, Datenlogger und PWM-Monitoring ? und spart Kosten, Platz und Aufwand."
+        "Das DMK ist eine kompakte und leistungsstarke Messlösung für umrichtergespeiste Motoren. Es misst Phasenströme und PWM-Spannungen präzise und synchronisiert sie mit der Rotorposition ? mit Echtzeit-Visualisierung und hochauflösender Datenspeicherung.",
+        "Die Motorspannungen werden mit einem einzigartigen Demodulationsverfahren gemessen, das die effektiven PWM-Spannungen direkt aus den Wechselrichter-Signalen rekonstruiert ? ohne analoge Filterung. So bleibt die zeitliche Beziehung zwischen Strömen, Spannungen und Rotorposition erhalten und ermöglicht eine sehr genaue Analyse des Antriebs.",
+        "Zusätzlich zu den elektrischen Messungen berechnet das DMK Wechselrichter-Ausgang und Motor-Zustandsgrößen im dq-Koordinatensystem. So können die zentralen FOC-Regelgrößen während des Betriebs direkt beobachtet werden.",
+        "Dank hoher Zeitauflösung und synchronisierter Messungen erkennt das DMK Wechselrichter- und Regelungsprobleme sogar innerhalb von Sub-PWM-Zeitintervallen ? ideal für Entwicklung, Benchmarking und Dauerläufe.",
+        "Durch die Kombination aus Strommessung, PWM-Spannungsrekonstruktion, Rotorpositions-Synchronisation und erweiterter Antriebsanalyse in einem Gerät ersetzt das DMK Oszilloskope, Stromsensoren, Datenlogger und PWM-Monitoring ? und reduziert Kosten, Aufwand und Komplexität."
       ],
       "highlights": [
         { "label": "Ersetzt Oszilloskop", "detail": "+ 3 Stromsensoren" },
         { "label": "Datenlogger", "detail": "Langzeitaufzeichnung" },
-        { "label": "PWM-Monitor", "detail": "Entspricht typ. $50k+ Ger?ten" },
+        { "label": "Echtzeit-PWM-Decoder", "detail": "Rekonstruiert effektive PWM-Spannungen in Echtzeit ohne analoge Filterung" },
         { "label": "Rotorposition", "detail": "Echtzeit-Messung" }
       ],
       "tags": ["Echtzeit", "Tragbar", "USB-C", "WiFi", "Ethernet", "Galvanische Trennung"],
       "featureBlocksTitle": "Einsatzbereiche des DMK",
       "featureBlocks": [
-        { "title": "Leistungselektronik-Tests", "body": "Einzigartige PWM-Decodierung f?r hochfrequente, hochaufl?sende Signale ?ber typische Messger?te hinaus. Die Spannungsmessung decodiert PWM in Echtzeit und zeigt die exakten Wechselrichter-Spannungen wie vom Motor gesehen. Ohne Tiefpassfilterung werden Wechselrichterfehler zuverl?ssig erkannt statt kaschiert." },
-        { "title": "Entwicklungsingenieure f?r Motorsteuerung", "body": "Als kompaktes, multifunktionales Messger?t ersetzt das DMK mehrere Einzelger?te. Es wird an Motor/Wechselrichter angeschlossen, um analoge Signale und Motorsteuerungsgr??en f?r Oszilloskop und Echtzeit-Visualisierung mit der DMK-PC-Software zu erfassen. Direkter Zugriff auf interne Zustandsgr??en von Motor und Wechselrichter. Aufzeichnung und Speicherung f?r sp?tere Analysen." },
-        { "title": "Dauerl?ufe", "body": "Messen und protokollieren Sie alle Motor- und Wechselrichter-Zustandsgr??en ?ber l?ngere Zeit. Erfassen Sie Anomalien oder Performance-Verschlechterungen, die erst nach Stunden, Tagen oder Wochen Dauerbetrieb auftreten. Die automatische Auswertung der vom DMK gelieferten Daten hilft, versteckte oder statistisch seltene Probleme zu finden." },
-        { "title": "Benchmarking und Reverse Engineering", "body": "Analysieren Sie Fremd- oder Konkurrenzantriebe mit minimalem Aufwand ?ber direkten Zugriff auf Motor- und Wechselrichter-Signale. Das DMK liefert pr?zise Daten f?r faire Performance-Vergleiche ? Effizienz, Genauigkeit, Regelstrategie ? und unterst?tzt Sie bei Optimierung, Beschaffung und Partnerschaften." }
+        { "title": "Leistungselektronik-Tests", "body": "Einzigartige PWM-Decodierung für hochfrequente, hochauflösende Signale Über typische Messgeräte hinaus. Die Spannungsmessung decodiert PWM in Echtzeit und zeigt die exakten Wechselrichter-Spannungen wie vom Motor gesehen. Ohne Tiefpassfilterung werden Wechselrichterfehler zuverlässig erkannt statt kaschiert." },
+        { "title": "Entwicklungsingenieure für Motorsteuerung", "body": "Als kompaktes, multifunktionales Messgerät ersetzt das DMK mehrere Einzelgeräte. Es wird an Motor/Wechselrichter angeschlossen, um analoge Signale und Motorsteuerungsgrößen für Oszilloskop und Echtzeit-Visualisierung mit der DMK-PC-Software zu erfassen. Direkter Zugriff auf interne Zustandsgrößen von Motor und Wechselrichter. Aufzeichnung und Speicherung für spätere Analysen." },
+        { "title": "Dauerläufe", "body": "Messen und protokollieren Sie alle Motor- und Wechselrichter-Zustandsgrößen Über längere Zeit. Erfassen Sie Anomalien oder Performance-Verschlechterungen, die erst nach Stunden, Tagen oder Wochen Dauerbetrieb auftreten. Die automatische Auswertung der vom DMK gelieferten Daten hilft, versteckte oder statistisch seltene Probleme zu finden." },
+        { "title": "Benchmarking und Reverse Engineering", "body": "Analysieren Sie Fremd- oder Konkurrenzantriebe mit minimalem Aufwand Über direkten Zugriff auf Motor- und Wechselrichter-Signale. Das DMK liefert präzise Daten für faire Performance-Vergleiche ? Effizienz, Genauigkeit, Regelstrategie ? und unterstützt Sie bei Optimierung, Beschaffung und Partnerschaften." }
       ],
-      "hmiTitle": "Externe Anschl?sse",
-      "demoEmbedTitle": "Ein Ger?t im Mittelpunkt Ihres Pr?fstands",
-      "demoEmbedIntro": "Das DMK verbindet sich mit dem PC f?r Live-Visualisierung, mit dem Oszilloskop ?ber analoge Ausg?nge und mit USB-Speicher f?r Langzeitaufzeichnung. Echtzeit-Messung und -Analyse aus einer kompakten Einheit.",
+      "hmiTitle": "Externe Anschlüsse",
+      "demoEmbedTitle": "Ein Gerät im Mittelpunkt Ihres Prüfstands",
+      "demoEmbedIntro": "Das DMK verbindet sich mit dem PC für Live-Visualisierung, mit dem Oszilloskop Über analoge Ausgänge und mit USB-Speicher für Langzeitaufzeichnung. Echtzeit-Messung und -Analyse aus einer kompakten Einheit.",
       "demoEmbedList": [
-        { "term": "PC-Software", "desc": "Ger?t konfigurieren, Live-Waveforms anzeigen und Analysen von Laptop oder PC ausf?hren." },
-        { "term": "Oszilloskop", "desc": "Analoge Ausg?nge f?r Signale an jedem Oszilloskop; kein separater PC beim Testen n?tig." },
-        { "term": "USB-Speicher", "desc": "Stundenlange Aufzeichnung auf externe SSD (bis 2 TB) f?r sp?tere Offline-Analyse." },
-        { "term": "Ethernet / WiFi", "desc": "Fernzugriff und Streaming f?r automatisierte Pr?fst?nde." }
+        { "term": "PC-Software", "desc": "Gerät konfigurieren, Live-Waveforms anzeigen und Analysen von Laptop oder PC ausführen." },
+        { "term": "Oszilloskop", "desc": "Analoge Ausgänge für Signale an jedem Oszilloskop; kein separater PC beim Testen nötig." },
+        { "term": "USB-Speicher", "desc": "Stundenlange Aufzeichnung auf externe SSD (bis 2 TB) für spätere Offline-Analyse." },
+        { "term": "Ethernet / WiFi", "desc": "Fernzugriff und Streaming für automatisierte Prüfstände." }
       ],
       "specs": [
         { "label": "Stromversorgung", "value": "USB-C" },
         { "label": "Batterie", "value": "4000mAh" },
-        { "label": "Strom", "value": "1A?200A" },
+        { "label": "Strom", "value": "1A–200A" },
         { "label": "Spannung", "value": "400V Peak" },
-        { "label": "PWM", "value": "4?40kHz" },
+        { "label": "PWM", "value": "4–40kHz" },
         { "label": "Encoder", "value": "A,B,Z / SPI" },
-        { "label": "Isolierung", "value": "600V" }
+        { "label": "Isolierung", "value": "600V" },
+        { "label": "Speicher", "value": "2TB" }
       ],
       "specsHint": "Spezifikationen",
-      "hoverHint": "?berfahren f?r Specs",
+      "hoverHint": "Überfahren für Specs",
       "photoAlt": "DMK-RT zwischen Wechselrichter und Motor",
       "pcSceneDesktop": "Desktop",
-      "pcSceneOpenDmk": "DMK-Software ?ffnen",
-      "pcSceneClickHint": "Klicken zum ?ffnen",
-      "pcSceneBack": "Zur?ck zum Desktop",
-      "pcSceneBackLabel": "? Zur?ck",
+      "pcSceneOpenDmk": "DMK-Software Öffnen",
+      "pcSceneClickHint": "Klicken zum Öffnen",
+      "pcSceneBack": "Zurück zum Desktop",
+      "pcSceneBackLabel": "← Zurück",
       "pcSceneVisualisation": "Visualisierung",
       "pcSceneCalibration": "Oszilloskop & Kalibrierung",
-      "hmiVisualisationAlt": "DMK-Visualisierungsoberfl?che",
+      "hmiVisualisationAlt": "DMK-Visualisierungsoberfläche",
       "hmiCalibrationAlt": "DMK Oszilloskop und Sensor-Kalibrierung",
-      "deviceAlt": "DMK-Ger?t"
+      "deviceAlt": "DMK-Gerät"
     },
     "lci": {
       "name": "LCI",
       "tagline": "Low-Cost Inverter",
       "badge": "Hardware",
-      "hero": "Serienreifer Inverter. Konzipiert f?r Millionen.",
-      "description": [
-        "Appcon Technologies ist ein f?hrendes Inverter-Designhaus und bietet kosteng?nstige L?sungen f?r Permanentmagnet-Synchronmotoren (PMSM). Unsere robuste, sensorlose FOC-Software und flexiblen Inverter-Designs liefern hohe Performance und deutliche Kosteneinsparungen.",
-        "Wir machen Motoren zu intelligenten Einheiten, reduzieren den Bedarf an zus?tzlichen Sensoren und optimieren Ihre Systemkosten. Unsere anpassbaren und skalierbaren Designs eignen sich f?r Haushaltsger?te, Elektrowerkzeuge, Pumpen, E-Bikes und alle Anwendungen mit effizienten, kostensensitiven PMSM-L?sungen."
-      ],
+      "hero": "Low-Cost-Inverter-Plattform für\nschnelle Motorantriebs-Entwicklung",
+      "description": [],
       "highlights": [
-        { "label": "Kostenoptimiert", "detail": "F?r hohe St?ckzahlen" },
-        { "label": "Sensorlose FOC", "detail": "Kein Encoder n?tig" },
+        { "label": "Kostenoptimiert", "detail": "Für hohe Stückzahlen" },
+        { "label": "Sensorlose FOC", "detail": "Kein Encoder nötig" },
         { "label": "Modulares Design", "detail": "Anpassbare Plattform" },
         { "label": "Kompakt", "detail": "Minimaler Bauraum" }
       ],
-      "tags": ["PMSM", "Sensorlose FOC", "Kostenoptimiert", "Haushaltsger?te", "Elektrowerkzeuge", "E-Bikes"],
+      "tags": ["PMSM", "Sensorlose FOC", "Kostenoptimiert", "Haushaltsgeräte", "Elektrowerkzeuge", "E-Bikes"],
       "pcbAlt": "LCI Low-Cost Inverter ? runde Leiterplatte",
       "problemEyebrow": "Kommen Sie Ihnen bekannt vor?",
-      "shiftEyebrow": "Die L?sung",
+      "shiftEyebrow": "Die Lösung",
       "problemImageAlt": "Mechanik und Elektrik ? die Herausforderung, beides zu integrieren.",
       "shiftImageAlt": "LCI als modularer Baustein zwischen Ihrem Produkt und dem Motor.",
-      "problemHeadline": "Ihr Team baut gro?artige Produkte. Aber die Elektronik bremst Sie aus.",
+      "problemHeadline": "Ihr Team baut großartige Produkte. Aber die Elektronik bremst Sie aus.",
       "problemBullets": [
         "Ihre Ingenieure sind Mechanik-Experten ? keine Leistungselektronik-Spezialisten.",
         "Jede neue Motorintegration bedeutet Monate an individuellem Inverter-Design.",
-        "Sie l?sen ein Problem, das schon jemand gel?st hat."
+        "Sie lösen ein Problem, das schon jemand gelöst hat."
       ],
-      "shiftHeadline": "Was, wenn der Inverter schon vorher erfunden w?re?",
-      "shiftBody": "LCI ist eine serienreife Inverter-Plattform ? ein modularer Baustein, der in Ihr Produkt eingebaut wird. Konzentrieren Sie sich auf Ihre St?rken, LCI ?bernimmt die Leistungselektronik.",
+      "shiftHeadline": "Mit LCI sparen Sie Monate an Inverter-Hardware-Entwicklung",
+      "shiftBodyParagraphs": [
+        "Bei der Entwicklung einer neuen Inverter-Plattform investieren Entwicklungsteams oft erheblich in grundlegende Hardware-Herausforderungen, bevor sie sich auf die eigentliche Produktinnovation konzentrieren können. Die Auswahl von Leistungskomponenten, zuverlässige Gate-Ansteuerung, die Integration der Strommessung und stabile, effiziente Betriebsführung können einen großen Teil der Entwicklungszeit beanspruchen.",
+        "Mit der LCI-Plattform muss das Rad nicht neu erfunden werden. Die Inverter-Hardware wurde bereits sorgfältig entwickelt, getestet und optimiert, um minimale Bauteilanzahl und niedrige Hardwarekosten zu erreichen. Statt von Grund auf zu starten, können Teams LCI als bewährte Motorsteuerungs-Hardwareplattform nutzen und ihre Arbeit auf die einzigartigen Merkmale und den Mehrwert ihres Produkts konzentrieren.",
+        "Während viele Halbleiterhersteller Open-Source- oder Referenz-Inverter-Designs anbieten, um ihre Bauteile zu bewerben, geht der LCI-Ansatz einen Schritt weiter. Appcon unterstützt Partner bei der Integration der Plattform in ihre eigene Hardware-Architektur und begleitet sie durch den gesamten Entwicklungsprozess. Unser Fokus liegt nicht darauf, eine bestimmte Hardware-Marke zu fördern, sondern sicherzustellen, dass die finale Systemarchitektur den technischen und wirtschaftlichen Zielen von Produkt und Kunde dient."
+      ],
       "shiftFlowYourProduct": "Ihr Produkt",
       "shiftFlowLci": "LCI-Modul",
       "shiftFlowResult": "Funktionierender Motor",
-      "bridgeLabel": "Die L?sung",
-      "bridgeSub": "LCI im ?berblick",
-      "whyHeadline": "Gebaut f?r Skalierung. Bew?hrt in der Produktion.",
-      "whyIndustries": ["Haushaltsger?te", "Elektrowerkzeuge", "E-Bikes", "Pumpen"],
+      "bridgeLabel": "Die Lösung",
+      "bridgeSub": "LCI im Überblick",
+      "whyHeadline": "Gebaut für Skalierung. Bewährt in der Produktion.",
+      "whyIndustries": ["Haushaltsgeräte", "Elektrowerkzeuge", "E-Bikes", "Pumpen"],
       "ctaHeadline": "Bereit, das Rad nicht mehr neu zu erfinden?",
-      "ctaBody": "Sprechen Sie mit unserem Team ?ber die Integration von LCI in Ihr n?chstes Produkt.",
+      "ctaBody": "Sprechen Sie mit unserem Team Über die Integration von LCI in Ihr nächstes Produkt.",
       "ctaButton": "Kontakt aufnehmen"
     },
     "amc": {
       "name": "AMC",
       "tagline": "Appcon Motor Control",
       "badge": "Software",
-      "hero": "Plug-and-Play Motorsteuerung. Jeder Motor. Jede Plattform.",
+      "hero": "Universeller sensorloser PM-Motorsteuerungstreiber.\nJeder Motor. Jeder Inverter.",
       "description": [
-        "Appcon Motor Control (AMC) ist eine rein softwarebasierte Steuerung, die die Kosten eines Positionssensors spart ? bei gleicher Performance wie sensorgef?hrte FOC. Nach Integration ?bernimmt AMC die Motorsteuerung und ersetzt den Positionssensor durch Berechnung von Drehzahl und Position.",
-        "AMC ist eine Plug-and-Play-L?sung, die Entwickler nahtlos in bestehende Antriebssoftware integrieren k?nnen ? ohne tiefe Motorsteuerungs-Kenntnisse."
+        "Appcon Motor Control (AMC) ist eine Motorsteuerungs-Softwarebibliothek für Permanentmagnetmotoren in einem weiten Spektrum von Antriebsanwendungen. Die Bibliothek kann direkt in die Kunden-Firmware integriert werden und ermöglicht zuverlässige Motorsteuerung mit oder ohne Positionssensor.",
+        "AMC ist eine rein softwarebasierte Lösung, die einen mechanischen Positionssensor überflüssig macht, indem Drehzahl und Rotorposition genau geschätzt werden ? bei Performance vergleichbar mit sensorbehafteter FOC.",
+        "Die AMC-Technologie basiert auf mehr als 20 Jahren industrieller Erfahrung in sensorloser PMSM-Antriebssteuerung, mit Implementierungen in jährlich millionenfach gefertigten Produkten.",
+        "Für den praktischen Einsatz in realen Produkten verbindet AMC hohe Performance, Robustheit und einfache Integration. Funktionen wie automatische Motoridentifikation ermöglichen eine schnelle Konfiguration auch ohne tiefe Motorsteuerungs-Expertise.",
+        "Als Plug-and-Play-Steuerungsmodul lässt sich AMC nahtlos in bestehende Antriebs-Softwarearchitekturen integrieren und ermöglicht den schnellen Einsatz fortgeschrittener Motorsteuerungsfunktionen."
       ],
       "highlights": [
         { "label": "AUTOSAR-inspiriert", "detail": "Industriestandard" },
         { "label": "Plug & Play", "detail": "Minimale Integration" },
         { "label": "SiL-validiert", "detail": "Serienreif" },
-        { "label": "Alle Motoren", "detail": "PMSM, BLDC, Asynchron" }
+        { "label": "Alle PM-Motoren", "detail": "Jede Leistung, jede Spannung" }
       ],
       "tags": ["AUTOSAR-inspiriert", "Plug & Play", "SiL-validiert", "FOC", "DTC", "HF-Injektion"],
       "benefitsTitle": "Warum AMC",
       "benefits": [
         { "title": "Einfache Integration in bestehende Antriebssoftware", "body": "Klare Schnittstellendefinitionen nach AUTOSAR-Vorbild." },
-        { "title": "Optimierung und Versionen unabh?ngig von der Anwendung", "body": "Validierung per Software-in-the-Loop und mit Evaluationsboards." },
-        { "title": "Eine Steuerungssoftware f?r alle Motoren und Wechselrichter", "body": "Einfache Hardware-Migration und Konfiguration f?r neue Motoren." },
-        { "title": "Maximale Flexibilit?t f?r die Anwendungssoftware", "body": "Einfache und sichere Entwicklung von Antriebsanwendungen mit AMC als Motortreiber." }
+        { "title": "Optimierung und Versionen unabhängig von der Anwendung", "body": "Validierung per Software-in-the-Loop und mit Evaluationsboards." },
+        { "title": "Eine Steuerungssoftware für alle Motoren und Wechselrichter", "body": "Einfache Hardware-Migration und Konfiguration für neue Motoren." },
+        { "title": "Maximale Flexibilität für die Anwendungssoftware", "body": "Einfache und sichere Entwicklung von Antriebsanwendungen mit AMC als Motortreiber." }
       ],
-      "gameChangerHeadline": "Eine zukunftsweisende L?sung f?r sensorlose PMSM-Motorsteuerung",
+      "gameChangerHeadline": "Eine zukunftsweisende Lösung für sensorlose PMSM-Motorsteuerung",
       "motorControlItems": [
-        "Skalierbar ?ber alle Leistungsklassen",
-        "Maximales Drehmoment und Dynamik vom Stillstand bis >100.000 min??",
+        "Skalierbar Über alle Leistungsklassen",
+        "Maximales Drehmoment und Dynamik vom Stillstand bis >100.000 min⁻¹",
         "Automatische Motoridentifikation und Parameterkonfiguration",
         "Erweiterte Funktionen inkl. Batteriestrombegrenzung"
       ],
       "sensorlessTitle": "Sensorloser Algorithmus",
       "sensorlessItems": [
-        "Keine Motorparameter f?r die Positionssch?tzung n?tig: der Motor ist der Sensor",
+        "Keine Motorparameter für die Positionsschätzung nötig: der Motor ist der Sensor",
         "Volles Drehmoment im Stillstand und bei niedrigen Drehzahlen",
-        "Keine zus?tzliche Hardware erforderlich",
-        "?berlegene Performance gegen?ber Positionssensoren bei hohen Drehzahlen, mit pr?ziser Drehzahl- und Positionsinformation"
+        "Keine zusätzliche Hardware erforderlich",
+        "Überlegene Performance gegenÜber Positionssensoren bei hohen Drehzahlen, mit präziser Drehzahl- und Positionsinformation"
       ],
       "integrationAlt": "AMC-Integration: Anwendung und AMC-Schnittstelle mit Hardware ? Leiterplatten und Motoren",
-      "sensorlessDiagramAlt": "AMC sensorlose Motorsteuerung Blockbild: Mikrocontroller, Wechselrichter, PMSM"
+      "sensorlessDiagramAlt": "AMC sensorlose Motorsteuerung Blockbild: Mikrocontroller, Wechselrichter, PMSM",
+      "sensorlessDiagramTitle": "Sensorless FOC"
     },
     "comparison": {
       "dmk": {
-        "title": "DMK vs. klassischer Pr?fstand",
+        "title": "DMK vs. klassischer Prüfstand",
         "leftLabel": "Klassischer Aufbau",
         "rightLabel": "DMK",
         "rows": [
-          { "left": "Oszilloskop + Stromsensoren + Datenlogger + PWM-Monitor + Verkabelung", "right": "Ein Ger?t, gleiche Funktionen" },
-          { "left": "Hohe Ger?tekosten (typ. 50.000 ?+)", "right": "Eine Einheit, geringere Gesamtkosten" },
-          { "left": "Mehrere Ger?te, gro?er Platzbedarf", "right": "Kompakt, tragbar" },
-          { "left": "Aufw?ndige Inbetriebnahme und Synchronisation", "right": "Plug-and-Play, integrierte Sync" }
+          { "left": "Oszilloskop + Stromsensoren + Datenlogger + PWM-Monitor + Verkabelung", "right": "Ein Gerät, gleiche Funktionen" },
+          { "left": "Hohe Gerätekosten (typ. 50.000 €+)", "right": "Eine Einheit, geringere Gesamtkosten" },
+          { "left": "Mehrere Geräte, größer Platzbedarf", "right": "Kompakt, tragbar" },
+          { "left": "Aufwändige Inbetriebnahme und Synchronisation", "right": "Plug-and-Play, integrierte Sync" }
         ]
       },
       "amc": {
-        "title": "AMC vs. sensorgef?hrte L?sung",
+        "title": "AMC vs. sensorgeführte Lösung",
         "leftLabel": "Encoder-FOC",
         "rightLabel": "AMC (sensorlos)",
         "rows": [
-          { "left": "Positionssensor (Encoder/Resolver) n?tig", "right": "Kein Sensor; Motor als Sensor" },
-          { "left": "Zus?tzliche Hardwarekosten und Verdrahtung", "right": "Nur Software, keine Zusatz-Hardware" },
-          { "left": "Sensorzuverl?ssigkeit und Umgebungsgrenzen", "right": "Weniger Fehlerquellen, robust" },
-          { "left": "Performance abh?ngig von Sensorqualit?t", "right": "Performance auf Augenh?he mit sensorgef?hrter FOC" }
+          { "left": "Positionssensor (Encoder/Resolver) nötig", "right": "Kein Sensor; Motor als Sensor" },
+          { "left": "Zusätzliche Hardwarekosten und Verdrahtung", "right": "Nur Software, keine Zusatz-Hardware" },
+          { "left": "Sensorzuverlässigkeit und Umgebungsgrenzen", "right": "Weniger Fehlerquellen, robust" },
+          { "left": "Performance abhängig von Sensorqualität", "right": "Performance auf Augenhöhe mit sensorgeführter FOC" }
         ]
       },
       "lci": {
@@ -315,27 +324,27 @@
         "rightLabel": "LCI (Appcon)",
         "rows": [
           { "left": "Langer Entwicklungszyklus, hohe NRE-Kosten", "right": "Serienreif, schneller am Markt" },
-          { "left": "Komplette Entwicklung und Validierung in-house", "right": "Bew?hrte Plattform, kostenoptimiert" },
-          { "left": "Laufende Wartung und Bauteil-Obsoleszenz", "right": "Modular, skalierbar, unterst?tzt" }
+          { "left": "Komplette Entwicklung und Validierung in-house", "right": "Bewährte Plattform, kostenoptimiert" },
+          { "left": "Laufende Wartung und Bauteil-Obsoleszenz", "right": "Modular, skalierbar, unterstützt" }
         ]
       }
     }
   },
   "industries": {
     "whitegood": {
-      "title": "Wei?e Ware",
-      "subtitle": "Haushaltsger?te",
-      "description": "Energieeffiziente Motorl?sungen f?r K?hlschr?nke, Waschmaschinen, Geschirrsp?ler und Klimaanlagen. Unsere sensorlose Regelung reduziert den Energieverbrauch bei ruhigem und zuverl?ssigem Lauf.",
-      "features": ["K?hlkompressoren", "Waschtrommeln", "Geschirrsp?lerpumpen", "Klima-L?fter"],
+      "title": "Weiße Ware",
+      "subtitle": "Haushaltsgeräte",
+      "description": "Energieeffiziente Motorlösungen für Kühlschränke, Waschmaschinen, Geschirrspüler und Klimaanlagen. Unsere sensorlose Regelung reduziert den Energieverbrauch bei ruhigem und zuverlässigem Lauf.",
+      "features": ["Kühlkompressoren", "Waschtrommeln", "Geschirrspülerpumpen", "Klima-Lüfter"],
       "stat": "40 %",
       "statLabel": "Energieeinsparung",
-      "imageAlt": "Moderne Haushalts-Waschmaschine f?r Wei?e Ware"
+      "imageAlt": "Moderne Haushalts-Waschmaschine für Weiße Ware"
     },
     "powertool": {
       "title": "Elektrowerkzeuge",
       "subtitle": "Professionell & Consumer",
-      "description": "Hochleistungs-B?rstenlossteuerung f?r Akkuschrauber, Winkelschleifer und professionelle Elektrowerkzeuge. Optimiert f?r Drehmoment, Wirkungsgrad und lange Laufzeit bei anspruchsvollen Anwendungen.",
-      "features": ["Akkuschrauber", "Winkelschleifer", "Kreiss?gen", "Schlagbohrschrauber"],
+      "description": "Hochleistungs-Bürstenlossteuerung für Akkuschrauber, Winkelschleifer und professionelle Elektrowerkzeuge. Optimiert für Drehmoment, Wirkungsgrad und lange Laufzeit bei anspruchsvollen Anwendungen.",
+      "features": ["Akkuschrauber", "Winkelschleifer", "Kreissägen", "Schlagbohrschrauber"],
       "stat": "2x",
       "statLabel": "Laufzeit",
       "imageAlt": "Professionelle Elektrowerkzeuge und Akkuschrauber"
@@ -343,20 +352,20 @@
     "automotive": {
       "title": "Automotive",
       "subtitle": "Fahrzeugsysteme",
-      "description": "Automotive-taugliche Motorsteuerung f?r Pumpen, L?fter, Wischer und Komfortsysteme. Unsere L?sungen erf?llen strenge Qualit?ts- und Sicherheitsanforderungen mit AUTOSAR-kompatibler Software.",
-      "features": ["Kraftstoff- und Wasserpumpen", "K?hlerl?fter", "Wischersysteme", "Sitzverstellung"],
+      "description": "Automotive-taugliche Motorsteuerung für Pumpen, Lüfter, Wischer und Komfortsysteme. Unsere Lösungen erfüllen strenge Qualitäts- und Sicherheitsanforderungen mit AUTOSAR-kompatibler Software.",
+      "features": ["Kraftstoff- und Wasserpumpen", "Kühlerlüfter", "Wischersysteme", "Sitzverstellung"],
       "stat": "1 Mio.+",
       "statLabel": "eingesetzte Einheiten",
-      "imageAlt": "Moderner SUV f?r Automotive und Fahrzeugsysteme"
+      "imageAlt": "Moderner SUV für Automotive und Fahrzeugsysteme"
     },
     "ebike": {
       "title": "E-Bike",
-      "subtitle": "Elektrofahrr?der",
-      "description": "Sensorlose Motorsteuerung f?r Pedelecs und E-Bikes mit Gasgriff. Unsere L?sungen bieten weiches Drehmomentverhalten, hohen Wirkungsgrad und lange Laufzeit f?r Mittelmotor und Nabenmotor ? passend f?r anspruchsvolle Elektrofahrr?der.",
+      "subtitle": "Elektrofahrräder",
+      "description": "Sensorlose Motorsteuerung für Pedelecs und E-Bikes mit Gasgriff. Unsere Lösungen bieten weiches Drehmomentverhalten, hohen Wirkungsgrad und lange Laufzeit für Mittelmotor und Nabenmotor ? passend für anspruchsvolle Elektrofahrräder.",
       "features": ["Mittelmotor & Nabenmotor", "Pedelec & Drehmomentsensor", "Rekuperation", "Batterieeffizienz"],
       "stat": "EV-ready",
-      "statLabel": "L?sungen",
-      "imageAlt": "Modernes E-Bike f?r Elektrofahrrad-L?sungen"
+      "statLabel": "Lösungen",
+      "imageAlt": "Modernes E-Bike für Elektrofahrrad-Lösungen"
     }
   },
   "simulator": {
@@ -389,7 +398,7 @@
       "flat60": "60° Flach",
       "flat60Tip": "60°-Flachdach",
     "schoerner": "Schoerner",
-    "schoernerTip": "Schoerner-?bermodulation",
+    "schoernerTip": "Schoerner-Übermodulation",
     "manual": "Manuell",
     "manualTip": "Manuelle Nullpunktverschiebung",
     "center": "Mitte",
@@ -423,10 +432,10 @@
     "defaultDescription": "Fundiertes Know-how in Motorsteuerung und Leistungselektronik.",
     "topicDescriptions": {
       "consulting": "Fundiertes Know-how in Technologieberatung\nfür Motorsteuerung und Leistungselektronik.",
-      "hardware": "Fundiertes Know-how in Hardware-Entwicklung f?r Motorsteuerung und Leistungselektronik.",
-      "software": "Fundiertes Know-how in Software-Entwicklung f?r Motorsteuerung und Leistungselektronik.",
-      "mbd": "Fundiertes Know-how im modellbasierten Entwurf f?r Motorsteuerung und Leistungselektronik.",
-      "prototyping": "Fundiertes Know-how im Prototyping f?r Motorsteuerung und Leistungselektronik."
+      "hardware": "Fundiertes Know-how in Hardware-Entwicklung für Motorsteuerung und Leistungselektronik.",
+      "software": "Fundiertes Know-how in Software-Entwicklung für Motorsteuerung und Leistungselektronik.",
+      "mbd": "Fundiertes Know-how im modellbasierten Entwurf für Motorsteuerung und Leistungselektronik.",
+      "prototyping": "Fundiertes Know-how im Prototyping für Motorsteuerung und Leistungselektronik."
     },
     "label": "Expertise",
     "tabs": {
@@ -450,8 +459,8 @@
         "label": "Hardware-Entwicklung",
         "contentTitle": "Hardware-Entwicklung",
         "paragraphs": [
-          "Unser Hardware-Team entwirft und entwickelt Motorsteuerungselektronik, insbesondere Wechselrichter, passend zu Ihren Anforderungen. Ausgehend von Ihren Spezifikationen nutzen wir unsere Erfahrung f?r robuste Leistungselektronik.",
-          "Mit fundierter Erfahrung in komplexen Leistungselektronik-Designs optimieren wir Layout und Design f?r Performance und Kosten. Wir liefern effiziente L?sungen."
+          "Unser Hardware-Team entwirft und entwickelt Motorsteuerungselektronik, insbesondere Wechselrichter, passend zu Ihren Anforderungen. Ausgehend von Ihren Spezifikationen nutzen wir unsere Erfahrung für robuste Leistungselektronik.",
+          "Mit fundierter Erfahrung in komplexen Leistungselektronik-Designs optimieren wir Layout und Design für Performance und Kosten. Wir liefern effiziente Lösungen."
         ],
         "list": ["Leistungselektronik-Designs", "Bauteilauswahl & Mikrocontroller-Optimierung", "PCB-Layout & Mehrlagen-Boards", "Prototyping & Tests", "Redesign zur Kostensenkung & Effizienz"],
         "conceptionTitle": "Hardware-Konzeption und -Design",
@@ -473,16 +482,16 @@
         "matlabSimulink": "MATLAB & SIMULINK",
         "paragraphs": [
           "Automatisierung modellbasierter Prozesse ? Code-Generierung, Wiederverwendung von Modellen, kontinuierliche Tests und Dokumentation ? verk?rzt die Time-to-Market und senkt die Produktkosten.",
-          "Unsere Teams nutzen den modellbasierten Entwurf, um ma?geschneiderte Motorsteuerungsl?sungen zu liefern. Sie k?nnen:"
+          "Unsere Teams nutzen den modellbasierten Entwurf, um ma?geschneiderte Motorsteuerungslösungen zu liefern. Sie können:"
         ],
-        "list": ["Sie bei der Einf?hrung des modellbasierten Entwurfs unterst?tzen", "Motorsteuerungssysteme von Grund auf entwerfen und in der Simulation validieren f?r schnelles Prototyping", "Bestehende Motorsteuerungsmodelle bewerten, anpassen und warten", "Den automatisch generierten Code in Ihre bestehende Software integrieren oder eine vollst?ndige Motorsteuerungssoftware bereitstellen"],
+        "list": ["Sie bei der Einf?hrung des modellbasierten Entwurfs unterst?tzen", "Motorsteuerungssysteme von Grund auf entwerfen und in der Simulation validieren für schnelles Prototyping", "Bestehende Motorsteuerungsmodelle bewerten, anpassen und warten", "Den automatisch generierten Code in Ihre bestehende Software integrieren oder eine vollst?ndige Motorsteuerungssoftware bereitstellen"],
         "visualLabel": "Modellbasierter Entwurf",
         "typhoonKicker": "Hardware-in-the-Loop-Tests",
-        "typhoonTitle": "Typhoon HIL f?r Echtzeit-Emulation",
-        "typhoonText": "F?r Hardware-in-the-Loop-Validierung unserer Regelungsmodelle setzen wir auf Plattformen von Typhoon HIL. So k?nnen wir Leistungsstufen und Regler in Echtzeit emulieren, den Regelkreis mit echter Hardware schlie?en und modellbasierte Projekte bereits auf HIL absichern, bevor sie in Ihr Labor kommen." ,
+        "typhoonTitle": "Typhoon HIL für Echtzeit-Emulation",
+        "typhoonText": "Für Hardware-in-the-Loop-Validierung unserer Regelungsmodelle setzen wir auf Plattformen von Typhoon HIL. So können wir Leistungsstufen und Regler in Echtzeit emulieren, den Regelkreis mit echter Hardware schließen und modellbasierte Projekte bereits auf HIL absichern, bevor sie in Ihr Labor kommen." ,
         "benefits": [
           { "title": "Kosteneffektiv", "desc": "K?rzere Entwicklungszeiten und weniger Aufwand ? niedrigere Kosten und schnellere Markteinf?hrung." },
-          { "title": "H?here Genauigkeit", "desc": "Fr?he Simulation und Tests reduzieren Entwurfsfehler und steigern die Zuverl?ssigkeit." },
+          { "title": "H?here Genauigkeit", "desc": "Fr?he Simulation und Tests reduzieren Entwurfsfehler und steigern die Zuverlässigkeit." },
           { "title": "Selbstdokumentierend", "desc": "Einfach im Team zu teilen und zu pflegen." },
           { "title": "Appcon-Library", "desc": "Erm?glicht schnelle Entwicklung und automatische Generierung effizienten Codes." }
         ]
@@ -490,12 +499,12 @@
       "prototyping": {
         "label": "Prototyping",
         "contentTitle": "Prototyping",
-        "heroLead": "Hochwertiges Produkt-Prototyping ? mehrlagige Leiterplatten, SMD- und THT-Best?ckung, vom Konzept zur physischen Umsetzung.",
+        "heroLead": "Hochwertiges Produkt-Prototyping ? mehrlagige Leiterplatten, SMD- und THT-Bestückung, vom Konzept zur physischen Umsetzung.",
         "exemplesTitle": "Prototyping exemples",
-        "paragraphs": ["Wir bieten einen durchg?ngigen Service: PCB, Stencil, Bauteilbeschaffung, Best?ckung und Funktionstests aus einer Hand."],
-        "list": ["Mehrlagen-PCB-Fertigung", "Stencil-Produktion & Bauteilbeschaffung", "SMD- und THT-Best?ckung", "Funktionstests & Validierung", "End-to-End aus einer Quelle"],
+        "paragraphs": ["Wir bieten einen durchg?ngigen Service: PCB, Stencil, Bauteilbeschaffung, Bestückung und Funktionstests aus einer Hand."],
+        "list": ["Mehrlagen-PCB-Fertigung", "Stencil-Produktion & Bauteilbeschaffung", "SMD- und THT-Bestückung", "Funktionstests & Validierung", "End-to-End aus einer Quelle"],
         "visualLabel": "Vom Entwurf zur Realit?t",
-        "pipelineLabels": ["Fertigung", "Best?ckung", "Test"]
+        "pipelineLabels": ["Fertigung", "Bestückung", "Test"]
       }
     },
     "prototypingJourney": {
@@ -511,11 +520,11 @@
     }
   },
   "about": {
-    "pageTag": "?ber uns",
+    "pageTag": "Über uns",
     "pageTitle": "Sensorlose Motorsteuerung\nvon Anfang an",
-    "pageDescription": "Appcon Technologies wurde 2004 gegr?ndet und ist ein F&E-Ingenieurb?ro mit Schwerpunkt sensorlose Regelung elektrischer Motoren und Leistungselektronik.",
-    "paragraph1": "Appcon Technologies wurde 2004 von Dr.-Ing. Hafedh Sammoud gegr?ndet ? ein F&E-Ingenieurb?ro mit Fokus auf sensorlose Regelung elektrischer Motoren sowie Konzeption und Optimierung von Leistungselektronik.",
-    "paragraph2": "Unsere Mission ist es, den Stand der Technik in der sensorlosen Motorsteuerung voranzutreiben und den Einsatz in neuen Anwendungsfeldern zu erm?glichen. Besonders bei Hochvolumenprodukten, in denen energieeffiziente Antriebe aus Kostengr?nden unterrepr?sentiert sind, tragen wir zur Optimierung des Energieverbrauchs und zur Reduktion von CO?-Emissionen bei.",
+    "pageDescription": "Appcon Technologies wurde 2004 gegr?ndet und ist ein F&E-Ingenieurbüro mit Schwerpunkt sensorlose Regelung elektrischer Motoren und Leistungselektronik.",
+    "paragraph1": "Appcon Technologies wurde 2004 von Dr.-Ing. Hafedh Sammoud gegr?ndet ? ein F&E-Ingenieurbüro mit Fokus auf sensorlose Regelung elektrischer Motoren sowie Konzeption und Optimierung von Leistungselektronik.",
+    "paragraph2": "Unsere Mission ist es, den Stand der Technik in der sensorlosen Motorsteuerung voranzutreiben und den Einsatz in neuen Anwendungsfeldern zu ermöglichen. Besonders bei Hochvolumenprodukten, in denen energieeffiziente Antriebe aus Kostengr?nden unterrepr?sentiert sind, tragen wir zur Optimierung des Energieverbrauchs und zur Reduktion von CO?-Emissionen bei.",
     "highlight1Title": "Expertenteam",
     "highlight1Body": "Hochqualifizierte Ingenieure mit breiter Expertise in Antriebstechnik, Simulation, Programmierung und praktischer Elektronik.",
     "highlight2Title": "Globaler Fokus",
@@ -526,47 +535,47 @@
   "mission": {
     "pageTag": "Unsere Mission",
     "pageTitle": "Den Stand der Technik voranbringen",
-    "pageDescription": "Innovation in sensorlosen Motorsteuerungsl?sungen f?r energieeffiziente Antriebe weltweit.",
+    "pageDescription": "Innovation in sensorlosen Motorsteuerungslösungen für energieeffiziente Antriebe weltweit.",
     "missionLabel": "Die Mission",
     "missionHeading": "Unser Auftrag",
     "missionStatement": "Die Mission von Appcon Technologies ist es, den Stand der Technik in der sensorlosen Motorsteuerung voranzutreiben.",
-    "missionText": "Wir widmen uns der Weiterentwicklung von Motorsteuerung und Leistungselektronik ? mit L?sungen, die Kosten senken, Komplexit?t reduzieren und durch sensorlose Technologie h?here Zuverl?ssigkeit bieten.",
+    "missionText": "Wir widmen uns der Weiterentwicklung von Motorsteuerung und Leistungselektronik ? mit Lösungen, die Kosten senken, Komplexität reduzieren und durch sensorlose Technologie höhere Zuverlässigkeit bieten.",
     "philosophyLabel": "Die Philosophie",
-    "philosophyHeading": "?ber das Know-how hinaus",
+    "philosophyHeading": "Über das Know-how hinaus",
     "philosophySlogan": "Wir kennen nicht nur das Know-how ? wir kennen das Know-why.",
-    "philosophyText1": "Bei Appcon verstehen wir die Prinzipien hinter den L?sungen. Dieses Verst?ndnis erm?glicht Innovation, Optimierung und die L?sung von Problemen, die andere nicht l?sen k?nnen. Sie profitieren von jahrzehntelanger, forschungsgest?tzter Expertise in Theorie und Praxis der Motorsteuerung.",
+    "philosophyText1": "Bei Appcon verstehen wir die Prinzipien hinter den Lösungen. Dieses Verst?ndnis ermöglicht Innovation, Optimierung und die Lösung von Problemen, die andere nicht lösen können. Sie profitieren von jahrzehntelanger, forschungsgest?tzter Expertise in Theorie und Praxis der Motorsteuerung.",
     "philosophyText2": "Unsere Ingenieure verbinden akademische Gr?ndlichkeit mit praktischer Industrieerfahrung und machen komplexe theoretische Konzepte zu robusten, serienreifen Systemen.",
     "valuesLabel": "Leitwerte",
     "valuesHeading": "Was uns antreibt",
     "value1Title": "Innovation",
     "value1Body": "Stetige Weiterentwicklung der sensorlosen Steuerungstechnik",
     "value2Title": "Exzellenz",
-    "value2Body": "L?sungen, die Qualit?t und Zuverl?ssigkeit ?bertreffen",
+    "value2Body": "Lösungen, die Qualität und Zuverlässigkeit Übertreffen",
     "value3Title": "Partnerschaft",
     "value3Body": "Enge Zusammenarbeit mit Kunden von der Idee bis zur Serienproduktion",
     "value4Title": "Nachhaltigkeit",
-    "value4Body": "Energieeffiziente Antriebe f?r weniger CO?-Emissionen",
+    "value4Body": "Energieeffiziente Antriebe für weniger CO?-Emissionen",
     "visionLabel": "Die Vision",
     "visionHeading": "Wohin wir uns entwickeln",
-    "visionText1": "Wir sehen eine Zukunft, in der energieeffiziente Motorantriebe allgegenw?rtig sind ? von Haushaltsger?ten und Elektrowerkzeugen bis Automotive. Mit sensorloser Steuerung wollen wir teure Encoder und Sensoren ?berfl?ssig machen und Kosten sowie Komplexit?t senken.",
-    "visionText2": "Mit j?hrlich millionenfach produzierten Systemen tragen wir zur globalen Energieoptimierung bei. Unsere Vision ist es, an der Spitze der Motorsteuerungs-Innovation zu bleiben."
+    "visionText1": "Wir sehen eine Zukunft, in der energieeffiziente Motorantriebe allgegenw?rtig sind ? von Haushaltsgeräten und Elektrowerkzeugen bis Automotive. Mit sensorloser Steuerung wollen wir teure Encoder und Sensoren überflüssig machen und Kosten sowie Komplexität senken.",
+    "visionText2": "Mit jährlich millionenfach produzierten Systemen tragen wir zur globalen Energieoptimierung bei. Unsere Vision ist es, an der Spitze der Motorsteuerungs-Innovation zu bleiben."
   },
   "ourStory": {
     "pageTag": "Unsere Geschichte",
     "pageTitle": "Von der Forschung in die Industrie",
-    "pageDescription": "Zwei Jahrzehnte akademische Forschung in praktische L?sungen f?r sensorlose Motorsteuerung und Leistungselektronik.",
+    "pageDescription": "Zwei Jahrzehnte akademische Forschung in praktische Lösungen für sensorlose Motorsteuerung und Leistungselektronik.",
     "block1Label": "Ursprung",
     "block1Heading": "Gegr?ndet 2004",
-    "block1Lead": "Appcon Technologies wurde von Dr.-Ing. Hafedh Sammoud mit dem Ziel gegr?ndet, Forschung in sensorloser Motorsteuerung mit den Anforderungen der Industrie zu verbinden. Aus einem kleinen F&E-Team wurde ein Partner f?r Unternehmen weltweit in Wei?er Ware, Elektrowerkzeugen, Automotive und E-Mobilit?t.",
-    "block1Text": "Von Anfang an haben wir theoretische Fortschritte in zuverl?ssige, kosteneffektive L?sungen umgesetzt. Unsere Arbeit in FOC, Hochfrequenz-Injektion und sensorlosen Algorithmen erm?glicht energieeffiziente Antriebe dort, wo Pr?zision und Kosten z?hlen.",
+    "block1Lead": "Appcon Technologies wurde von Dr.-Ing. Hafedh Sammoud mit dem Ziel gegr?ndet, Forschung in sensorloser Motorsteuerung mit den Anforderungen der Industrie zu verbinden. Aus einem kleinen F&E-Team wurde ein Partner für Unternehmen weltweit in Weißer Ware, Elektrowerkzeugen, Automotive und E-Mobilit?t.",
+    "block1Text": "Von Anfang an haben wir theoretische Fortschritte in zuverlässige, kosteneffektive Lösungen umgesetzt. Unsere Arbeit in FOC, Hochfrequenz-Injektion und sensorlosen Algorithmen ermöglicht energieeffiziente Antriebe dort, wo Pr?zision und Kosten z?hlen.",
     "block2Label": "Weg",
     "block2Heading": "Wachstum und Wirkung",
-    "block2Lead": "?ber die Jahre haben wir unsere Kompetenzen in Technologieberatung, Hardware-Entwicklung, Software-Entwicklung, modellbasiertem Entwurf und Prototyping ausgebaut. Wir begleiten Kunden von der Konzeption bis zur Serienproduktion.",
+    "block2Lead": "Über die Jahre haben wir unsere Kompetenzen in Technologieberatung, Hardware-Entwicklung, Software-Entwicklung, modellbasiertem Entwurf und Prototyping ausgebaut. Wir begleiten Kunden von der Konzeption bis zur Serienproduktion.",
     "block2Text": "Unser Bekenntnis zu Energieeffizienz und Innovation steht im Mittelpunkt. Wir investieren in F&E und pr?sentieren unsere Arbeit auf Konferenzen und Messen wie der PCIM Europe.",
     "block3Label": "Heute",
     "block3Heading": "Mit Blick in die Zukunft",
-    "block3Lead": "Heute treibt Appcon Technologies die sensorlose Steuerung weiter voran. Wir erm?glichen energieeffiziente Antriebe in Hochvolumenprodukten und tragen zur Optimierung des Energieverbrauchs und zur Reduktion von CO?-Emissionen bei.",
-    "block3Text": "Wir arbeiten mit Partnern zusammen, die j?hrlich Systeme in Millionenst?ckzahlen produzieren. Unsere Geschichte ist eine von kontinuierlicher Innovation, Zusammenarbeit und dem Fokus darauf, Forschung in nutzbare L?sungen zu ?bersetzen."
+    "block3Lead": "Heute treibt Appcon Technologies die sensorlose Steuerung weiter voran. Wir ermöglichen energieeffiziente Antriebe in Hochvolumenprodukten und tragen zur Optimierung des Energieverbrauchs und zur Reduktion von CO?-Emissionen bei.",
+    "block3Text": "Wir arbeiten mit Partnern zusammen, die jährlich Systeme in Millionenst?ckzahlen produzieren. Unsere Geschichte ist eine von kontinuierlicher Innovation, Zusammenarbeit und dem Fokus darauf, Forschung in nutzbare Lösungen zu Übersetzen."
   },
   "events": {
     "pageTag": "Branchenevents",
@@ -574,7 +583,7 @@
     "pageDescription": "Wo wir uns mit Experten austauschen und unsere neuesten Entwicklungen in Motorsteuerung und Leistungselektronik pr?sentieren.",
     "badge": "Branchenevent",
     "title": "Appcon Technologies auf der PCIM Europe 2025",
-    "desc": "Wir waren auf der PCIM Europe 2025 in N?rnberg (6.?8. Mai) vertreten und haben uns mit Experten aus Elektrowerkzeugen, Wei?er Ware, E-Bikes, Rollern und Industrie-Wechselrichtern ausgetauscht. Zwei Innovationen standen im Fokus:",
+    "desc": "Wir waren auf der PCIM Europe 2025 in N?rnberg (6.?8. Mai) vertreten und haben uns mit Experten aus Elektrowerkzeugen, Weißer Ware, E-Bikes, Rollern und Industrie-Wechselrichtern ausgetauscht. Zwei Innovationen standen im Fokus:",
     "innovation1Title": "Hochfrequenz-Injektionssteuerung",
     "innovation1Body": "Sensorlose Steuerung mit vollem Drehmoment im Stillstand",
     "innovation2Title": "DMK (Diagnostic Measurement Card)",
@@ -586,7 +595,7 @@
   "contact": {
     "pageTag": "Kontakt",
     "pageTitle": "Kontakt",
-    "pageDescription": "Fragen zu unseren Motorsteuerungsl?sungen oder m?chten Sie Ihr Projekt besprechen? Wir sind f?r Sie da.",
+    "pageDescription": "Fragen zu unseren Motorsteuerungslösungen oder m?chten Sie Ihr Projekt besprechen? Wir sind für Sie da.",
     "privacyNotePrefix": "Ihre Angaben verwenden wir nur zur Beantwortung Ihrer Nachricht. Lesen Sie in unserer",
     "privacyLinkText": "Datenschutzerkl?rung",
     "privacyNoteSuffix": ", wie wir mit Ihren Daten umgehen.",
@@ -623,7 +632,7 @@
     "pageDescription": "Wie wir Ihre Daten erfassen, nutzen und sch?tzen, wenn Sie unsere Website und das Kontaktformular nutzen.",
     "lastUpdated": "Zuletzt aktualisiert:",
     "section1Title": "1. Wer wir sind",
-    "section1Body": "Appcon Technologies (?wir?, ?uns?, ?unser?) betreibt diese Website. Wir sind ein F&E-Ingenieurb?ro mit Schwerpunkt sensorlose Motorsteuerung und Leistungselektronik. Diese Datenschutzerkl?rung erl?utert, wie wir Ihre personenbezogenen Daten verarbeiten, wenn Sie unsere Website nutzen oder uns kontaktieren.",
+    "section1Body": "Appcon Technologies (?wir?, ?uns?, ?unser?) betreibt diese Website. Wir sind ein F&E-Ingenieurbüro mit Schwerpunkt sensorlose Motorsteuerung und Leistungselektronik. Diese Datenschutzerkl?rung erl?utert, wie wir Ihre personenbezogenen Daten verarbeiten, wenn Sie unsere Website nutzen oder uns kontaktieren.",
     "section2Title": "2. Welche Daten wir erfassen",
     "section2IntroPrefix": "Wenn Sie unser ",
     "section2IntroBold": "Kontaktformular",
@@ -631,29 +640,29 @@
     "section2ListItem1": "Name",
     "section2ListItem2": "E-Mail-Adresse",
     "section2ListItem3": "Betreff und Nachrichteninhalt",
-    "section2Note": "Wir verwenden keine Datenbank zur Speicherung von Formular?bermittlungen. Ihre Nachricht wird ?ber einen Dienstanbieter (z. B. Formspree) und/oder per E-Mail an uns ?bermittelt. Wir erfassen personenbezogene Daten nur, um Ihre Anfrage zu beantworten.",
+    "section2Note": "Wir verwenden keine Datenbank zur Speicherung von FormularÜbermittlungen. Ihre Nachricht wird Über einen Dienstanbieter (z. B. Formspree) und/oder per E-Mail an uns Übermittelt. Wir erfassen personenbezogene Daten nur, um Ihre Anfrage zu beantworten.",
     "section3Title": "3. Wie wir Ihre Daten nutzen",
     "section3Intro": "Wir verwenden die von Ihnen angegebenen Daten nur, um:",
     "section3ListItem1": "Ihre Kontaktanfrage zu beantworten",
     "section3ListItem2": "Die Gesch?ftsbeziehung zu pflegen, wenn Sie Kunde oder Partner sind oder werden",
     "section3Note": "Wir verkaufen, vermieten oder teilen Ihre personenbezogenen Daten nicht zu Marketingzwecken mit Dritten. Wir nutzen Ihre E-Mail oder Ihren Nachrichteninhalt nur wie oben beschrieben.",
     "section4Title": "4. Wohin Ihre Daten gelangen",
-    "section4Body": "Kontaktformular?bermittlungen werden von einem Formulardienstanbieter (z. B. Formspree) verarbeitet und per E-Mail an unser Team ?bermittelt. Wir k?nnen Korrespondenz in unseren E-Mail-Systemen so lange aufbewahren, wie es zur Erf?llung Ihrer Anfrage und f?r berechtigte Gesch?fts- und Rechtszwecke erforderlich ist. Wir speichern Ihre Daten nicht in einer separaten Datenbank auf dieser Website.",
+    "section4Body": "KontaktformularÜbermittlungen werden von einem Formulardienstanbieter (z. B. Formspree) verarbeitet und per E-Mail an unser Team Übermittelt. Wir können Korrespondenz in unseren E-Mail-Systemen so lange aufbewahren, wie es zur Erf?llung Ihrer Anfrage und für berechtigte Gesch?fts- und Rechtszwecke erforderlich ist. Wir speichern Ihre Daten nicht in einer separaten Datenbank auf dieser Website.",
     "section5Title": "5. Sicherheit und Vertraulichkeit",
-    "section5Body": "Wir behandeln Ihre Daten vertraulich. Unsere Website nutzt HTTPS, sodass Daten w?hrend der ?bertragung verschl?sselt sind. Wir unternehmen angemessene Schritte, um die bei uns eingehenden Daten (z. B. per E-Mail) zu sch?tzen und den Zugriff auf diejenigen zu beschr?nken, die zur Beantwortung ben?tigt werden. Kein System ist 100 % sicher; wir garantieren keine absolute Sicherheit, bem?hen uns aber um den Schutz Ihrer Informationen.",
+    "section5Body": "Wir behandeln Ihre Daten vertraulich. Unsere Website nutzt HTTPS, sodass Daten während der Übertragung verschl?sselt sind. Wir unternehmen angemessene Schritte, um die bei uns eingehenden Daten (z. B. per E-Mail) zu sch?tzen und den Zugriff auf diejenigen zu beschr?nken, die zur Beantwortung benötigt werden. Kein System ist 100 % sicher; wir garantieren keine absolute Sicherheit, bem?hen uns aber um den Schutz Ihrer Informationen.",
     "section6Title": "6. Ihre Rechte",
     "section6Intro": "Je nach Wohnsitz haben Sie m?glicherweise das Recht:",
-    "section6ListItem1": "Zu erfragen, welche personenbezogenen Daten wir ?ber Sie speichern",
+    "section6ListItem1": "Zu erfragen, welche personenbezogenen Daten wir Über Sie speichern",
     "section6ListItem2": "Berichtigung oder L?schung Ihrer Daten zu verlangen",
     "section6ListItem3": "Der Verarbeitung zu widersprechen oder sie einzuschr?nken",
     "section6ListItem4": "Bei einer Aufsichtsbeh?rde Beschwerde einzulegen",
-    "section6Note": "Zur Aus?bung dieser Rechte oder bei Fragen zu dieser Richtlinie kontaktieren Sie uns ?ber das Kontaktformular oder die Angaben auf unserer Kontaktseite.",
+    "section6Note": "Zur Aus?bung dieser Rechte oder bei Fragen zu dieser Richtlinie kontaktieren Sie uns Über das Kontaktformular oder die Angaben auf unserer Kontaktseite.",
     "section7Title": "7. Cookies und ?hnliche Technologien",
-    "section7Body": "Wir k?nnen notwendige Cookies (z. B. f?r die Sprachwahl) und ggf. Analyse-Cookies verwenden, um zu verstehen, wie Besucher unsere Website nutzen. Ohne Ihre Einwilligung werden wir keine nicht unbedingt erforderlichen Cookies verwenden, soweit das Gesetz dies vorsieht. Sie k?nnen Ihre Cookie-Einstellungen in Ihrem Browser ?ndern.",
+    "section7Body": "Wir können notwendige Cookies (z. B. für die Sprachwahl) und ggf. Analyse-Cookies verwenden, um zu verstehen, wie Besucher unsere Website nutzen. Ohne Ihre Einwilligung werden wir keine nicht unbedingt erforderlichen Cookies verwenden, soweit das Gesetz dies vorsieht. Sie können Ihre Cookie-Einstellungen in Ihrem Browser ?ndern.",
     "section8Title": "8. ?nderungen dieser Richtlinie",
-    "section8Body": "Wir k?nnen diese Datenschutzerkl?rung von Zeit zu Zeit aktualisieren. Das Datum ?Zuletzt aktualisiert? oben wird bei ?nderungen angepasst. Wir empfehlen, diese Seite gelegentlich auf ?nderungen zu pr?fen.",
+    "section8Body": "Wir können diese Datenschutzerkl?rung von Zeit zu Zeit aktualisieren. Das Datum ?Zuletzt aktualisiert? oben wird bei ?nderungen angepasst. Wir empfehlen, diese Seite gelegentlich auf ?nderungen zu pr?fen.",
     "section9Title": "9. Kontakt",
-    "section9Body": "Bei Fragen zu dieser Datenschutzerkl?rung oder unserer Nutzung Ihrer Daten kontaktieren Sie uns bitte ?ber das Kontaktformular oder die Angaben auf unserer Kontaktseite.",
+    "section9Body": "Bei Fragen zu dieser Datenschutzerkl?rung oder unserer Nutzung Ihrer Daten kontaktieren Sie uns bitte Über das Kontaktformular oder die Angaben auf unserer Kontaktseite.",
     "onThisPage": "Auf dieser Seite"
   },
   "publications": {

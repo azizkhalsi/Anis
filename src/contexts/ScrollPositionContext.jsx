@@ -36,9 +36,7 @@ export function ScrollPositionProvider({ children }) {
       });
     }
 
-    const initialY = typeof window !== 'undefined' ? window.scrollY : 0;
-    lastSent.current = initialY;
-    setScrollY(initialY);
+    lastSent.current = typeof window !== 'undefined' ? window.scrollY : 0;
 
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => {

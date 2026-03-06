@@ -1,0 +1,46 @@
+# Industries menu – hidden backup (restore when needed)
+
+The Industries menu has been removed from the live site. All code is still in the repo. To show it again:
+
+## 1. App.jsx – add back the lazy import (after other lazy imports, e.g. after ProductsPage)
+```javascript
+const IndustriesPage = lazy(() => import('./pages/IndustriesPage'));
+```
+
+## 2. App.jsx – add back the routes (inside <Routes>, after the products route)
+```javascript
+<Route path="/industries" element={<Navigate to="/industries/whitegood" replace />} />
+<Route path="/industries/:industryId" element={<Suspense fallback={<PageFallback />}><IndustriesPage /></Suspense>} />
+```
+
+## 3. Navbar.jsx – add back the industries item in NAV_LINKS (after the products block, before simulator)
+```javascript
+{
+  labelKey: 'nav.industries',
+  submenu: [
+    { to: '/industries/whitegood', labelKey: 'nav.whiteGoods' },
+    { to: '/industries/powertool', labelKey: 'nav.powerTools' },
+    { to: '/industries/automotive', labelKey: 'nav.automotive' },
+    { to: '/industries/ebike', labelKey: 'nav.ebike' },
+  ],
+},
+```
+
+## 4. Footer.jsx – add back the industries column in FOOTER_LINKS (after footer.expertise)
+```javascript
+{ categoryKey: 'footer.industries', links: [
+  { labelKey: 'footer.whiteGoods', to: '/industries/whitegood' },
+  { labelKey: 'footer.powerTools', to: '/industries/powertool' },
+  { labelKey: 'footer.automotive', to: '/industries/automotive' },
+  { labelKey: 'footer.ebike', to: '/industries/ebike' },
+]},
+```
+
+## Files still in the project (unchanged)
+- src/pages/IndustriesPage.jsx
+- src/components/Industries.jsx
+- src/constants/industriesData.js
+- src/locales/en.json – "industries" and nav.industries, nav.whiteGoods, etc.
+- src/locales/de.json – same
+- src/components/Breadcrumbs.jsx – industries segment labels
+- src/index.css – .industries-* styles

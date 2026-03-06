@@ -20,6 +20,7 @@ export default function ProductsPage() {
         tag={t('products.pageTag')}
         title={title}
         description={description}
+        titleAccent
       />
       <Products initialProduct={initialProduct} singleMode />
     </>

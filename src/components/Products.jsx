@@ -366,7 +366,11 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
                   <div className="lci-shift-text">
                     <span className="lci-shift-eyebrow">{t('products.lci.shiftEyebrow')}</span>
                     <h4 className="lci-shift-headline">{t('products.lci.shiftHeadline')}</h4>
-                    <p className="lci-shift-body">{t('products.lci.shiftBody')}</p>
+                    <div className="lci-shift-body">
+                      {(t('products.lci.shiftBodyParagraphs', { returnObjects: true }) || []).map((para, i) => (
+                        <p key={i}>{para}</p>
+                      ))}
+                    </div>
                     <div className="lci-shift-flow">
                       <span className="lci-shift-flow-node">{t('products.lci.shiftFlowYourProduct')}</span>
                       <span className="lci-shift-flow-arrow" aria-hidden />
@@ -643,6 +647,7 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
                     className="amc-sensorless-diagram-img"
                     loading="lazy"
                   />
+                  <p className="amc-sensorless-diagram-title">{t('products.amc.sensorlessDiagramTitle')}</p>
                 </div>
                 <div className="amc-sensorless-cards">
                   {(t('products.amc.sensorlessItems', { returnObjects: true }) || []).map((text, i) => (

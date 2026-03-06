@@ -34,15 +34,6 @@ const NAV_LINKS = [
     ],
   },
   {
-    labelKey: 'nav.industries',
-    submenu: [
-      { to: '/industries/whitegood', labelKey: 'nav.whiteGoods' },
-      { to: '/industries/powertool', labelKey: 'nav.powerTools' },
-      { to: '/industries/automotive', labelKey: 'nav.automotive' },
-      { to: '/industries/ebike', labelKey: 'nav.ebike' },
-    ],
-  },
-  {
     labelKey: 'nav.simulator',
     submenu: [
       { to: '/simulator', labelKey: 'nav.pulseWidthModulation' },

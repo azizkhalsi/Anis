@@ -19,7 +19,7 @@ export default function Industries({ initialIndustry = 'whitegood', singleMode =
   if (!industry) return null;
 
   const industryTitle = t(`industries.${industry.id}.title`);
-  const industrySubtitle = t(`industries.${industry.id}.subtitle`);
+  const _industrySubtitle = t(`industries.${industry.id}.subtitle`);
   const industryDescription = t(`industries.${industry.id}.description`);
   const industryFeatures = t(`industries.${industry.id}.features`, { returnObjects: true });
   const industryStat = t(`industries.${industry.id}.stat`);

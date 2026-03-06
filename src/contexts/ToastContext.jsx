@@ -18,6 +18,7 @@ export function ToastProvider({ children }) {
   );
 }
 
+/* eslint-disable react-refresh/only-export-components -- useToast is the public API for ToastProvider */
 export function useToast() {
   const ctx = useContext(ToastContext);
   if (!ctx) return { message: null, show: () => {} };
