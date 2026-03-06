@@ -8,6 +8,8 @@ import DmkScopeDashboard from './DmkScopeDashboard';
 
 const DMK_HMI_VISUALISATION_SRC = '/hmi/dmk-hmi-visualisation.png';
 const DMK_HMI_CALIBRATION_SRC = '/hmi/dmk-hmi-calibration.png';
+const DMK_HMI_DATA_LOGGER_SRC = '/hmi/dmk-hmi-data-logger.png';
+const DMK_HMI_DATA_MONITOR_SRC = '/hmi/dmk-hmi-data-monitor.png';
 const DMK_REAL_MODEL_SRC = '/images/dmk-real-model.png';
 
 const LCI_PCB_SRC = '/images/lci-pcb.png';
@@ -156,9 +158,13 @@ function DmkPcSoftwareScene() {
                       >
                         {t('products.dmk.pcSceneBackLabel')}
                       </button>
-                      <div className="dmk-pc-scene-interface-tabs">
+                      <div className="dmk-pc-scene-interface-tabs" role="tablist" aria-label={t('products.dmk.pcSceneTabsAria')}>
                         <button
                           type="button"
+                          role="tab"
+                          aria-selected={activeTab === 'visualisation'}
+                          aria-controls="dmk-pane-visualisation"
+                          id="dmk-tab-visualisation"
                           className={`dmk-pc-scene-tab ${activeTab === 'visualisation' ? 'active' : ''}`}
                           onClick={() => setActiveTab('visualisation')}
                         >
@@ -166,26 +172,72 @@ function DmkPcSoftwareScene() {
                         </button>
                         <button
                           type="button"
+                          role="tab"
+                          aria-selected={activeTab === 'calibration'}
+                          aria-controls="dmk-pane-calibration"
+                          id="dmk-tab-calibration"
                           className={`dmk-pc-scene-tab ${activeTab === 'calibration' ? 'active' : ''}`}
                           onClick={() => setActiveTab('calibration')}
                         >
                           {t('products.dmk.pcSceneCalibration')}
                         </button>
+                        <button
+                          type="button"
+                          role="tab"
+                          aria-selected={activeTab === 'dataLogger'}
+                          aria-controls="dmk-pane-data-logger"
+                          id="dmk-tab-data-logger"
+                          className={`dmk-pc-scene-tab ${activeTab === 'dataLogger' ? 'active' : ''}`}
+                          onClick={() => setActiveTab('dataLogger')}
+                        >
+                          {t('products.dmk.pcSceneDataLogger')}
+                        </button>
+                        <button
+                          type="button"
+                          role="tab"
+                          aria-selected={activeTab === 'dataMonitor'}
+                          aria-controls="dmk-pane-data-monitor"
+                          id="dmk-tab-data-monitor"
+                          className={`dmk-pc-scene-tab ${activeTab === 'dataMonitor' ? 'active' : ''}`}
+                          onClick={() => setActiveTab('dataMonitor')}
+                        >
+                          {t('products.dmk.pcSceneDataMonitor')}
+                        </button>
                       </div>
                     </div>
                     <div className="dmk-pc-scene-interface-content">
                       {activeTab === 'visualisation' && (
-                        <div className="dmk-pc-scene-interface-pane dmk-pc-scene-interface-pane--visualisation">
+                        <div id="dmk-pane-visualisation" className="dmk-pc-scene-interface-pane dmk-pc-scene-interface-pane--visualisation" role="tabpanel" aria-labelledby="dmk-tab-visualisation">
                           <DmkScopeDashboard />
                         </div>
                       )}
                       {activeTab === 'calibration' && (
-                        <div className="dmk-pc-scene-interface-pane dmk-pc-scene-interface-pane--calibration">
+                        <div id="dmk-pane-calibration" className="dmk-pc-scene-interface-pane dmk-pc-scene-interface-pane--calibration" role="tabpanel" aria-labelledby="dmk-tab-calibration">
                           <img
                             src={DMK_HMI_CALIBRATION_SRC}
                             alt={t('products.dmk.hmiCalibrationAlt')}
                             loading="lazy"
                             className="dmk-pc-scene-calibration-img"
+                          />
+                        </div>
+                      )}
+                      {activeTab === 'dataLogger' && (
+                        <div id="dmk-pane-data-logger" className="dmk-pc-scene-interface-pane dmk-pc-scene-interface-pane--data-logger" role="tabpanel" aria-labelledby="dmk-tab-data-logger">
+                          <img
+                            src={DMK_HMI_DATA_LOGGER_SRC}
+                            alt={t('products.dmk.hmiDataLoggerAlt')}
+                            loading="lazy"
+                            className="dmk-pc-scene-screen-img"
+                          />
+                        </div>
+                      )}
+                      {activeTab === 'dataMonitor' && (
+                        <div id="dmk-pane-data-monitor" className="dmk-pc-scene-interface-pane dmk-pc-scene-interface-pane--data-monitor" role="tabpanel" aria-labelledby="dmk-tab-data-monitor">
+                          <img
+                            src={DMK_HMI_DATA_MONITOR_SRC}
+                            alt={t('products.dmk.hmiDataMonitorAlt')}
+                            loading="lazy"
+                            className="dmk-pc-scene-screen-img"
                           />
                         </div>
                       )}

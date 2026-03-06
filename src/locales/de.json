@@ -206,8 +206,13 @@
       "pcSceneBackLabel": "← Zurück",
       "pcSceneVisualisation": "Visualisierung",
       "pcSceneCalibration": "Oszilloskop & Kalibrierung",
+      "pcSceneDataLogger": "Data Logger",
+      "pcSceneDataMonitor": "Data Monitor",
+      "pcSceneTabsAria": "DMK-Software-Tabs, klicken zum Wechseln",
       "hmiVisualisationAlt": "DMK-Visualisierungsoberfläche",
       "hmiCalibrationAlt": "DMK Oszilloskop und Sensor-Kalibrierung",
+      "hmiDataLoggerAlt": "DMK Database Viewer mit Plot — Daten nach Zeitbereich laden, plotten und exportieren",
+      "hmiDataMonitorAlt": "DMK Fault Detector und Plotter — Fehler in Spannungsdaten erkennen und darstellen",
       "deviceAlt": "DMK-Gerät"
     },
     "lci": {
