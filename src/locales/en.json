@@ -84,9 +84,10 @@
       "missionText": "Advancing the state-of-the-art in sensorless motor control solutions"
     },
     "clientLogos": {
-      "heading": "Trusted by industry leaders",
+      "heading": "Companies we've worked with",
+      "companiesParagraph": "Over the years, we have had the privilege of collaborating with leading companies across industries — including Miele & Cie KG, STMicroelectronics, Microchip Technology, HL Mando, and SPEMOT. These partnerships span white goods, automotive, power electronics, and industrial automation, reflecting the breadth and depth of our engineering expertise.",
       "storyTitle": "Partnership & success story",
-      "storyText": "We collaborate with industry leaders like Miele&Cie KG to deliver sensorless motor control in mass production. With over 20 patents, Appcon drives innovation and ensures project success from concept to deployment."
+      "storyText": "We collaborate with industry leaders to deliver sensorless motor control in mass production. With over 20 patents, Appcon drives innovation and ensures project success from concept to deployment."
     },
     "whatWeOffer": {
       "banner": "What we offer through our development partnerships",

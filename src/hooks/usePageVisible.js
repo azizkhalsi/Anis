@@ -11,6 +11,7 @@ export default function usePageVisible() {
   );
 
   useEffect(() => {
+    setVisible(typeof document !== 'undefined' ? document.visibilityState === 'visible' : true);
     const handleChange = () => setVisible(document.visibilityState === 'visible');
     document.addEventListener('visibilitychange', handleChange);
     return () => document.removeEventListener('visibilitychange', handleChange);
