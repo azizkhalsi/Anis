@@ -5,11 +5,10 @@ import useScrollAnimation from '../hooks/useScrollAnimation';
 import OscilloscopeDisplay from './OscilloscopeDisplay';
 import { PRODUCTS } from '../constants/productsData';
 import DmkScopeDashboard from './DmkScopeDashboard';
+import DmkDataIntelligence from './DmkDataIntelligence';
 
 const DMK_HMI_VISUALISATION_SRC = '/hmi/dmk-hmi-visualisation.png';
 const DMK_HMI_CALIBRATION_SRC = '/hmi/dmk-hmi-calibration.png';
-const DMK_HMI_DATA_LOGGER_SRC = '/hmi/dmk-hmi-data-logger.png';
-const DMK_HMI_DATA_MONITOR_SRC = '/hmi/dmk-hmi-data-monitor.png';
 const DMK_REAL_MODEL_SRC = '/images/dmk-real-model.png';
 
 const LCI_PCB_SRC = '/images/lci-pcb.png';
@@ -181,28 +180,6 @@ function DmkPcSoftwareScene() {
                         >
                           {t('products.dmk.pcSceneCalibration')}
                         </button>
-                        <button
-                          type="button"
-                          role="tab"
-                          aria-selected={activeTab === 'dataLogger'}
-                          aria-controls="dmk-pane-data-logger"
-                          id="dmk-tab-data-logger"
-                          className={`dmk-pc-scene-tab ${activeTab === 'dataLogger' ? 'active' : ''}`}
-                          onClick={() => setActiveTab('dataLogger')}
-                        >
-                          {t('products.dmk.pcSceneDataLogger')}
-                        </button>
-                        <button
-                          type="button"
-                          role="tab"
-                          aria-selected={activeTab === 'dataMonitor'}
-                          aria-controls="dmk-pane-data-monitor"
-                          id="dmk-tab-data-monitor"
-                          className={`dmk-pc-scene-tab ${activeTab === 'dataMonitor' ? 'active' : ''}`}
-                          onClick={() => setActiveTab('dataMonitor')}
-                        >
-                          {t('products.dmk.pcSceneDataMonitor')}
-                        </button>
                       </div>
                     </div>
                     <div className="dmk-pc-scene-interface-content">
@@ -218,26 +195,6 @@ function DmkPcSoftwareScene() {
                             alt={t('products.dmk.hmiCalibrationAlt')}
                             loading="lazy"
                             className="dmk-pc-scene-calibration-img"
-                          />
-                        </div>
-                      )}
-                      {activeTab === 'dataLogger' && (
-                        <div id="dmk-pane-data-logger" className="dmk-pc-scene-interface-pane dmk-pc-scene-interface-pane--data-logger" role="tabpanel" aria-labelledby="dmk-tab-data-logger">
-                          <img
-                            src={DMK_HMI_DATA_LOGGER_SRC}
-                            alt={t('products.dmk.hmiDataLoggerAlt')}
-                            loading="lazy"
-                            className="dmk-pc-scene-screen-img"
-                          />
-                        </div>
-                      )}
-                      {activeTab === 'dataMonitor' && (
-                        <div id="dmk-pane-data-monitor" className="dmk-pc-scene-interface-pane dmk-pc-scene-interface-pane--data-monitor" role="tabpanel" aria-labelledby="dmk-tab-data-monitor">
-                          <img
-                            src={DMK_HMI_DATA_MONITOR_SRC}
-                            alt={t('products.dmk.hmiDataMonitorAlt')}
-                            loading="lazy"
-                            className="dmk-pc-scene-screen-img"
                           />
                         </div>
                       )}
@@ -603,6 +560,13 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
               >
                 <h4 className="dmk-hmi-title">{t('products.dmk.hmiTitle')}</h4>
                 <DmkPcSoftwareScene />
+              </div>
+
+              <div
+                className="dmk-data-intelligence-section visible"
+                data-animate="fade-up"
+              >
+                <DmkDataIntelligence variant="page" />
               </div>
 
               <div

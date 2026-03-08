@@ -27,6 +27,7 @@ const MotorModelPage = lazy(() => import('./pages/MotorModelPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage'));
 const AiOverviewPage = lazy(() => import('./pages/AiOverviewPage'));
+const DmkDataIntelligencePreviewPage = lazy(() => import('./pages/DmkDataIntelligencePreviewPage'));
 
 export default function App() {
   return (
@@ -35,6 +36,7 @@ export default function App() {
         <Route path="/motor-model" element={<Suspense fallback={<PageFallback />}><MotorModelPage /></Suspense>} />
         <Route element={<Layout />}>
           <Route path="/ai-overview" element={<Suspense fallback={<PageFallback />}><AiOverviewPage /></Suspense>} />
+          <Route path="/products/dmk-data-intelligence-preview" element={<Suspense fallback={<PageFallback />}><DmkDataIntelligencePreviewPage /></Suspense>} />
           <Route path="/" element={<Suspense fallback={<PageFallback />}><HomePage /></Suspense>} />
           <Route path="/about" element={<Suspense fallback={<PageFallback />}><AboutPage /></Suspense>} />
           <Route path="/company/mission" element={<Suspense fallback={<PageFallback />}><MissionPage /></Suspense>} />
