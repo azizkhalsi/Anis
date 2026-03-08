@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import useScrollAnimation from '../hooks/useScrollAnimation';
@@ -10,6 +11,16 @@ import DmkDataIntelligence from './DmkDataIntelligence';
 const DMK_HMI_VISUALISATION_SRC = '/hmi/dmk-hmi-visualisation.png';
 const DMK_HMI_CALIBRATION_SRC = '/hmi/dmk-hmi-calibration.png';
 const DMK_REAL_MODEL_SRC = '/images/dmk-real-model.png';
+const DMK_EXTERNAL_CONNECTIONS_IMG = '/images/dmk-external-connections.png';
+/* Oscilloscope screen rectangle: % of image (left, top, width, height). Animation is locked inside this area. */
+const DMK_SCOPE_OVERLAY_STYLE = {
+  left: '62%',
+  top: '44%',
+  width: '30%',
+  height: '18%',
+  padding: '0',
+  zIndex: 2,
+};
 
 const LCI_PCB_SRC = '/images/lci-pcb.png';
 const AMC_IMG_INTEGRATION = '/images/amc/amc-integration-hardware.png';
@@ -99,8 +110,8 @@ function DmkPcSoftwareScene() {
 
   return (
     <div className="dmk-pc-scene">
-      <div className="dmk-pc-scene-desk dmk-pc-scene-desk--hub">
-        <div className="dmk-pc-scene-desk-row dmk-pc-scene-desk-row--1">
+      <div className="dmk-pc-scene-desk dmk-pc-scene-desk--hub dmk-pc-scene-desk--wired">
+        <div className="dmk-pc-scene-desk-row dmk-pc-scene-desk-row--1 dmk-pc-scene-desk-row--wired">
         <div className="dmk-pc-scene-peripheral dmk-pc-scene-peripheral--pc">
           <div className="dmk-pc-scene-pc">
             <div className="dmk-pc-scene-pc-bezel">
@@ -207,8 +218,10 @@ function DmkPcSoftwareScene() {
             <div className="dmk-pc-scene-pc-base" />
           </div>
           <div className="dmk-pc-scene-cable-wrap dmk-pc-scene-cable-wrap--to-hub">
-            <svg className="dmk-pc-scene-cable" viewBox="0 0 80 32" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+            <svg className="dmk-pc-scene-cable dmk-pc-scene-cable--bundle" viewBox="0 0 80 32" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
               <path className="dmk-pc-scene-cable-line" d="M 2 16 C 38 16 42 8 40 16 C 38 24 42 24 78 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              <path className="dmk-pc-scene-cable-line dmk-pc-scene-cable-line--2" d="M 2 14 C 38 14 42 6 40 14 C 38 22 42 22 78 14" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+              <path className="dmk-pc-scene-cable-line dmk-pc-scene-cable-line--3" d="M 2 18 C 38 18 42 10 40 18 C 38 26 42 26 78 18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
             </svg>
           </div>
         </div>
@@ -217,14 +230,20 @@ function DmkPcSoftwareScene() {
           <div className="dmk-pc-scene-device dmk-pc-scene-device--model3d dmk-pc-scene-device--hub">
             <div className="dmk-pc-scene-device-inner">
               <img src={DMK_REAL_MODEL_SRC} alt={t('products.dmk.deviceAlt')} className="dmk-pc-scene-device-img" loading="lazy" />
+              <span className="dmk-pc-scene-hub-label" aria-hidden>DMK</span>
+              <div className="dmk-pc-scene-hub-ports" aria-hidden>
+                <span className="dmk-pc-scene-hub-port" /><span className="dmk-pc-scene-hub-port" /><span className="dmk-pc-scene-hub-port" />
+              </div>
             </div>
           </div>
         </div>
 
         <div className="dmk-pc-scene-peripheral dmk-pc-scene-peripheral--scope">
           <div className="dmk-pc-scene-cable-wrap dmk-pc-scene-cable-wrap--to-hub">
-            <svg className="dmk-pc-scene-cable" viewBox="0 0 80 32" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+            <svg className="dmk-pc-scene-cable dmk-pc-scene-cable--bundle" viewBox="0 0 80 32" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
               <path className="dmk-pc-scene-cable-line" d="M 2 16 C 38 16 42 8 40 16 C 38 24 42 24 78 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              <path className="dmk-pc-scene-cable-line dmk-pc-scene-cable-line--2" d="M 2 14 C 38 14 42 6 40 14 C 38 22 42 22 78 14" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+              <path className="dmk-pc-scene-cable-line dmk-pc-scene-cable-line--3" d="M 2 18 C 38 18 42 10 40 18 C 38 26 42 26 78 18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
             </svg>
           </div>
           <div className="dmk-pc-scene-oscilloscope">
@@ -237,6 +256,129 @@ function DmkPcSoftwareScene() {
 
       </div>
     </div>
+  );
+}
+
+function DmkExternalConnectionsScene() {
+  const { t } = useTranslation();
+  const [screenOpen, setScreenOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState('visualisation');
+
+  return (
+    <>
+      <div className="dmk-hmi-scene-image-wrap dmk-hmi-scene-image-wrap--full-interactive">
+        {/* Base layer: full scene image (monitor, hub, oscilloscope); frame/knobs/cables stay visible */}
+        <img
+          src={DMK_EXTERNAL_CONNECTIONS_IMG}
+          alt={t('products.dmk.hmiTitle')}
+          className="dmk-hmi-scene-image"
+          loading="lazy"
+          decoding="async"
+        />
+        {/* Monitor overlay: icon (top), mouse (in-screen), pulse over button in image */}
+        <div
+          className="dmk-hmi-scene-overlay dmk-hmi-scene-overlay--monitor"
+          onClick={() => setScreenOpen(true)}
+        >
+          <button
+            type="button"
+            className="dmk-hmi-scene-monitor-btn dmk-pc-scene-dmk-icon dmk-pc-scene-desktop-icon dmk-pc-scene-desktop-icon--dmk"
+            onClick={(e) => { e.stopPropagation(); setScreenOpen(true); }}
+            aria-label={t('products.dmk.pcSceneOpenDmk')}
+          >
+            <img
+              src="/hmi/dmk-logo.png"
+              alt=""
+              className="dmk-pc-scene-dmk-icon-img"
+              loading="lazy"
+              decoding="async"
+            />
+            <span className="dmk-pc-scene-desktop-icon-label">DMK</span>
+          </button>
+          <div className="dmk-hmi-scene-monitor-hint dmk-pc-scene-desktop-hint" aria-hidden="true">
+            <span className="dmk-pc-scene-desktop-hint-pointer" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="">
+                <path d="M3 2L3 19L8 14L10 22L12 21L10 14L17 16Z" fill="#ffffff" stroke="#000000" strokeWidth="1.4" strokeLinejoin="round" strokeLinecap="round" />
+              </svg>
+            </span>
+          </div>
+          <div className="dmk-hmi-scene-btn-glow" aria-hidden="true" />
+        </div>
+        {/* Animation locked inside oscilloscope screen: same rectangle as the display area, scales with image */}
+        <div
+          className="dmk-hmi-scene-overlay dmk-hmi-scene-overlay--scope"
+          style={{
+            left: DMK_SCOPE_OVERLAY_STYLE.left,
+            top: DMK_SCOPE_OVERLAY_STYLE.top,
+            width: DMK_SCOPE_OVERLAY_STYLE.width,
+            height: DMK_SCOPE_OVERLAY_STYLE.height,
+            padding: DMK_SCOPE_OVERLAY_STYLE.padding,
+            zIndex: DMK_SCOPE_OVERLAY_STYLE.zIndex,
+          }}
+          aria-hidden="true"
+        >
+          <div className="dmk-hmi-scene-scope-frame">
+            <OscilloscopeDisplay />
+          </div>
+        </div>
+      </div>
+
+      {/* Modal: DMK interface — portaled so it opens above everything */}
+      {screenOpen && createPortal(
+        <div className="dmk-hmi-scene-modal" role="dialog" aria-modal="true" aria-label={t('products.dmk.pcSceneTabsAria')}>
+          <div className="dmk-hmi-scene-modal-backdrop" onClick={() => setScreenOpen(false)} aria-hidden="true" />
+          <div className="dmk-hmi-scene-modal-panel dmk-pc-scene-interface">
+            <div className="dmk-pc-scene-interface-header">
+              <button
+                type="button"
+                className="dmk-pc-scene-interface-back"
+                onClick={() => setScreenOpen(false)}
+                aria-label={t('products.dmk.pcSceneBack')}
+              >
+                {t('products.dmk.pcSceneBackLabel')}
+              </button>
+              <div className="dmk-pc-scene-interface-tabs" role="tablist" aria-label={t('products.dmk.pcSceneTabsAria')}>
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={activeTab === 'visualisation'}
+                  aria-controls="dmk-hmi-pane-visualisation"
+                  id="dmk-hmi-tab-visualisation"
+                  className={`dmk-pc-scene-tab ${activeTab === 'visualisation' ? 'active' : ''}`}
+                  onClick={() => setActiveTab('visualisation')}
+                >
+                  {t('products.dmk.pcSceneVisualisation')}
+                </button>
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={activeTab === 'calibration'}
+                  aria-controls="dmk-hmi-pane-calibration"
+                  id="dmk-hmi-tab-calibration"
+                  className={`dmk-pc-scene-tab ${activeTab === 'calibration' ? 'active' : ''}`}
+                  onClick={() => setActiveTab('calibration')}
+                >
+                  {t('products.dmk.pcSceneCalibration')}
+                </button>
+              </div>
+            </div>
+            <div className="dmk-pc-scene-interface-content">
+              {activeTab === 'visualisation' && (
+                <div id="dmk-hmi-pane-visualisation" className="dmk-pc-scene-interface-pane dmk-pc-scene-interface-pane--visualisation" role="tabpanel" aria-labelledby="dmk-hmi-tab-visualisation">
+                  <DmkScopeDashboard />
+                </div>
+              )}
+              {activeTab === 'calibration' && (
+                <div id="dmk-hmi-pane-calibration" className="dmk-pc-scene-interface-pane dmk-pc-scene-interface-pane--calibration" role="tabpanel" aria-labelledby="dmk-hmi-tab-calibration">
+                  <img src={DMK_HMI_CALIBRATION_SRC} alt={t('products.dmk.hmiCalibrationAlt')} loading="lazy" className="dmk-pc-scene-calibration-img" />
+                </div>
+              )}
+            </div>
+          </div>
+        </div>,
+        document.body
+      )}
+    </>
   );
 }
 
@@ -554,12 +696,12 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
               </div>
 
               <div
-                className={`dmk-hmi-section ${hmiVisible ? 'visible' : ''}`}
+                className="dmk-hmi-section visible"
                 ref={hmiSectionRef}
                 data-animate="fade-up"
               >
                 <h4 className="dmk-hmi-title">{t('products.dmk.hmiTitle')}</h4>
-                <DmkPcSoftwareScene />
+                <DmkExternalConnectionsScene />
               </div>
 
               <div

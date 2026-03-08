@@ -4673,12 +4673,253 @@ section {
     border-top: 1px solid var(--border);
 }
 
+/* Always visible when section has .visible: title + PC scene (monitor, hub, oscilloscope) */
+.dmk-hmi-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.dmk-hmi-section.visible .dmk-pc-scene {
+    visibility: visible;
+    opacity: 1;
+}
+
 .dmk-hmi-title {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 1.35rem;
     color: var(--text);
     margin-bottom: 24px;
     font-weight: 600;
+}
+
+/* External connections: image only */
+.dmk-hmi-scene-image-wrap {
+    width: 100%;
+    max-width: 920px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+    border: 1px solid var(--border);
+    background: #f5f5f7;
+}
+/* Full horizontal: image only, no overlays, natural aspect ratio */
+.dmk-hmi-scene-image-wrap--full {
+    max-width: none;
+}
+.dmk-hmi-scene-image-wrap--full .dmk-hmi-scene-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    vertical-align: top;
+}
+/* Full width + overlays: image sets height, icon + mouse + CLICK TO OPEN on top */
+/* Tune these to match scope screen in dmk-external-connections.png; hint-top lower = mouse more to the top */
+.dmk-hmi-scene-image-wrap--full-interactive {
+    position: relative;
+    max-width: none;
+    --dmk-scope-left: 63.5%;
+    --dmk-scope-top: 17.5%;
+    --dmk-scope-width: 34%;
+    --dmk-scope-height: 23%;
+    --dmk-scope-padding: 2%;
+    --dmk-hint-left: 50%;
+    --dmk-hint-top: 36%;
+}
+.dmk-hmi-scene-image-wrap--full-interactive .dmk-hmi-scene-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    vertical-align: top;
+}
+.dmk-hmi-scene-image-wrap--interactive {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    min-height: 280px;
+}
+/* Image fills container; only this photo is the background */
+.dmk-hmi-scene-image-wrap--interactive .dmk-hmi-scene-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+.dmk-hmi-scene-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    vertical-align: top;
+}
+
+/* Overlays: monitor (icon + mouse in-screen), scope (animation at screen border) */
+.dmk-hmi-scene-overlay {
+    position: absolute;
+    pointer-events: none;
+}
+.dmk-hmi-scene-overlay--monitor {
+    left: 3%;
+    top: 10%;
+    width: 30%;
+    height: 62%;
+    pointer-events: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 8%;
+    cursor: pointer;
+}
+/* Align exactly with the physical oscilloscope screen so animation looks like it’s from the device */
+/* Oscilloscope screen area: animation is locked inside; overflow hidden so it never spills past the screen */
+.dmk-hmi-scene-overlay--scope {
+    left: var(--dmk-scope-left, 65%);
+    top: var(--dmk-scope-top, 17%);
+    width: var(--dmk-scope-width, 35%);
+    height: var(--dmk-scope-height, 26%);
+    padding: var(--dmk-scope-padding, 0);
+    pointer-events: auto;
+    overflow: hidden;
+    display: block;
+}
+.dmk-hmi-scene-overlay--scope .dmk-hmi-scene-scope-frame {
+    position: absolute;
+    inset: 0;
+}
+/* Icon toward top of screen; pulse preserved */
+.dmk-hmi-scene-monitor-btn {
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+    margin-bottom: 0.25rem;
+    transition: transform 0.2s ease;
+}
+.dmk-hmi-scene-overlay--monitor .dmk-hmi-scene-monitor-btn.dmk-pc-scene-dmk-icon::before {
+    animation: dmkIconPulse 2.2s ease-in-out infinite;
+}
+.dmk-hmi-scene-overlay--monitor:hover .dmk-hmi-scene-monitor-btn {
+    transform: scale(1.05);
+}
+/* Mouse cursor: on screen, below icon, with click animation */
+.dmk-hmi-scene-image-wrap--full-interactive .dmk-hmi-scene-overlay--monitor .dmk-hmi-scene-monitor-hint {
+    top: var(--dmk-hint-top, 36%);
+    left: var(--dmk-hint-left, 50%);
+    z-index: 3;
+    visibility: visible;
+    opacity: 1;
+}
+.dmk-hmi-scene-monitor-hint {
+    position: absolute;
+    left: var(--dmk-hint-left, 50%);
+    top: var(--dmk-hint-top, 36%);
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 3;
+}
+.dmk-hmi-scene-monitor-hint .dmk-pc-scene-desktop-hint-pointer {
+    display: inline-flex;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.6));
+    animation: dmkHintClickCycle 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+.dmk-hmi-scene-monitor-hint .dmk-pc-scene-desktop-hint-pointer svg {
+    width: 22px;
+    height: 22px;
+    display: block;
+}
+/* Obvious pulse over "CLICK TO OPEN" button in the screen image */
+.dmk-hmi-scene-btn-glow {
+    position: absolute;
+    left: 52%;
+    top: 46%;
+    width: 42%;
+    height: 24%;
+    transform: translate(-50%, -50%);
+    border-radius: 12px;
+    pointer-events: none;
+    z-index: 0;
+    border: 2px solid rgba(100, 180, 255, 0.5);
+    box-shadow: 0 0 24px 8px rgba(100, 180, 255, 0.35), inset 0 0 20px rgba(100, 180, 255, 0.15);
+    animation: dmkBtnGlowPulse 1.5s ease-in-out infinite;
+}
+@keyframes dmkBtnGlowPulse {
+    0%, 100% {
+        border-color: rgba(100, 180, 255, 0.4);
+        box-shadow: 0 0 16px 4px rgba(100, 180, 255, 0.25), inset 0 0 12px rgba(100, 180, 255, 0.1);
+        opacity: 0.85;
+    }
+    50% {
+        border-color: rgba(120, 200, 255, 0.75);
+        box-shadow: 0 0 28px 12px rgba(100, 180, 255, 0.5), inset 0 0 24px rgba(100, 180, 255, 0.25);
+        opacity: 1;
+    }
+}
+/* Scope frame: fills the screen area exactly (top-left to bottom-right); canvas fills this */
+.dmk-hmi-scene-scope-frame {
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    background: #0a0a0e;
+}
+.dmk-hmi-scene-scope-frame .oscilloscope-display {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Modal: DMK interface when "CLICK TO OPEN" is used */
+.dmk-hmi-scene-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    animation: dmkModalFadeIn 0.25s ease-out;
+}
+.dmk-hmi-scene-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    animation: dmkModalBackdropFadeIn 0.25s ease-out;
+}
+.dmk-hmi-scene-modal-panel {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 900px;
+    max-height: 85vh;
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: dmkModalPanelIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.dmk-hmi-scene-modal-panel .dmk-pc-scene-interface-content {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+}
+@keyframes dmkModalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes dmkModalBackdropFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes dmkModalPanelIn {
+    from { opacity: 0; transform: scale(0.97); }
+    to { opacity: 1; transform: scale(1); }
 }
 
 /* ========== DMK DATA INTELLIGENCE (page section, after screen) ========== */
@@ -4962,6 +5203,19 @@ section {
 .dmk-pc-scene-desk-row--1 {
     flex-direction: row;
     gap: 0;
+}
+
+/* Wired: Monitor | cable | Hub | cable | Oscilloscope — clear visual link */
+.dmk-pc-scene-desk-row--wired {
+    align-items: center;
+    gap: 0;
+    padding: 8px 0;
+}
+.dmk-pc-scene-desk-row--wired .dmk-pc-scene-peripheral {
+    flex: 0 0 auto;
+}
+.dmk-pc-scene-desk-row--wired .dmk-pc-scene-hub {
+    flex: 0 0 auto;
 }
 
 .dmk-pc-scene-desk-row--usb {
@@ -7281,6 +7535,33 @@ section {
     height: 28px;
 }
 
+/* Wired layout: more visible black cables between Monitor ↔ Hub ↔ Oscilloscope */
+.dmk-pc-scene-desk--wired .dmk-pc-scene-cable-wrap--to-hub {
+    width: 64px;
+    height: 32px;
+}
+.dmk-pc-scene-desk--wired .dmk-pc-scene-cable {
+    color: #1a1a1e;
+}
+.dmk-pc-scene-desk--wired .dmk-pc-scene-cable-line {
+    stroke-width: 2.5;
+}
+.dmk-pc-scene-desk--wired .dmk-pc-scene-cable-wrap:hover .dmk-pc-scene-cable {
+    color: #2d2d35;
+}
+
+/* Cable bundle: 3 wires with slight offset */
+.dmk-pc-scene-cable--bundle .dmk-pc-scene-cable-line--2,
+.dmk-pc-scene-cable--bundle .dmk-pc-scene-cable-line--3 {
+    opacity: 0.75;
+}
+.dmk-pc-scene-desk--wired .dmk-pc-scene-cable--bundle .dmk-pc-scene-cable-line--2 {
+    stroke: #25252a;
+}
+.dmk-pc-scene-desk--wired .dmk-pc-scene-cable--bundle .dmk-pc-scene-cable-line--3 {
+    stroke: #25252a;
+}
+
 .dmk-pc-scene-cable-wrap--vertical {
     width: 28px;
     height: 44px;
@@ -7444,6 +7725,43 @@ section {
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
 }
 
+/* Hub: DMK label and port indicators (wired look) */
+.dmk-pc-scene-device-inner {
+    position: relative;
+}
+.dmk-pc-scene-hub-label {
+    position: absolute;
+    bottom: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    color: rgba(196, 43, 43, 0.95);
+    text-shadow: 0 0 8px rgba(196, 43, 43, 0.4);
+    pointer-events: none;
+}
+.dmk-pc-scene-hub-ports {
+    position: absolute;
+    bottom: 4px;
+    right: 8px;
+    display: flex;
+    gap: 4px;
+    pointer-events: none;
+}
+.dmk-pc-scene-hub-port {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #333;
+    border: 1px solid #222;
+    box-shadow: inset 0 0 1px rgba(255,255,255,0.1);
+}
+.dmk-pc-scene-device--hub .dmk-pc-scene-hub-port:nth-child(1) { background: #2a4a8a; }
+.dmk-pc-scene-device--hub .dmk-pc-scene-hub-port:nth-child(2) { background: #2a5a3a; }
+.dmk-pc-scene-device--hub .dmk-pc-scene-hub-port:nth-child(3) { background: #5a2a2a; }
+
 /* Real oscilloscope image in a 3D-style frame */
 .dmk-pc-scene-oscilloscope {
     flex-shrink: 0;
@@ -7454,11 +7772,11 @@ section {
 }
 
 .dmk-pc-scene-oscilloscope-frame {
-    width: 140px;
-    height: 100px;
+    width: 160px;
+    height: 112px;
     border-radius: 8px;
     overflow: hidden;
-    background: #1a1a1a;
+    background: #0a0a0e;
     box-shadow:
         0 6px 20px rgba(0,0,0,0.25),
         0 2px 6px rgba(0,0,0,0.15),
@@ -7466,6 +7784,11 @@ section {
     border: 6px solid #2a2a2a;
     transform: rotateY(8deg) rotateX(-3deg);
     transition: transform 0.35s ease;
+}
+/* Wired layout: slightly larger scope so waveform animation is clearly visible */
+.dmk-pc-scene-desk--wired .dmk-pc-scene-oscilloscope-frame {
+    width: 180px;
+    height: 126px;
 }
 
 .dmk-pc-scene-oscilloscope:hover .dmk-pc-scene-oscilloscope-frame {
