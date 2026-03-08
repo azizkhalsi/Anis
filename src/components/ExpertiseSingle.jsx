@@ -9,10 +9,7 @@ import ExpertiseTabVisual from './ExpertiseTabVisual';
 const VALID_TOPICS = ['consulting', 'hardware', 'software', 'mbd', 'prototyping'];
 const BASE = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
 const PROTOTYPING_BG_IMG = `${BASE}images/prototyping-pick-and-place.png`;
-const PROTOTYPING_ENV_IMGS = [
-  `${BASE}images/prototyping-bg-workshop.png`,
-  `${BASE}images/prototyping-hero-env-lab.png`,
-];
+const PROTOTYPING_ENV_IMG = `${BASE}images/prototyping-hero-env.png`;
 const EXEMPLES_IMGS = [
   `${BASE}images/exemples/exemples-1.png`,
   `${BASE}images/exemples/exemples-2.png`,
@@ -103,17 +100,16 @@ export default function ExpertiseSingle() {
               <h1 className="prototyping-hero-title">{label}</h1>
               <p className="prototyping-hero-lead">{t('expertise.tabs.prototyping.heroLead')}</p>
               <div className="prototyping-hero-env" aria-hidden="true">
-                {PROTOTYPING_ENV_IMGS.map((src, i) => (
+                <div className="prototyping-hero-env-img-wrap">
                   <img
-                    key={i}
-                    src={src}
-                    alt=""
+                    src={PROTOTYPING_ENV_IMG}
+                    alt="Electronics lab and workshop with equipment on white workbench"
                     className="prototyping-hero-env-img"
                     loading="lazy"
                     decoding="async"
                     fetchPriority="low"
                   />
-                ))}
+                </div>
               </div>
             </div>
             <section
@@ -129,7 +125,7 @@ export default function ExpertiseSingle() {
                   <div key={i} className="prototyping-exemples-item" style={{ '--i': i }}>
                     <img
                       src={src}
-                      alt=""
+                      alt={`Prototyping and electronics example ${i + 1}`}
                       className="prototyping-exemples-img"
                       loading="lazy"
                       decoding="async"

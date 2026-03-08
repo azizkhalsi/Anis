@@ -114,7 +114,7 @@ export default function Hero() {
           src="/images/lab-testbench.png"
           srcSet="/images/lab-testbench.png 1x"
           sizes="100vw"
-          alt=""
+          alt="Appcon Technologies hero background"
           className="hero-bg-image"
           aria-hidden="true"
           width="1920"

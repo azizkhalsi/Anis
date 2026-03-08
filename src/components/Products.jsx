@@ -116,7 +116,7 @@ function DmkPcSoftwareScene() {
                     >
                       <img
                         src="/hmi/dmk-logo.png"
-                        alt=""
+                        alt="DMK application icon"
                         className="dmk-pc-scene-dmk-icon-img"
                         loading="lazy"
                         decoding="async"

@@ -108,4 +108,11 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  
+  <!-- AI overview (machine-readable, not in main nav) -->
+  <url>
+    <loc>https://www.appcon-technologies.com/ai-overview</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>

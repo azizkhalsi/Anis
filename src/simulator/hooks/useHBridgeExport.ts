@@ -45,7 +45,9 @@ export function useHBridgeExport(
   u30: number,
   options: UseHBridgeExportOptions = {}
 ) {
-  const { serverUrl = 'http://localhost:4000', sampleRateMs = 20, enabled = false } = options;
+  // Set VITE_HBRIDGE_SERVER_URL when deploying so the app connects to your backend; local dev uses localhost:4000
+  const defaultServerUrl = import.meta.env.VITE_HBRIDGE_SERVER_URL || 'http://localhost:4000';
+  const { serverUrl = defaultServerUrl, sampleRateMs = 20, enabled = false } = options;
   const socketRef = useRef<WebSocket | null>(null);
   const [feedback, setFeedback] = useState<MotorFeedback>({ ch1_current: 0, ch2_current: 0, ch3_current: 0, connected: false });
   const [eStop, setEStop] = useState(false);

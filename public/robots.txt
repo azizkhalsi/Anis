@@ -1,12 +1,9 @@
 # robots.txt for Appcon Technologies
 # https://www.appcon-technologies.com/robots.txt
+# AI crawlers (e.g. GPTBot, Claude-Web, PerplexityBot) are allowed; no disallow rules for them.
 
 User-agent: *
 Allow: /
 
-# Disallow admin or private areas if any
-# Disallow: /admin/
-# Disallow: /private/
-
-# Sitemap location (update with your actual sitemap URL)
+# Sitemap location
 Sitemap: https://www.appcon-technologies.com/sitemap.xml

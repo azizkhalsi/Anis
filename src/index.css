@@ -3063,21 +3063,51 @@ section {
     margin-top: 28px;
 }
 
+.prototyping-hero-env-img-wrap {
+    display: inline-block;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(0, 0, 0, 0.14);
+    background: var(--bg-secondary, #f5f5f5);
+}
+
 .prototyping-hero-env-img {
     width: auto;
     max-width: 320px;
     height: auto;
     max-height: 240px;
     object-fit: contain;
-    border-radius: 10px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-    mix-blend-mode: multiply;
+    display: block;
+    border: none;
+    outline: none;
+    vertical-align: middle;
+}
+
+/* Lab image: cut borders (inset clip) so screenshot-style edges are hidden; optional soft inner shadow */
+.prototyping-hero-env-img-wrap--lab {
+    position: relative;
+}
+.prototyping-hero-env-img-wrap--lab .prototyping-hero-env-img {
+    clip-path: inset(10px);
+    -webkit-clip-path: inset(10px);
+}
+.prototyping-hero-env-img-wrap--lab::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    pointer-events: none;
+    box-shadow: inset 0 0 24px 6px rgba(0, 0, 0, 0.06);
 }
 
 @media (max-width: 768px) {
     .prototyping-hero-env-img {
         max-width: 260px;
         max-height: 180px;
+    }
+    .prototyping-hero-env-img-wrap--lab .prototyping-hero-env-img {
+        clip-path: inset(6px);
+        -webkit-clip-path: inset(6px);
     }
 }
 
@@ -4868,31 +4898,34 @@ section {
     white-space: nowrap;
 }
 
-/* Active click-loop animation: moves toward icon, scale down (click), then back */
+/* Active click-loop animation: moves toward icon, clear click (scale down then bounce), then back */
 @keyframes dmkHintClickCycle {
     0%, 100% {
-        transform: translateY(15px) scale(1);
+        transform: translateY(15px) scale(1) rotate(0deg);
         opacity: 0;
     }
     10% {
         opacity: 1;
     }
-    40% {
-        transform: translateY(-8px) scale(1);
+    38% {
+        transform: translateY(-8px) scale(1) rotate(0deg);
     }
-    /* Click down */
-    50% {
-        transform: translateY(-8px) scale(0.8);
+    /* Click down – mouse "press" */
+    45% {
+        transform: translateY(-6px) scale(0.75) rotate(-2deg);
     }
-    /* Release */
-    60% {
-        transform: translateY(-8px) scale(1.1);
+    48% {
+        transform: translateY(-8px) scale(0.85) rotate(0deg);
     }
-    70% {
-        transform: translateY(-8px) scale(1);
+    /* Release – bounce */
+    55% {
+        transform: translateY(-10px) scale(1.15) rotate(0deg);
+    }
+    62% {
+        transform: translateY(-8px) scale(1) rotate(0deg);
     }
     90% {
-        transform: translateY(15px) scale(1);
+        transform: translateY(15px) scale(1) rotate(0deg);
         opacity: 1;
     }
 }
@@ -7011,20 +7044,21 @@ section {
     display: flex;
     align-items: center;
     gap: 0;
-    flex-wrap: wrap;
-    row-gap: 12px;
+    flex-wrap: nowrap;
+    row-gap: 0;
 }
 
 .lci-shift-flow-node {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.88rem;
+    font-family: 'Space Grotesk', 'SF Mono', 'Consolas', monospace;
+    font-size: 0.82rem;
     font-weight: 600;
-    padding: 10px 18px;
-    border-radius: var(--radius);
+    padding: 8px 14px;
+    border-radius: 4px;
     background: var(--bg-secondary);
     border: 1px solid var(--border);
     color: var(--text);
     white-space: nowrap;
+    letter-spacing: 0.02em;
 }
 
 .lci-shift-flow-node--lci {
@@ -7037,21 +7071,24 @@ section {
 
 .lci-shift-flow-arrow {
     display: inline-block;
-    width: 36px;
+    width: 24px;
     height: 2px;
     background: var(--border);
     position: relative;
-    margin: 0 4px;
+    margin: 0 6px;
     flex-shrink: 0;
 }
 
 .lci-shift-flow-arrow::after {
-    content: '';
+    content: '›';
     position: absolute;
-    right: -1px;
-    top: -4px;
-    border: 5px solid transparent;
-    border-left-color: var(--text-secondary);
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    line-height: 1;
 }
 
 /* ========== LCI SECTION 3: WHY LCI ========== */
@@ -7342,22 +7379,21 @@ section {
         grid-template-columns: 1fr;
     }
     .lci-shift-flow {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-wrap: wrap;
+        row-gap: 8px;
     }
     .lci-shift-flow-arrow {
-        width: 2px;
-        height: 24px;
-        margin: 4px 0 4px 24px;
+        width: 100%;
+        height: 2px;
+        margin: 0 0 0 20px;
+        max-width: 40px;
     }
     .lci-shift-flow-arrow::after {
-        right: auto;
-        left: -4px;
-        top: auto;
-        bottom: -1px;
-        border: 5px solid transparent;
-        border-top-color: var(--text-secondary);
-        border-left-color: transparent;
+        right: 0;
+        left: auto;
+        top: 50%;
+        bottom: auto;
+        transform: translateY(-50%);
     }
 }
 
@@ -9759,6 +9795,13 @@ section {
         transition-duration: 0.01ms !important;
     }
 
+    /* Exception: DMK desktop "click" hint must stay visible so users find the CTA */
+    .dmk-pc-scene-desktop-hint-pointer {
+        animation-duration: 2.5s !important;
+        animation-iteration-count: infinite !important;
+        transition-duration: 0.25s !important;
+    }
+
     .loader-ring {
         animation: none;
     }
@@ -10242,4 +10285,88 @@ section {
     font-size: 13px;
     color: var(--ind-text-muted);
     margin: 0;
+}
+
+/* ========== AI OVERVIEW PAGE (machine-readable, not in nav) ========== */
+.ai-overview-page {
+    padding: 48px 0 64px;
+    max-width: 720px;
+    margin: 0 auto;
+}
+.ai-overview-header {
+    margin-bottom: 32px;
+}
+.ai-overview-header h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 12px;
+}
+.ai-overview-lead {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin: 0;
+}
+.ai-overview-section {
+    margin-bottom: 32px;
+}
+.ai-overview-section h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 12px;
+    padding-top: 8px;
+}
+.ai-overview-section h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 24px 0 8px;
+}
+.ai-overview-section p,
+.ai-overview-section li {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin: 0 0 12px;
+}
+.ai-overview-dl {
+    margin: 0 0 16px;
+}
+.ai-overview-dl dt {
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 12px;
+    margin-bottom: 4px;
+}
+.ai-overview-dl dd {
+    margin: 0 0 0 1em;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+.ai-overview-section a {
+    color: var(--accent);
+    text-decoration: underline;
+}
+.ai-overview-section ul {
+    list-style: disc;
+    padding-left: 1.5em;
+    margin: 0 0 12px;
+}
+
+/* Screen-reader and crawler-only content (e.g. AI summary in index.html) */
+.sr-only,
+.ai-summary {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
