@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import DmkAiVisual from './DmkAiVisual';
 import DmkFaultDetectionDemo from './DmkFaultDetectionDemo';
@@ -18,7 +18,13 @@ const DMK_LIVE_DASHBOARD_IMG = '/images/dmk-live-dashboard.png';
 export default function DmkDataIntelligence({ variant }) {
   const { t } = useTranslation();
   const sectionRef = useRef(null);
+  const faultSimRef = useRef(null);
+  const [faultSimState, setFaultSimState] = useState({ busy: false, fault: false });
   const isPage = variant === 'page';
+
+  const onFaultSimStateChange = useCallback(({ busy, fault }) => {
+    setFaultSimState({ busy, fault });
+  }, []);
 
   // Reveal-on-scroll: viewport for page (smooth scroll-in), section root for tab
   useEffect(() => {
@@ -56,7 +62,7 @@ export default function DmkDataIntelligence({ variant }) {
             <h3 className="dmk-story-title dmk-story-title--live">{t('products.dmk.dataIntel.storyLiveTitle')}</h3>
             <p className="dmk-story-body dmk-story-body--live">{t('products.dmk.dataIntel.storyLiveBody')}</p>
             <a href="#products" className="dmk-story-live-cta">
-              {t('products.dmk.dataIntel.exploreDmk')} →
+              {t('products.dmk.dataIntel.exploreDmk')}
             </a>
           </div>
           <div className="dmk-story-visual dmk-story-reveal dmk-story-reveal-right">
@@ -242,6 +248,36 @@ export default function DmkDataIntelligence({ variant }) {
                 <li>{t('products.dmk.dataIntel.storyStep4Detail2')}</li>
                 <li>{t('products.dmk.dataIntel.storyStep4Detail3')}</li>
               </ul>
+              {isPage && (
+                <div className="dmk-story-step-cta">
+                  <button
+                    type="button"
+                    className={`dmk-fault-sim-btn dmk-fault-sim-btn--step-text ${faultSimState.busy ? 'dmk-fault-sim-btn--busy' : ''} ${faultSimState.fault ? 'dmk-fault-sim-btn--done' : ''}`}
+                    onClick={() => faultSimRef.current?.runAlgorithm()}
+                    disabled={faultSimState.busy}
+                    aria-pressed={faultSimState.fault}
+                  >
+                    {faultSimState.fault ? (
+                      <>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" width="16" height="16" aria-hidden>
+                          <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                        Fault Found
+                      </>
+                    ) : (
+                      <>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" width="16" height="16" aria-hidden>
+                          <circle cx="11" cy="11" r="8" />
+                          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                          <line x1="11" y1="8" x2="11" y2="14" />
+                          <line x1="8" y1="11" x2="14" y2="11" />
+                        </svg>
+                        {t('products.dmk.dataIntel.runYourAlgorithm')}
+                      </>
+                    )}
+                  </button>
+                </div>
+              )}
             </div>
             <div className="dmk-story-step-visual dmk-story-step-visual--monitoring">
               <div className="dmk-story-win-frame">
@@ -254,8 +290,11 @@ export default function DmkDataIntelligence({ variant }) {
                 {isPage ? (
                   <>
                     <DmkFaultDetectionSim
+                      ref={faultSimRef}
                       imageSrc={DMK_FAULT_DETECTOR_IMG}
                       imageAlt={t('products.dmk.dataIntel.faultDetectorTitle')}
+                      hideButton
+                      onStateChange={onFaultSimStateChange}
                     />
                     <div className="dmk-story-win-extra">
                       <DmkFaultDetectionDemo />

@@ -1554,17 +1554,54 @@ img {
 
 .client-logos-companies-text {
     text-align: center;
-    max-width: 680px;
+    max-width: 560px;
     margin: 0 auto;
-    padding: 8px 0 12px;
+    padding: 28px 32px 32px;
+    background: var(--bg);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
 }
 
-.client-logos-companies-paragraph {
-    font-size: 1.02rem;
-    line-height: 1.85;
+.client-logos-companies-intro {
+    font-size: 1.05rem;
+    line-height: 1.6;
     color: var(--text-secondary);
+    margin: 0 0 24px 0;
+    letter-spacing: 0.01em;
+    font-weight: 500;
+}
+
+.client-logos-companies-list {
+    list-style: none;
     margin: 0;
-    letter-spacing: 0.005em;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+}
+
+.client-logos-company-item {
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--text);
+    padding: 12px 24px;
+    width: 100%;
+    max-width: 320px;
+    text-align: center;
+    background: #fff;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--text-muted, #6b7280);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.client-logos-company-item:hover {
+    border-left-color: var(--text, #1a1a1a);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
 }
 
 .client-logos-inner {
@@ -1683,6 +1720,20 @@ img {
 }
 
 @media (max-width: 768px) {
+    .client-logos-companies-text {
+        padding: 12px 16px 20px;
+        margin-left: 12px;
+        margin-right: 12px;
+    }
+    .client-logos-companies-intro {
+        font-size: 0.98rem;
+        margin-bottom: 16px;
+    }
+    .client-logos-company-item {
+        padding: 8px 16px;
+        font-size: 0.95rem;
+        max-width: 100%;
+    }
     .client-logos-inner {
         gap: 24px;
     }
@@ -4730,6 +4781,8 @@ section {
     width: 100%;
     height: auto;
     vertical-align: top;
+    position: relative;
+    z-index: 0;
 }
 .dmk-hmi-scene-image-wrap--interactive {
     position: relative;
@@ -4782,10 +4835,16 @@ section {
     pointer-events: auto;
     overflow: hidden;
     display: block;
+    z-index: 10;
 }
 .dmk-hmi-scene-overlay--scope .dmk-hmi-scene-scope-frame {
     position: absolute;
     inset: 0;
+    z-index: 1;
+}
+.dmk-hmi-scene-overlay--scope .dmk-hmi-scene-scope-frame .oscilloscope-display {
+    position: relative;
+    z-index: 1;
 }
 /* Icon toward top of screen; pulse preserved */
 .dmk-hmi-scene-monitor-btn {
@@ -4857,7 +4916,8 @@ section {
         opacity: 1;
     }
 }
-/* Scope frame: fills the screen area exactly (top-left to bottom-right); canvas fills this */
+/* Scope frame: fills the screen area exactly (top-left to bottom-right); canvas fills this.
+   Border-radius matches physical scope screen bezel so overlay and image read as one object. */
 .dmk-hmi-scene-scope-frame {
     width: 100%;
     height: 100%;
@@ -4865,11 +4925,13 @@ section {
     min-height: 0;
     overflow: hidden;
     background: #0a0a0e;
+    border-radius: 4px;
 }
 .dmk-hmi-scene-scope-frame .oscilloscope-display {
     display: block;
     width: 100%;
     height: 100%;
+    min-height: 0;
 }
 
 /* Modal: DMK interface when "CLICK TO OPEN" is used */
@@ -6185,6 +6247,10 @@ section {
     font-size: 0.6rem;
 }
 
+.dmk-story-step-cta {
+    margin-top: 1.25rem;
+}
+
 .dmk-story-win-frame {
     border-radius: 6px;
     overflow: hidden;
@@ -6381,23 +6447,30 @@ section {
 .dmk-fault-sim-btn {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     background: linear-gradient(135deg, #16a34a, #15803d);
     color: #fff;
-    border: none;
+    border: 2px solid rgba(255, 255, 255, 0.35);
     border-radius: 10px;
-    padding: 10px 24px;
+    padding: 12px 28px;
     font-family: inherit;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     cursor: pointer;
-    transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.1);
+    transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
 }
 .dmk-fault-sim-btn:hover:not(.dmk-fault-sim-btn--done):not(.dmk-fault-sim-btn--busy) {
-    transform: scale(1.03);
-    box-shadow: 0 0 28px rgba(22, 163, 74, 0.35);
+    transform: scale(1.04);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 0 28px rgba(22, 163, 74, 0.4);
+    border-color: rgba(255, 255, 255, 0.55);
+}
+.dmk-fault-sim-btn:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.8);
+    outline-offset: 2px;
 }
 .dmk-fault-sim-btn--busy {
     animation: dmkFaultSimPulse 1.2s ease infinite;
@@ -6405,6 +6478,7 @@ section {
 }
 .dmk-fault-sim-btn--done {
     background: linear-gradient(135deg, #15803d, #14532d);
+    border-color: rgba(255, 255, 255, 0.2);
     cursor: default;
 }
 .dmk-fault-sim-btn svg {

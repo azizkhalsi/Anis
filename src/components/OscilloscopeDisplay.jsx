@@ -20,9 +20,13 @@ export default function OscilloscopeDisplay() {
 
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const setSize = () => {
-      const rect = canvas.getBoundingClientRect();
+      let rect = canvas.getBoundingClientRect();
+      if (rect.height < 1 && canvas.parentElement) {
+        const parentRect = canvas.parentElement.getBoundingClientRect();
+        rect = { width: parentRect.width, height: parentRect.height, ...rect };
+      }
       const cssW = rect.width || 140;
-      const cssH = rect.height || 100;
+      const cssH = rect.height || Math.round(cssW / 3.2);
       const w = Math.round(cssW * dpr);
       const h = Math.round(cssH * dpr);
       if (canvas.width !== w || canvas.height !== h) {
@@ -119,6 +123,7 @@ export default function OscilloscopeDisplay() {
       setSize();
     });
     resizeObserver.observe(canvas);
+    if (canvas.parentElement) resizeObserver.observe(canvas.parentElement);
 
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);

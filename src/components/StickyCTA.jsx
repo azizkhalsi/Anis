@@ -13,6 +13,7 @@ export default function StickyCTA() {
   if (pathname === '/simulator') return null;
   if (pathname === '/contact') return null;
   if (pathname === '/products/dmk') return null;
+  if (pathname === '/expertise/hardware') return null;
   if (scrollY <= SCROLL_THRESHOLD) return null;
 
   const docHeight = typeof document !== 'undefined' ? document.documentElement.scrollHeight : 0;

@@ -85,7 +85,8 @@
     },
     "clientLogos": {
       "heading": "Companies we've worked with",
-      "companiesParagraph": "Over the years, we have had the privilege of collaborating with leading companies across industries — including Miele & Cie KG, STMicroelectronics, Microchip Technology, HL Mando, and SPEMOT. These partnerships span white goods, automotive, power electronics, and industrial automation, reflecting the breadth and depth of our engineering expertise.",
+      "companiesIntro": "Our engineering experience spans projects involving organizations such as:",
+      "companiesList": ["Miele & Cie. KG", "STMicroelectronics", "Microchip Technology", "HL Mando", "SPEMOT"],
       "storyTitle": "Partnership & success story",
       "storyText": "We collaborate with industry leaders to deliver sensorless motor control in mass production. With over 20 patents, Appcon drives innovation and ensures project success from concept to deployment."
     },
@@ -234,7 +235,7 @@
         "viewFullStory": "View full story",
         "storyLiveEyebrow": "DMK · Motor Monitoring System",
         "storyLiveTitle": "Your motor, live on screen.",
-        "exploreDmk": "Explore DMK",
+        "exploreDmk": "Contact us for more",
         "storyLiveBody": "The DMK gives you a real-time window into your motor's electrical behaviour — 3-phase voltages, currents, FFT analysis — rendered as an oscilloscope, live, at up to 250 kHz sampling rate. Every sine wave, every transient, every ripple. You can see it all.",
         "storyProblemTag": "THE CHALLENGE",
         "storyProblemTitle": "Traditional motor monitoring is blind to reality.",

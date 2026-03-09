@@ -12,15 +12,6 @@ const DMK_HMI_VISUALISATION_SRC = '/hmi/dmk-hmi-visualisation.png';
 const DMK_HMI_CALIBRATION_SRC = '/hmi/dmk-hmi-calibration.png';
 const DMK_REAL_MODEL_SRC = '/images/dmk-real-model.png';
 const DMK_EXTERNAL_CONNECTIONS_IMG = '/images/dmk-external-connections.png';
-/* Oscilloscope screen rectangle: % of image (left, top, width, height). Animation is locked inside this area. */
-const DMK_SCOPE_OVERLAY_STYLE = {
-  left: '62%',
-  top: '44%',
-  width: '30%',
-  height: '18%',
-  padding: '0',
-  zIndex: 2,
-};
 
 const LCI_PCB_SRC = '/images/lci-pcb.png';
 const AMC_IMG_INTEGRATION = '/images/amc/amc-integration-hardware.png';
@@ -301,24 +292,6 @@ function DmkExternalConnectionsScene() {
                 <path d="M3 2L3 19L8 14L10 22L12 21L10 14L17 16Z" fill="#ffffff" stroke="#000000" strokeWidth="1.4" strokeLinejoin="round" strokeLinecap="round" />
               </svg>
             </span>
-          </div>
-          <div className="dmk-hmi-scene-btn-glow" aria-hidden="true" />
-        </div>
-        {/* Animation locked inside oscilloscope screen: same rectangle as the display area, scales with image */}
-        <div
-          className="dmk-hmi-scene-overlay dmk-hmi-scene-overlay--scope"
-          style={{
-            left: DMK_SCOPE_OVERLAY_STYLE.left,
-            top: DMK_SCOPE_OVERLAY_STYLE.top,
-            width: DMK_SCOPE_OVERLAY_STYLE.width,
-            height: DMK_SCOPE_OVERLAY_STYLE.height,
-            padding: DMK_SCOPE_OVERLAY_STYLE.padding,
-            zIndex: DMK_SCOPE_OVERLAY_STYLE.zIndex,
-          }}
-          aria-hidden="true"
-        >
-          <div className="dmk-hmi-scene-scope-frame">
-            <OscilloscopeDisplay />
           </div>
         </div>
       </div>

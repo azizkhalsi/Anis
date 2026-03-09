@@ -6,18 +6,24 @@ export default function ClientLogos() {
   const { t } = useTranslation();
   const ref = useRef(null);
   const visible = useScrollAnimation(ref);
+  const companiesList = t('home.clientLogos.companiesList', { returnObjects: true });
+  const companies = Array.isArray(companiesList) ? companiesList : [];
 
   return (
     <section id="client-logos" className="client-logos" ref={ref} aria-label={t('home.clientLogos.heading')}>
       <div className="container">
-        <p className={`client-logos-heading${visible ? ' visible' : ''}`} data-animate="fade-up">
-          {t('home.clientLogos.heading')}
-        </p>
         <div className={`client-logos-track${visible ? ' visible' : ''}`} data-animate="fade-up">
           <div className="client-logos-companies-text">
-            <p className="client-logos-companies-paragraph">
-              {t('home.clientLogos.companiesParagraph')}
+            <p className="client-logos-companies-intro">
+              {t('home.clientLogos.companiesIntro')}
             </p>
+            <ul className="client-logos-companies-list" aria-label={t('home.clientLogos.heading')}>
+              {companies.map((name, i) => (
+                <li key={i} className="client-logos-company-item">
+                  {name}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
         <div className={`client-logos-story${visible ? ' visible' : ''}`} data-animate="fade-up">

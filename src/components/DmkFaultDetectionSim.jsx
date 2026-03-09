@@ -1,8 +1,9 @@
 /**
  * Full fault detection simulation: image + canvas overlay (scan line + fault marker),
  * Run button, status text, and fault badge. Ported from standalone HTML/JS.
+ * Supports hideButton + ref.runAlgorithm() when button is rendered elsewhere (e.g. under step text).
  */
-import { useRef, useEffect, useState, useCallback } from 'react';
+import { useRef, useEffect, useState, useCallback, forwardRef, useImperativeHandle } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const N = 500;
@@ -15,7 +16,10 @@ const wV = Array.from({ length: N }, (_, p) => {
   return 50 * Math.sin(f * t - 2.094) + sp;
 });
 
-export default function DmkFaultDetectionSim({ imageSrc, imageAlt }) {
+const DmkFaultDetectionSim = forwardRef(function DmkFaultDetectionSim(
+  { imageSrc, imageAlt, hideButton = false, onStateChange },
+  ref
+) {
   const { t } = useTranslation();
   const wrapRef = useRef(null);
   const canvasRef = useRef(null);
@@ -24,6 +28,10 @@ export default function DmkFaultDetectionSim({ imageSrc, imageAlt }) {
   const [busy, setBusy] = useState(false);
   const [fault, setFault] = useState(false);
   const scanStartRef = useRef(0);
+
+  useEffect(() => {
+    if (typeof onStateChange === 'function') onStateChange({ busy, fault });
+  }, [busy, fault, onStateChange]);
 
   const dpr = typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1;
 
@@ -142,7 +150,7 @@ export default function DmkFaultDetectionSim({ imageSrc, imageAlt }) {
     };
   }, [resize]);
 
-  const runAlgorithm = () => {
+  const runAlgorithm = useCallback(() => {
     if (busy || fault) return;
     setBusy(true);
     scanXRef.current = 0;
@@ -166,7 +174,9 @@ export default function DmkFaultDetectionSim({ imageSrc, imageAlt }) {
       rafRef.current = requestAnimationFrame(draw);
     };
     rafRef.current = requestAnimationFrame(tick);
-  };
+  }, [busy, fault, draw]);
+
+  useImperativeHandle(ref, () => ({ runAlgorithm }), [runAlgorithm]);
 
   const statusKey = fault
     ? 'products.dmk.dataIntel.faultStatusFound'
@@ -198,35 +208,39 @@ export default function DmkFaultDetectionSim({ imageSrc, imageAlt }) {
           ● Fault 2 &nbsp;|&nbsp; V_W at T = 0 &nbsp;|&nbsp; Row 1 090 975 &nbsp;|&nbsp; 1.8 ms detection
         </div>
       </div>
-      <button
-        type="button"
-        className={`dmk-fault-sim-btn ${busy ? 'dmk-fault-sim-btn--busy' : ''} ${fault ? 'dmk-fault-sim-btn--done' : ''}`}
-        onClick={runAlgorithm}
-        disabled={busy}
-        aria-pressed={fault}
-      >
-        {fault ? (
-          <>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" width="16" height="16" aria-hidden>
-              <polyline points="20 6 9 17 4 12" />
-            </svg>
-            Fault Found
-          </>
-        ) : (
-          <>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" width="16" height="16" aria-hidden>
-              <circle cx="11" cy="11" r="8" />
-              <line x1="21" y1="21" x2="16.65" y2="16.65" />
-              <line x1="11" y1="8" x2="11" y2="14" />
-              <line x1="8" y1="11" x2="14" y2="11" />
-            </svg>
-            {t('products.dmk.dataIntel.runYourAlgorithm')}
-          </>
-        )}
-      </button>
+      {!hideButton && (
+        <button
+          type="button"
+          className={`dmk-fault-sim-btn ${busy ? 'dmk-fault-sim-btn--busy' : ''} ${fault ? 'dmk-fault-sim-btn--done' : ''}`}
+          onClick={runAlgorithm}
+          disabled={busy}
+          aria-pressed={fault}
+        >
+          {fault ? (
+            <>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" width="16" height="16" aria-hidden>
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              Fault Found
+            </>
+          ) : (
+            <>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" width="16" height="16" aria-hidden>
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                <line x1="11" y1="8" x2="11" y2="14" />
+                <line x1="8" y1="11" x2="14" y2="11" />
+              </svg>
+              {t('products.dmk.dataIntel.runYourAlgorithm')}
+            </>
+          )}
+        </button>
+      )}
       <div className={`dmk-fault-sim-status ${statusClass}`}>
         {t(statusKey)}
       </div>
     </div>
   );
-}
+});
+
+export default DmkFaultDetectionSim;
