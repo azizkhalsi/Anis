@@ -16,7 +16,7 @@ export default function DmkDataIntelligencePreviewPage() {
           ← {t('products.dmk.pcSceneBackLabel')} / DMK
         </Link>
         <span className="dmk-data-intelligence-preview-label">
-          {t('products.dmk.pcSceneDataIntelligence')} — preview
+          {t('products.dmk.pcSceneDataIntelligence')} — {t('dmkDataIntelligencePreview.previewLabel')}
         </span>
         <a
           href="/dmk-story-standalone.html"
@@ -24,7 +24,7 @@ export default function DmkDataIntelligencePreviewPage() {
           rel="noopener noreferrer"
           className="dmk-data-intelligence-preview-standalone"
         >
-          Open standalone HTML ↗
+          {t('dmkDataIntelligencePreview.openStandalone')} ↗
         </a>
       </div>
       <div className="dmk-data-intelligence-preview-content">

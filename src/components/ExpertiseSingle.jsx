@@ -141,7 +141,7 @@ export default function ExpertiseSingle() {
                   <div key={i} className="prototyping-exemples-item" style={{ '--i': i }}>
                     <img
                       src={src}
-                      alt={`Prototyping and electronics example ${i + 1}`}
+                      alt={t('expertise.tabs.prototyping.exempleAlt', { num: i + 1 })}
                       className="prototyping-exemples-img"
                       loading="lazy"
                       decoding="async"
