@@ -10,10 +10,16 @@ const VALID_TOPICS = ['consulting', 'hardware', 'software', 'mbd', 'prototyping'
 const BASE = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
 const PROTOTYPING_BG_IMG = `${BASE}images/prototyping-pick-and-place.png`;
 const PROTOTYPING_ENV_IMG = `${BASE}images/prototyping-hero-env.png`;
+const PROTOTYPING_PICK_AND_PLACE_IMG = `${BASE}images/prototyping-hero-pick-and-place.png`;
 const EXEMPLES_IMGS = [
   `${BASE}images/exemples/exemples-1.png`,
   `${BASE}images/exemples/exemples-2.png`,
   `${BASE}images/exemples/exemples-3.png`,
+  `${BASE}images/exemples/exemples-4.png`,
+  `${BASE}images/exemples/exemples-5.png`,
+  `${BASE}images/exemples/exemples-6.png`,
+  `${BASE}images/exemples/exemples-7.png`,
+  `${BASE}images/exemples/exemples-8.png`,
 ];
 
 export default function ExpertiseSingle() {
@@ -104,6 +110,16 @@ export default function ExpertiseSingle() {
                   <img
                     src={PROTOTYPING_ENV_IMG}
                     alt="Electronics lab and workshop with equipment on white workbench"
+                    className="prototyping-hero-env-img"
+                    loading="lazy"
+                    decoding="async"
+                    fetchPriority="low"
+                  />
+                </div>
+                <div className="prototyping-hero-env-img-wrap">
+                  <img
+                    src={PROTOTYPING_PICK_AND_PLACE_IMG}
+                    alt="SMT pick-and-place machine in electronics lab"
                     className="prototyping-hero-env-img"
                     loading="lazy"
                     decoding="async"
