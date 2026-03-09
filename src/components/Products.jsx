@@ -466,17 +466,6 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
                       ))}
                     </ul>
                   </div>
-                  <div className="lci-problem-visual">
-                    <img
-                      src="/images/lci-problem-visual.png"
-                      alt={t('products.lci.problemImageAlt')}
-                      className="lci-problem-img"
-                      width={400}
-                      height={400}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
                 </div>
               </div>
 
@@ -502,17 +491,6 @@ export default function Products({ initialProduct = 'dmk', singleMode = false })
                       <span className="lci-shift-flow-arrow" aria-hidden />
                       <span className="lci-shift-flow-node">{t('products.lci.shiftFlowResult')}</span>
                     </div>
-                  </div>
-                  <div className="lci-shift-visual">
-                    <img
-                      src="/images/lci-solution-visual.png"
-                      alt={t('products.lci.shiftImageAlt')}
-                      className="lci-shift-img"
-                      width={400}
-                      height={400}
-                      loading="lazy"
-                      decoding="async"
-                    />
                   </div>
                 </div>
               </div>

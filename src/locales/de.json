@@ -257,7 +257,7 @@
         "storyStep1Detail2": "Strommessung bis 1000 A",
         "storyStep1Detail3": "FFT-Analyse in Echtzeit",
         "storyStep2Badge": "DATA LOGGING",
-        "storyStep2Title": "01 - DATA LOGGING",
+        "storyStep2Title": "DATA LOGGING",
         "storyStep2Body": "Kontinuierliche, zeitgestempelte Erfassung über alle Kanäle. Der DMK schreibt jede Probe direkt in eine strukturierte lokale Datenbank - 8 Kanäle gleichzeitig, bis 250 kHz - ohne Lücken, ohne manuelle Trigger, ohne Datenverlust. Jede Session ist ab Stopp der Aufzeichnung abfragbar, abspielbar und exportierbar.",
         "storyStep2Detail1": "8-Kanal-Simultanaufzeichnung - U_V, V_W, W_U, Is1–3, Angle, Udc",
         "storyStep2Detail2": "Mikrosekunden-genaue Zeitstempel über die gesamte Session",

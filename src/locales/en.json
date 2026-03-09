@@ -257,7 +257,7 @@
         "storyStep1Detail2": "Current measurement up to 1000A range",
         "storyStep1Detail3": "FFT analysis real-time spectrum processing",
         "storyStep2Badge": "DATA LOGGING",
-        "storyStep2Title": "01 — DATA LOGGING",
+        "storyStep2Title": " DATA LOGGING",
         "storyStep2Body": "Continuous, timestamped acquisition across all channels. The DMK writes every sample directly to a structured local database — 8 channels simultaneously, at up to 250 kHz — with no gaps, no manual triggers, and no data loss. Every session is queryable, replayable, and exportable the moment recording stops.",
         "storyStep2Detail1": "8-channel simultaneous logging — U_V, V_W, W_U, Is1–3, Angle, Udc",
         "storyStep2Detail2": "Microsecond-precision timestamps across the full session",

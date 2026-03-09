@@ -4813,7 +4813,7 @@ section {
 }
 .dmk-hmi-scene-overlay--monitor {
     left: 3%;
-    top: 10%;
+    top: 199px;
     width: 30%;
     height: 62%;
     pointer-events: auto;
@@ -8547,13 +8547,14 @@ section {
     position: relative;
     z-index: 1;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 44px;
     align-items: center;
 }
 
 .lci-shift-text {
     min-width: 0;
+    width: 100%;
 }
 
 .lci-shift-visual {
@@ -8676,7 +8677,8 @@ section {
     color: var(--text-secondary);
     line-height: 1.65;
     margin: 0 0 28px;
-    max-width: 600px;
+    width: 100%;
+    max-width: none;
 }
 .lci-shift-body p {
     margin: 0 0 1em;

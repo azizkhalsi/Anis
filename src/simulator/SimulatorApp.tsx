@@ -47,7 +47,7 @@ const App: React.FC = () => {
   const { t } = useTranslation();
   const [config, setConfig] = useState<SimulationConfig>(INITIAL_CONFIG);
   const [phaseOffset, setPhaseOffset] = useState(0); 
-  const [isRunning, setIsRunning] = useState(false);
+  const [isRunning, setIsRunning] = useState(true);
   const [currentUStar, setCurrentUStar] = useState(INITIAL_STATE.uStar);
 
   // Live values for the 3D motor (refs to avoid re-renders every frame)

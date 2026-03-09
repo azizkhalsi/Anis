@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
 const BASE = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
-const HARDWARE_EDA_LOGOS = `${BASE}images/hardware-eda-logos.png`;
 const HARDWARE_PCB_3D = `${BASE}images/hardware-pcb-3d.png`;
 const SOFTWARE_IMG = 'https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=800';
 const SOFTWARE_IMG_SRCSET = 'https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=400 400w, https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=800 800w';
@@ -44,7 +43,6 @@ export default function ExpertiseTabVisual({ topicId }) {
     return (
       <div className="expertise-visual-card expertise-visual-card--image expertise-visual-card--hardware-two">
         <div className="expertise-hardware-two">
-          <img src={HARDWARE_EDA_LOGOS} alt="EDA tools: EAGLE, KiCad, Altium" className="expertise-visual-img expertise-visual-img--hardware" width="400" height="280" loading="lazy" decoding="async" />
           <img src={HARDWARE_PCB_3D} alt="3D PCB design" className="expertise-visual-img expertise-visual-img--hardware" width="400" height="280" loading="lazy" decoding="async" />
         </div>
       </div>
