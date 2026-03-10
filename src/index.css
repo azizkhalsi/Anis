@@ -4854,8 +4854,8 @@ section {
     pointer-events: none;
 }
 .dmk-hmi-scene-overlay--monitor {
-    left: 187px;
-    top: 153px;
+    left: 193px;
+    top: 170px;
     width: 30%;
     height: 62%;
     pointer-events: auto;
