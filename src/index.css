@@ -4854,8 +4854,8 @@ section {
     pointer-events: none;
 }
 .dmk-hmi-scene-overlay--monitor {
-    left: 3%;
-    top: 199px;
+    left: 187px;
+    top: 153px;
     width: 30%;
     height: 62%;
     pointer-events: auto;
@@ -5767,19 +5767,33 @@ section {
 
 .dmk-pc-scene-tab {
     position: relative;
-    padding: 8px 16px 8px 12px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 8px 16px;
+    border: 1px solid rgba(148, 163, 184, 0.6);
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.05);
-    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--text-secondary);
     font-size: 0.85rem;
     font-weight: 500;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    transition: all 0.2s ease;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: all 0.18s ease;
+    box-shadow:
+        0 1px 2px rgba(15, 23, 42, 0.06),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+}
+
+.dmk-pc-scene-tab-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dmk-pc-scene-tab-icon svg {
+    width: 16px;
+    height: 16px;
+    display: block;
 }
 
 .dmk-pc-scene-tab::after {
@@ -5796,9 +5810,11 @@ section {
 
 .dmk-pc-scene-tab:hover {
     color: var(--text);
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(0, 0, 0, 0.15);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 1);
+    border-color: rgba(148, 163, 184, 0.9);
+    box-shadow:
+        0 2px 4px rgba(15, 23, 42, 0.12),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.9);
     transform: translateY(-1px);
 }
 
@@ -6291,6 +6307,64 @@ section {
 
 .dmk-story-step-cta {
     margin-top: 1.25rem;
+    display: flex;
+    align-items: flex-start;
+}
+
+/* Step-4 CTA button: make it feel like a hero, interactive control (not inline text) */
+.dmk-story-step-cta .dmk-fault-sim-btn--step-text {
+    position: relative;
+    align-self: flex-start;
+    width: fit-content;
+    max-width: 100%;
+    padding-inline: 32px;
+    padding-block: 14px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.78rem;
+    background:
+        radial-gradient(circle at 0% 0%, rgba(52, 211, 153, 0.18), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(34, 197, 94, 0.26), transparent 60%),
+        linear-gradient(135deg, #16a34a, #059669);
+    border: 1px solid rgba(190, 242, 100, 0.7);
+    box-shadow:
+        0 14px 35px rgba(22, 163, 74, 0.45),
+        0 0 0 1px rgba(15, 23, 42, 0.9);
+}
+.dmk-story-step-cta .dmk-fault-sim-btn--step-text::before {
+    content: 'INTERACTIVE DEMO';
+    position: absolute;
+    top: -12px;
+    left: 18px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    background: rgba(15, 23, 42, 0.95);
+    color: rgba(226, 232, 240, 0.96);
+    border: 1px solid rgba(148, 163, 184, 0.9);
+}
+.dmk-story-step-cta .dmk-fault-sim-btn--step-text::after {
+    content: '↗';
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-52%);
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+.dmk-story-step-cta .dmk-fault-sim-btn--step-text:hover:not(.dmk-fault-sim-btn--done):not(.dmk-fault-sim-btn--busy) {
+    transform: translateY(-1px) scale(1.04);
+    box-shadow:
+        0 18px 40px rgba(22, 163, 74, 0.6),
+        0 0 0 1px rgba(148, 163, 184, 0.85);
+}
+.dmk-story-step-cta .dmk-fault-sim-btn--step-text:focus-visible {
+    outline: 3px solid rgba(22, 163, 74, 0.55);
+    outline-offset: 3px;
 }
 
 .dmk-story-win-frame {

@@ -166,7 +166,7 @@ export default function DmkDataIntelligence({ variant }) {
             </div>
           </div>
           <div className="dmk-story-divider" aria-hidden><span>—</span></div>
-          {/* Step 2 —  DATA LOGGING */}
+          {/* Step 2 — 01 DATA LOGGING */}
           <div className="dmk-story-step dmk-story-step--flip dmk-story-reveal">
             <div className="dmk-story-step-text">
               <div className="dmk-story-step-meta">
@@ -254,7 +254,6 @@ export default function DmkDataIntelligence({ variant }) {
                     type="button"
                     className={`dmk-fault-sim-btn dmk-fault-sim-btn--step-text ${faultSimState.busy ? 'dmk-fault-sim-btn--busy' : ''} ${faultSimState.fault ? 'dmk-fault-sim-btn--done' : ''}`}
                     onClick={() => faultSimRef.current?.runAlgorithm()}
-                    disabled={faultSimState.busy}
                     aria-pressed={faultSimState.fault}
                   >
                     {faultSimState.fault ? (

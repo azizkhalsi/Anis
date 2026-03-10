@@ -292,6 +292,9 @@ function DmkExternalConnectionsScene() {
                 <path d="M3 2L3 19L8 14L10 22L12 21L10 14L17 16Z" fill="#ffffff" stroke="#000000" strokeWidth="1.4" strokeLinejoin="round" strokeLinecap="round" />
               </svg>
             </span>
+            <span className="dmk-pc-scene-desktop-hint-label">
+              {t('products.dmk.pcSceneClickHint')}
+            </span>
           </div>
         </div>
       </div>
@@ -320,7 +323,15 @@ function DmkExternalConnectionsScene() {
                   className={`dmk-pc-scene-tab ${activeTab === 'visualisation' ? 'active' : ''}`}
                   onClick={() => setActiveTab('visualisation')}
                 >
-                  {t('products.dmk.pcSceneVisualisation')}
+                  <span className="dmk-pc-scene-tab-icon" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M4 18L9 13L13 16L20 9" />
+                      <path d="M4 4v14h16" />
+                    </svg>
+                  </span>
+                  <span className="dmk-pc-scene-tab-label">
+                    {t('products.dmk.pcSceneVisualisation')}
+                  </span>
                 </button>
                 <button
                   type="button"
@@ -331,7 +342,15 @@ function DmkExternalConnectionsScene() {
                   className={`dmk-pc-scene-tab ${activeTab === 'calibration' ? 'active' : ''}`}
                   onClick={() => setActiveTab('calibration')}
                 >
-                  {t('products.dmk.pcSceneCalibration')}
+                  <span className="dmk-pc-scene-tab-icon" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="3" y="4" width="18" height="14" rx="2" />
+                      <polyline points="5 12 9 10 13 14 17 8 21 11" />
+                    </svg>
+                  </span>
+                  <span className="dmk-pc-scene-tab-label">
+                    {t('products.dmk.pcSceneCalibration')}
+                  </span>
                 </button>
               </div>
             </div>
