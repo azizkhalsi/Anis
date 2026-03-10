@@ -11,9 +11,9 @@ const SUBMIT_TIMEOUT_MS = 12000;
 const CONTACT_ITEM_KEYS = [
   { labelKey: 'contact.addressLabel', valueKey: 'contact.addressValue' },
   { labelKey: 'contact.locationLabel', valueKey: 'contact.locationValue', href: 'https://maps.app.goo.gl/DggvrQfHPYFJC2zF6', icon: 'map' },
-  { labelKey: 'contact.phoneLabel', valueKey: 'contact.phoneValue', href: 'tel:+21670834890' },
+  { labelKey: 'contact.phoneLabel', valueKey: 'contact.phoneValue', href: 'tel:+21636367556' },
   { labelKey: 'contact.languagesLabel', valueKey: 'contact.languagesValue' },
-  { labelKey: 'contact.websiteLabel', valueKey: 'contact.websiteValue', href: 'https://www.appcon-technologies.com' },
+  { labelKey: 'contact.websiteLabel', valueKey: 'contact.websiteValue', href: 'https://www.appcontech.de/' },
   { labelKey: 'contact.linkedInLabel', valueKey: 'contact.linkedInValue', href: 'https://www.linkedin.com/company/appcontechnologies' },
 ];
 
