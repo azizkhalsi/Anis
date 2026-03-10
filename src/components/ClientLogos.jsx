@@ -2,7 +2,31 @@ import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 
-export default function ClientLogos() {
+export function ClientLogosStory() {
+  const { t } = useTranslation();
+  const ref = useRef(null);
+  const visible = useScrollAnimation(ref);
+
+  return (
+    <section
+      id="client-logos"
+      className="client-logos"
+      ref={ref}
+      aria-label={t('home.clientLogos.heading')}
+    >
+      <div className="container">
+        <div className={`client-logos-story${visible ? ' visible' : ''}`} data-animate="fade-up">
+          <h2 className="client-logos-story-title">{t('home.clientLogos.storyTitle')}</h2>
+          <p className="client-logos-story-text">
+            {t('home.clientLogos.storyText')}
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function ClientLogosTrack() {
   const { t } = useTranslation();
   const ref = useRef(null);
   const visible = useScrollAnimation(ref);
@@ -10,7 +34,7 @@ export default function ClientLogos() {
   const companies = Array.isArray(companiesList) ? companiesList : [];
 
   return (
-    <section id="client-logos" className="client-logos" ref={ref} aria-label={t('home.clientLogos.heading')}>
+    <section className="client-logos" ref={ref} aria-label={t('home.clientLogos.heading')}>
       <div className="container">
         <div className={`client-logos-track${visible ? ' visible' : ''}`} data-animate="fade-up">
           <div className="client-logos-companies-text">
@@ -26,13 +50,16 @@ export default function ClientLogos() {
             </ul>
           </div>
         </div>
-        <div className={`client-logos-story${visible ? ' visible' : ''}`} data-animate="fade-up">
-          <h2 className="client-logos-story-title">{t('home.clientLogos.storyTitle')}</h2>
-          <p className="client-logos-story-text">
-            {t('home.clientLogos.storyText')}
-          </p>
-        </div>
       </div>
     </section>
+  );
+}
+
+export default function ClientLogos() {
+  return (
+    <>
+      <ClientLogosStory />
+      <ClientLogosTrack />
+    </>
   );
 }
