@@ -73,7 +73,8 @@
       "subtitle": "Reduce cost and complexity with sensorless solutions\nno encoders, fewer parts, higher reliability.",
       "sloganLine1": "More than just 'know how'",
       "sloganLine2": "we have the 'know why'",
-      "exploreExpertise": "Explore Our Expertise",
+      "exploreExpertise": "Explore Technology",
+      "contact": "Contact",
       "ourProducts": "Our Products",
       "trySimulator": "Try Simulator",
       "scrollToExplore": "Scroll to explore",
@@ -138,6 +139,15 @@
       "items": [
         { "quote": "Appcon delivered a robust sensorless drive solution that exceeded our requirements. Their expertise in motor control and power electronics made the integration seamless.", "name": "Engineering Director", "role": "Industrial Automation", "company": "Manufacturing Partner" },
         { "quote": "Working with Appcon Technologies gave us confidence from concept to production. Their prototyping and validation process ensured we had a reliable product from day one.", "name": "Head of R&D", "role": "Power Electronics", "company": "Technology Client" }
+      ]
+    },
+    "engineeringCapabilities": {
+      "title": "Engineering Capabilities",
+      "items": [
+        "Motor control up to 100k RPM",
+        "Real-time control loop 40kHz",
+        "Sensorless FOC algorithms",
+        "Power electronics simulation"
       ]
     },
     "trustBadges": {

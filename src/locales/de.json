@@ -73,7 +73,8 @@
       "subtitle": "Kosten und Komplexität mit sensorlosen Lösungen reduzieren ? keine Encoder, weniger Teile, höhere Zuverlässigkeit.",
       "sloganLine1": "Mehr als nur \"Know-how\"",
       "sloganLine2": "wir haben das \"Know-why\"",
-      "exploreExpertise": "Unsere Expertise entdecken",
+      "exploreExpertise": "Technologie entdecken",
+      "contact": "Kontakt",
       "ourProducts": "Unsere Produkte",
       "trySimulator": "Simulator ausprobieren",
       "scrollToExplore": "Scrollen zum Entdecken",
@@ -138,6 +139,15 @@
       "items": [
         { "quote": "Appcon hat eine robuste sensorlose Antriebslösung geliefert, die unsere Anforderungen übertroffen hat. Ihre Expertise in Motorsteuerung und Leistungselektronik hat die Integration nahtlos gemacht.", "name": "Leiter Engineering", "role": "Industrieautomation", "company": "Produktionspartner" },
         { "quote": "Die Zusammenarbeit mit Appcon Technologies hat uns von der Konzeption bis zur Produktion Sicherheit gegeben. Ihr Prototyping- und Validierungsprozess hat von Tag eins ein zuverlässiges Produkt gewährleistet.", "name": "Leiter F&E", "role": "Leistungselektronik", "company": "Technologiekunde" }
+      ]
+    },
+    "engineeringCapabilities": {
+      "title": "Ingenieur-Kompetenzen",
+      "items": [
+        "Motorsteuerung bis 100.000 U/min",
+        "Echtzeit-Regelkreis 40 kHz",
+        "Sensorlose FOC-Algorithmen",
+        "Leistungselektronik-Simulation"
       ]
     },
     "trustBadges": {
